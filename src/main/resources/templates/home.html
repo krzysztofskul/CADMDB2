@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CADMDB2</title>
+</head>
+<body>
+
+	<div class="test">
+		<h1>TEST</h1>
+		<table>
+			<tbody>
+				<tr th:each="hospital: ${hospitalList}">
+					<td th:text="${hospital.name}"></td>
+				</tr>
+			</tbody>
+		</table>
+		
+	</div>
+	
+</body>
+</html>

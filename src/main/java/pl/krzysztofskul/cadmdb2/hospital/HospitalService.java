@@ -1,0 +1,30 @@
+package pl.krzysztofskul.cadmdb2.hospital;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class HospitalService {
+
+	private HospitalRepo hospitalRepo;
+
+	/**
+	 * @param hospitalRepo
+	 */
+	@Autowired
+	public HospitalService(HospitalRepo hospitalRepo) {
+		super();
+		this.hospitalRepo = hospitalRepo;
+	}
+	
+	public void save(Hospital hospital) {
+		hospitalRepo.save(hospital);
+	}
+	
+	public List<Hospital> loadAll() {
+		return hospitalRepo.findAll();
+	}
+	
+}
