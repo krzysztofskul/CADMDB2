@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>CADMDB2</title>
+	<meta charset="UTF-8">
+	<title>CADMDB2</title>
+	<!-- CSS -->
+	<link th:href="@{/css/appstyle.css}" rel="stylesheet" />	
 </head>
 <body>
+
+	<div th:replace="./header" :: header></div>
 
 	<div class="test">
 		<h1>TEST</h1>
@@ -17,6 +21,8 @@
 		</table>
 		
 	</div>
+	
+	<div th:replace="./footer" :: footer></div>
 	
 </body>
 </html>
