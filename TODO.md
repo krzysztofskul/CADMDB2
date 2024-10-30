@@ -12,8 +12,7 @@ VER. 0.0.2:
     * equipment class, controller, service, repo, html  
 
 OTHER:
-* add bootstrap to the html files **/done**  
-    * create js file which adds bootstrap automatically to the html files  
+* create js file which adds bootstrap automatically to the html files  
 * create js auto configuration html files: 
     * button's style for details, edit, delete, save, cancel 
     * meta charset="UTF-8"  

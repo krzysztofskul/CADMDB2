@@ -26,5 +26,9 @@ public class HospitalService {
 	public List<Hospital> loadAll() {
 		return hospitalRepo.findAll();
 	}
+
+	public Hospital loadById(Long hospitalId) {
+		return hospitalRepo.findById(hospitalId).get();
+	}
 	
 }
