@@ -6,9 +6,11 @@
 	border-bottom: 1px solid gray;
 	height: 10em;
 	text-align: center;
+	margin-bottom: 2em;
+	padding: 1em;
 }
 
-.body-home {
+.appcontainer {
 	min-height: 40em;
 }
 
@@ -17,4 +19,6 @@
 	height: 5em;
 	text-align: right;
 	font-style: italic;
+	margin-top: 2em;
+	padding: 0.5em;
 } 
