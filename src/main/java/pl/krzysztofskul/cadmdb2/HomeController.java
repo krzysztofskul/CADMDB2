@@ -26,7 +26,7 @@ public class HomeController {
 		this.hospitalTestGenerator = hospitalTestGenerator;
 	}
 
-	@GetMapping("/home")
+	@GetMapping("/test")
 	private ModelAndView getHome() {
 		ModelAndView mav = new ModelAndView("home");
 		this.initialDbTest();

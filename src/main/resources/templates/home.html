@@ -9,17 +9,19 @@
 <body>
 
 	<div th:replace="./header" :: header></div>
-
-	<div class="test">
-		<h1>TEST</h1>
-		<table>
-			<tbody>
-				<tr th:each="hospital: ${hospitalList}">
-					<td th:text="${hospital.name}"></td>
-				</tr>
-			</tbody>
-		</table>
-		
+	
+	<div class="body-home">
+		<div class="test">
+			<h1>TEST</h1>
+			<table>
+				<tbody>
+					<tr th:each="hospital: ${hospitalList}">
+						<td th:text="${hospital.name}"></td>
+					</tr>
+				</tbody>
+			</table>
+			
+		</div>
 	</div>
 	
 	<div th:replace="./footer" :: footer></div>

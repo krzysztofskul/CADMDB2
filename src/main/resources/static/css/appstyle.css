@@ -4,12 +4,17 @@
 
 .header {
 	border-bottom: 1px solid gray;
-	height: 5em;
+	height: 10em;
+	text-align: center;
+}
+
+.body-home {
+	min-height: 40em;
 }
 
 .footer	{
 	border-top: 1px solid gray;
-	height: 3em;
+	height: 5em;
 	text-align: right;
 	font-style: italic;
 } 
