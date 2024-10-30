@@ -1,4 +1,4 @@
-package pl.krzysztofskul.cadmdb2.hospital;
+package pl.krzysztofskul.cadmdb.hospital;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.thedeanda.lorem.LoremIpsum;
 
-import pl.krzysztofskul.cadmdb2.hospital.department.DepartmentTestGenerator;
-import pl.krzysztofskul.cadmdb2.init.InitDataGenerator;
-import pl.krzysztofskul.cadmdb2.random.Random;
+import pl.krzysztofskul.cadmdb.hospital.department.DepartmentTestGenerator;
+import pl.krzysztofskul.cadmdb.init.InitDataGenerator;
+import pl.krzysztofskul.cadmdb.random.Random;
 
 @Service
 public class HospitalTestGenerator implements InitDataGenerator<Hospital> {

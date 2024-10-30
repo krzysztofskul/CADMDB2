@@ -1,13 +1,13 @@
-package pl.krzysztofskul.cadmdb2;
+package pl.krzysztofskul.cadmdb;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Cadmdb2Application {
+public class CadmdbApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Cadmdb2Application.class, args);
+		SpringApplication.run(CadmdbApplication.class, args);
 	}
 
 }

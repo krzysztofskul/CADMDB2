@@ -1,4 +1,4 @@
-package pl.krzysztofskul.cadmdb2.init;
+package pl.krzysztofskul.cadmdb.init;
 
 import java.util.List;
 

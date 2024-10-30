@@ -1,4 +1,4 @@
-package pl.krzysztofskul.cadmdb2.hospital;
+package pl.krzysztofskul.cadmdb.hospital;
 
 import java.util.List;
 

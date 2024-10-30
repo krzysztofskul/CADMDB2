@@ -1,4 +1,4 @@
-package pl.krzysztofskul.cadmdb2;
+package pl.krzysztofskul.cadmdb;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +12,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-public class Cadmdb2SecurityConfig extends WebSecurityConfigurerAdapter {
+public class CadmdbSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {

@@ -1,4 +1,4 @@
-package pl.krzysztofskul.cadmdb2.random;
+package pl.krzysztofskul.cadmdb.random;
 
 import org.springframework.stereotype.Service;
 

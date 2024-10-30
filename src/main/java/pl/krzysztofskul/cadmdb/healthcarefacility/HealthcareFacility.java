@@ -1,4 +1,4 @@
-package pl.krzysztofskul.cadmdb2.healthcarefacility;
+package pl.krzysztofskul.cadmdb.healthcarefacility;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

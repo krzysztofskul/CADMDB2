@@ -1,4 +1,4 @@
-package pl.krzysztofskul.cadmdb2.hospital;
+package pl.krzysztofskul.cadmdb.hospital;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,8 +7,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
-import pl.krzysztofskul.cadmdb2.healthcarefacility.HealthcareFacility;
-import pl.krzysztofskul.cadmdb2.hospital.department.Department;
+import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacility;
+import pl.krzysztofskul.cadmdb.hospital.department.Department;
 
 @Entity
 public class Hospital extends HealthcareFacility {

@@ -1,12 +1,12 @@
-package pl.krzysztofskul.cadmdb2;
+package pl.krzysztofskul.cadmdb;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import pl.krzysztofskul.cadmdb2.hospital.Hospital;
-import pl.krzysztofskul.cadmdb2.hospital.HospitalService;
-import pl.krzysztofskul.cadmdb2.hospital.HospitalTestGenerator;
+import pl.krzysztofskul.cadmdb.hospital.Hospital;
+import pl.krzysztofskul.cadmdb.hospital.HospitalService;
+import pl.krzysztofskul.cadmdb.hospital.HospitalTestGenerator;
 
 @Controller
 public class HomeController {

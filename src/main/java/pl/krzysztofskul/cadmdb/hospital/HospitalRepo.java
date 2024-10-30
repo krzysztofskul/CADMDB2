@@ -1,4 +1,4 @@
-package pl.krzysztofskul.cadmdb2.hospital;
+package pl.krzysztofskul.cadmdb.hospital;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
