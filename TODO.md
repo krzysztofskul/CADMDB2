@@ -3,7 +3,7 @@
 VER. 0.0.1:
 * create a main functionality which allows to build and show hospital structure:
     * hospital controller /done, service /done, repo /done, html **/done**  
-        * create hospital instance **/done**  
+        * create a new hospital and edit hospital functionality **/done**  
     * department controller, service, repo, html  
     * room class, controller, service, repo, html  
 
@@ -21,4 +21,3 @@ OTHER:
     * meta charset="UTF-8"  
 * add icons for buttons  
 * create a login page
-* create style langPL and langEN  

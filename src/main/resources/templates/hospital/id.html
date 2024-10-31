@@ -16,14 +16,40 @@
 	<div class="container-fluid appcontainer">
 		<form action="#" th:action="@{/test/hospitals}" th:object="${hospital}" method="post">
 			<div class="card">
-				<div class="card-header" th:switch="${edit}">
-					<h5 th:case="false" th:text="${hospital.name}"></h5>
-					<h5 th:case="null" th:text="${hospital.name}"></h5>
-					<input th:case="true" type="text" th:field="${hospital.name}"></input>
+				<div class="card-header">
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">
+							<p class="langPL">NAZWA</p>
+							<p class="langEN">name</p>
+						</label>
+						<div class="col-sm-10">
+							<h5 th:if="${edit == false} OR ${edit == null}" th:text="${hospital.name}"></h5>
+							<input th:if="${edit == true}" class="form-control" type="text" th:field="${hospital.name}"></input>
+						</div>
+					</div>
 				</div>
 				<div class="card-body"></div>
-				<div class="card-footer" th:switch="${edit}">
-					<button th:case="true" type="submit">SAVE</button>
+				<div class="card-footer">
+					<th:block th:if="${edit == true}">
+						<a th:href="@{/test/hospitals/{id}(id=${hospital.id})}" class="btn btn-sm btn-outline-warning app-btn-left">
+							<p class="langPL">ANULUJ</p>
+							<p class="langEN">cancel</p>
+						</a>
+						<button type="submit" class="btn btn-sm btn-outline-success app-btn-right">
+							<p class="langPL">ZAPISZ</p>
+							<p class="langEN">save</p>
+						</button>
+					</th:block>
+					<th:block th:if="${edit == false} OR ${edit == null}">
+						<a href="/test/hospitals" class="btn btn-sm btn-outline-warning app-btn-left">
+							<p class="langPL">WSTECZ</p>
+							<p class="langEN">back</p>
+						</a>
+						<a th:href="@{/test/hospitals/{id}?edit=true(id=${hospital.id})}" class="btn btn-sm btn-outline-primary app-btn-right">
+							<p class="langPL">EDYTUJ</p>
+							<p class="langEN">edit</p>
+						</a>
+					</th:block>
 				</div>
 			</div>
 		</form>

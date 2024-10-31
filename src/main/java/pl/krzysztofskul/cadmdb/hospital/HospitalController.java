@@ -38,13 +38,17 @@ public class HospitalController {
 	
 	@GetMapping("/{hospitalId}")
 	public ModelAndView getHospitalById(
-			@PathVariable Long hospitalId
+			@PathVariable Long hospitalId,
+			@RequestParam(required = false, name ="edit") boolean edit
 		) {
 		ModelAndView mav = new ModelAndView("hospital/id");
 		if (hospitalId.equals(Long.valueOf(0))) {
 			mav.addObject("hospital", new Hospital());
 			mav.addObject("edit", true);
 		} else {
+			if (edit == true) {
+				mav.addObject("edit", true);
+			}
 			mav.addObject("hospital", hospitalService.loadById(hospitalId));
 		}
 		return mav;
