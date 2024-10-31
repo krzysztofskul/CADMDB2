@@ -1,6 +1,8 @@
 @charset "UTF-8";
 
 @import url(./test.css);
+@import url(./appstyle-lang.css);
+@import url(./appstyle-buttons.css);
 
 .header {
 	border-bottom: 1px solid gray;

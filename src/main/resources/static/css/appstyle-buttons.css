@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.app-btn-right {
+    float: right;
+    margin: .1em;
+}
+
+.app-btn-left {
+    float: left;
+    margin: .1em;
+}
