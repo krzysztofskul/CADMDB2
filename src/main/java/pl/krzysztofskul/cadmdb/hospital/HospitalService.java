@@ -22,6 +22,10 @@ public class HospitalService {
 	public void save(Hospital hospital) {
 		hospitalRepo.save(hospital);
 	}
+
+	public Hospital saveAndReturn(Hospital hospital) {
+		return hospitalRepo.save(hospital);
+	}
 	
 	public List<Hospital> loadAll() {
 		return hospitalRepo.findAll();

@@ -14,13 +14,19 @@
 	<div th:replace="./header" :: header></div>
 	
 	<div class="container-fluid appcontainer">
-		<div class="card">
-			<div class="card-header">
-				<h5 th:text="${hospital.name}"></h5>
+		<form action="#" th:action="@{/test/hospitals}" th:object="${hospital}" method="post">
+			<div class="card">
+				<div class="card-header" th:switch="${edit}">
+					<h5 th:case="false" th:text="${hospital.name}"></h5>
+					<h5 th:case="null" th:text="${hospital.name}"></h5>
+					<input th:case="true" type="text" th:field="${hospital.name}"></input>
+				</div>
+				<div class="card-body"></div>
+				<div class="card-footer" th:switch="${edit}">
+					<button th:case="true" type="submit">SAVE</button>
+				</div>
 			</div>
-			<div class="card-body"></div>
-			<div class="card-footer"></div>
-		</div>
+		</form>
 	</div>
 	
 	<div th:replace="./footer" :: footer></div>
