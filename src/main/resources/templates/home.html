@@ -13,27 +13,8 @@
 	<div th:replace="./header" :: header></div>
 	
 	<div class="container-fluid appcontainer">
-		<div class="test">
-			<h1>TEST</h1>
-			<table class="table">
-				<thead>
-					<tr>
-						<td><a href="#" class="cadmdb-btn-new">NEW</a></td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="hospital: ${hospitalList}">
-						<td th:text="${hospital.name}"></td>
-						<td><a href="#" class="cadmdb-btn-details">DETAILS</a></td>
-						<td><a href="#" class="cadmdb-btn-del">DELETE</a></td>
-					</tr>
-				</tbody>
-				<tfoot>
-					<tr>
-						<td><a href="#" class="cadmdb-btn-new">NEW</a></td>
-					</tr>
-				</tfoot>
-			</table>
+		<div>
+			<h1>CADmedica app. HOME PAGE</h1>
 			
 		</div>
 	</div>

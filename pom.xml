@@ -10,8 +10,8 @@
 	</parent>
 	<groupId>pl.krzysztofskul</groupId>
 	<artifactId>CADMDB2</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>cadmdb2</name>
+	<version>0.1-SNAPSHOT</version>
+	<name>CADmedica</name>
 	<description>CADmedica application created in SpringBoot</description>
 	<url/>
 	<licenses>

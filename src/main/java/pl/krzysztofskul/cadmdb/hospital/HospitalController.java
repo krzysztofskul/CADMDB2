@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/test/hospitals")
+@RequestMapping("/hospitals")
 public class HospitalController {
 
 	private HospitalService hospitalService;
@@ -64,7 +64,7 @@ public class HospitalController {
 		modelAndView.addObject("hospital", hospital);
 		
 		if (backToPage == null) {
-			modelAndView.setViewName("redirect:/test/hospitals/"+hospital.getId());
+			modelAndView.setViewName("redirect:/hospitals/"+hospital.getId());
 		} else {
 			modelAndView.setViewName(backToPage);
 		}

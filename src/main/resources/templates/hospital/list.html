@@ -25,7 +25,7 @@
 					<tr>
 						<td th:text="${hospital.id}"></td>
 						<td th:text="${hospital.name}"></td>
-						<td><a th:href="@{/test/hospitals/{id}(id=${hospital.id})}" class="cadmdb-btn-details">DETAILS</a></td>
+						<td><a th:href="@{/hospitals/{id}(id=${hospital.id})}" class="cadmdb-btn-details">DETAILS</a></td>
 						<td><a href="#" class="cadmdb-btn-del">DELETE</a></td>
 					</tr>
 				</th:block>

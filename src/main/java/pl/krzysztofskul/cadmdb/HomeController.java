@@ -26,9 +26,19 @@ public class HomeController {
 		this.hospitalTestGenerator = hospitalTestGenerator;
 	}
 
-	@GetMapping("/test")
+	@GetMapping({"/login"})
+	public ModelAndView login() {
+		return new ModelAndView("login");
+	}
+	
+	@GetMapping({"", "/", "/home"})
+	public ModelAndView home() {
+		return new ModelAndView("home");
+	}
+	
+	@GetMapping("/initDbTest")
 	private ModelAndView getHome() {
-		ModelAndView mav = new ModelAndView("home");
+		ModelAndView mav = new ModelAndView("redirect:/home");
 		this.initialDbTest();
 		mav.addObject("hospitalList", hospitalService.loadAll());
 		return mav;
