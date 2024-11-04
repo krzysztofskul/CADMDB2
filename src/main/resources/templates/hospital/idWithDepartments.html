@@ -16,7 +16,7 @@
 	<div th:replace="./hospital/menu-hospital" :: menu-hospital></div>
 	
 	<div class="container-fluid appcontainer">
-		<form action="#" th:action="@{/hospitals}" th:object="${hospital}" method="post">
+		<form action="#" object="${hospital}" method="post">
 			<div class="card">
 				<div class="card-header">
 					<div class="form-group row">
@@ -30,10 +30,18 @@
 						</div>
 					</div>
 				</div>
-				<div class="card-body"></div>
+				<div class="card-body">
+					<table>
+						<th:block>
+							<tr th:each="department : ${hospital.departmentList}">
+								<td th:text="${department.name}"></td>
+							</tr>
+						</th:block>
+					</table>
+				</div>
 				<div class="card-footer">
 					<th:block th:if="${edit == true}">
-						<a th:href="@{/hospitals/{id}(id=${hospital.id})}" class="btn btn-sm btn-outline-warning app-btn-left">
+						<a th:href="{@#}" class="btn btn-sm btn-outline-warning app-btn-left">
 							<p class="langPL">ANULUJ</p>
 							<p class="langEN">cancel</p>
 						</a>
@@ -43,11 +51,11 @@
 						</button>
 					</th:block>
 					<th:block th:if="${edit == false} OR ${edit == null}">
-						<a href="/hospitals" class="btn btn-sm btn-outline-warning app-btn-left">
+						<a th:href="@{/hospitals/{id} (id=${hospital.id}) }" class="btn btn-sm btn-outline-warning app-btn-left">
 							<p class="langPL">WSTECZ</p>
 							<p class="langEN">back</p>
 						</a>
-						<a th:href="@{/hospitals/{id}?edit=true(id=${hospital.id})}" class="btn btn-sm btn-outline-primary app-btn-right">
+						<a href="#" class="btn btn-sm btn-outline-primary app-btn-right disabled">
 							<p class="langPL">EDYTUJ</p>
 							<p class="langEN">edit</p>
 						</a>

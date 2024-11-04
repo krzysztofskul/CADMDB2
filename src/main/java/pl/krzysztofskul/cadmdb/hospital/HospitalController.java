@@ -54,6 +54,13 @@ public class HospitalController {
 		return mav;
 	}
 	
+	@GetMapping("/{hospitalId}/departments")
+	public ModelAndView getHospitalByIdWithDepartments(@PathVariable Long hospitalId) {
+		modelAndView.setViewName("hospital/idWithDepartments");
+		modelAndView.addObject("hospital", hospitalService.loadByIdWithDepartments(hospitalId));
+		return modelAndView;
+	}
+	
 	@PostMapping
 	public ModelAndView postHospital(
 			@RequestParam(required = false, name = "backToPage") String backToPage,
