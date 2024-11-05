@@ -3,12 +3,12 @@
 VER. 0.1:
 * create a main functionality which allows to build and show hospital structure:
     * hospital package
-        * address details class  
+        * address details class (DONE)  
         * contact details class  
-        * remove hospital  
+        * remove hospital  functionality (DONE)
     * department package
-        * add department to the hospital  
-        * remove department from the hospital  
+        * functionality which adds a department to the hospital  
+        * functionality which removes a department from the hospital  
     * room class, controller, service, repo, html  
     
 VER. 0.2:

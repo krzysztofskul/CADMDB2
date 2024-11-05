@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.thedeanda.lorem.LoremIpsum;
 
+import pl.krzysztofskul.cadmdb.address.AddressTestGenerator;
 import pl.krzysztofskul.cadmdb.hospital.department.DepartmentTestGenerator;
 import pl.krzysztofskul.cadmdb.init.InitDataGenerator;
 import pl.krzysztofskul.cadmdb.random.Random;
@@ -17,12 +18,15 @@ public class HospitalTestGenerator implements InitDataGenerator<Hospital> {
 
 	@Autowired
 	private DepartmentTestGenerator departmentTestGenerator;
+	@Autowired
+	private AddressTestGenerator addressTestGenerator;
 	
 	@Override
 	public Hospital initDataAndReturn() {
 		Hospital hospital = new Hospital();
 		hospital.setName(LoremIpsum.getInstance().getTitle(1, 3) + " Hospital");
 		hospital.setDepartmentList(departmentTestGenerator.iniListAndReturn());
+		hospital.setAddress(addressTestGenerator.initDataAndReturn());
 		return hospital;
 	}
 
@@ -32,9 +36,7 @@ public class HospitalTestGenerator implements InitDataGenerator<Hospital> {
 		List<Hospital> hospitalList = new ArrayList<Hospital>();
 		for (int i = 0; i < Random.randomInt(5, 10) ; i++) {
 			hospitalList.add(this.initDataAndReturn());			
-		}
-
-		
+		}		
 		return hospitalList;
 	}
 

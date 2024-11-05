@@ -17,7 +17,12 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<td colspan="4"><a href="/hospitals/0" class="btn btn-sm btn-outline-success app-btn-right">NEW</a></td>
+					<td colspan="4">
+						<a href="/hospitals/0" class="btn btn-sm btn-outline-success app-btn-right">
+							<p class="langPL">NOWY</p>
+							<p class="langEN">NEW</p>
+						</a>
+					</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -25,14 +30,29 @@
 					<tr>
 						<td th:text="${hospital.id}"></td>
 						<td th:text="${hospital.name}"></td>
-						<td><a th:href="@{/hospitals/{id}(id=${hospital.id})}" class="cadmdb-btn-details">DETAILS</a></td>
-						<td><a href="#" class="cadmdb-btn-del">DELETE</a></td>
+						<td>
+							<a th:href="@{/hospitals/{id}(id=${hospital.id})}" class="btn btn-sm btn-outline-primary app-btn-right">
+								<p class="langPL">SZCZEGÓŁY</p>
+								<p class="langEN">DETAILS</p>
+							</a>
+						</td>
+						<td>
+							<a th:href="@{/hospitals/{id}/delete (id=${hospital.id}) }" class="btn btn-sm btn-outline-danger app-btn-right">
+								<p class="langPL">USUŃ</p>
+								<p class="langEN">DELETE</p>
+							</a>
+						</td>
 					</tr>
 				</th:block>
 			</tbody>
 			<tfoot>
 				<tr>
-					<td colspan="4"><a href="/hospitals/0" class="btn btn-sm btn-outline-success app-btn-right">NEW</a></td>
+					<td colspan="4">
+						<a href="/hospitals/0" class="btn btn-sm btn-outline-success app-btn-right">
+							<p class="langPL">NOWY</p>
+							<p class="langEN">NEW</p>
+						</a>
+					</td>
 				</tr>
 			</tfoot>
 		</table>

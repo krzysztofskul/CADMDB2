@@ -30,7 +30,20 @@
 						</div>
 					</div>
 				</div>
-				<div class="card-body"></div>
+				<div class="card-body">
+					<div class="row">
+						<div class="col">
+							<p class="langPL">ADRES:</p>
+							<p class="langEN">ADDRESS:</p>
+						</div>
+						<div class="col">
+							<span th:text="${hospital.address.country}"></span>
+							<span th:text="${hospital.address.postalcode}"></span>
+							<span th:text="${hospital.address.city}"></span>
+						</div>
+					</div>
+					
+				</div>
 				<div class="card-footer">
 					<th:block th:if="${edit == true}">
 						<a th:href="@{/hospitals/{id}(id=${hospital.id})}" class="btn btn-sm btn-outline-warning app-btn-left">

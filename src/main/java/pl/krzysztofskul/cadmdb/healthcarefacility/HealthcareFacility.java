@@ -1,9 +1,13 @@
 package pl.krzysztofskul.cadmdb.healthcarefacility;
 
+import javax.persistence.CascadeType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
+
+import pl.krzysztofskul.cadmdb.address.Address;
 
 @MappedSuperclass
 public class HealthcareFacility {
@@ -14,7 +18,8 @@ public class HealthcareFacility {
 	
 	private String name;
 	
-	private String address;
+	@OneToOne(cascade = CascadeType.ALL)
+	private Address address;
 	
 	private String contactdetails;
 	
@@ -39,7 +44,7 @@ public class HealthcareFacility {
 	 * @param address
 	 * @param contactdetails
 	 */
-	public HealthcareFacility(String name, String address, String contactdetails) {
+	public HealthcareFacility(String name, Address address, String contactdetails) {
 		super();
 		this.name = name;
 		this.address = address;
@@ -62,11 +67,11 @@ public class HealthcareFacility {
 		this.name = name;
 	}
 
-	public String getAddress() {
+	public Address getAddress() {
 		return address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 

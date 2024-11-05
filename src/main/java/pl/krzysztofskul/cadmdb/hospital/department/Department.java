@@ -6,13 +6,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import pl.krzysztofskul.cadmdb.address.Address;
 import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacility;
 import pl.krzysztofskul.cadmdb.hospital.Hospital;
 
 @Entity
 public class Department extends HealthcareFacility {
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne
 	private Hospital hospital;
 	
 	/**
@@ -28,7 +29,7 @@ public class Department extends HealthcareFacility {
 	 * @param address
 	 * @param contactdetails
 	 */
-	public Department(String name, String address, String contactdetails) {
+	public Department(String name, Address address, String contactdetails) {
 		super(name, address, contactdetails);
 		// TODO Auto-generated constructor stub
 	}

@@ -31,10 +31,23 @@
 					</div>
 				</div>
 				<div class="card-body">
-					<table>
+					<table class="table">
 						<th:block>
 							<tr th:each="department : ${hospital.departmentList}">
 								<td th:text="${department.name}"></td>
+								<td>
+									<a href="#" class="btn btn-sm btn-outline-primary app-btn-right">
+										<p class="langPL">SZCZEGÓŁY</p>
+										<p class="langEN">DETAILS</p>
+									</a>
+								</td>
+								<td>
+									<a href="#" class="btn btn-sm btn-outline-danger app-btn-right">
+										<p class="langPL">USUŃ</p>
+										<p class="langEN">DELETE</p>
+									</a>
+								</td>
+
 							</tr>
 						</th:block>
 					</table>

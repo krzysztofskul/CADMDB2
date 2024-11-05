@@ -41,5 +41,9 @@ public class HospitalService {
 		Hibernate.initialize(hospital.getDepartmentList());
 		return hospital;
 	}
+
+	public void deleteById(Long hospitalId) {
+		hospitalRepo.deleteById(hospitalId);
+	}
 	
 }

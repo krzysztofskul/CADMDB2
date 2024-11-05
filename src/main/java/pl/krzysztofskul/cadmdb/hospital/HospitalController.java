@@ -79,4 +79,19 @@ public class HospitalController {
 		
 		return modelAndView;
 	}
+	
+	@GetMapping("/{hospitalId}/delete")
+	public ModelAndView deleteById(
+				@PathVariable Long hospitalId,
+				@RequestParam(required = false, name = "backToPage") String backToPage
+			) {
+		if (backToPage != null) {
+			modelAndView.setViewName(backToPage);	
+		} else {
+			modelAndView.setViewName("redirect:/hospitals");
+		}
+		hospitalService.deleteById(hospitalId);
+		return modelAndView;
+	}
+	
 }

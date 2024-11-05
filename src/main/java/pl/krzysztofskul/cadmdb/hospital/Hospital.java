@@ -6,7 +6,9 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
+import pl.krzysztofskul.cadmdb.address.Address;
 import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacility;
 import pl.krzysztofskul.cadmdb.hospital.department.Department;
 
@@ -29,7 +31,7 @@ public class Hospital extends HealthcareFacility {
 	 * @param address
 	 * @param contactdetails
 	 */
-	public Hospital(String name, String address, String contactdetails) {
+	public Hospital(String name, Address address, String contactdetails) {
 		super(name, address, contactdetails);
 		// TODO Auto-generated constructor stub
 	}
