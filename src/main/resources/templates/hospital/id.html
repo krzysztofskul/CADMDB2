@@ -16,7 +16,7 @@
 	<div th:replace="./hospital/menu-hospital" :: menu-hospital></div>
 	
 	<div class="container-fluid appcontainer">
-		<form action="#" th:action="@{/hospitals}" th:object="${hospital}" method="post">
+		<form action="#" th:action="@{/hospitals}" th:object="${hospital}" method="post" class="inline">
 			<div class="card">
 				<div class="card-header">
 					<div class="form-group row">
@@ -32,14 +32,35 @@
 				</div>
 				<div class="card-body">
 					<div class="row">
-						<div class="col">
+						<div class="col-2 app-vertical-center">
 							<p class="langPL">ADRES:</p>
 							<p class="langEN">ADDRESS:</p>
 						</div>
-						<div class="col">
-							<span th:text="${hospital.address.country}"></span>
-							<span th:text="${hospital.address.postalcode}"></span>
-							<span th:text="${hospital.address.city}"></span>
+						<div class="col-10">
+							<p>
+								<span th:if="${edit == false} OR ${edit == null}" th:text="${hospital.address.country}"></span>
+								<input th:if="${edit == true}" class="form-control d-inline-block" style="width: 30em" type="text" th:field="${hospital.address.country}"></input>
+							</p>
+							<p>
+								
+								<span th:if="${edit == false} OR ${edit == null}" th:text="${hospital.address.postalcode}"></span>
+								<input th:if="${edit == true}" class="form-control d-inline-block" style="width: 10em" type="text" th:field="${hospital.address.postalcode}"></input>
+								
+								<span th:if="${edit == false} OR ${edit == null}" th:text="${hospital.address.city}"></span>
+								<input th:if="${edit == true}" class="form-control d-inline-block" style="width: 20em" type="text" th:field="${hospital.address.city}"></input>
+							</p>
+							<p>
+								<span th:if="${edit == false} OR ${edit == null}" th:text="${hospital.address.streetname}"></span>
+								<input th:if="${edit == true}" class="form-control d-inline-block" style="width: 20em" type="text" th:field="${hospital.address.streetname}"></input>
+								
+								<span th:if="${edit == false} OR ${edit == null}" th:text="${hospital.address.streetno}"></span>
+								<input th:if="${edit == true}" class="form-control d-inline-block" style="width: 5em" type="text" th:field="${hospital.address.streetno}"></input>
+								
+								<span th:if="${edit == false} OR ${edit == null}" th:text="${hospital.address.flatno}"></span>
+								<input th:if="${edit == true}" class="form-control d-inline-block" style="width: 5em" type="text" th:field="${hospital.address.flatno}"></input>
+							
+							</p>
+
 						</div>
 					</div>
 					
