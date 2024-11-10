@@ -34,7 +34,7 @@
 					<table class="table">
 						<th:block>
 							<tr th:each="department : ${hospital.departmentList}">
-								<td th:text="${department.name}"></td>
+								<td th:text="${department.depcategory.depcategorynamePL}"></td>
 								<td>
 									<a href="#" class="btn btn-sm btn-outline-primary app-btn-right">
 										<p class="langPL">SZCZEGÓŁY</p>
@@ -50,6 +50,14 @@
 
 							</tr>
 						</th:block>
+						<tr>
+							<td colspan="3">
+								<a href="#" class="btn btn-sm btn-outline-success app-btn-right">
+									<p class="langPL">DODAJ</p>
+									<p class="langEN">ADD</p>
+								</a>
+							</td>
+						</tr>
 					</table>
 				</div>
 				<div class="card-footer">

@@ -7,23 +7,32 @@ import org.springframework.web.servlet.ModelAndView;
 import pl.krzysztofskul.cadmdb.hospital.Hospital;
 import pl.krzysztofskul.cadmdb.hospital.HospitalService;
 import pl.krzysztofskul.cadmdb.hospital.HospitalTestGenerator;
+import pl.krzysztofskul.cadmdb.hospital.department.depcategory.DepCategory;
+import pl.krzysztofskul.cadmdb.hospital.department.depcategory.DepCategoryService;
+import pl.krzysztofskul.cadmdb.hospital.department.depcategory.DepCategoryTestGenerator;
 
 @Controller
 public class HomeController {
 
 	private HospitalService hospitalService;
 	private HospitalTestGenerator hospitalTestGenerator;
+	private DepCategoryTestGenerator depCategoryTestGenerator;
+	private DepCategoryService depCategoryService;
 	
 	/**
 	 * @param hospitalService
 	 */
 	public HomeController(
 			HospitalService hospitalService,
-			HospitalTestGenerator hospitalTestGenerator
+			HospitalTestGenerator hospitalTestGenerator,
+			DepCategoryTestGenerator depCategoryTestGenerator,
+			DepCategoryService depCategoryService
 			) {
 		super();
 		this.hospitalService = hospitalService;
 		this.hospitalTestGenerator = hospitalTestGenerator;
+		this.depCategoryTestGenerator = depCategoryTestGenerator;
+		this.depCategoryService = depCategoryService;
 	}
 
 	@GetMapping({"/login"})
@@ -45,6 +54,12 @@ public class HomeController {
 	}
 	
 	private void initialDbTest() {
+		//init departemt categories
+		for (DepCategory depcategory : depCategoryTestGenerator.iniListAndReturn()) {
+			depCategoryService.save(depcategory);
+		}
+		
+		//init hospitals
 		for (Hospital hospital : hospitalTestGenerator.iniListAndReturn()) {
 			hospitalService.save(hospital);
 		}

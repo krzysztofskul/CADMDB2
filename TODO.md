@@ -6,6 +6,7 @@ VER. 0.1:
     * department package  
         * functionality which adds a department to the hospital  
         * functionality which removes a department from the hospital  
+        * create department category package (DONE)  
     * room class, controller, service, repo, html  
     
 VER. 0.2:
