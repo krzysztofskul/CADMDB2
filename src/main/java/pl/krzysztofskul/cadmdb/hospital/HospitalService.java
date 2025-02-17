@@ -36,7 +36,7 @@ public class HospitalService {
 		return hospitalRepo.findById(hospitalId).get();
 	}
 
-	public Object loadByIdWithDepartments(Long hospitalId) {
+	public Hospital loadByIdWithDepartments(Long hospitalId) {
 		Hospital hospital = this.loadById(hospitalId);
 		Hibernate.initialize(hospital.getDepartmentList());
 		return hospital;

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,19 +13,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import pl.krzysztofskul.cadmdb.hospital.department.Department;
+import pl.krzysztofskul.cadmdb.hospital.department.depcategory.DepCategoryService;
+
 @Controller
 @RequestMapping("/hospitals")
 public class HospitalController {
 
 	private HospitalService hospitalService;
+	private DepCategoryService depCategoryService;
 	private ModelAndView modelAndView = new ModelAndView();
 	
 	/**
 	 * @param hospitalService
 	 */
 	@Autowired
-	public HospitalController(HospitalService hospitalService) {
+	public HospitalController(
+				HospitalService hospitalService,
+				DepCategoryService depCategoryService
+			) {
 		super();
+		this.depCategoryService = depCategoryService;
 		this.hospitalService = hospitalService;
 	}
 
@@ -54,24 +63,46 @@ public class HospitalController {
 		return mav;
 	}
 	
-	@GetMapping("/{hospitalId}/departments")
-	public ModelAndView getHospitalByIdWithDepartments(@PathVariable Long hospitalId) {
-		modelAndView.setViewName("hospital/idWithDepartments");
-		modelAndView.addObject("hospital", hospitalService.loadByIdWithDepartments(hospitalId));
+	@PostMapping("/{hospitalId}")
+	public ModelAndView postHospitalById(
+				@ModelAttribute Hospital hospital
+			) {
+		hospitalService.save(hospital);
+		modelAndView.setViewName("redirect:/hospitals/"+hospital.getId());
 		return modelAndView;
 	}
 	
-	@PostMapping
-	public ModelAndView postHospital(
+	@GetMapping("/{hospitalId}/departments")
+	public ModelAndView getHospitalByIdWithDepartments(
+				@PathVariable Long hospitalId,
+				@RequestParam(required = false) boolean edit
+			) {
+		Hospital hospital = hospitalService.loadByIdWithDepartments(hospitalId);
+		modelAndView.setViewName("hospital/idWithDepartments");
+		modelAndView.addObject("hospital", hospital);
+		modelAndView.addObject("edit", false);
+		if (edit == true) {
+			modelAndView.addObject("edit", true);
+			modelAndView.setViewName("hospital/idAddDepartment");
+			modelAndView.addObject("depCategoryList", depCategoryService.loadAll());
+			modelAndView.addObject("department", new Department(hospitalService.loadById(hospitalId)));
+		}
+
+		return modelAndView;
+	}
+	
+	@PostMapping("/{hospitalId}/departments")
+	public ModelAndView postAddDepartmentToTheHospital(
 			@RequestParam(required = false, name = "backToPage") String backToPage,
-			@ModelAttribute Hospital hospital
+			@ModelAttribute Department department
 			) {
 		
-		hospital = hospitalService.saveAndReturn(hospital);
-		modelAndView.addObject("hospital", hospital);
+		Hospital hospital = hospitalService.loadById(department.getHospital().getId());
+		hospital.addDepartment(department);
+		hospitalService.save(hospital);
 		
 		if (backToPage == null) {
-			modelAndView.setViewName("redirect:/hospitals/"+hospital.getId());
+			modelAndView.setViewName("redirect:/hospitals/"+hospital.getId()+"/departments"+"?edit=false");
 		} else {
 			modelAndView.setViewName(backToPage);
 		}

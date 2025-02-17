@@ -27,6 +27,16 @@ public class Department extends HealthcareFacility {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	/**
+	 * @param hospital
+	 */
+	public Department(Hospital hospital) {
+		super();
+		this.hospital = hospital;
+	}
+
+
 
 	/**
 	 * @param name

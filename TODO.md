@@ -4,9 +4,8 @@ VER. 0.1:
 * create a main functionality which allows to build and show hospital structure:
     * hospital package  
     * department package  
-        * functionality which adds a department to the hospital  
-        * functionality which removes a department from the hospital  
-        * create department category package (DONE)  
+        * edit department data  
+        * add room functionality  
     * room class, controller, service, repo, html  
     
 VER. 0.2:

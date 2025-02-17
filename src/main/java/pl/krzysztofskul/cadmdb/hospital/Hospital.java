@@ -54,5 +54,11 @@ public class Hospital extends HealthcareFacility {
 		}
 		this.departmentList = departmentList;
 	}
+
+	public void addDepartment(Department department) {
+		this.departmentList.add(department);
+		department.setHospital(this);
+		
+	}
 	
 }

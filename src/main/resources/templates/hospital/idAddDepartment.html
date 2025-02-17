@@ -16,55 +16,57 @@
 	<div th:replace="./hospital/menu-hospital" :: menu-hospital></div>
 	
 	<div class="container-fluid appcontainer">
+		<form action="/hospitals/{hospitalId}/departments" object="${department}" method="post">
 			<div class="card">
 				<div class="card-header">
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">
-							<p class="langPL">NAZWA</p>
-							<p class="langEN">name</p>
+							<p class="langPL">DODAWANIE ODDZIAŁU DO SZPITALA</p>
+							<p class="langEN">adding a department to the hospital</p>
 						</label>
 						<div class="col-sm-10">
-							<h5 th:if="${edit == false} OR ${edit == null}" th:text="${hospital.name}"></h5>
-							<input th:if="${edit == true}" class="form-control" type="text" th:field="${hospital.name}"></input>
+							<h5 th:text="${department.hospital.name}"></h5>
 						</div>
 					</div>
 				</div>
 				<div class="card-body">
-					<table class="table">
-						<th:block>
-							<tr th:each="department : ${hospital.departmentList}">
+
+						<th:block th:if="${edit == true}">
+							<input type="hidden" th:field="${department.hospital.id}"/>
+							<tr>
 								<td>
-									<p class="langPL" th:text="${department.depcategory.depcategorynamePL}"></p>
-									<p class="langEN" th:text="${department.depcategory.depcategorynameEN}"></p>
+									<select th:field="${department.depcategory}">
+										<option th:each="depCategory : ${depCategoryList}" th:text="${depCategory.depcategorynamePL}" th:value="${depCategory.id}"></option>
+									</select>
 								</td>
-								<td>
-									<a href="#" class="btn btn-sm btn-outline-primary app-btn-right">
-										<p class="langPL">SZCZEGÓŁY</p>
-										<p class="langEN">DETAILS</p>
-									</a>
-								</td>
-								<td>
-									<a th:href="@{/departments/{departmentId}/delete (departmentId = ${department.id}) }" class="btn btn-sm btn-outline-danger app-btn-right">
-										<p class="langPL">USUŃ</p>
-										<p class="langEN">DELETE</p>
-									</a>
-								</td>
-	
 							</tr>
 						</th:block>
 					</table>
 				</div>
 				<div class="card-footer">
-					<a th:href="@{/hospitals/{id} (id=${hospital.id}) }" class="btn btn-sm btn-outline-warning app-btn-left">
-						<p class="langPL">WSTECZ</p>
-						<p class="langEN">back</p>
-					</a>
-					<a th:href="@{/hospitals/{id}/departments?edit=true (id=${hospital.id})}" class="btn btn-sm btn-outline-success app-btn-right">
-						<p class="langPL">DODAJ</p>
-						<p class="langEN">ADD</p>
-					</a>
+					<th:block th:if="${edit == true}">
+						<a th:href="@{/hospitals/{id}/departments (id = ${hospital.id})}" class="btn btn-sm btn-outline-warning app-btn-left">
+							<p class="langPL">ANULUJ</p>
+							<p class="langEN">cancel</p>
+						</a>
+						<button type="submit" class="btn btn-sm btn-outline-success app-btn-right">
+							<p class="langPL">ZAPISZ</p>
+							<p class="langEN">save</p>
+						</button>
+					</th:block>
+					<th:block th:if="${edit == false} OR ${edit == null}">
+						<a th:href="@{/hospitals/{id} (id=${hospital.id}) }" class="btn btn-sm btn-outline-warning app-btn-left">
+							<p class="langPL">WSTECZ</p>
+							<p class="langEN">back</p>
+						</a>
+						<a href="#" class="btn btn-sm btn-outline-primary app-btn-right disabled">
+							<p class="langPL">EDYTUJ</p>
+							<p class="langEN">edit</p>
+						</a>
+					</th:block>
 				</div>
 			</div>
+		</form>
 	</div>
 	
 	<div th:replace="./footer" :: footer></div>
