@@ -22,7 +22,7 @@ public class RoomCategory {
 	private String roomcategorynamePL;
 	private String roomcategorynameEN;
 
-	@OneToMany(mappedBy = "roomcategory")
+	@OneToMany(mappedBy = "roomCategory")
 	private List<Room> roomList = new ArrayList<Room>();
 	
 	/**

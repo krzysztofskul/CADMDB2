@@ -14,11 +14,13 @@ import pl.krzysztofskul.cadmdb.hospital.department.room.roomcategory.RoomCategor
 @Entity
 public class Room extends HealthcareFacility {
 
+	private String roomNo;
+	
 	@ManyToOne
 	private Department department;
 	
 	@ManyToOne
-	private RoomCategory roomcategory;
+	private RoomCategory roomCategory;
 	
 	/**
 	 * 
@@ -57,21 +59,29 @@ public class Room extends HealthcareFacility {
 	}
 	
 	/**
-	 * @param roomcategory
+	 * @param roomCategory
 	 */
-	public Room(RoomCategory roomcategory) {
+	public Room(RoomCategory roomCategory) {
 		super();
-		this.roomcategory = roomcategory;
+		this.roomCategory = roomCategory;
 	}
 
 	/**
 	 * @param department
-	 * @param roomcategory
+	 * @param roomCategory
 	 */
-	public Room(Department department, RoomCategory roomcategory) {
+	public Room(Department department, RoomCategory roomCategory) {
 		super();
 		this.department = department;
-		this.roomcategory = roomcategory;
+		this.roomCategory = roomCategory;
+	}
+
+	public String getRoomNo() {
+		return roomNo;
+	}
+
+	public void setRoomNo(String roomNo) {
+		this.roomNo = roomNo;
 	}
 
 	public Department getDepartment() {
@@ -82,14 +92,12 @@ public class Room extends HealthcareFacility {
 		this.department = department;
 	}
 
-	public RoomCategory getDepcategory() {
-		return roomcategory;
+	public RoomCategory getRoomCategory() {
+		return roomCategory;
 	}
 
-	public void setRoomCategory(RoomCategory roomcategory) {
-		this.roomcategory = roomcategory;
+	public void setRoomCategory(RoomCategory roomCategory) {
+		this.roomCategory = roomCategory;
 	}
-	
-	
 	
 }

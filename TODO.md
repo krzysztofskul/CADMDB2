@@ -7,18 +7,12 @@ VER. 0.1:
         * edit department data  
         * add room functionality  
     * rooms  
-        * create room service, repo and controller ...
+        * create functionalities to manage rooms at front-end of the application  
+        
+VER. 0.1-RC:
+* update readme.md / todo.md  
+* create JUnit tests  
     
 VER. 0.2:
 * create a functionality which allows to add equipment to the rooms:  
     * equipment class, controller, service, repo, html  
-
-VER. 0.3:
-* create categories/dictionary for departments, rooms and equipment  
-
-OTHER:
-* create js file which adds bootstrap automatically to the html files  
-* create js auto configuration html files: 
-    * button's style for details, edit, delete, save, cancel 
-    * meta charset="UTF-8"  
-* add icons for buttons  

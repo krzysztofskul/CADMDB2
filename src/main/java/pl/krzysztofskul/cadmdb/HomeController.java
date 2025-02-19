@@ -10,6 +10,9 @@ import pl.krzysztofskul.cadmdb.hospital.HospitalTestGenerator;
 import pl.krzysztofskul.cadmdb.hospital.department.depcategory.DepCategory;
 import pl.krzysztofskul.cadmdb.hospital.department.depcategory.DepCategoryService;
 import pl.krzysztofskul.cadmdb.hospital.department.depcategory.DepCategoryTestGenerator;
+import pl.krzysztofskul.cadmdb.hospital.department.room.roomcategory.RoomCategory;
+import pl.krzysztofskul.cadmdb.hospital.department.room.roomcategory.RoomCategoryService;
+import pl.krzysztofskul.cadmdb.hospital.department.room.roomcategory.RoomCategoryTestGenerator;
 
 @Controller
 public class HomeController {
@@ -18,6 +21,8 @@ public class HomeController {
 	private HospitalTestGenerator hospitalTestGenerator;
 	private DepCategoryTestGenerator depCategoryTestGenerator;
 	private DepCategoryService depCategoryService;
+	private RoomCategoryTestGenerator roomCategoryTestGenerator;
+	private RoomCategoryService roomCategoryService;
 	
 	/**
 	 * @param hospitalService
@@ -26,13 +31,17 @@ public class HomeController {
 			HospitalService hospitalService,
 			HospitalTestGenerator hospitalTestGenerator,
 			DepCategoryTestGenerator depCategoryTestGenerator,
-			DepCategoryService depCategoryService
+			DepCategoryService depCategoryService,
+			RoomCategoryTestGenerator roomCategoryTestGenerator,
+			RoomCategoryService roomCategoryService
 			) {
 		super();
 		this.hospitalService = hospitalService;
 		this.hospitalTestGenerator = hospitalTestGenerator;
 		this.depCategoryTestGenerator = depCategoryTestGenerator;
 		this.depCategoryService = depCategoryService;
+		this.roomCategoryTestGenerator = roomCategoryTestGenerator;
+		this.roomCategoryService = roomCategoryService;
 	}
 
 	@GetMapping({"/login"})
@@ -54,6 +63,11 @@ public class HomeController {
 	}
 	
 	private void initialDbTest() {
+		//init room categories
+		for (RoomCategory roomcategory : roomCategoryTestGenerator.iniListAndReturn()) {
+			roomCategoryService.save(roomcategory);
+		}
+		
 		//init departemt categories
 		for (DepCategory depcategory : depCategoryTestGenerator.iniListAndReturn()) {
 			depCategoryService.save(depcategory);

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import pl.krzysztofskul.cadmdb.hospital.department.depcategory.DepCategory;
 import pl.krzysztofskul.cadmdb.hospital.department.depcategory.DepCategoryService;
 import pl.krzysztofskul.cadmdb.hospital.department.depcategory.DepCategoryTestGenerator;
+import pl.krzysztofskul.cadmdb.hospital.department.room.RoomTestGenerator;
 import pl.krzysztofskul.cadmdb.init.InitDataGenerator;
 
 
@@ -18,6 +19,8 @@ public class DepartmentTestGenerator implements InitDataGenerator<Department>{
 
 	@Autowired
 	private DepCategoryService depCategoryService;
+	@Autowired
+	private RoomTestGenerator roomTestGenerator;
 	
 	@Override
 	public Department initDataAndReturn() {
@@ -31,6 +34,7 @@ public class DepartmentTestGenerator implements InitDataGenerator<Department>{
 		for (DepCategory depCategory : depCategoryService.loadAll()) {
 			Department department = this.initDataAndReturn();
 			department.setDepcategory(depCategory);
+			department.setRoomList(roomTestGenerator.iniListAndReturn());
 			departmentList.add(department);
 		}
 		return departmentList;
