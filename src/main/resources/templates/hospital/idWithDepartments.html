@@ -38,7 +38,7 @@
 									<p class="langEN" th:text="${department.depcategory.depcategorynameEN}"></p>
 								</td>
 								<td>
-									<a href="#" class="btn btn-sm btn-outline-primary app-btn-right">
+									<a th:href="@{/departments/{id} (id = ${department.id}) }" class="btn btn-sm btn-outline-primary app-btn-right">
 										<p class="langPL">SZCZEGÓŁY</p>
 										<p class="langEN">DETAILS</p>
 									</a>

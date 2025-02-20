@@ -8,6 +8,7 @@ VER. 0.1:
         * add room functionality  
     * rooms  
         * create functionalities to manage rooms at front-end of the application  
+* create an actual path of hospital structure
         
 VER. 0.1-RC:
 * update readme.md / todo.md  

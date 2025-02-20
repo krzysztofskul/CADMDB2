@@ -25,6 +25,14 @@ public class DepartmentController {
 		this.departmentService = departmentService;
 	}
 	
+	@GetMapping("/{id}")
+	public ModelAndView getDepartmentById(@PathVariable Long id) {
+		Department department = departmentService.loadById(id);
+		mav.addObject("department", department);
+		mav.setViewName("hospital/department/id");
+		return mav;
+	}
+	
 	@GetMapping("/{id}/delete")
 	public ModelAndView departmentDeleteById(
 				@PathVariable Long id
