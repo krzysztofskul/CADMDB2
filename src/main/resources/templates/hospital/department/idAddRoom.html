@@ -13,30 +13,32 @@
 
 	<div th:replace="./header" :: header></div>
 	
-	<div th:replace="./hospital/menu-hospital" :: menu-hospital></div>
+	<div th:replace="./hospital/department/menu-department" :: menu-department></div>
 	
 	<div class="container-fluid appcontainer">
-		<form action="/hospitals/{hospitalId}/departments" object="${department}" method="post">
+		<form action="/departments/{departmentId}/rooms" object="${room}" method="post">
 			<div class="card">
 				<div class="card-header">
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">
-							<p class="langPL">DODAWANIE ODDZIAŁU DO SZPITALA</p>
-							<p class="langEN">adding a department to the hospital</p>
+							<p class="langPL">DODAWANIE POMIESZCZENIA DO ODDZIAŁU</p>
+							<p class="langEN">adding a room to the department</p>
 						</label>
 						<div class="col-sm-10">
-							<h5 th:text="${department.hospital.name}"></h5>
+							<h5 th:text="${room.department.name}"></h5>
+							<h5 th:text="${room.department.depcategory.depcategorynamePL}"></h5>
+							<p th:text="${room.department.depcategory.depcategorynameEN}"></p>
 						</div>
 					</div>
 				</div>
 				<div class="card-body">
 
 						<th:block th:if="${edit == true}">
-							<input type="hidden" th:field="${department.hospital.id}"/>
+							<input type="hidden" th:field="${room.department.id}"/>
 							<tr>
 								<td>
-									<select th:field="${department.depcategory}">
-										<option th:each="depCategory : ${depCategoryList}" th:text="${depCategory.depcategorynamePL}" th:value="${depCategory.id}"></option>
+									<select th:field="${room.roomCategory}">
+										<option th:each="roomCategory : ${roomCategoryList}" th:text="${roomCategory.roomcategorynamePL}" th:value="${roomCategory.id}"></option>
 									</select>
 								</td>
 							</tr>
@@ -45,7 +47,7 @@
 				</div>
 				<div class="card-footer">
 					<th:block th:if="${edit == true}">
-						<a th:href="@{/hospitals/{id}/departments?edit=false (id = ${hospital.id})}" class="btn btn-sm btn-outline-warning app-btn-left">
+						<a th:href="@{/departments/{id}/rooms?edit=false (id = ${department.id})}" class="btn btn-sm btn-outline-warning app-btn-left">
 							<p class="langPL">ANULUJ</p>
 							<p class="langEN">cancel</p>
 						</a>
@@ -55,7 +57,7 @@
 						</button>
 					</th:block>
 					<th:block th:if="${edit == false} OR ${edit == null}">
-						<a th:href="@{/hospitals/{id} (id=${hospital.id}) }" class="btn btn-sm btn-outline-warning app-btn-left">
+						<a th:href="@{/departments/{id} (id=${department.id}) }" class="btn btn-sm btn-outline-warning app-btn-left">
 							<p class="langPL">WSTECZ</p>
 							<p class="langEN">back</p>
 						</a>

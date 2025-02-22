@@ -2,6 +2,7 @@ package pl.krzysztofskul.cadmdb.hospital.department.room;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,14 @@ public class RoomService {
 	
 	public Room loadById(Long id) {
 		return roomRepo.findById(id).get();
+	}
+
+	public Room loadByIdWithEquipment(Long id) {
+		Room room = this.loadById(id);
+		// TODO: create aa equipment management functionality
+		//Hibernate.initialize(room.getEquipmentList());
+		return room;
+		
 	}
 	
 	public List<Room> loadAll() {

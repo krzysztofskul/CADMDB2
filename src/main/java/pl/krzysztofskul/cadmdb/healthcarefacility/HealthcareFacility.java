@@ -19,7 +19,7 @@ public class HealthcareFacility {
 	private String name;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	private Address address;
+	private Address address = new Address();
 	
 	private String contactdetails;
 	

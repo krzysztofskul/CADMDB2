@@ -1,0 +1,23 @@
+<div th:fragment="menu-department" class="menu-main">	
+
+<div class="row">
+	<div class="col">
+		<ul class="nav">
+			<li class="nav-item">
+				<a class="nav-link active" th:href="@{/departments/{departmentId} (departmentId=${department.id}) }" href="#">
+					<p class="langPL">INFORMACJE</p>
+					<p class="langEN">INFORMATION</p>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" th:href="@{/departments/{departmentId}/rooms (departmentId=${department.id}) }" href="#">
+					<p class="langPL">POMIESZCZENIA</p>
+					<p class="langEN">ROOMS</p>
+				</a>
+			</li>
+		</ul>
+	</div>
+	
+</div>
+
+</div>

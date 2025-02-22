@@ -92,7 +92,7 @@ public class HospitalController {
 	}
 	
 	@PostMapping("/{hospitalId}/departments")
-	public ModelAndView postAddDepartmentToTheHospital(
+	public ModelAndView postAddDepartmentToHospital(
 			@RequestParam(required = false, name = "backToPage") String backToPage,
 			@ModelAttribute Department department
 			) {
@@ -102,11 +102,11 @@ public class HospitalController {
 		hospitalService.save(hospital);
 		
 		if (backToPage == null) {
-			modelAndView.setViewName("redirect:/hospitals/"+hospital.getId()+"/departments"+"?edit=false");
+			modelAndView.setViewName("redirect:/hospitals/"+hospital.getId()+"/departments");
 		} else {
 			modelAndView.setViewName(backToPage);
 		}
-		
+		modelAndView.addObject("edit", false);
 		
 		return modelAndView;
 	}

@@ -2,6 +2,7 @@ package pl.krzysztofskul.cadmdb.hospital.department;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,10 @@ public class DepartmentService {
 		this.departmentRepo = departmentRepo;
 	}
 	
+	public void save(Department department) {
+		departmentRepo.save(department);
+	}
+	
 	public Department saveAndReturn(Department department) {
 		return departmentRepo.save(department);
 	}
@@ -34,9 +39,15 @@ public class DepartmentService {
 	public Department loadById(Long id) {
 		return departmentRepo.findById(id).get();
 	}
+
+	public Department loadByIdWithRoomList(Long id) {
+		Department department = this.loadById(id);
+		Hibernate.initialize(department.getRoomList());
+		return department;
+	}
 	
 	public void depeteById(Long id) {
 		departmentRepo.deleteById(id);
 	}
-	
+
 }

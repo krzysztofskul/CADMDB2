@@ -13,11 +13,99 @@
 <body>
 
 	<div th:replace="./header" :: header></div>
-	<!-- TODO: change to menu-department
-	<div th:replace="./hospital/menu-hospital" :: menu-hospital></div>
-	-->
+
+	<div th:replace="./hospital/department/menu-department" :: menu-department></div>
+	
 	<div class="container-fluid appcontainer">
-		<h1 th:text="test details of department+' '+${department.id}">test</h1>
+		<!--<h1 th:text="test details of department+' '+${department.id}">test</h1>-->
+		
+	<div class="container-fluid appcontainer">
+		<form action="#" th:action="@{/departments/{departmentId} (departmentId = ${departmentId})}" th:object="${department}" method="post" class="inline">
+			<div class="card">
+				<div class="card-header">
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">
+							<p class="langPL">NAZWA</p>
+							<p class="langEN">name</p>
+						</label>
+						<div class="col-sm-10">
+							<h5 th:if="${edit == false} OR ${edit == null}" th:text="${department.name}"></h5>
+							<input th:if="${edit == true}" class="form-control" type="hidden" th:field="${department.id}"></input>
+							<input th:if="${edit == true}" class="form-control" type="text" th:field="${department.name}"></input>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">
+							<p class="langPL">KATEGORIA</p>
+							<p class="langEN">category</p>
+						</label>
+						<div class="col-sm-10">
+							<h5 th:if="${edit == false} OR ${edit == null}" th:text="${department.depcategory.depcategorynamePL}"></h5>
+							<p th:if="${edit == false} OR ${edit == null}" th:text="${department.depcategory.depcategorynameEN}"></p>
+						</div>
+					</div>
+				</div>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-2 app-vertical-center">
+							<p class="langPL">ADRES:</p>
+							<p class="langEN">ADDRESS:</p>
+						</div>
+						<div class="col-10">
+							<p>
+								<span th:if="${edit == false} OR ${edit == null}" th:text="${department.address.country}"></span>
+								<input th:if="${edit == true}" class="form-control d-inline-block" style="width: 30em" type="text" th:field="${department.address.country}"></input>
+							</p>
+							<p>
+								
+								<span th:if="${edit == false} OR ${edit == null}" th:text="${department.address.postalcode}"></span>
+								<input th:if="${edit == true}" class="form-control d-inline-block" style="width: 10em" type="text" th:field="${department.address.postalcode}"></input>
+								
+								<span th:if="${edit == false} OR ${edit == null}" th:text="${department.address.city}"></span>
+								<input th:if="${edit == true}" class="form-control d-inline-block" style="width: 20em" type="text" th:field="${department.address.city}"></input>
+							</p>
+							<p>
+								<span th:if="${edit == false} OR ${edit == null}" th:text="${department.address.streetname}"></span>
+								<input th:if="${edit == true}" class="form-control d-inline-block" style="width: 20em" type="text" th:field="${department.address.streetname}"></input>
+								
+								<span th:if="${edit == false} OR ${edit == null}" th:text="${department.address.streetno}"></span>
+								<input th:if="${edit == true}" class="form-control d-inline-block" style="width: 5em" type="text" th:field="${department.address.streetno}"></input>
+								
+								<span th:if="${edit == false} OR ${edit == null}" th:text="${department.address.flatno}"></span>
+								<input th:if="${edit == true}" class="form-control d-inline-block" style="width: 5em" type="text" th:field="${department.address.flatno}"></input>
+							
+							</p>
+
+						</div>
+					</div>
+					
+				</div>
+				<div class="card-footer">
+					<th:block th:if="${edit == true}">
+						<a th:href="@{/departments/{id}(id=${department.id})}" class="btn btn-sm btn-outline-warning app-btn-left">
+							<p class="langPL">ANULUJ</p>
+							<p class="langEN">cancel</p>
+						</a>
+						<button type="submit" class="btn btn-sm btn-outline-success app-btn-right">
+							<p class="langPL">ZAPISZ</p>
+							<p class="langEN">save</p>
+						</button>
+					</th:block>
+					<th:block th:if="${edit == false} OR ${edit == null}">
+						<a th:href="@{/hospitals/{hospitalId}/departments (hospitalId=${department.hospital.id}) }" class="btn btn-sm btn-outline-warning app-btn-left">
+							<p class="langPL">WSTECZ</p>
+							<p class="langEN">back</p>
+						</a>
+						<a th:href="@{#/departments/{id}?edit=true(id=${department.id})}" class="btn btn-sm btn-outline-primary app-btn-right">
+							<p class="langPL">EDYTUJ</p>
+							<p class="langEN">edit</p>
+						</a>
+					</th:block>
+				</div>
+			</div>
+		</form>
+	</div>
+		
 	</div>
 
 	<div th:replace="./footer" :: footer></div>
