@@ -26,19 +26,16 @@
 	
 	<div class="col">
 		<ul class="nav float-right">
-			<li class="nav-item">
-				<a class="nav-link active" href="/login">
-					<p class="langPL">ZALOGUJ</p>
-					<p class="langEN">LOGIN</p>
-				</a> 
-			</li>
 			<li class="nav-item float-right">
-				<a class="nav-link active" href="/logout">
+				<a class="nav-link active" href="/logout" sec:authorize="isAuthenticated()">
 					<p class="langPL">WYLOGUJ</p>
 					<p class="langEN">LOGOUT</p>
 				</a> 
 			</li>
 		</ul>
+	    <h3 class="d-inline-block float-right" sec:authorize="isAuthenticated()">
+			<span sec:authentication="name"></span>
+		</h3>
 	</div>
 	
 </div>

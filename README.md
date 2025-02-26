@@ -12,11 +12,11 @@ The main goal of this application is to build hospital rooms and departments str
 **Project status:** *in progress*  
 
 **TODO:**  
-* VER. 0.1-ALPHA:  
-    * ~functionality which allows to build hospital structure with departments and rooms~; DONE
-* VER. 0.1-BETA:  
-    * update login functionality
-        * update login and logout buttons    
+* VER. 0.1-ALPHA: DONE  
+    * ~functionality which allows to build hospital structure with departments and rooms~;  
+* VER. 0.1-BETA: DONE  
+    * ~update login functionality~
+        * ~update login and logout buttons~  
 * VER. 0.1-RC:  
     * update readme.md  
     * create JUnit tests  

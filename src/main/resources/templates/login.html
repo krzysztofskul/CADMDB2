@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
 	<title>CADMDB</title>
@@ -7,12 +9,14 @@
 	<link th:href="@{/css/appstyle.css}" rel="stylesheet" />
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	<!-- JS -->
+	<script th:src="@{/js/login.js}"></script> 
 </head>
 <body>
 
 	<div th:replace="./header" :: header></div>
 
-	<div class="container-fluid appcontainer">
+	<div class="container appcontainer">
 			<form th:action="@{/login}" method="post">
 				<div class="card">
 		       			<div class="card-header">
@@ -43,18 +47,23 @@
 			           <div class="card-footer text-right">
 				           <div class="btn-group">
 				               <button type="submit" class="btn btn-sm btn-outline-success">
-					           		<p class="langPL">Zaloguj</p>
-					           		<p class="langEN">Login</p>
+					           		<p class="langPL">ZALOGUJ</p>
+					           		<p class="langEN">login</p>
 				               </button>
 								<button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								  <span class="sr-only">Toggle Dropdown</span>
 								</button>
 								 <div class="dropdown-menu">
 								   <a class="dropdown-item" href="#">
-									   <p class="langPL">GOŚĆ</p>
-									   <p class="langEN">guest</p>
+									   <p class="langPL">KRZYSZTOFSKUL</p>
+									   <p class="langEN">krzysztofskul</p>
 								   </a>
-								   <div class="dropdown-divider"></div>
+									<div class="dropdown-divider"></div>
+								   <a class="dropdown-item" href="#">
+									   <p class="langPL">GOŚĆ</p>
+									   <p class="langEN">userguest</p>
+								   </a>
+
 								 </div>
 							</div>
 						

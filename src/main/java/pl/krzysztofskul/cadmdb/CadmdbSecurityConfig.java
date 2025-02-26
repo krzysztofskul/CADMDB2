@@ -38,7 +38,7 @@ public class CadmdbSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.csrf().disable()
 			.authorizeRequests()
-			.antMatchers("/login", "/test/**",  "/css/**", "/img/**").permitAll()
+			.antMatchers("/", "/login", "/test/**", "/css/**", "/js/**", "/img/**").permitAll()
 			.antMatchers("/").hasRole("{USER, ADMIN}")
 			.anyRequest().authenticated()
 			.and()
