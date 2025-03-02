@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>pl.krzysztofskul</groupId>
 	<artifactId>CADMDB2</artifactId>
-	<version>0.1-BETA</version>
+	<version>0.1-RC</version>
 	<name>CADmedica</name>
 	<description>CADmedica application created in SpringBoot</description>
 	<url/>
@@ -51,7 +51,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-		</dependency>	
+		</dependency>
+		<dependency>
+		    <groupId>com.h2database</groupId>
+		    <artifactId>h2</artifactId>
+		    <scope>runtime</scope>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.thedeanda/lorem -->
 		<dependency>
 		    <groupId>com.thedeanda</groupId>
