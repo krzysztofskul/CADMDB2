@@ -31,11 +31,16 @@ The main goal of this application is to build hospital rooms and departments str
     * code cleaning  
 * VER. 0.2-ALPHA:
     * create an actual path of hospital structure  
-    * create a functionality which allows to add equipment to the room:  
-         * equipment/device class (in progress...)
-             * technicalData class (?)
-             * controller, service, repo, html  
-    * create init data essentials functionality (in progress...)
+    * create a functionality which allows to add equipment/devices to the room:  
+        * functionality at-back-end  
+          * device and device category package  
+            * ~device demo generator~  
+            * ~JUnit test~    
+          * technicalData class (?)  
+          * create demo devices and add to demo rooms  
+        * functionality at front-end  
+    * ~create init data essentials functionality~  
+    * turn off menu while creating new hospital  
 
 #### CONTACT
 *krzysztofskul@protonmail.com*

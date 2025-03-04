@@ -1,12 +1,20 @@
 package pl.krzysztofskul.cadmdb.hospital.department.room;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import pl.krzysztofskul.cadmdb.address.Address;
+import pl.krzysztofskul.cadmdb.device.Device;
 import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacility;
 import pl.krzysztofskul.cadmdb.hospital.department.Department;
 import pl.krzysztofskul.cadmdb.hospital.department.room.roomcategory.RoomCategory;
@@ -21,6 +29,14 @@ public class Room extends HealthcareFacility {
 	
 	@ManyToOne
 	private RoomCategory roomCategory;
+	
+	@ManyToMany
+    @JoinTable(
+            name = "rooms_devices",
+            joinColumns = @JoinColumn(name = "room_id"),
+            inverseJoinColumns = @JoinColumn(name = "device_id")
+    )
+	private List<Device> deviceList = new ArrayList<Device>();
 	
 	/**
 	 * 
