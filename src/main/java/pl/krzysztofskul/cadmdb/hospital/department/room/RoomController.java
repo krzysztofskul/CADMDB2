@@ -35,7 +35,8 @@ public class RoomController {
 	
 	@GetMapping("/{id}/equipment")
 	public ModelAndView getRoomByIdWithEquipment(@PathVariable Long id) {
-		roomService.loadByIdWithEquipment(id);
+		mav.addObject("room", roomService.loadByIdWithEquipment(id));
+		mav.setViewName("hospital/department/room/idWithEquipment");
 		return mav;
 	}
 	

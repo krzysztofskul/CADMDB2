@@ -115,5 +115,26 @@ public class Room extends HealthcareFacility {
 	public void setRoomCategory(RoomCategory roomCategory) {
 		this.roomCategory = roomCategory;
 	}
+
+	public List<Device> getDeviceList() {
+		return deviceList;
+	}
+
+	public void setDeviceList(List<Device> deviceList) {
+		this.deviceList = deviceList;
+	}
 	
+	/**
+	 * Method that add device to the room
+	 */
+	public void addDevice(Device devie) {
+		this.deviceList.add(devie);
+	}
+	
+	/**
+	 * Method that remove device from the room
+	 */
+	public void removeDevice(Device device) {
+		this.deviceList.remove(device);
+	}
 }

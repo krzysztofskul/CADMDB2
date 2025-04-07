@@ -3,6 +3,9 @@ package pl.krzysztofskul.cadmdb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import pl.krzysztofskul.cadmdb.device.Device;
+import pl.krzysztofskul.cadmdb.device.DeviceDemoGenerator;
+import pl.krzysztofskul.cadmdb.device.DeviceService;
 import pl.krzysztofskul.cadmdb.device.category.Category;
 import pl.krzysztofskul.cadmdb.device.category.CategoryGenerator;
 import pl.krzysztofskul.cadmdb.device.category.CategoryService;
@@ -27,6 +30,8 @@ public class HomeService {
 	private RoomCategoryTestGenerator roomCategoryTestGenerator;
 	private CategoryService categoryService;
 	private CategoryGenerator categoryGenerator;
+	private DeviceDemoGenerator deviceDemoGenerator;
+	private DeviceService deviceService;
 	
 	private boolean isEssentailDataInit = false;
 	private boolean isDemoDataInit = false;
@@ -38,7 +43,7 @@ public class HomeService {
 	public HomeService(HospitalTestGenerator hospitalTestGenerator, HospitalService hospitalService,
 			DepCategoryService depCategoryService, DepCategoryTestGenerator depCategoryTestGenerator,
 			RoomCategoryService roomCategoryService, RoomCategoryTestGenerator roomCategoryTestGenerator,
-			CategoryService categoryService, CategoryGenerator categoryGenerator) {
+			CategoryService categoryService, CategoryGenerator categoryGenerator, DeviceDemoGenerator deviceDemoGenerator, DeviceService deviceService) {
 		super();
 		this.hospitalTestGenerator = hospitalTestGenerator;
 		this.hospitalService = hospitalService;
@@ -48,6 +53,8 @@ public class HomeService {
 		this.roomCategoryTestGenerator = roomCategoryTestGenerator;
 		this.categoryService = categoryService;
 		this.categoryGenerator = categoryGenerator;
+		this.deviceDemoGenerator = deviceDemoGenerator;
+		this.deviceService = deviceService;
 	}
 
 	public void initialDbEssentials() {
@@ -72,6 +79,11 @@ public class HomeService {
 	
 	public void initDbDemo() {
 		if (isDemoDataInit == false) {
+			//init demo devices
+			for (Device device : deviceDemoGenerator.iniListAndReturn()) {
+				deviceService.save(device);
+			}
+			;
 			//init demo hospitals
 			for (Hospital hospital : hospitalTestGenerator.iniListAndReturn()) {
 				hospitalService.save(hospital);

@@ -3,10 +3,13 @@ package pl.krzysztofskul.cadmdb.hospital.department.room;
 import java.util.ArrayList;
 
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import pl.krzysztofskul.cadmdb.device.Device;
+import pl.krzysztofskul.cadmdb.device.DeviceService;
 import pl.krzysztofskul.cadmdb.hospital.department.room.roomcategory.RoomCategory;
 import pl.krzysztofskul.cadmdb.hospital.department.room.roomcategory.RoomCategoryService;
 import pl.krzysztofskul.cadmdb.init.InitDataGenerator;
@@ -18,10 +21,17 @@ public class RoomTestGenerator implements InitDataGenerator<Room>{
 	@Autowired
 	private RoomCategoryService roomCategoryService;
 	
+	@Autowired
+	private DeviceService deviceService;
+	
 	@Override
 	public Room initDataAndReturn() {
-		
-		return new Room();
+		Room room = new Room();
+		List<Device> deviceListAll = deviceService.loadAll();
+		room.addDevice(deviceListAll.get(new Random().nextInt(deviceListAll.size())));
+		room.addDevice(deviceListAll.get(new Random().nextInt(deviceListAll.size())));
+		room.addDevice(deviceListAll.get(new Random().nextInt(deviceListAll.size())));
+		return room;
 	}
 
 	@Override

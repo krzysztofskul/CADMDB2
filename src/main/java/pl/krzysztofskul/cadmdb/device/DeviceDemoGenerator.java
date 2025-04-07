@@ -21,6 +21,7 @@ public class DeviceDemoGenerator implements InitDataGenerator<Device> {
 	private List<String> demoManufacturerList = new ArrayList<String>();
 	
 	private CategoryGenerator categoryGenerator;
+	private CategoryService categoryService;
 	private Random random;
 	
 	
@@ -31,9 +32,11 @@ public class DeviceDemoGenerator implements InitDataGenerator<Device> {
 	public DeviceDemoGenerator(
 			Random random 
 			, CategoryGenerator categoryGenerator
+			, CategoryService categoryService
 			) {
 		this.categoryGenerator = categoryGenerator;
 		this.random = random;
+		this.categoryService = categoryService;
 		this.createDemoManufacturers();
 	}
 
@@ -59,7 +62,7 @@ public class DeviceDemoGenerator implements InitDataGenerator<Device> {
 	@Override
 	public List<Device> iniListAndReturn() {
 		List<Device> deviceList = new ArrayList<Device>();
-		for (Category category : categoryGenerator.iniListAndReturn()) {
+		for (Category category : categoryService.loadAll()) {
 			Device device = this.initDataAndReturn();
 			device.setCategory(category);
 			deviceList.add(device);

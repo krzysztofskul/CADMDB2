@@ -20,24 +20,18 @@ The main goal of this application is to build hospital rooms and departments str
 **Project status:** *in progress*  
 
 **TODO:**  
-* VER. 0.1-ALPHA: DONE  
-    * ~functionality which allows to build hospital structure with departments and rooms~;  
-* VER. 0.1-BETA: DONE  
-    * ~update login functionality~
-        * ~update login and logout buttons~  
 * VER. 0.1-RC:  
-    * ~update readme.md~  
-    * ~implement JUnit tests~
     * code cleaning  
 * VER. 0.2-ALPHA:
     * create an actual path of hospital structure  
     * create a functionality which allows to add equipment/devices to the room:  
-        * functionality at-back-end  
+        * functionality at back-end  
           * device and device category package  
             * ~device demo generator~  
             * ~JUnit test~    
           * technicalData class (?)  
-          * create demo devices and add to demo rooms  
+          * **create demo devices and add to demo rooms  (DONE)**
+            * create a functionality that allows to manage devices in the room (add, remove, show details)  
         * functionality at front-end  
     * ~create init data essentials functionality~  
     * turn off menu while creating new hospital  

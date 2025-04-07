@@ -26,7 +26,7 @@ public class Device {
 	
 	private String modelName;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Category category;
 	
 	//private DataSales dataSales;
