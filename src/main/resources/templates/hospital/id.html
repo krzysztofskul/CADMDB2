@@ -14,11 +14,13 @@
 	<div th:replace="./header" :: header></div>
 	
 	<div th:replace="./hospital/menu-hospital" :: menu-hospital></div>
+
 	
 	<div class="container-fluid appcontainer">
 		<form action="#" th:action="@{/hospitals/{hospitalId} (hospitalId = ${hospitalId})}" th:object="${hospital}" method="post" class="inline">
 			<div class="card">
 				<div class="card-header">
+					<div th:replace="./hospital/hospital-structure-path" :: hospital-structure-path></div>
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">
 							<p class="langPL">NAZWA</p>

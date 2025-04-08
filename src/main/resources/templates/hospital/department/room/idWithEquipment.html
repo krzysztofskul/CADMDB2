@@ -23,6 +23,7 @@
 		<form action="#" th:action="@{/rooms/{roomId} (roomId = ${roomId})}" th:object="${room}" method="post" class="inline">
 			<div class="card">
 				<div class="card-header">
+					<div th:replace="./hospital/hospital-structure-path" :: hospital-structure-path></div>
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">
 							<p class="langPL">NAZWA</p>

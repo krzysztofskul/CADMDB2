@@ -22,11 +22,11 @@ The main goal of this application is to build hospital rooms and departments str
 **TODO:**  
 
 * VER. 0.2-ALPHA:
-    * create an actual path of hospital structure  
-    * turn off menu while creating new hospital  
+    * create an actual path of hospital structure (DONE)  
+    * turn off a menu while creating new hospital  
     * create a functionality that allows to manage devices  
     * code cleaning  
-	* create technicalData class (?)  
+    * create technicalData class (?)  
     
 #### CONTACT
 *krzysztofskul@protonmail.com*
