@@ -60,13 +60,13 @@
 									<p class="langPL" th:text="${device.modelName}"></p>
 								</td>
 								<td>
-									<a th:href="@{#}" class="btn btn-sm btn-outline-primary app-btn-right">
+									<a th:href="@{#}" class="btn btn-sm btn-outline-primary app-btn-right disabled">
 										<p class="langPL">SZCZEGÓŁY</p>
 										<p class="langEN">DETAILS</p>
 									</a>
 								</td>
 								<td>
-									<a th:href="@{#}" class="btn btn-sm btn-outline-danger app-btn-right">
+									<a th:href="@{|/rooms/${room.id}/equipment/${device.id}/remove|}" class="btn btn-sm btn-outline-danger app-btn-right">
 										<p class="langPL">USUŃ</p>
 										<p class="langEN">DELETE</p>
 									</a>

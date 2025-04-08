@@ -71,7 +71,20 @@ public class RoomController {
 		room = roomService.saveAndReturn(room);
 		mav.addObject("edit", false);
 		mav.setViewName("redirect:/rooms/"+room.getId()+"/equipment");
-		
+		return mav;
+	}
+	
+	@GetMapping("/{id}/equipment/{deviceId}/remove")
+	public ModelAndView getRemoveEquipmentFromRoom(
+			@PathVariable(name ="id") Long roomId,
+			@PathVariable(name="deviceId") Long deviceId
+			) {
+		Room room = roomService.loadByIdWithEquipment(roomId);
+		Device device = deviceService.loadById(deviceId);
+		room.removeDevice(device);
+		room = roomService.saveAndReturn(room);
+		mav.addObject("edit", false);
+		mav.setViewName("redirect:/rooms/"+room.getId()+"/equipment");
 		return mav;
 	}
 	
