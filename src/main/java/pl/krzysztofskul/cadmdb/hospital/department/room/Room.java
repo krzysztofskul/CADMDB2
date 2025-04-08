@@ -127,8 +127,8 @@ public class Room extends HealthcareFacility {
 	/**
 	 * Method that add device to the room
 	 */
-	public void addDevice(Device devie) {
-		this.deviceList.add(devie);
+	public void addDevice(Device device) {
+		this.deviceList.add(device);
 	}
 	
 	/**

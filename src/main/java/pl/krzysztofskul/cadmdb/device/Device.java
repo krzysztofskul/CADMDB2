@@ -48,10 +48,18 @@ public class Device {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * @param room
+	 */
+	public Device(List<Room> room) {
+		super();
+		this.room = room;
+	}
+	
 	/*
 	 * Getters and setters
 	 */
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -124,4 +132,17 @@ public class Device {
 		this.room = room;
 	}
 	
+	/*
+	 * Method that adds room to the device
+	 */
+	public void addRoom(Room room) {
+		this.room.add(room);
+	}
+
+	/*
+	 * Method that remove room from the device
+	 */
+	public void removeRoom(Room room) {
+		this.room.remove(room);
+	}
 }
