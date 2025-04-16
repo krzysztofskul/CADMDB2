@@ -15,9 +15,6 @@
 	<div th:replace="./header" :: header></div>
 
 	<div th:replace="./hospital/department/menu-department" :: menu-department></div>
-	
-	<div class="container-fluid appcontainer">
-		<!--<h1 th:text="test details of department+' '+${department.id}">test</h1>-->
 		
 	<div class="container-fluid appcontainer">
 		<form action="#" th:action="@{/departments/{departmentId} (departmentId = ${departmentId})}" th:object="${department}" method="post" class="inline">
@@ -107,8 +104,6 @@
 		</form>
 	</div>
 		
-	</div>
-
 	<div th:replace="./footer" :: footer></div>
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->

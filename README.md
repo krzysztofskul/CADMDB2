@@ -5,9 +5,7 @@ The main goal of this application is to build hospital rooms and departments str
 
 #### SCREENSHOTS
 **HOME PAGE**  
-<img src="./src/main/resources/static/img/readme/homepage-01.jpg" width="720px"/>  
-**LIST OF DEPARTMENTS PAGE**  
-<img src="./src/main/resources/static/img/readme/departments-01.jpg" width="720px"/>  
+<img src="./src/main/resources/static/img/readme/homepage-01.jpg" width="720px"/>   
 
 #### TECHNOLOGY
 * Java/SpringBoot
@@ -21,12 +19,19 @@ The main goal of this application is to build hospital rooms and departments str
 
 **TODO:**  
 
-* VER. 0.2-ALPHA:
+* VER. 0.2-ALPHA-FINAL-RC:  
+	* front-end updates (DONE)  
     * create an actual path of hospital structure (DONE)  
-    * turn off a menu while creating new hospital  
-    * create a functionality that allows to manage devices  
+    * turn off a menu while creating new hospital (DONE)  
+* VER. 0.2-ALPHA-FINAL:  
     * code cleaning  
-    * create technicalData class (?)  
+    * aplication.properties data update to deploy  
+* VER. 0.2-BETA-SNAPSHOT:  
+    * implement: room number  
+    * update: room and department name and address get from the hospital if not set  
+    * implement: cost calculation functionality  
+    * implement: equipment management functionality  
+    * update: create technicalData class (?) 
     
 #### CONTACT
 *krzysztofskul@protonmail.com*

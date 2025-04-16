@@ -78,6 +78,7 @@ public class HospitalController {
 				@RequestParam(required = false) boolean edit
 			) {
 		Hospital hospital = hospitalService.loadByIdWithDepartments(hospitalId);
+		modelAndView.clear();
 		modelAndView.setViewName("hospital/idWithDepartments");
 		modelAndView.addObject("hospital", hospital);
 		modelAndView.addObject("edit", false);

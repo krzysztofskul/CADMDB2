@@ -15,9 +15,6 @@
 	<div th:replace="./header" :: header></div>
 
 	<div th:replace="./hospital/department/room/menu-room" :: menu-room></div>
-	
-	<div class="container-fluid appcontainer">
-		<!--<h1 th:text="test details of room+' '+${room.id}">test</h1>-->
 		
 	<div class="container-fluid appcontainer">
 		<form action="#" th:action="@{/rooms/{roomId} (roomId = ${roomId})}" th:object="${room}" method="post" class="inline">
@@ -91,8 +88,6 @@
 				
 			</div>
 		</form>
-	</div>
-		
 	</div>
 
 	<div th:replace="./footer" :: footer></div>
