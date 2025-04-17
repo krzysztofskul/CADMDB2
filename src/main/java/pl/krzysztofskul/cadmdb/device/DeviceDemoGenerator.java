@@ -12,6 +12,7 @@ import com.thedeanda.lorem.LoremIpsum;
 import pl.krzysztofskul.cadmdb.device.category.Category;
 import pl.krzysztofskul.cadmdb.device.category.CategoryGenerator;
 import pl.krzysztofskul.cadmdb.device.category.CategoryService;
+import pl.krzysztofskul.cadmdb.device.datafinancial.DataFinancial;
 import pl.krzysztofskul.cadmdb.init.InitDataGenerator;
 import pl.krzysztofskul.cadmdb.random.Random;
 
@@ -55,7 +56,8 @@ public class DeviceDemoGenerator implements InitDataGenerator<Device> {
 		device.setWeight(random.randomInt(10, 200));
 		device.setHeatDissipation(random.randomInt(10, 200));
 		device.setPowerConnectionValue(random.randomInt(10, 200));
-		device.setPrice(BigDecimal.valueOf(random.randomInt(10000, 200000)).setScale(2));
+		//device.setPrice(BigDecimal.valueOf(random.randomInt(10000, 200000)).setScale(2));
+		device.setDataFinancial(new DataFinancial(BigDecimal.valueOf(random.randomInt(10000, 200000)).setScale(2)));
 		return device;
 	}
 

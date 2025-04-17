@@ -4,10 +4,12 @@ import javax.persistence.CascadeType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 
 import pl.krzysztofskul.cadmdb.address.Address;
+import pl.krzysztofskul.cadmdb.healthcarefacility.datafinancial.DataFinancial;
 
 @MappedSuperclass
 public class HealthcareFacility {
@@ -19,6 +21,10 @@ public class HealthcareFacility {
 	private String name;
 	private String namePL;
 	private String nameEN;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "datafinancial")
+	private DataFinancial dataFinancial = new DataFinancial();
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address = new Address();
@@ -83,6 +89,14 @@ public class HealthcareFacility {
 
 	public void setNameEN(String nameEN) {
 		this.nameEN = nameEN;
+	}
+
+	public DataFinancial getDataFinancial() {
+		return dataFinancial;
+	}
+
+	public void setDataFinancial(DataFinancial dataFinancial) {
+		this.dataFinancial = dataFinancial;
 	}
 
 	public Address getAddress() {

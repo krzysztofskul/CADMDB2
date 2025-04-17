@@ -55,33 +55,77 @@
 				</div>
 				<div class="card-body">
 					<table class="table">
-						<th:block>
-							<tr th:each="device : ${room.deviceList}">
+						<thead class="bg-light">
+							<tr>
 								<td>
-									<p class="langPL" th:text="${device.category.namePL}"></p>
-									<p class="langEN" th:text="${device.category.nameEN}"></p>
+									<p class="langPL">NAZAWA WYPOSAŻENIA</p>
+									<p class="langEN">equipment name</p>
 								</td>
 								<td>
-									<p class="langPL" th:text="${device.manufacturer}"></p>
+									<p class="langPL">PRODUCENT</p>
+									<p class="langEN">manufacturer</p>
 								</td>
 								<td>
-									<p class="langPL" th:text="${device.modelName}"></p>
+									<p class="langPL">MODEL</p>
+									<p class="langEN">model name</p>
 								</td>
 								<td>
-									<a th:href="@{#}" class="btn btn-sm btn-outline-primary app-btn-right disabled">
-										<p class="langPL">SZCZEGÓŁY</p>
-										<p class="langEN">DETAILS</p>
-									</a>
+									<p class="langPL">CENA</p>
+									<p class="langEN">price</p>
 								</td>
 								<td>
-									<a th:href="@{|/rooms/${room.id}/equipment/${device.id}/remove|}" class="btn btn-sm btn-outline-danger app-btn-right">
-										<p class="langPL">USUŃ</p>
-										<p class="langEN">DELETE</p>
-									</a>
+									<p class="langPL">SZCZEGÓLY</p>
+									<p class="langEN">details</p>
 								</td>
-	
+								<td>
+									<p class="langPL">USUŃ</p>
+									<p class="langEN">delete</p>
+								</td>
 							</tr>
-						</th:block>
+						</thead>
+						<tbody>
+							<th:block>
+								<tr th:each="device : ${room.deviceList}">
+									<td>
+										<p class="langPL" th:text="${device.category.namePL}"></p>
+										<p class="langEN" th:text="${device.category.nameEN}"></p>
+									</td>
+									<td>
+										<p class="langPL" th:text="${device.manufacturer}"></p>
+									</td>
+									<td>
+										<p class="langPL" th:text="${device.modelName}"></p>
+									</td>
+									<td>
+										<p class="langPL" th:text="${#numbers.formatCurrency(device.dataFinancial.price)}"></p>
+									</td>
+									<td>
+										<a th:href="@{#}" class="btn btn-sm btn-outline-primary disabled">
+											<p class="langPL">SZCZEGÓŁY</p>
+											<p class="langEN">DETAILS</p>
+										</a>
+									</td>
+									<td>
+										<a th:href="@{|/rooms/${room.id}/equipment/${device.id}/remove|}" class="btn btn-sm btn-outline-danger">
+											<p class="langPL">USUŃ</p>
+											<p class="langEN">DELETE</p>
+										</a>
+									</td>
+								</tr>
+							</th:block>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td class="bg-light">
+									<h6 th:text="${#numbers.formatCurrency(room.dataFinancial.purCostOfDevicePlan)}"></h6>
+								</td>
+								<td></td>
+								<td></td>
+							</tr>
+						</tfoot>
 					</table>
 				</div>
 				

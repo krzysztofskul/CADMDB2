@@ -1,17 +1,14 @@
 package pl.krzysztofskul.cadmdb.hospital.department.room;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import pl.krzysztofskul.cadmdb.address.Address;
 import pl.krzysztofskul.cadmdb.device.Device;
@@ -125,16 +122,18 @@ public class Room extends HealthcareFacility {
 	}
 	
 	/**
-	 * Method that add device to the room
+	 * Method that add planned device to the room with cost of planned purchase calculation
 	 */
 	public void addDevice(Device device) {
 		this.deviceList.add(device);
+		this.getDataFinancial().setPurCostOfDevicePlan(this.getDataFinancial().getPurCostOfDevicePlan().add(device.getDataFinancial().getPrice()));
 	}
 	
 	/**
-	 * Method that remove device from the room
+	 * Method that remove planned device from the room with cost of planned purchase calculation
 	 */
 	public void removeDevice(Device device) {
 		this.deviceList.remove(device);
+		this.getDataFinancial().setPurCostOfDevicePlan(this.getDataFinancial().getPurCostOfDevicePlan().subtract(device.getDataFinancial().getPrice()));
 	}
 }
