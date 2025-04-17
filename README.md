@@ -19,18 +19,15 @@ The main goal of this application is to build hospital rooms and departments str
 
 **TODO:**  
 
-* VER. 0.2-ALPHA-FINAL-RC:  
-	* front-end updates (DONE)  
-    * create an actual path of hospital structure (DONE)  
-    * turn off a menu while creating new hospital (DONE)  
 * VER. 0.2-ALPHA-FINAL:  
     * code cleaning  
     * aplication.properties data update to deploy  
 * VER. 0.2-BETA-SNAPSHOT:  (in progress...)
-    * implement: room number  
-    * update: room and department name and address get from the hospital if not set  
+    * update: add room with address data  
+    * update: add department with address data  
     * implement: cost calculation functionality  
     * implement: equipment management functionality  
+    * implement: department and room edit  
     * update: create technicalData class (?) 
     
 #### CONTACT

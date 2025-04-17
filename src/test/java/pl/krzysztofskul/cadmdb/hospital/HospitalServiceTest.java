@@ -34,6 +34,8 @@ class HospitalServiceTest {
 	void testSaveAndReturn1() {
 		hospital = new Hospital();
 		hospital.setName(LoremIpsum.getInstance().getName());
+		hospital.setNamePL("Szpital "+ hospital.getName());
+		hospital.setNameEN(hospital.getName()+" Hospital");
 		hospital = hospitalRepo.save(hospital);
 		assertTrue(hospital.getId() != null && hospital.getId() != 0);
 	}

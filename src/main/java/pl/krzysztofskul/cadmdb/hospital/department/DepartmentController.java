@@ -19,7 +19,6 @@ public class DepartmentController {
 
 	private DepartmentService departmentService;
 	private RoomCategoryService roomCategoryService;
-	private ModelAndView mav = new ModelAndView();
 
 	/**
 	 * @param departmentService
@@ -37,6 +36,7 @@ public class DepartmentController {
 	@GetMapping("/{id}")
 	public ModelAndView getDepartmentById(@PathVariable Long id) {
 		Department department = departmentService.loadById(id);
+		ModelAndView mav = new ModelAndView();
 		mav.addObject("department", department);
 		mav.setViewName("hospital/department/id");
 		return mav;
@@ -49,6 +49,7 @@ public class DepartmentController {
 			
 			) {
 		Department department = departmentService.loadByIdWithRoomList(id);
+		ModelAndView mav = new ModelAndView();
 		mav.setViewName("hospital/department/idWithRooms");
 		mav.addObject("department", department);
 		
@@ -70,7 +71,7 @@ public class DepartmentController {
 		Department department = departmentService.loadById(room.getDepartment().getId());
 		department.addRoom(room);
 		departmentService.save(department);
-		
+		ModelAndView mav = new ModelAndView();
 		if (backToPage == null) {
 			mav.setViewName("redirect:/departments/"+department.getId()+"/rooms");
 		} else {
@@ -86,6 +87,7 @@ public class DepartmentController {
 			) {
 		Long hospitalId = departmentService.loadById(id).getHospital().getId();
 		departmentService.depeteById(id);
+		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:/hospitals/"+hospitalId+"/departments");
 		return mav;
 	}

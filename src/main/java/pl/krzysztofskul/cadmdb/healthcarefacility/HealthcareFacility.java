@@ -17,6 +17,8 @@ public class HealthcareFacility {
 	private Long id;
 	
 	private String name;
+	private String namePL;
+	private String nameEN;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address = new Address();
@@ -58,13 +60,29 @@ public class HealthcareFacility {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getNamePL() {
+		return namePL;
+	}
+
+	public void setNamePL(String namePL) {
+		this.namePL = namePL;
+	}
+
+	public String getNameEN() {
+		return nameEN;
+	}
+
+	public void setNameEN(String nameEN) {
+		this.nameEN = nameEN;
 	}
 
 	public Address getAddress() {

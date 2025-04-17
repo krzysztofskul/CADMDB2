@@ -8,6 +8,9 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.thedeanda.lorem.Lorem;
+import com.thedeanda.lorem.LoremIpsum;
+
 import pl.krzysztofskul.cadmdb.device.Device;
 import pl.krzysztofskul.cadmdb.device.DeviceService;
 import pl.krzysztofskul.cadmdb.hospital.department.room.roomcategory.RoomCategory;
@@ -39,7 +42,13 @@ public class RoomTestGenerator implements InitDataGenerator<Room>{
 		List<Room> roomList = new ArrayList<Room>();
 		for (RoomCategory roomCategory : roomCategoryService.loadAll()) {
 			Room room = this.initDataAndReturn();
+			room.setRoomNo(String.valueOf(new Random().nextInt(200)));
 			room.setRoomCategory(roomCategory);
+			if (roomCategory.getRoomcategorynamePL().equals("Sala Operacyjna")) {
+				room.setName("Sala operacyjna im. Prof. "+LoremIpsum.getInstance().getName());
+			} else {
+				room.setName(roomCategory.getRoomcategorynamePL());
+			}
 			roomList.add(room);
 		}
 		return roomList;

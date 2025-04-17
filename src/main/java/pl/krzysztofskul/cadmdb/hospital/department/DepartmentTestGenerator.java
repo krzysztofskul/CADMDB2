@@ -7,6 +7,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.thedeanda.lorem.LoremIpsum;
+
 import pl.krzysztofskul.cadmdb.hospital.department.depcategory.DepCategory;
 import pl.krzysztofskul.cadmdb.hospital.department.depcategory.DepCategoryService;
 import pl.krzysztofskul.cadmdb.hospital.department.depcategory.DepCategoryTestGenerator;
@@ -34,6 +36,11 @@ public class DepartmentTestGenerator implements InitDataGenerator<Department>{
 		for (DepCategory depCategory : depCategoryService.loadAll()) {
 			Department department = this.initDataAndReturn();
 			department.setDepcategory(depCategory);
+			if (depCategory.getDepcategorynamePL().equals("Blok Operacyjny")) {
+				department.setName(depCategory.getDepcategorynamePL()+" im. Prof. "+LoremIpsum.getInstance().getName());
+			} else {
+				department.setName(depCategory.getDepcategorynamePL());
+			}
 			department.setRoomList(roomTestGenerator.iniListAndReturn());
 			departmentList.add(department);
 		}

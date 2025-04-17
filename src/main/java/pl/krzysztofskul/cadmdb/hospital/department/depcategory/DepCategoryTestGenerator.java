@@ -46,10 +46,10 @@ public class DepCategoryTestGenerator implements InitDataGenerator<DepCategory> 
 	 * Constructor
 	 */
 	public DepCategoryTestGenerator() {
-		depcategorynames.put("Blok Operacyjny", "Operation theater");
-		depcategorynames.put("Oddział Intensywnej Terapii", "Intesive care unit");
+		depcategorynames.put("Blok Operacyjny", "Operation Theater");
+		depcategorynames.put("Oddział Intensywnej Terapii", "Intesive Care Unit");
 		depcategorynames.put("Szpitalny Oddział Ratunkowy", "Emergency Department");
-		depcategorynames.put("Centralna Sterylizatornia", "Central sterile services department");
+		depcategorynames.put("Centralna Sterylizatornia", "Central Sterile Services Department");
 		
 	}
 	

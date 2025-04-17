@@ -46,7 +46,7 @@ public class RoomController {
 			@PathVariable Long id
 			, @RequestParam(required = false) boolean edit
 			) {
-		
+		mav = new ModelAndView();
 		if (edit == true) {
 			mav.addObject("edit", true);
 			mav.addObject("room", roomService.loadById(id));
@@ -65,6 +65,7 @@ public class RoomController {
 			@RequestParam String roomId,
 			@RequestParam String deviceId
 			) {
+		mav = new ModelAndView();
 		Room room = roomService.loadByIdWithEquipment(Long.valueOf(roomId));
 		Device device = deviceService.loadById(Long.valueOf(deviceId));
 		room.addDevice(device);
