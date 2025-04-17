@@ -42,27 +42,61 @@
 				</div>
 				<div class="card-body">
 					<table class="table">
-						<th:block>
-							<tr th:each="room : ${department.roomList}">
+						<thead class="bg-light">
+							<tr>
 								<td>
-									<p class="langPL" th:text="${room.roomCategory.roomcategorynamePL}"></p>
-									<p class="langEN" th:text="${room.roomCategory.roomcategorynameEN}"></p>
+									<p class="langPL">POMIESZCZENIE</p>
+									<p class="langEN">room</p>
 								</td>
 								<td>
-									<a th:href="@{/rooms/{id} (id = ${room.id}) }" class="btn btn-sm btn-outline-primary app-btn-right">
-										<p class="langPL">SZCZEGÓŁY</p>
-										<p class="langEN">DETAILS</p>
-									</a>
+									<p class="langPL">KOSZT WYPOSAŻENIA</p>
+									<p class="langEN">equipment cost</p>
 								</td>
 								<td>
-									<a th:href="@{/rooms/{roomId}/delete (roomId = ${room.id}) }" class="btn btn-sm btn-outline-danger app-btn-right">
-										<p class="langPL">USUŃ</p>
-										<p class="langEN">DELETE</p>
-									</a>
+									<p class="langPL">SZCZEGÓŁY</p>
+									<p class="langEN">details</p>
 								</td>
-	
+								<td>
+									<p class="langPL">USUŃ</p>
+									<p class="langEN">delete</p>
+								</td>
 							</tr>
-						</th:block>
+						</thead>
+						
+						<tbody>
+							<th:block>
+								<tr th:each="room : ${department.roomList}">
+									<td>
+										<p class="langPL" th:text="${room.roomCategory.roomcategorynamePL}"></p>
+										<p class="langEN" th:text="${room.roomCategory.roomcategorynameEN}"></p>
+									</td>
+									<td>
+										<p class="langPL" th:text="${#numbers.formatCurrency(room.dataFinancial.purCostOfDevicePlan)}"></p>
+									</td>
+									<td>
+										<a th:href="@{/rooms/{id} (id = ${room.id}) }" class="btn btn-sm btn-outline-primary">
+											<p class="langPL">SZCZEGÓŁY</p>
+											<p class="langEN">DETAILS</p>
+										</a>
+									</td>
+									<td>
+										<a th:href="@{/rooms/{roomId}/delete (roomId = ${room.id}) }" class="btn btn-sm btn-outline-danger">
+											<p class="langPL">USUŃ</p>
+											<p class="langEN">DELETE</p>
+										</a>
+									</td>
+								</tr>
+							</th:block>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td></td>
+								<td class="bg-light">
+									<h6 th:text="${#numbers.formatCurrency(department.dataFinancial.purCostOfDevicePlan)}"></h6>
+								</td>
+								<td></td>
+							</tr>
+						</tfoot>
 					</table>
 				</div>
 				<div class="card-footer">

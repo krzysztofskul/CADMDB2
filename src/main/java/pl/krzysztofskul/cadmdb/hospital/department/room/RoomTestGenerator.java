@@ -30,10 +30,6 @@ public class RoomTestGenerator implements InitDataGenerator<Room>{
 	@Override
 	public Room initDataAndReturn() {
 		Room room = new Room();
-		List<Device> deviceListAll = deviceService.loadAll();
-		room.addDevice(deviceListAll.get(new Random().nextInt(deviceListAll.size())));
-		room.addDevice(deviceListAll.get(new Random().nextInt(deviceListAll.size())));
-		room.addDevice(deviceListAll.get(new Random().nextInt(deviceListAll.size())));
 		return room;
 	}
 

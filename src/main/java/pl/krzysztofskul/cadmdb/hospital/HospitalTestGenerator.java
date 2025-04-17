@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.thedeanda.lorem.LoremIpsum;
 
 import pl.krzysztofskul.cadmdb.address.AddressTestGenerator;
+import pl.krzysztofskul.cadmdb.device.Device;
+import pl.krzysztofskul.cadmdb.device.DeviceService;
 import pl.krzysztofskul.cadmdb.hospital.department.Department;
 import pl.krzysztofskul.cadmdb.hospital.department.DepartmentTestGenerator;
 import pl.krzysztofskul.cadmdb.hospital.department.depcategory.DepCategory;
@@ -24,6 +26,8 @@ public class HospitalTestGenerator implements InitDataGenerator<Hospital> {
 	private DepartmentTestGenerator departmentTestGenerator;
 	@Autowired
 	private AddressTestGenerator addressTestGenerator;
+	@Autowired
+	private DeviceService deviceService;
 	
 	@Override
 	public Hospital initDataAndReturn() {
@@ -48,7 +52,17 @@ public class HospitalTestGenerator implements InitDataGenerator<Hospital> {
 		List<Hospital> hospitalList = new ArrayList<Hospital>();
 		for (int i = 0; i < Random.randomInt(5, 10) ; i++) {
 			hospitalList.add(this.initDataAndReturn());			
-		}		
+		}
+		for (Hospital hospital : hospitalList) {
+			for (Department department : hospital.getDepartmentList()) {
+				for (Room room : department.getRoomList()) {
+					List<Device> deviceListAll = deviceService.loadAll();
+					room.addDevice(deviceListAll.get(new Random().nextInt(deviceListAll.size())));
+					room.addDevice(deviceListAll.get(new Random().nextInt(deviceListAll.size())));
+					room.addDevice(deviceListAll.get(new Random().nextInt(deviceListAll.size())));
+				}
+			}
+		}
 		return hospitalList;
 	}
 

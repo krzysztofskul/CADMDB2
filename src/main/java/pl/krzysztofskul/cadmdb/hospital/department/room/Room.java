@@ -1,6 +1,5 @@
 package pl.krzysztofskul.cadmdb.hospital.department.room;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -127,6 +126,8 @@ public class Room extends HealthcareFacility {
 	public void addDevice(Device device) {
 		this.deviceList.add(device);
 		this.getDataFinancial().setPurCostOfDevicePlan(this.getDataFinancial().getPurCostOfDevicePlan().add(device.getDataFinancial().getPrice()));
+		this.getDepartment().getDataFinancial().setPurCostOfDevicePlan(this.getDepartment().getDataFinancial().getPurCostOfDevicePlan().add(device.getDataFinancial().getPrice()));
+		this.getDepartment().getHospital().getDataFinancial().setPurCostOfDevicePlan(this.getDepartment().getHospital().getDataFinancial().getPurCostOfDevicePlan().add(device.getDataFinancial().getPrice()));
 	}
 	
 	/**
@@ -135,5 +136,7 @@ public class Room extends HealthcareFacility {
 	public void removeDevice(Device device) {
 		this.deviceList.remove(device);
 		this.getDataFinancial().setPurCostOfDevicePlan(this.getDataFinancial().getPurCostOfDevicePlan().subtract(device.getDataFinancial().getPrice()));
+		this.getDepartment().getDataFinancial().setPurCostOfDevicePlan(this.getDepartment().getDataFinancial().getPurCostOfDevicePlan().subtract(device.getDataFinancial().getPrice()));
+		this.getDepartment().getHospital().getDataFinancial().setPurCostOfDevicePlan(this.getDepartment().getHospital().getDataFinancial().getPurCostOfDevicePlan().subtract(device.getDataFinancial().getPrice()));
 	}
 }
