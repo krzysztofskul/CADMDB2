@@ -50,7 +50,7 @@ public class HospitalTestGenerator implements InitDataGenerator<Hospital> {
 	public List<Hospital> iniListAndReturn() {
 		
 		List<Hospital> hospitalList = new ArrayList<Hospital>();
-		for (int i = 0; i < Random.randomInt(5, 10) ; i++) {
+		for (int i = 0; i < Random.randomInt(3, 5) ; i++) {
 			hospitalList.add(this.initDataAndReturn());			
 		}
 		for (Hospital hospital : hospitalList) {

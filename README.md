@@ -25,9 +25,8 @@ The main goal of this application is to build hospital rooms and departments str
 * VER. 0.2-BETA-SNAPSHOT:  (in progress...)
     * update: add room with address data  
     * update: add department with address data  
-    * implement: room cost calculation (DONE)  
-    * implement: department cost calculation (DONE)  
-    * implement: hospital cost calculation  (DONE)  
+	* update: list of test room categories and test department categories  (DONE)  
+	* update: hospital/department/room test generator class  (DONE)  
     * implement: equipment management functionality  
     * implement: department and room edit  
     * update: create technicalData class (?) 

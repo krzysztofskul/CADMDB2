@@ -14,6 +14,7 @@ import pl.krzysztofskul.cadmdb.hospital.department.depcategory.DepCategoryServic
 import pl.krzysztofskul.cadmdb.hospital.department.depcategory.DepCategoryTestGenerator;
 import pl.krzysztofskul.cadmdb.hospital.department.room.RoomTestGenerator;
 import pl.krzysztofskul.cadmdb.init.InitDataGenerator;
+import pl.krzysztofskul.cadmdb.random.Random;
 
 
 @Service
@@ -33,7 +34,8 @@ public class DepartmentTestGenerator implements InitDataGenerator<Department>{
 	@Override
 	public List<Department> iniListAndReturn() {		
 		List<Department> departmentList = new ArrayList<Department>();
-		for (DepCategory depCategory : depCategoryService.loadAll()) {
+		List<DepCategory> depCategoryList = depCategoryService.loadRandomList(Random.randomInt(3, 5));
+		for (DepCategory depCategory : depCategoryList) {
 			Department department = this.initDataAndReturn();
 			department.setDepcategory(depCategory);
 			if (depCategory.getDepcategorynamePL().equals("Blok Operacyjny")) {
