@@ -32,34 +32,71 @@
 				</div>
 				<div class="card-body">
 					<table class="table">
-						<th:block>
-							<tr th:each="department : ${hospital.departmentList}">
+						<thead class="bg-light">
+							<tr>
 								<td>
-									<p class="langPL" th:text="${department.depcategory.depcategorynamePL}"></p>
-									<p class="langEN" th:text="${department.depcategory.depcategorynameEN}"></p>
+									<p class="langPL">ODDZIAŁ</p>
+									<p class="langEN">department</p>
 								</td>
 								<td>
-									<a th:href="@{/departments/{id} (id = ${department.id}) }" class="btn btn-sm btn-outline-primary app-btn-right">
-										<p class="langPL">SZCZEGÓŁY</p>
-										<p class="langEN">DETAILS</p>
-									</a>
+									<p class="langPL">KOSZT WYPOSAŻENIA</p>
+									<p class="langEN">equipment cost</p>
 								</td>
 								<td>
-									<a th:href="@{/departments/{departmentId}/delete (departmentId = ${department.id}) }" class="btn btn-sm btn-outline-danger app-btn-right">
-										<p class="langPL">USUŃ</p>
-										<p class="langEN">DELETE</p>
-									</a>
+									<p class="langPL">SZCZEGÓŁY</p>
+									<p class="langEN">details</p>
 								</td>
-	
+								<td>
+									<p class="langPL">USUŃ</p>
+									<p class="langEN">delete</p>
+								</td>
 							</tr>
-						</th:block>
+						</thead>
+						<tbody>
+							<th:block>
+								<tr th:each="department : ${hospital.departmentList}">
+									<td>
+										<p class="langPL" th:text="${department.depcategory.depcategorynamePL}"></p>
+										<p class="langEN" th:text="${department.depcategory.depcategorynameEN}"></p>
+									</td>
+									<td>
+										<p class="langPL" th:text="${#numbers.formatCurrency(department.dataFinancial.purCostOfDevicePlan)}"></p>
+									</td>
+									<td>
+										<a th:href="@{/departments/{id}/rooms (id = ${department.id}) }" class="btn btn-sm btn-outline-primary app-btn-right">
+											<p class="langPL">SZCZEGÓŁY</p>
+											<p class="langEN">DETAILS</p>
+										</a>
+									</td>
+									<td>
+										<a th:href="@{/departments/{departmentId}/delete (departmentId = ${department.id}) }" class="btn btn-sm btn-outline-danger app-btn-right">
+											<p class="langPL">USUŃ</p>
+											<p class="langEN">DELETE</p>
+										</a>
+									</td>
+		
+								</tr>
+							</th:block>
+						</tbody>
+						<tfooter>
+							<tr>
+								<td></td>
+								<td class="bg-light">
+									<h6 th:text="${#numbers.formatCurrency(hospital.dataFinancial.purCostOfDevicePlan)}"></h6>
+								</td>
+								<td></td>
+								<td></td>
+							</tr>
+						</tfooter>
 					</table>
 				</div>
 				<div class="card-footer">
+					<!--
 					<a th:href="@{/hospitals/{id} (id=${hospital.id}) }" class="btn btn-sm btn-outline-warning app-btn-left">
 						<p class="langPL">WSTECZ</p>
 						<p class="langEN">back</p>
 					</a>
+					-->
 					<a th:href="@{/hospitals/{id}/departments?edit=true (id=${hospital.id})}" class="btn btn-sm btn-outline-success app-btn-right">
 						<p class="langPL">DODAJ</p>
 						<p class="langEN">ADD</p>

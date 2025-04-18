@@ -11,7 +11,7 @@ The main goal of this application is to build hospital rooms and departments str
 * Java/SpringBoot
 * SpringSecurity  
 * MySQL/Hibernate  
-* Thymelyeaf/Bootstrap
+* Thymeleaf/Bootstrap
 
 #### PROJECT STATUS AND TODO'S
 
@@ -27,7 +27,7 @@ The main goal of this application is to build hospital rooms and departments str
     * update: add department with address data  
     * implement: room cost calculation (DONE)  
     * implement: department cost calculation (DONE)  
-    * implement: hospital cost calculation  (TODO NEXT)  
+    * implement: hospital cost calculation  (DONE)  
     * implement: equipment management functionality  
     * implement: department and room edit  
     * update: create technicalData class (?) 

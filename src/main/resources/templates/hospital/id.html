@@ -83,10 +83,12 @@
 						</button>
 					</th:block>
 					<th:block th:if="${edit == false} OR ${edit == null}">
+						<!--
 						<a href="/hospitals" class="btn btn-sm btn-outline-warning app-btn-left">
 							<p class="langPL">WSTECZ</p>
 							<p class="langEN">back</p>
 						</a>
+						-->
 						<a th:href="@{/hospitals/{id}?edit=true(id=${hospital.id})}" class="btn btn-sm btn-outline-primary app-btn-right">
 							<p class="langPL">EDYTUJ</p>
 							<p class="langEN">edit</p>
