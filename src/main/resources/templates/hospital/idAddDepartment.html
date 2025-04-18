@@ -17,14 +17,14 @@
 	
 	<div class="container-fluid appcontainer">
 		<form action="/hospitals/{hospitalId}/departments" object="${department}" method="post">
-			<div class="card">
+			<div class="card card-hf">
 				<div class="card-header">
 					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">
+						<label class="col-2 col-form-label">
 							<p class="langPL">DODAWANIE ODDZIAŁU DO SZPITALA</p>
 							<p class="langEN">adding a department to the hospital</p>
 						</label>
-						<div class="col-sm-10">
+						<div class="col-10">
 							<h5 th:text="${department.hospital.name}"></h5>
 						</div>
 					</div>

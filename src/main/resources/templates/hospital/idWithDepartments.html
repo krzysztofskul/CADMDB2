@@ -16,15 +16,15 @@
 	<div th:replace="./hospital/menu-hospital" :: menu-hospital></div>
 	
 	<div class="container-fluid appcontainer">
-			<div class="card">
+			<div class="card card-hf">
 				<div class="card-header">
 					<div th:replace="./hospital/hospital-structure-path" :: hospital-structure-path></div>
 					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">
+						<label class="col-2 col-form-label">
 							<p class="langPL">NAZWA</p>
 							<p class="langEN">name</p>
 						</label>
-						<div class="col-sm-10">
+						<div class="col-10">
 							<h5 th:if="${edit == false} OR ${edit == null}" th:text="${hospital.name}"></h5>
 							<input th:if="${edit == true}" class="form-control" type="text" th:field="${hospital.name}"></input>
 						</div>
@@ -63,13 +63,13 @@
 										<p class="langPL" th:text="${#numbers.formatCurrency(department.dataFinancial.purCostOfDevicePlan)}"></p>
 									</td>
 									<td>
-										<a th:href="@{/departments/{id}/rooms (id = ${department.id}) }" class="btn btn-sm btn-outline-primary app-btn-right">
+										<a th:href="@{/departments/{id}/rooms (id = ${department.id}) }" class="btn btn-sm btn-outline-primary">
 											<p class="langPL">SZCZEGÓŁY</p>
 											<p class="langEN">DETAILS</p>
 										</a>
 									</td>
 									<td>
-										<a th:href="@{/departments/{departmentId}/delete (departmentId = ${department.id}) }" class="btn btn-sm btn-outline-danger app-btn-right">
+										<a th:href="@{/departments/{departmentId}/delete (departmentId = ${department.id}) }" class="btn btn-sm btn-outline-danger">
 											<p class="langPL">USUŃ</p>
 											<p class="langEN">DELETE</p>
 										</a>

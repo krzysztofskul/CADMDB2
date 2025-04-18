@@ -24,9 +24,7 @@ The main goal of this application is to build hospital rooms and departments str
     * aplication.properties data update to deploy  
 * VER. 0.2-BETA-SNAPSHOT:  (in progress...)
     * update: add room with address data  
-    * update: add department with address data  
-	* update: list of test room categories and test department categories  (DONE)  
-	* update: hospital/department/room test generator class  (DONE)  
+    * update: add department with address data   
     * implement: equipment management functionality  
     * implement: department and room edit  
     * update: create technicalData class (?) 

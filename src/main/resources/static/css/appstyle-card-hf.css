@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+/* 
+* Healthcare facility card overrides
+*/
+
+.card.card-hf .card-header {
+	height: 275px;
+	}
