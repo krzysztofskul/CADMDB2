@@ -12,6 +12,9 @@ import javax.persistence.OneToOne;
 
 import pl.krzysztofskul.cadmdb.hospital.department.Department;
 
+/**
+ * STARDIZED NAME OF THE DEPARTMENT
+ */
 @Entity
 public class DepCategory {
 

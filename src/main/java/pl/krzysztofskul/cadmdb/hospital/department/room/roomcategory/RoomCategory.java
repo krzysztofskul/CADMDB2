@@ -12,6 +12,9 @@ import javax.persistence.OneToOne;
 
 import pl.krzysztofskul.cadmdb.hospital.department.room.Room;
 
+/*
+ * STADARDIZED NAME OF THE ROOM
+ */
 @Entity
 public class RoomCategory {
 

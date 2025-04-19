@@ -16,7 +16,7 @@
 	<div th:replace="./hospital/department/menu-department" :: menu-department></div>
 	
 	<div class="container-fluid appcontainer">
-		<form action="/departments/{departmentId}/rooms" object="${room}" method="post">
+		<form action="#" th:action="@{/departments/{departmentId}/rooms (departmentId = ${department.id})}" th:object="${room}" method="post">
 			<div class="card">
 				<div class="card-header">
 					<div class="form-group row">
@@ -37,13 +37,35 @@
 						<tr>
 							<td>
 								<div class="form-group">
-									<label for="select-department">
-										<p class="langPL">POMIESZCZENIE</p>
-										<p class="langEN">room</p>
+									<label for="select-room">
+										<p class="langPL">POMIESZCZENIE (NAZWA STANDARYZOWANA)</p>
+										<p class="langEN">room (standardized name)</p>
 									</label>
 									<select id="select-room" class="form-control" th:field="${room.roomCategory}">
 										<option th:each="roomCategory : ${roomCategoryList}" th:text="${roomCategory.roomcategorynamePL}" th:value="${roomCategory.id}"></option>
 									</select>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="form-group">
+									<label for="input-roomNo">
+										<p class="langPL">NAZWA WŁASNA POMIESZCZENIA</p>
+										<p class="langEN">custom room name</p>
+									</label>
+									<input id="input-roomNo" class="form-control" th:field="${room.name}"/>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="form-group">
+									<label for="input-roomNo">
+										<p class="langPL">NUMER POMIESZCZENIA</p>
+										<p class="langEN">room no</p>
+									</label>
+									<input id="input-roomNo" class="form-control" th:field="${room.roomNo}"/>
 								</div>
 							</td>
 						</tr>

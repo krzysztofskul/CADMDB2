@@ -23,8 +23,17 @@
 					<div th:replace="./hospital/hospital-structure-path" :: hospital-structure-path></div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label">
-							<p class="langPL">NAZWA</p>
-							<p class="langEN">name</p>
+							<p class="langPL">ODDZIAŁ (NAZWA STANDARYSOWANA)</p>
+							<p class="langEN">department (stardized name)</p>
+						</label>
+						<div class="col-10">
+							<h5 th:if="${edit == false} OR ${edit == null}" th:text="${department.depcategory.depcategorynamePL}"></h5>
+							<p th:if="${edit == false} OR ${edit == null}" th:text="${department.depcategory.depcategorynameEN}"></p>
+						</div>
+					</div><div class="form-group row">
+						<label class="col-2 col-form-label">
+							<p class="langPL">NAZWA WŁASNA ODDZIAŁU</p>
+							<p class="langEN">department custom name</p>
 						</label>
 						<div class="col-10">
 							<h5 th:if="${edit == false} OR ${edit == null}" th:text="${department.name}"></h5>
@@ -32,16 +41,7 @@
 							<input th:if="${edit == true}" class="form-control" type="text" th:field="${department.name}"></input>
 						</div>
 					</div>
-					<div class="form-group row">
-						<label class="col-2 col-form-label">
-							<p class="langPL">KATEGORIA</p>
-							<p class="langEN">category</p>
-						</label>
-						<div class="col-10">
-							<h5 th:if="${edit == false} OR ${edit == null}" th:text="${department.depcategory.depcategorynamePL}"></h5>
-							<p th:if="${edit == false} OR ${edit == null}" th:text="${department.depcategory.depcategorynameEN}"></p>
-						</div>
-					</div>
+
 				</div>
 				<div class="card-body">
 					<div class="row">
@@ -95,7 +95,7 @@
 							<p class="langPL">WSTECZ</p>
 							<p class="langEN">back</p>
 						</a>
-						-->s
+						-->
 						<a th:href="@{#/departments/{id}?edit=true(id=${department.id})}" class="btn btn-sm btn-outline-primary app-btn-right">
 							<p class="langPL">EDYTUJ</p>
 							<p class="langEN">edit</p>

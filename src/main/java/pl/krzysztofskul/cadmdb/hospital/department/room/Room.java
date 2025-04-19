@@ -23,6 +23,9 @@ public class Room extends HealthcareFacility {
 	@ManyToOne
 	private Department department;
 	
+	/*
+	 * STANDARDIZED NAME
+	 */
 	@ManyToOne
 	private RoomCategory roomCategory;
 	

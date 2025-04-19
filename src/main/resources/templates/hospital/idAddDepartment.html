@@ -16,7 +16,7 @@
 	<div th:replace="./hospital/menu-hospital" :: menu-hospital></div>
 	
 	<div class="container-fluid appcontainer">
-		<form action="/hospitals/{hospitalId}/departments" object="${department}" method="post">
+		<form action="#" th:action="@{/hospitals/{hospitalId}/departments (hospitalId=${hospital.id})}" th:object="${department}" method="post">
 			<div class="card card-hf">
 				<div class="card-header">
 					<div class="form-group row">
@@ -36,14 +36,25 @@
 							<td>
 								<div class="form-group">
 									<label for="select-department">
-										<p class="langPL">ODDZIAŁ</p>
-										<p class="langEN">department</p>
+										<p class="langPL">ODDZIAŁ (NAZWA STANDARYSOWANA)</p>
+										<p class="langEN">department (stardized name)</p>
 									</label>
 									<select id="select-department" class="form-control" th:field="${department.depcategory}">
 										<option th:each="depCategory : ${depCategoryList}" th:text="${depCategory.depcategorynamePL}" th:value="${depCategory.id}"></option>
 									</select>
 								</div>
 							</td>
+						<tr>
+							<td>
+								<div class="form-group">
+									<label for="input-departmentName">
+										<p class="langPL">NAZWA WŁASNA ODDZIAŁU</p>
+										<p class="langEN">department custom name</p>
+									</label>
+									<input id="input-departmentName" class="form-control" th:field="${department.name}"/>
+								</div>
+							</td>
+						</tr>
 						</tr>
 					</th:block>
 				</div>

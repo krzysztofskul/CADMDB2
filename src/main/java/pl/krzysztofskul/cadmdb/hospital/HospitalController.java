@@ -94,11 +94,34 @@ public class HospitalController {
 	
 	@PostMapping("/{hospitalId}/departments")
 	public ModelAndView postAddDepartmentToHospital(
+			@PathVariable Long hospitalId,
 			@RequestParam(required = false, name = "backToPage") String backToPage,
 			@ModelAttribute Department department
 			) {
 		
-		Hospital hospital = hospitalService.loadById(department.getHospital().getId());
+		Hospital hospital = hospitalService.loadById(hospitalId);
+		if (department.getAddress() == null) {
+			department.setAddress(department.getHospital().getAddress());
+		} else {
+			if (department.getAddress().getCountry() == null || department.getAddress().getCountry().length() == 0) {
+				department.getAddress().setCountry(hospital.getAddress().getCountry());
+			}
+			if (department.getAddress().getPostalcode() == null || department.getAddress().getPostalcode().length() == 0) {
+				department.getAddress().setPostalcode(hospital.getAddress().getPostalcode());
+			}
+			if (department.getAddress().getCity() == null || department.getAddress().getCity().length() == 0) {
+				department.getAddress().setCity(hospital.getAddress().getCity());
+			}
+			if (department.getAddress().getStreetname() == null || department.getAddress().getStreetname().length() == 0) {
+				department.getAddress().setStreetname(hospital.getAddress().getStreetname());
+			}
+			if (department.getAddress().getStreetno() == null || department.getAddress().getStreetno().length() == 0) {
+				department.getAddress().setStreetno(hospital.getAddress().getStreetno());
+			}
+			if (department.getAddress().getFlatno() == null || department.getAddress().getFlatno().length() == 0) {
+				department.getAddress().setFlatno(hospital.getAddress().getFlatno());
+			}
+		}
 		hospital.addDepartment(department);
 		hospitalService.save(hospital);
 		

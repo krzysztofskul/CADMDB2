@@ -23,11 +23,18 @@ The main goal of this application is to build hospital rooms and departments str
     * code cleaning  
     * aplication.properties data update to deploy  
 * VER. 0.2-BETA-SNAPSHOT:  (in progress...)  
-    * update: add room with address data  
-    * update: add department with address data   
+    * implement: create a functionality that allows to add a new standardized names of the rooms and departments  
+    * implement: create a new manufacturer and products  
     * implement: equipment management functionality  
     * implement: department and room edit  
     * update: create technicalData class (?) 
+* VER. 0.3-ALPHA:  
+    * implement: equipment and room functional categories  
+      * medical  
+      * sanitary  
+      * technical  
+      * laboratory  
+      * office  
     
 #### CONTACT
 *krzysztofskul@protonmail.com*

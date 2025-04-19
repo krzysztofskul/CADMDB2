@@ -23,8 +23,18 @@
 					<div th:replace="./hospital/hospital-structure-path" :: hospital-structure-path></div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label">
-							<p class="langPL">NAZWA</p>
-							<p class="langEN">name</p>
+							<p class="langPL">POMIESZCZENIE (NAZWA STANDARYZOWANA)</p>
+							<p class="langEN">room (standardized name)</p>
+						</label>
+						<div class="col-10">
+							<h5 th:if="${edit == false} OR ${edit == null}" th:text="${room.roomCategory.roomcategorynamePL}"></h5>
+							<p th:if="${edit == false} OR ${edit == null}" th:text="${room.roomCategory.roomcategorynameEN}"></p>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-2 col-form-label">
+							<p class="langPL">NAZWA WŁASNA POMIESZCZENIA</p>
+							<p class="langEN">custom room name</p>
 						</label>
 						<div class="col-10">
 							<h5 th:if="${edit == false} OR ${edit == null}" th:text="${room.name}"></h5>
@@ -42,16 +52,6 @@
 							<input th:if="${edit == true}" class="form-control" type="text" th:field="${room.roomNo}"></input>
 						</div>
 					</div>				
-					<div class="form-group row">
-						<label class="col-2 col-form-label">
-							<p class="langPL">KATEGORIA</p>
-							<p class="langEN">category</p>
-						</label>
-						<div class="col-10">
-							<h5 th:if="${edit == false} OR ${edit == null}" th:text="${room.roomCategory.roomcategorynamePL}"></h5>
-							<p th:if="${edit == false} OR ${edit == null}" th:text="${room.roomCategory.roomcategorynameEN}"></p>
-						</div>
-					</div>
 				</div>
 				<div class="card-body">
 					<div class="row">

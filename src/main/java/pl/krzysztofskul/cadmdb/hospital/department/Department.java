@@ -22,6 +22,9 @@ public class Department extends HealthcareFacility {
 	@ManyToOne
 	private Hospital hospital;
 	
+	/*
+	 * STANDARDIZED NAME
+	 */
 	@ManyToOne
 	private DepCategory depcategory;
 	

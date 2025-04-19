@@ -5,5 +5,5 @@
 */
 
 .card.card-hf .card-header {
-	height: 275px;
+	min-height: 275px;
 	}

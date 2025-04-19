@@ -65,10 +65,35 @@ public class DepartmentController {
 	
 	@PostMapping("/{departmentId}/rooms")
 	public ModelAndView postAddRoomToDepartment(
+				@PathVariable Long departmentId,
 				@RequestParam(required = false, name = "backToPage") String backToPage,
 				@ModelAttribute Room room
 			) {
-		Department department = departmentService.loadById(room.getDepartment().getId());
+		Department department = departmentService.loadById(departmentId);
+		
+		if (room.getAddress() == null) {
+			room.setAddress(room.getDepartment().getAddress());
+		} else {
+			if (room.getAddress().getCountry() == null || room.getAddress().getCountry().length() == 0) {
+				room.getAddress().setCountry(department.getAddress().getCountry());
+			}
+			if (room.getAddress().getPostalcode() == null || room.getAddress().getPostalcode().length() == 0) {
+				room.getAddress().setPostalcode(department.getAddress().getPostalcode());
+			}
+			if (room.getAddress().getCity() == null || room.getAddress().getCity().length() == 0) {
+				room.getAddress().setCity(department.getAddress().getCity());
+			}
+			if (room.getAddress().getStreetname() == null || room.getAddress().getStreetname().length() == 0) {
+				room.getAddress().setStreetname(department.getAddress().getStreetname());
+			}
+			if (room.getAddress().getStreetno() == null || room.getAddress().getStreetno().length() == 0) {
+				room.getAddress().setStreetno(department.getAddress().getStreetno());
+			}
+			if (room.getAddress().getFlatno() == null || room.getAddress().getFlatno().length() == 0) {
+				room.getAddress().setFlatno(department.getAddress().getFlatno());
+			}
+		}
+		
 		department.addRoom(room);
 		departmentService.save(department);
 		ModelAndView mav = new ModelAndView();
