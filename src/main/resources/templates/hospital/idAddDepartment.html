@@ -30,18 +30,22 @@
 					</div>
 				</div>
 				<div class="card-body">
-
-						<th:block th:if="${edit == true}">
-							<input type="hidden" th:field="${department.hospital.id}"/>
-							<tr>
-								<td>
-									<select th:field="${department.depcategory}">
+					<th:block th:if="${edit == true}">
+						<input type="hidden" th:field="${department.hospital.id}"/>
+						<tr>
+							<td>
+								<div class="form-group">
+									<label for="select-department">
+										<p class="langPL">ODDZIAŁ</p>
+										<p class="langEN">department</p>
+									</label>
+									<select id="select-department" class="form-control" th:field="${department.depcategory}">
 										<option th:each="depCategory : ${depCategoryList}" th:text="${depCategory.depcategorynamePL}" th:value="${depCategory.id}"></option>
 									</select>
-								</td>
-							</tr>
-						</th:block>
-					</table>
+								</div>
+							</td>
+						</tr>
+					</th:block>
 				</div>
 				<div class="card-footer">
 					<th:block th:if="${edit == true}">

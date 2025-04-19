@@ -33,18 +33,22 @@
 					</div>
 				</div>
 				<div class="card-body">
-
-						<th:block th:if="${edit == true}">
-							<input type="hidden" name="roomId" th:value="${room.id}" />
-							<tr>
-								<td>
-									<select name="deviceId">
-										<option th:each="device : ${deviceList}" th:text="${device.category.namePL+' | '+device.manufacturer+' - '+device.modelName}" th:value="${device.id}"></option>
+					<th:block th:if="${edit == true}">
+						<input type="hidden" name="roomId" th:value="${room.id}" />
+						<tr>
+							<td>
+								<div class="form-group">
+									<label for="select-department">
+										<p class="langPL">URZĄDZENIE</p>
+										<p class="langEN">device</p>
+									</label>
+									<select id="select-device" class="form-control" name="deviceId">
+									<option th:each="device : ${deviceList}" th:text="${device.category.namePL+' | '+device.manufacturer+' - '+device.modelName}" th:value="${device.id}"></option>
 									</select>
-								</td>
-							</tr>
-						</th:block>
-					</table>
+								</div>
+							</td>
+						</tr>
+					</th:block>
 				</div>
 				<div class="card-footer">
 					<th:block th:if="${edit == true}">

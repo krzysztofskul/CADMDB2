@@ -22,7 +22,7 @@ The main goal of this application is to build hospital rooms and departments str
 * VER. 0.2-ALPHA-FINAL:  
     * code cleaning  
     * aplication.properties data update to deploy  
-* VER. 0.2-BETA-SNAPSHOT:  (in progress...)
+* VER. 0.2-BETA-SNAPSHOT:  (in progress...)  
     * update: add room with address data  
     * update: add department with address data   
     * implement: equipment management functionality  

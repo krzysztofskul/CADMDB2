@@ -29,7 +29,7 @@
 				<th:block th:each="hospital : ${hospitalList}">
 					<tr>
 						<td>
-							<h6 th:text="${hospital.namePL}"></h6>
+							<h6 th:text="${hospital.name}"></h6>
 							<span th:text="${hospital.address.country}"></span>
 							<br>
 							<span th:text="${hospital.address.postalcode+' '+hospital.address.city+', '}"></span>
