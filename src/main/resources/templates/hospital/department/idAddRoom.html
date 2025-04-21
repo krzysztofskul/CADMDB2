@@ -32,44 +32,55 @@
 					</div>
 				</div>
 				<div class="card-body">
-					<th:block th:if="${edit == true}">
-						<input type="hidden" th:field="${room.department.id}"/>
-						<tr>
-							<td>
-								<div class="form-group">
-									<label for="select-room">
-										<p class="langPL">POMIESZCZENIE (NAZWA STANDARYZOWANA)</p>
-										<p class="langEN">room (standardized name)</p>
-									</label>
-									<select id="select-room" class="form-control" th:field="${room.roomCategory}">
-										<option th:each="roomCategory : ${roomCategoryList}" th:text="${roomCategory.roomcategorynamePL}" th:value="${roomCategory.id}"></option>
-									</select>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div class="form-group">
-									<label for="input-roomNo">
-										<p class="langPL">NAZWA WŁASNA POMIESZCZENIA</p>
-										<p class="langEN">custom room name</p>
-									</label>
-									<input id="input-roomNo" class="form-control" th:field="${room.name}"/>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div class="form-group">
-									<label for="input-roomNo">
-										<p class="langPL">NUMER POMIESZCZENIA</p>
-										<p class="langEN">room no</p>
-									</label>
-									<input id="input-roomNo" class="form-control" th:field="${room.roomNo}"/>
-								</div>
-							</td>
-						</tr>
-					</th:block>
+				  <th:block th:if="${edit}">
+				    <!-- hidden FK for the parent department -->
+				    <input type="hidden" th:field="${room.department.id}"/>
+				
+				    <!-- ► row 1 — standardized room category + add button -->
+				    <div class="form-group">
+				      <label for="select-room" class="mb-1">
+				        <span class="langPL d-block">POMIESZCZENIE (NAZWA STANDARYZOWANA)</span>
+				        <span class="langEN d-block">room (standardized name)</span>
+				      </label>
+				
+				      <div class="d-flex">
+				        <select id="select-room" class="form-control mr-2"
+				                th:field="${room.roomCategory}">
+				          <option th:each="roomCategory : ${roomCategoryList}"
+				                  th:text="${roomCategory.roomcategorynamePL}"
+				                  th:value="${roomCategory.id}">
+				          </option>
+				        </select>
+				
+				        <button type="button"
+				                class="btn btn-sm btn-outline-success disabled flex-shrink-0">
+				          +
+				        </button>
+				      </div>
+				    </div>
+				
+				    <!-- ► row 2 — custom room name -->
+				    <div class="form-group">
+				      <label for="input-roomName" class="mb-1">
+				        <span class="langPL d-block">NAZWA WŁASNA POMIESZCZENIA</span>
+				        <span class="langEN d-block">custom room name</span>
+				      </label>
+				      <input id="input-roomName"
+				             class="form-control"
+				             th:field="${room.name}"/>
+				    </div>
+				
+				    <!-- ► row 3 — room number -->
+				    <div class="form-group">
+				      <label for="input-roomNo" class="mb-1">
+				        <span class="langPL d-block">NUMER POMIESZCZENIA</span>
+				        <span class="langEN d-block">room no</span>
+				      </label>
+				      <input id="input-roomNo"
+				             class="form-control"
+				             th:field="${room.roomNo}"/>
+				    </div>
+				  </th:block>
 				</div>
 				<div class="card-footer">
 					<th:block th:if="${edit == true}">

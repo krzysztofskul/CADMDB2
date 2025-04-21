@@ -30,33 +30,47 @@
 					</div>
 				</div>
 				<div class="card-body">
-					<th:block th:if="${edit == true}">
-						<input type="hidden" th:field="${department.hospital.id}"/>
-						<tr>
-							<td>
-								<div class="form-group">
-									<label for="select-department">
-										<p class="langPL">ODDZIAŁ (NAZWA STANDARYSOWANA)</p>
-										<p class="langEN">department (stardized name)</p>
-									</label>
-									<select id="select-department" class="form-control" th:field="${department.depcategory}">
-										<option th:each="depCategory : ${depCategoryList}" th:text="${depCategory.depcategorynamePL}" th:value="${depCategory.id}"></option>
-									</select>
-								</div>
-							</td>
-						<tr>
-							<td>
-								<div class="form-group">
-									<label for="input-departmentName">
-										<p class="langPL">NAZWA WŁASNA ODDZIAŁU</p>
-										<p class="langEN">department custom name</p>
-									</label>
-									<input id="input-departmentName" class="form-control" th:field="${department.name}"/>
-								</div>
-							</td>
-						</tr>
-						</tr>
-					</th:block>
+				  <!-- edit‑mode only -->
+				  <th:block th:if="${edit}">
+				    <!-- hidden FK -->
+				    <input type="hidden" th:field="${department.hospital.id}"/>
+				
+				    <!-- ► row 1 — standardized department name + “add” button -->
+				    <div class="form-group">
+				      <label for="select-department" class="mb-1">
+				        <span class="langPL d-block">ODDZIAŁ (NAZWA STANDARYZOWANA)</span>
+				        <span class="langEN d-block">department (standardized name)</span>
+				      </label>
+				
+				      <!-- flex wrapper keeps select + button in one line -->
+				      <div class="d-flex">
+				        <select id="select-department" class="form-control mr-2"
+				                th:field="${department.depcategory}">
+				          <option th:each="depCategory : ${depCategoryList}"
+				                  th:text="${depCategory.depcategorynamePL}"
+				                  th:value="${depCategory.id}">
+				          </option>
+				        </select>
+				
+				        <!-- keep width tight with nowrap & btn-sm -->
+				        <button type="button"
+				                class="btn btn-sm btn-outline-success disabled flex-shrink-0">
+				          +
+				        </button>
+				      </div>
+				    </div>
+				
+				    <!-- ► row 2 — custom department name -->
+				    <div class="form-group">
+				      <label for="input-departmentName" class="mb-1">
+				        <span class="langPL d-block">NAZWA WŁASNA ODDZIAŁU</span>
+				        <span class="langEN d-block">department custom name</span>
+				      </label>
+				      <input id="input-departmentName"
+				             class="form-control"
+				             th:field="${department.name}"/>
+				    </div>
+				  </th:block>
 				</div>
 				<div class="card-footer">
 					<th:block th:if="${edit == true}">
