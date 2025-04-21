@@ -26,8 +26,8 @@
 						</label>
 						<div class="col-sm-10">
 							<h5 th:text="${room.department.name}"></h5>
-							<h5 th:text="${room.department.depcategory.depcategorynamePL}"></h5>
-							<p th:text="${room.department.depcategory.depcategorynameEN}"></p>
+							<h5 th:text="${room.department.nameStandardized.nameStandardizedPl}"></h5>
+							<p th:text="${room.department.nameStandardized.nameStandardizedEn}"></p>
 						</div>
 					</div>
 				</div>
@@ -45,10 +45,10 @@
 				
 				      <div class="d-flex">
 				        <select id="select-room" class="form-control mr-2"
-				                th:field="${room.roomCategory}">
-				          <option th:each="roomCategory : ${roomCategoryList}"
-				                  th:text="${roomCategory.roomcategorynamePL}"
-				                  th:value="${roomCategory.id}">
+				                th:field="${room.nameStandardized}">
+				          <option th:each="nameStandardized : ${nameStandardizedList}"
+				                  th:text="${nameStandardized.nameStandardizedPl}"
+				                  th:value="${nameStandardized.id}">
 				          </option>
 				        </select>
 				

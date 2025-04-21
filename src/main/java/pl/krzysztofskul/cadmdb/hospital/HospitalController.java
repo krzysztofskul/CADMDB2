@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import pl.krzysztofskul.cadmdb.hospital.department.Department;
-import pl.krzysztofskul.cadmdb.hospital.department.depcategory.DepCategoryService;
+import pl.krzysztofskul.cadmdb.hospital.department.namestandardized.NameStandardizedService;
 
 @Controller
 @RequestMapping("/hospitals")
 public class HospitalController {
 
 	private HospitalService hospitalService;
-	private DepCategoryService depCategoryService;
+	private NameStandardizedService nameStandardizedService;
 	private ModelAndView modelAndView = new ModelAndView();
 	
 	/**
@@ -30,10 +30,10 @@ public class HospitalController {
 	@Autowired
 	public HospitalController(
 				HospitalService hospitalService,
-				DepCategoryService depCategoryService
+				NameStandardizedService nameStandardizedService
 			) {
 		super();
-		this.depCategoryService = depCategoryService;
+		this.nameStandardizedService = nameStandardizedService;
 		this.hospitalService = hospitalService;
 	}
 
@@ -85,7 +85,7 @@ public class HospitalController {
 		if (edit == true) {
 			modelAndView.addObject("edit", true);
 			modelAndView.setViewName("hospital/idAddDepartment");
-			modelAndView.addObject("depCategoryList", depCategoryService.loadAll());
+			modelAndView.addObject("nameStandardizedList", nameStandardizedService.loadAll());
 			modelAndView.addObject("department", new Department(hospitalService.loadById(hospitalId)));
 		}
 

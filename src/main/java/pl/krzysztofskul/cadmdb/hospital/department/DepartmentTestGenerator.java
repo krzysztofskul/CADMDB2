@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.thedeanda.lorem.LoremIpsum;
 
-import pl.krzysztofskul.cadmdb.hospital.department.depcategory.DepCategory;
-import pl.krzysztofskul.cadmdb.hospital.department.depcategory.DepCategoryService;
-import pl.krzysztofskul.cadmdb.hospital.department.depcategory.DepCategoryTestGenerator;
+import pl.krzysztofskul.cadmdb.hospital.department.namestandardized.NameStandardizedService;
+import pl.krzysztofskul.cadmdb.hospital.department.namestandardized.NameStandardizedTestGenerator;
+import pl.krzysztofskul.cadmdb.hospital.department.namestandardized.NameStandardized;
 import pl.krzysztofskul.cadmdb.hospital.department.room.RoomTestGenerator;
 import pl.krzysztofskul.cadmdb.init.InitDataGenerator;
 import pl.krzysztofskul.cadmdb.random.Random;
@@ -21,7 +21,7 @@ import pl.krzysztofskul.cadmdb.random.Random;
 public class DepartmentTestGenerator implements InitDataGenerator<Department>{
 
 	@Autowired
-	private DepCategoryService depCategoryService;
+	private NameStandardizedService nameStandardizedService;
 	@Autowired
 	private RoomTestGenerator roomTestGenerator;
 	
@@ -34,14 +34,14 @@ public class DepartmentTestGenerator implements InitDataGenerator<Department>{
 	@Override
 	public List<Department> iniListAndReturn() {		
 		List<Department> departmentList = new ArrayList<Department>();
-		List<DepCategory> depCategoryList = depCategoryService.loadRandomList(Random.randomInt(3, 5));
-		for (DepCategory depCategory : depCategoryList) {
+		List<NameStandardized> depCategoryList = nameStandardizedService.loadRandomList(Random.randomInt(3, 5));
+		for (NameStandardized nameStandardized : depCategoryList) {
 			Department department = this.initDataAndReturn();
-			department.setDepcategory(depCategory);
-			if (depCategory.getDepcategorynamePL().equals("Blok Operacyjny")) {
-				department.setName(depCategory.getDepcategorynamePL()+" im. Prof. "+LoremIpsum.getInstance().getName());
+			department.setNameStandardized(nameStandardized);
+			if (nameStandardized.getNameStandardizedPl().equals("Blok Operacyjny")) {
+				department.setName(nameStandardized.getNameStandardizedPl()+" im. Prof. "+LoremIpsum.getInstance().getName());
 			} else {
-				department.setName(depCategory.getDepcategorynamePL());
+				department.setName(nameStandardized.getNameStandardizedPl());
 			}
 			department.setRoomList(roomTestGenerator.iniListAndReturn());
 			departmentList.add(department);

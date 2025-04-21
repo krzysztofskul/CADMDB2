@@ -56,8 +56,8 @@
 							<th:block>
 								<tr th:each="department : ${hospital.departmentList}">
 									<td>
-										<p class="langPL" th:text="${department.depcategory.depcategorynamePL}"></p>
-										<p class="langEN" th:text="${department.depcategory.depcategorynameEN}"></p>
+										<p class="langPL" th:text="${department.nameStandardized.nameStandardizedPl}"></p>
+										<p class="langEN" th:text="${department.nameStandardized.nameStandardizedEn}"></p>
 									</td>
 									<td>
 										<p class="langPL" th:text="${#numbers.formatCurrency(department.dataFinancial.purCostOfDevicePlan)}"></p>

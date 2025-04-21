@@ -13,7 +13,7 @@ import pl.krzysztofskul.cadmdb.address.Address;
 import pl.krzysztofskul.cadmdb.device.Device;
 import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacility;
 import pl.krzysztofskul.cadmdb.hospital.department.Department;
-import pl.krzysztofskul.cadmdb.hospital.department.room.roomcategory.RoomCategory;
+import pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameStandardized;
 
 @Entity
 public class Room extends HealthcareFacility {
@@ -27,7 +27,7 @@ public class Room extends HealthcareFacility {
 	 * STANDARDIZED NAME
 	 */
 	@ManyToOne
-	private RoomCategory roomCategory;
+	private NameStandardized nameStandardized;
 	
 	@ManyToMany
     @JoinTable(
@@ -74,55 +74,87 @@ public class Room extends HealthcareFacility {
 	}
 	
 	/**
-	 * @param roomCategory
+	 * @param nameStandardized
 	 */
-	public Room(RoomCategory roomCategory) {
+	public Room(NameStandardized nameStandardized) {
 		super();
-		this.roomCategory = roomCategory;
+		this.nameStandardized = nameStandardized;
 	}
 
 	/**
 	 * @param department
-	 * @param roomCategory
+	 * @param nameStandardized
 	 */
-	public Room(Department department, RoomCategory roomCategory) {
+	public Room(Department department, NameStandardized nameStandardized) {
 		super();
 		this.department = department;
-		this.roomCategory = roomCategory;
+		this.nameStandardized = nameStandardized;
 	}
-
+	
+	/**
+	 * Getter
+	 * @return the roomNo
+	 */
 	public String getRoomNo() {
 		return roomNo;
 	}
 
+	/**
+	 * Setter
+	 * @param roomNo the roomNo to set
+	 */
 	public void setRoomNo(String roomNo) {
 		this.roomNo = roomNo;
 	}
 
+	/**
+	 * Getter
+	 * @return the department
+	 */
 	public Department getDepartment() {
 		return department;
 	}
 
+	/**
+	 * Setter
+	 * @param department the department to set
+	 */
 	public void setDepartment(Department department) {
 		this.department = department;
 	}
 
-	public RoomCategory getRoomCategory() {
-		return roomCategory;
+	/**
+	 * Getter
+	 * @return the nameStandardized
+	 */
+	public NameStandardized getNameStandardized() {
+		return nameStandardized;
 	}
 
-	public void setRoomCategory(RoomCategory roomCategory) {
-		this.roomCategory = roomCategory;
+	/**
+	 * Setter
+	 * @param nameStandardized the nameStandardized to set
+	 */
+	public void setNameStandardized(NameStandardized nameStandardized) {
+		this.nameStandardized = nameStandardized;
 	}
 
+	/**
+	 * Getter
+	 * @return the deviceList
+	 */
 	public List<Device> getDeviceList() {
 		return deviceList;
 	}
 
+	/**
+	 * Setter
+	 * @param deviceList the deviceList to set
+	 */
 	public void setDeviceList(List<Device> deviceList) {
 		this.deviceList = deviceList;
 	}
-	
+
 	/**
 	 * Method that add planned device to the room with cost of planned purchase calculation
 	 */

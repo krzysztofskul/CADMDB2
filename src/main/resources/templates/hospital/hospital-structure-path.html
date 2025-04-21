@@ -11,12 +11,12 @@
 			</div>
 			<div class="d-inline-block" th:if="${department != null}">
 				<a th:href="@{|/hospitals/${department.hospital.id}/departments|}" th:text="${department?.hospital?.name}" class="btn btn-sm btn-outline-primary"></a>
-				<a th:href="@{|/departments/${department.id}/rooms|}" th:text="${department?.depcategory?.depcategorynamePL}" class="btn btn-sm btn-outline-primary"></a>
+				<a th:href="@{|/departments/${department.id}/rooms|}" th:text="${department?.nameStandardized?.nameStandardizedPl}" class="btn btn-sm btn-outline-primary"></a>
 			</div>
 			<div class="d-inline-block" th:if="${room != null}">
 				<a th:href="@{|/hospitals/${room.department.hospital.id}/departments|}" th:text="${room?.department?.hospital?.name}" class="btn btn-sm btn-outline-primary"></a>
-				<a th:href="@{|/departments/${room.department.id}/rooms|}" th:text="${room?.department?.depcategory?.depcategorynamePL}" class="btn btn-sm btn-outline-primary"></a>
-				<a th:href="@{#}" th:text="${room?.roomCategory?.roomcategorynamePL}" class="btn btn-sm btn-outline-primary"></a>
+				<a th:href="@{|/departments/${room.department.id}/rooms|}" th:text="${room?.department?.nameStandardized?.nameStandardizedPl}" class="btn btn-sm btn-outline-primary"></a>
+				<a th:href="@{#}" th:text="${room?.nameStandardized?.nameStandardizedPl}" class="btn btn-sm btn-outline-primary"></a>
 			</div>
 		</div>
 	</div>

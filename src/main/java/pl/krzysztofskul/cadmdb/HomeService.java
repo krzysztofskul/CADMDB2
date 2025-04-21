@@ -12,22 +12,20 @@ import pl.krzysztofskul.cadmdb.device.category.CategoryService;
 import pl.krzysztofskul.cadmdb.hospital.Hospital;
 import pl.krzysztofskul.cadmdb.hospital.HospitalService;
 import pl.krzysztofskul.cadmdb.hospital.HospitalTestGenerator;
-import pl.krzysztofskul.cadmdb.hospital.department.depcategory.DepCategory;
-import pl.krzysztofskul.cadmdb.hospital.department.depcategory.DepCategoryService;
-import pl.krzysztofskul.cadmdb.hospital.department.depcategory.DepCategoryTestGenerator;
-import pl.krzysztofskul.cadmdb.hospital.department.room.roomcategory.RoomCategory;
-import pl.krzysztofskul.cadmdb.hospital.department.room.roomcategory.RoomCategoryService;
-import pl.krzysztofskul.cadmdb.hospital.department.room.roomcategory.RoomCategoryTestGenerator;
+import pl.krzysztofskul.cadmdb.hospital.department.namestandardized.NameStandardized;
+import pl.krzysztofskul.cadmdb.hospital.department.namestandardized.NameStandardizedService;
+import pl.krzysztofskul.cadmdb.hospital.department.namestandardized.NameStandardizedTestGenerator;
+
 
 @Service
 public class HomeService {
 
 	private HospitalTestGenerator hospitalTestGenerator;
 	private HospitalService hospitalService;
-	private DepCategoryService depCategoryService;
-	private DepCategoryTestGenerator depCategoryTestGenerator;
-	private RoomCategoryService roomCategoryService;
-	private RoomCategoryTestGenerator roomCategoryTestGenerator;
+	private NameStandardizedService department_nameStandardizedService;
+	private NameStandardizedTestGenerator department_nameStandardizedTestGenerator;
+	private pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameStandardizedService room_nameStandardizedService;
+	private pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameStandardizedTestGenerator room_nameStandardizedTestGenerator;
 	private CategoryService categoryService;
 	private CategoryGenerator categoryGenerator;
 	private DeviceDemoGenerator deviceDemoGenerator;
@@ -41,16 +39,16 @@ public class HomeService {
 	 */
 	@Autowired
 	public HomeService(HospitalTestGenerator hospitalTestGenerator, HospitalService hospitalService,
-			DepCategoryService depCategoryService, DepCategoryTestGenerator depCategoryTestGenerator,
-			RoomCategoryService roomCategoryService, RoomCategoryTestGenerator roomCategoryTestGenerator,
+			NameStandardizedService department_nameStandardizedService, NameStandardizedTestGenerator department_nameStandardizedTestGenerator,
+			pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameStandardizedService room_nameStandardizedService, pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameStandardizedTestGenerator room_nameStandardizedTestGenerator,
 			CategoryService categoryService, CategoryGenerator categoryGenerator, DeviceDemoGenerator deviceDemoGenerator, DeviceService deviceService) {
 		super();
 		this.hospitalTestGenerator = hospitalTestGenerator;
 		this.hospitalService = hospitalService;
-		this.depCategoryService = depCategoryService;
-		this.depCategoryTestGenerator = depCategoryTestGenerator;
-		this.roomCategoryService = roomCategoryService;
-		this.roomCategoryTestGenerator = roomCategoryTestGenerator;
+		this.department_nameStandardizedService = department_nameStandardizedService;
+		this.department_nameStandardizedTestGenerator = department_nameStandardizedTestGenerator;
+		this.room_nameStandardizedService = room_nameStandardizedService;
+		this.room_nameStandardizedTestGenerator = room_nameStandardizedTestGenerator;
 		this.categoryService = categoryService;
 		this.categoryGenerator = categoryGenerator;
 		this.deviceDemoGenerator = deviceDemoGenerator;
@@ -64,12 +62,12 @@ public class HomeService {
 				categoryService.save(category);
 			}
 			//init room categories
-			for (RoomCategory roomcategory : roomCategoryTestGenerator.iniListAndReturn()) {
-				roomCategoryService.save(roomcategory);
+			for (pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameStandardized roomcategory : room_nameStandardizedTestGenerator.iniListAndReturn()) {
+				room_nameStandardizedService.save(roomcategory);
 			}
 			//init department categories
-			for (DepCategory depcategory : depCategoryTestGenerator.iniListAndReturn()) {
-				depCategoryService.save(depcategory);
+			for (NameStandardized depcategory : department_nameStandardizedTestGenerator.iniListAndReturn()) {
+				department_nameStandardizedService.save(depcategory);
 			}
 			//set essential data initialized
 			isEssentailDataInit = true;

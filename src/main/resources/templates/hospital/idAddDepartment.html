@@ -45,10 +45,10 @@
 				      <!-- flex wrapper keeps select + button in one line -->
 				      <div class="d-flex">
 				        <select id="select-department" class="form-control mr-2"
-				                th:field="${department.depcategory}">
-				          <option th:each="depCategory : ${depCategoryList}"
-				                  th:text="${depCategory.depcategorynamePL}"
-				                  th:value="${depCategory.id}">
+				                th:field="${department.nameStandardized}">
+				          <option th:each="nameStandardized : ${nameStandardizedList}"
+				                  th:text="${nameStandardized.nameStandardizedPl}"
+				                  th:value="${nameStandardized.id}">
 				          </option>
 				        </select>
 				

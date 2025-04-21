@@ -12,8 +12,8 @@ import com.thedeanda.lorem.LoremIpsum;
 
 import pl.krzysztofskul.cadmdb.device.Device;
 import pl.krzysztofskul.cadmdb.device.DeviceService;
-import pl.krzysztofskul.cadmdb.hospital.department.room.roomcategory.RoomCategory;
-import pl.krzysztofskul.cadmdb.hospital.department.room.roomcategory.RoomCategoryService;
+import pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameStandardized;
+import pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameStandardizedService;
 import pl.krzysztofskul.cadmdb.init.InitDataGenerator;
 import pl.krzysztofskul.cadmdb.random.Random;
 
@@ -22,10 +22,7 @@ import pl.krzysztofskul.cadmdb.random.Random;
 public class RoomTestGenerator implements InitDataGenerator<Room>{
 
 	@Autowired
-	private RoomCategoryService roomCategoryService;
-	
-	@Autowired
-	private DeviceService deviceService;
+	private NameStandardizedService nameStandardizedService;
 	
 	@Override
 	public Room initDataAndReturn() {
@@ -36,14 +33,14 @@ public class RoomTestGenerator implements InitDataGenerator<Room>{
 	@Override
 	public List<Room> iniListAndReturn() {		
 		List<Room> roomList = new ArrayList<Room>();
-		for (RoomCategory roomCategory : roomCategoryService.loadRandomList(Random.randomInt(5, 7))) {
+		for (NameStandardized nameStandardized : nameStandardizedService.loadRandomList(Random.randomInt(5, 7))) {
 			Room room = this.initDataAndReturn();
 			room.setRoomNo(String.valueOf(new Random().nextInt(200)));
-			room.setRoomCategory(roomCategory);
-			if (roomCategory.getRoomcategorynamePL().equals("Sala Operacyjna")) {
+			room.setNameStandardized(nameStandardized);
+			if (nameStandardized.getNameStandardizedPl().equals("Sala Operacyjna")) {
 				room.setName("Sala operacyjna im. Prof. "+LoremIpsum.getInstance().getName());
 			} else {
-				room.setName(roomCategory.getRoomcategorynamePL());
+				room.setName(nameStandardized.getNameStandardizedPl());
 			}
 			roomList.add(room);
 		}

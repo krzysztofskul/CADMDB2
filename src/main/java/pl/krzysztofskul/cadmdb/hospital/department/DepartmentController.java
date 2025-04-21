@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import pl.krzysztofskul.cadmdb.hospital.department.room.Room;
-import pl.krzysztofskul.cadmdb.hospital.department.room.roomcategory.RoomCategoryService;
+import pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameStandardizedService;
 
 @Controller
 @RequestMapping("/departments")
 public class DepartmentController {
 
 	private DepartmentService departmentService;
-	private RoomCategoryService roomCategoryService;
+	private NameStandardizedService nameStandardizedService;
 
 	/**
 	 * @param departmentService
@@ -26,11 +26,11 @@ public class DepartmentController {
 	@Autowired
 	public DepartmentController(
 			DepartmentService departmentService,
-			RoomCategoryService roomCategoryService
+			NameStandardizedService nameStandardizedService
 			) {
 		super();
 		this.departmentService = departmentService;
-		this.roomCategoryService = roomCategoryService;
+		this.nameStandardizedService = nameStandardizedService;
 	}
 	
 	@GetMapping("/{id}")
@@ -56,7 +56,7 @@ public class DepartmentController {
 		if (edit == true) {
 			mav.addObject("edit", true);
 			mav.setViewName("hospital/department/idAddRoom");
-			mav.addObject("roomCategoryList", roomCategoryService.loadAll());
+			mav.addObject("nameStandardizedList", nameStandardizedService.loadAll());
 			mav.addObject("room", new Room(departmentService.loadById(id)));
 		}
 		mav.addObject("edit", edit);

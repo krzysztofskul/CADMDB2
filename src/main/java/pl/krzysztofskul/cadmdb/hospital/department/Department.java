@@ -5,15 +5,13 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import pl.krzysztofskul.cadmdb.address.Address;
 import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacility;
 import pl.krzysztofskul.cadmdb.hospital.Hospital;
-import pl.krzysztofskul.cadmdb.hospital.department.depcategory.DepCategory;
+import pl.krzysztofskul.cadmdb.hospital.department.namestandardized.NameStandardized;
 import pl.krzysztofskul.cadmdb.hospital.department.room.Room;
 
 @Entity
@@ -22,11 +20,8 @@ public class Department extends HealthcareFacility {
 	@ManyToOne
 	private Hospital hospital;
 	
-	/*
-	 * STANDARDIZED NAME
-	 */
 	@ManyToOne
-	private DepCategory depcategory;
+	private NameStandardized nameStandardized;
 	
 	@OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
 	private List<Room> roomList = new ArrayList<Room>();
@@ -68,39 +63,59 @@ public class Department extends HealthcareFacility {
 	}
 	
 	/**
-	 * @param depcategory
+	 * @param nameStandardized
 	 */
-	public Department(DepCategory depcategory) {
+	public Department(NameStandardized nameStandardized) {
 		super();
-		this.depcategory = depcategory;
+		this.nameStandardized = nameStandardized;
 	}
 
 	/**
 	 * @param hospital
-	 * @param depcategory
+	 * @param nameStandardized
 	 */
-	public Department(Hospital hospital, DepCategory depcategory) {
+	public Department(Hospital hospital, NameStandardized nameStandardized) {
 		super();
 		this.hospital = hospital;
-		this.depcategory = depcategory;
+		this.nameStandardized = nameStandardized;
 	}
 
+	/**
+	 * Getter
+	 * @return the hospital
+	 */
 	public Hospital getHospital() {
 		return hospital;
 	}
 
+	/**
+	 * Setter
+	 * @param hospital the hospital to set
+	 */
 	public void setHospital(Hospital hospital) {
 		this.hospital = hospital;
 	}
 
-	public DepCategory getDepcategory() {
-		return depcategory;
+	/**
+	 * Getter
+	 * @return the nameStandardized
+	 */
+	public NameStandardized getNameStandardized() {
+		return nameStandardized;
 	}
 
-	public void setDepcategory(DepCategory depcategory) {
-		this.depcategory = depcategory;
+	/**
+	 * Setter
+	 * @param nameStandardized the nameStandardized to set
+	 */
+	public void setNameStandardized(NameStandardized nameStandardized) {
+		this.nameStandardized = nameStandardized;
 	}
 
+	/**
+	 * Getter
+	 * @return the roomList
+	 */
 	public List<Room> getRoomList() {
 		return roomList;
 	}
