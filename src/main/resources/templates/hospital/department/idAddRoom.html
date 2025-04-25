@@ -51,11 +51,11 @@
 				                  th:value="${nameStandardized.id}">
 				          </option>
 				        </select>
-				
-				        <button type="button"
-				                class="btn btn-sm btn-outline-success disabled flex-shrink-0">
+				        <!-- keep width tight with nowrap & btn-sm -->
+				        <a href="#" th:href="@{|/hospitals/${department.hospital.id}/departments/${department.id}/roomstandardizednames/0?edit=true|}"
+				                class="btn btn-sm btn-outline-success flex-shrink-0">
 				          +
-				        </button>
+				        </a>
 				      </div>
 				    </div>
 				

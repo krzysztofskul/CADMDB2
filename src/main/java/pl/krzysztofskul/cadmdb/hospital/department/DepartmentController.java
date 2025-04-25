@@ -56,7 +56,7 @@ public class DepartmentController {
 		if (edit == true) {
 			mav.addObject("edit", true);
 			mav.setViewName("hospital/department/idAddRoom");
-			mav.addObject("nameStandardizedList", nameStandardizedService.loadAll());
+			mav.addObject("nameStandardizedList", nameStandardizedService.loadAllByHospitalIdOrHospitalIsNull(id));
 			mav.addObject("room", new Room(departmentService.loadById(id)));
 		}
 		mav.addObject("edit", edit);
