@@ -85,7 +85,7 @@ public class HospitalController {
 		if (edit == true) {
 			modelAndView.addObject("edit", true);
 			modelAndView.setViewName("hospital/idAddDepartment");
-			modelAndView.addObject("nameStandardizedList", nameStandardizedService.loadAll());
+			modelAndView.addObject("nameStandardizedList", nameStandardizedService.loadAllByHospitalIdOrHospitalIsNull(hospitalId));
 			modelAndView.addObject("department", new Department(hospitalService.loadById(hospitalId)));
 		}
 

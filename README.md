@@ -23,7 +23,8 @@ The main goal of this application is to build hospital rooms and departments str
     * code cleaning  
     * aplication.properties data update to deploy  
 * VER. 0.2-BETA-SNAPSHOT:  (in progress...)  
-    * **implement: create a functionality that allows to add a new standardized names of the rooms and departments  (in progress...)**
+    * **implement: functionality that allows to add a new standardized names of departments to the specific hospital (DONE)**
+    * **implement: functionality that allows to add a new standardized names of rooms to the specific hospital (TODO NEXT)**  
     * implement: create a new manufacturer and products  
     * implement: equipment management functionality  
     * implement: department and room edit  
