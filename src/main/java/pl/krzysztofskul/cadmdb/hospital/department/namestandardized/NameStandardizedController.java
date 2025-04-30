@@ -69,7 +69,7 @@ public class NameStandardizedController {
 		ModelAndView mav = new ModelAndView();
 		nameStandardized = nameStandardizedService.saveAndReturn(nameStandardized);
 		Hospital hospital = hospitalService.loadByIdWithDepartments(nameStandardized.getHospital().getId());
-		mav.addObject("edit", false);
+		mav.addObject("edit", true);
 		mav.addObject("hospital", hospital);
 		
 		mav.setViewName("redirect:/hospitals/"+hospital.getId()+"/departments");

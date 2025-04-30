@@ -89,4 +89,15 @@ public class RoomController {
 		return mav;
 	}
 	
+	@GetMapping("/{id}/delete")
+	public ModelAndView deleteRoomById(
+				@PathVariable Long id
+			) {
+		ModelAndView mav = new ModelAndView();
+		Long departmentId = roomService.loadById(id).getDepartment().getId();
+		roomService.deleteById(id);
+		mav.setViewName("redirect:/departments/"+departmentId+"/rooms");
+		return mav;
+	}
+	
 }

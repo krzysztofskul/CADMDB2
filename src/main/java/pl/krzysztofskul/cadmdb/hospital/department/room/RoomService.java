@@ -39,5 +39,9 @@ public class RoomService {
 	public List<Room> loadAll() {
 		return roomRepo.findAll();
 	}
+
+	public void deleteById(Long id) {
+		roomRepo.deleteById(id);
+	}
 	
 }
