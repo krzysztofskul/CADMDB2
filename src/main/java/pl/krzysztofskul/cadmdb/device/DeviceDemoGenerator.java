@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.thedeanda.lorem.LoremIpsum;
 
+import pl.krzysztofskul.cadmdb.company.manufacturer.ManufacturerService;
 import pl.krzysztofskul.cadmdb.device.category.Category;
 import pl.krzysztofskul.cadmdb.device.category.CategoryGenerator;
 import pl.krzysztofskul.cadmdb.device.category.CategoryService;
@@ -19,10 +20,11 @@ import pl.krzysztofskul.cadmdb.random.Random;
 @Service
 public class DeviceDemoGenerator implements InitDataGenerator<Device> {
 
-	private List<String> demoManufacturerList = new ArrayList<String>();
+	//private List<String> demoManufacturerList = new ArrayList<String>();
 	
 	private CategoryGenerator categoryGenerator;
 	private CategoryService categoryService;
+	private ManufacturerService manufacturerService;
 	private Random random;
 	
 	
@@ -34,24 +36,28 @@ public class DeviceDemoGenerator implements InitDataGenerator<Device> {
 			Random random 
 			, CategoryGenerator categoryGenerator
 			, CategoryService categoryService
+			, ManufacturerService manufacturerService
 			) {
 		this.categoryGenerator = categoryGenerator;
 		this.random = random;
 		this.categoryService = categoryService;
+		this.manufacturerService = manufacturerService;
 		this.createDemoManufacturers();
 	}
 
 	private void createDemoManufacturers() {
-		demoManufacturerList.add(LoremIpsum.getInstance().getTitle(1)+" Inc.");
-		demoManufacturerList.add(LoremIpsum.getInstance().getTitle(1)+" Ltd.");
-		demoManufacturerList.add(LoremIpsum.getInstance().getTitle(1)+" GmbH");
-		demoManufacturerList.add(LoremIpsum.getInstance().getTitle(1)+" Sp. z o.o.");	
+		
+		//demoManufacturerList.add(LoremIpsum.getInstance().getTitle(1)+" Inc.");
+		//demoManufacturerList.add(LoremIpsum.getInstance().getTitle(1)+" Ltd.");
+		//demoManufacturerList.add(LoremIpsum.getInstance().getTitle(1)+" GmbH");
+		//demoManufacturerList.add(LoremIpsum.getInstance().getTitle(1)+" Sp. z o.o.");	
 	}
 
 	@Override
 	public Device initDataAndReturn() {
 		Device device = new Device();
-		device.setManufacturer(demoManufacturerList.get(random.nextInt(demoManufacturerList.size())));
+		//device.setManufacturer(demoManufacturerList.get(random.nextInt(demoManufacturerList.size())));
+		device.setManufacturer(manufacturerService.loadRandom());
 		device.setModelName(LoremIpsum.getInstance().getTitle(1));
 		device.setWeight(random.randomInt(10, 200));
 		device.setHeatDissipation(random.randomInt(10, 200));

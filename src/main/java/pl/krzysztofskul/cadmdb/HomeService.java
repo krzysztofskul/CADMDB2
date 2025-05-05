@@ -3,6 +3,9 @@ package pl.krzysztofskul.cadmdb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import pl.krzysztofskul.cadmdb.company.manufacturer.Manufacturer;
+import pl.krzysztofskul.cadmdb.company.manufacturer.ManufacturerService;
+import pl.krzysztofskul.cadmdb.company.manufacturer.ManufacturerTestGenerator;
 import pl.krzysztofskul.cadmdb.device.Device;
 import pl.krzysztofskul.cadmdb.device.DeviceDemoGenerator;
 import pl.krzysztofskul.cadmdb.device.DeviceService;
@@ -30,6 +33,8 @@ public class HomeService {
 	private CategoryGenerator categoryGenerator;
 	private DeviceDemoGenerator deviceDemoGenerator;
 	private DeviceService deviceService;
+	private ManufacturerTestGenerator manufacturerTestGenerator;
+	private ManufacturerService manufacturerService;
 	
 	private boolean isEssentailDataInit = false;
 	private boolean isDemoDataInit = false;
@@ -41,7 +46,7 @@ public class HomeService {
 	public HomeService(HospitalTestGenerator hospitalTestGenerator, HospitalService hospitalService,
 			NameStandardizedService department_nameStandardizedService, NameStandardizedTestGenerator department_nameStandardizedTestGenerator,
 			pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameStandardizedService room_nameStandardizedService, pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameStandardizedTestGenerator room_nameStandardizedTestGenerator,
-			CategoryService categoryService, CategoryGenerator categoryGenerator, DeviceDemoGenerator deviceDemoGenerator, DeviceService deviceService) {
+			CategoryService categoryService, CategoryGenerator categoryGenerator, DeviceDemoGenerator deviceDemoGenerator, DeviceService deviceService, ManufacturerTestGenerator manufacturerTestGenerator, ManufacturerService manufacturerService) {
 		super();
 		this.hospitalTestGenerator = hospitalTestGenerator;
 		this.hospitalService = hospitalService;
@@ -53,6 +58,8 @@ public class HomeService {
 		this.categoryGenerator = categoryGenerator;
 		this.deviceDemoGenerator = deviceDemoGenerator;
 		this.deviceService = deviceService;
+		this.manufacturerTestGenerator = manufacturerTestGenerator;
+		this.manufacturerService = manufacturerService;
 	}
 
 	public void initialDbEssentials() {
@@ -77,6 +84,10 @@ public class HomeService {
 	
 	public void initDbDemo() {
 		if (isDemoDataInit == false) {
+			//init demo manufcturers
+			for (Manufacturer manufacturer : manufacturerTestGenerator.iniListAndReturn()) {
+				manufacturerService.save(manufacturer);
+			}
 			//init demo devices
 			for (Device device : deviceDemoGenerator.iniListAndReturn()) {
 				deviceService.save(device);

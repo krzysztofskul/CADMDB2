@@ -43,7 +43,7 @@
 										<p class="langEN">device</p>
 									</label>
 									<select id="select-device" class="form-control" name="deviceId">
-									<option th:each="device : ${deviceList}" th:text="${device.category.namePL+' | '+device.manufacturer+' - '+device.modelName}" th:value="${device.id}"></option>
+									<option th:each="device : ${deviceList}" th:text="${device.category.namePL+' | '+device.manufacturer.name+' - '+device.modelName}" th:value="${device.id}"></option>
 									</select>
 								</div>
 							</td>

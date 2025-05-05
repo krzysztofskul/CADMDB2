@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>CADMDB</title>
+	<!-- CSS -->
+	<link th:href="@{/css/appstyle.css}" rel="stylesheet" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	<!-- JS -->
+	<script src="/js/main.js"></script>
+</head>
+<body>
+	<div th:replace="./header" :: header></div>
+	
+	
+	<div class="container-fluid appcontainer">
+		<form th:action="@{#}" th:object="${device}" method="POST">
+			<div class="card card-hf">
+				<div class="card-header">
+					<input type="hidden" th:field="${device.id}"/>
+					<input type="hidden" th:field="${device.manufacturer.id}"/>
+				</div>
+				<div class="card-body">
+					<div class="form-group">
+						<label></label>
+							<p class="langPL">KATEGORIA / NAZWA STANDARYZOWANA:</p>
+							<p class="langEN">CATEGORY / STANDARDIZEN NAME:</p>
+						</label>
+						<select class="form-control" th:field="${device.category}">
+							<option th:each="category : ${categoryList}" th:text="${category.namePL}" th:value="${category.id}"/>
+						</select>
+					</div>
+					<div class="form-group">
+						<label></label>
+							<p class="langPL">NAZWA MODELU:</p>
+							<p class="langEN">MODEL NAME:</p>
+						</label>
+						<input class="form-control" type="text" th:field="${device.modelName}"/>
+					</div>
+					<div class="form-group">
+						<label></label>
+							<p class="langPL">MASA [KG]:</p>
+							<p class="langEN">MASS [KG]:</p>
+						</label>
+						<input class="form-control" type="text" th:field="${device.weight}"/>
+					</div>
+					<div class="form-group">
+						<label></label>
+							<p class="langPL">EMISJA CIEPŁA [W]:</p>
+							<p class="langEN">HEAT DISSIPATION [W]:</p>
+						</label>
+						<input class="form-control" type="text" th:field="${device.weight}"/>
+					</div>
+					<div class="form-group">
+						<label></label>
+							<p class="langPL">MOC PRZYŁĄCZENIOWA [KVA]:</p>
+							<p class="langEN">POWER CONNECTION VALUE [KVA]:</p>
+						</label>
+						<input class="form-control" type="text" th:field="${device.weight}"/>
+					</div>
+				</div>
+				<div class="card-footer">
+					<button type="submit" class="btn btn-sm btn-outline-success app-btn-right">
+						<p class="langPL">ZAPISZ</p>
+						<p class="langEN">save</p>
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	
+	
+	<div th:replace="./footer" :: footer></div>
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+</body>
+</html>

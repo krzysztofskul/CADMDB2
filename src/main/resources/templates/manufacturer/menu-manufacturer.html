@@ -1,0 +1,23 @@
+<div th:fragment="menu-manufacturer" class="menu-main">	
+
+<div class="row menu-hospital-structure">
+	<div>
+		<ul class="nav">
+			<li class="nav-item">
+				<a class="nav-link active" th:href="@{/manufacturers/{manufacturerId} (manufacturerId=${manufacturer.id}) }" href="#">
+					<p class="langPL">INFORMACJE</p>
+					<p class="langEN">INFORMATION</p>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" th:href="@{/manufacturers/{manufacturerId}/products (manufacturerId=${manufacturer.id}) }" href="#">
+					<p class="langPL">PRODUKTY</p>
+					<p class="langEN">PRODUCTS</p>
+				</a>
+			</li>
+		</ul>
+	</div>
+	
+</div>
+
+</div>

@@ -1,6 +1,5 @@
 package pl.krzysztofskul.cadmdb.device;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +13,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import pl.krzysztofskul.cadmdb.company.manufacturer.Manufacturer;
 import pl.krzysztofskul.cadmdb.device.category.Category;
 import pl.krzysztofskul.cadmdb.device.datafinancial.DataFinancial;
 import pl.krzysztofskul.cadmdb.hospital.department.room.Room;
@@ -25,7 +25,8 @@ public class Device {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String manufacturer;
+	@ManyToOne
+	private Manufacturer manufacturer;
 	
 	private String modelName;
 	
@@ -52,6 +53,8 @@ public class Device {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	
 	/**
 	 * @param room
 	 */
@@ -80,7 +83,7 @@ public class Device {
 	 * Getter
 	 * @return the manufacturer
 	 */
-	public String getManufacturer() {
+	public Manufacturer getManufacturer() {
 		return manufacturer;
 	}
 
@@ -88,7 +91,7 @@ public class Device {
 	 * Setter
 	 * @param manufacturer the manufacturer to set
 	 */
-	public void setManufacturer(String manufacturer) {
+	public void setManufacturer(Manufacturer manufacturer) {
 		this.manufacturer = manufacturer;
 	}
 
