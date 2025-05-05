@@ -19,6 +19,7 @@ import pl.krzysztofskul.cadmdb.device.category.CategoryService;
 public class ManufacturerController {
 
 	private ManufacturerService manufacturerService;
+	private DeviceService deviceService;
 	private CategoryService categoryService;
 	private ModelAndView mav = new ModelAndView();
 
@@ -27,10 +28,15 @@ public class ManufacturerController {
 	 * @param manufacturerService
 	 */
 	@Autowired
-	public ManufacturerController(ManufacturerService manufacturerService, CategoryService categoryService) {
+	public ManufacturerController(
+			ManufacturerService manufacturerService, 
+			CategoryService categoryService,
+			DeviceService deviceService
+			) {
 		super();
 		this.manufacturerService = manufacturerService;
 		this.categoryService = categoryService;
+		this.deviceService = deviceService;
 	}
 	
 	@GetMapping
@@ -112,6 +118,20 @@ public class ManufacturerController {
 		mav.clear();
 		Manufacturer manufacturer = manufacturerService.loadByIdWithProducts(manufacturerId);
 		manufacturer.addDevice(device);
+		manufacturerService.save(manufacturer);
+		mav.setViewName("redirect:/manufacturers/"+manufacturerId+"/products");
+		return mav;
+	}
+	
+	@GetMapping("/{manufacturerId}/products/{productId}/delete-product")
+	public ModelAndView getManufacturerDeleteProduct(
+				@PathVariable Long manufacturerId,
+				@PathVariable Long productId
+			) {
+		mav.clear();
+		Manufacturer manufacturer = manufacturerService.loadByIdWithProducts(manufacturerId);
+		manufacturer.removeDevice(deviceService.loadById(productId));
+		deviceService.deleteById(productId);
 		manufacturerService.save(manufacturer);
 		mav.setViewName("redirect:/manufacturers/"+manufacturerId+"/products");
 		return mav;

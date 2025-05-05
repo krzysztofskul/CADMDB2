@@ -11,61 +11,105 @@
 	<script src="/js/main.js"></script>
 </head>
 <body>
+
 	<div th:replace="./header" :: header></div>
-	
+	<div th:replace="./manufacturer/menu-manufacturer" :: menu-manufacturer></div>	
+
 	<div class="container-fluid appcontainer">
-		<div th:replace="./manufacturer/menu-manufacturer" :: menu-manufacturer></div>
-		<table class="table">
-			<thead>
-				<tr>
-					<td>
-						...
-					</td>
-					<td>
-						...
-					</td>
-					<td>
-						...
-					</td>
-					<td>
-						<a href="#" th:href="@{|/manufacturers/${manufacturer.id}/create-product|}" class="btn btn-sm btn-outline-success">
-							<p class="langPL">NOWY PRODUKT</p>
-							<p class="langEN">NEW PRODUCT</p>
-						</a>
-					</td>
-				</tr>
-			</thead>
-			<tbody>
-				<th:block th:each="product : ${manufacturer.deviceList}">
-					<tr>
-						<td>
-							<p class="langPL" th:text="${product.category.namePL}"></p>
-							<p class="langEN" th:text="${product.category.nameEN}"></p>
-							
-						</td>
-						<td>
-							<p th:text="${product.modelName}"></p>
-						</td>
-						<td>
-							<p th:text="${#numbers.formatCurrency(product.dataFinancial.price)}"></p>
-						</td>
-						<td>
-							<button class="btn btn-sm btn-outline-primary">
+		
+		<div class="card card-hf">
+			<div class="card-header">
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">
+						<p class="langPL">NAZWA</p>
+						<p class="langEN">name</p>
+					</label>
+					<div class="col-sm-10">
+						<h5 th:if="${edit == false} OR ${edit == null}" th:text="${manufacturer.name}"></h5>
+						<input th:if="${edit == true}" class="form-control" type="hidden" th:field="${manufacturer.id}"></input>
+						<input th:if="${edit == true}" class="form-control" type="text" th:field="${manufacturer.name}"></input>
+					</div>
+				</div>
+			</div>
+			<div class="card-body">	
+				<table class="table">
+					<thead class="bg-light">
+						<tr>
+							<td>
+								<p class="langPL">NAZWA STANDARYZOWANA</p>
+								<p class="langEN">standardized name</p>
+							<td>
+								<p class="langPL">MODEL</p>
+								<p class="langEN">model name</p>
+							</td>
+							<td>
+								<p class="langPL">CENA</p>
+								<p class="langEN">price</p>
+							</td>
+							<td>
 								<p class="langPL">SZCZEGÓŁY</p>
-								<p class="langEN">DETAILS</p>
-							</button>
-							<button class="btn btn-sm btn-outline-danger">
+								<p class="langEN">details</p>
+							</td>
+							<td>
 								<p class="langPL">USUŃ</p>
-								<p class="langEN">DELETE</p>
-							</button>
-						</td>
-					</tr>
-				</th:block>
-			</tbody>
-			<tfoot></tfoot>
-		</table>
+								<p class="langEN">delete</p>
+							</td>
+						</tr>
+					</thead>
+					<tbody>
+						<th:block th:each="product : ${manufacturer.deviceList}">
+							<tr>
+								<td>
+									<p class="langPL" th:text="${product.category.namePL}"></p>
+									<p class="langEN" th:text="${product.category.nameEN}"></p>
+									
+								</td>
+								<td>
+									<p th:text="${product.modelName}"></p>
+								</td>
+								<td>
+									<p th:text="${#numbers.formatCurrency(product.dataFinancial.price)}"></p>
+								</td>
+								<td>
+									<button class="btn btn-sm btn-outline-primary">
+										<p class="langPL">SZCZEGÓŁY</p>
+										<p class="langEN">DETAILS</p>
+									</button>
+								</td>
+								<td>
+									<div class="btn-group" role="group">
+									    <button type="button" class="btn btn-sm btn-outline-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+											<div class="d-inline-block">
+												<p class="langPL">USUŃ</p>
+												<p class="langEN">DELETE</p>
+											</div>
+									    </button>
+									    <div class="dropdown-menu">
+									      <a class="dropdown-item" th:href="@{|/manufacturers/${product.manufacturer.id}/products/${product.id}/delete-product|}">
+											<p class="langPL">USUŃ Z BAZY DANYCH</p>
+											<p class="langEN">DELETE FROM DB</p>
+										  </a>
+									      <a class="dropdown-item disabled" href="#">
+											<p class="langPL">DEZAKTYWUJ</p>
+											<p class="langEN">DEACTIVATE</p>
+										  </a>
+									    </div>
+									</div>
+								</td>
+							</tr>
+						</th:block>
+					</tbody>
+					<tfoot></tfoot>
+				</table>
+			</div>
+			<div class="card-footer">
+				<a href="#" th:href="@{|/manufacturers/${manufacturer.id}/create-product|}" class="btn btn-sm btn-outline-success app-btn-right">
+					<p class="langPL">NOWY PRODUKT</p>
+					<p class="langEN">NEW PRODUCT</p>
+				</a>
+			</div>
+		</div>
 	</div>
-	
 	
 	<div th:replace="./footer" :: footer></div>
 

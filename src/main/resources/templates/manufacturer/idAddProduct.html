@@ -18,12 +18,20 @@
 		<form th:action="@{#}" th:object="${device}" method="POST">
 			<div class="card card-hf">
 				<div class="card-header">
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">
+							<p class="langPL">NAZWA</p>
+							<p class="langEN">name</p>
+						</label>
+						<div class="col-sm-10">
+							<h5 th:if="${edit == false} OR ${edit == null}" th:text="${device.manufacturer.name}"></h5>						</div>
+					</div>
 					<input type="hidden" th:field="${device.id}"/>
 					<input type="hidden" th:field="${device.manufacturer.id}"/>
 				</div>
 				<div class="card-body">
 					<div class="form-group">
-						<label></label>
+						<label>
 							<p class="langPL">KATEGORIA / NAZWA STANDARYZOWANA:</p>
 							<p class="langEN">CATEGORY / STANDARDIZEN NAME:</p>
 						</label>
@@ -32,35 +40,46 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<label></label>
+						<label>
 							<p class="langPL">NAZWA MODELU:</p>
 							<p class="langEN">MODEL NAME:</p>
 						</label>
 						<input class="form-control" type="text" th:field="${device.modelName}"/>
 					</div>
-					<div class="form-group">
-						<label></label>
+					<div class="form-group w-25 d-inline-block">
+						<label>
 							<p class="langPL">MASA [KG]:</p>
 							<p class="langEN">MASS [KG]:</p>
 						</label>
-						<input class="form-control" type="text" th:field="${device.weight}"/>
+						<input class="form-control" type="number" th:field="${device.weight}"/>
 					</div>
-					<div class="form-group">
-						<label></label>
+					<div class="form-group w-25 d-inline-block">
+						<label>
 							<p class="langPL">EMISJA CIEPŁA [W]:</p>
 							<p class="langEN">HEAT DISSIPATION [W]:</p>
 						</label>
-						<input class="form-control" type="text" th:field="${device.weight}"/>
+						<input class="form-control" type="number" th:field="${device.heatDissipation}"/>
 					</div>
-					<div class="form-group">
-						<label></label>
+					<div class="form-group w-25 d-inline-block">
+						<label>
 							<p class="langPL">MOC PRZYŁĄCZENIOWA [KVA]:</p>
 							<p class="langEN">POWER CONNECTION VALUE [KVA]:</p>
 						</label>
-						<input class="form-control" type="text" th:field="${device.weight}"/>
+						<input class="form-control" type="number" th:field="${device.powerConnectionValue}"/>
+					</div>
+					<div class="form-group">
+						<label>
+							<p class="langPL">CENA:</p>
+							<p class="langEN">PRICE:</p>
+						</label>
+						<input class="form-control" type="number" step="0.01" th:field="${device.dataFinancial.price}"/>
 					</div>
 				</div>
 				<div class="card-footer">
+					<a href="#" th:href="@{|/manufacturers/${device.manufacturer.id}/products|}" type="button" class="btn btn-sm btn-outline-warning app-btn-left">
+						<p class="langPL">ANULUJ</p>
+						<p class="langEN">cancel</p>
+					</a>
 					<button type="submit" class="btn btn-sm btn-outline-success app-btn-right">
 						<p class="langPL">ZAPISZ</p>
 						<p class="langEN">save</p>

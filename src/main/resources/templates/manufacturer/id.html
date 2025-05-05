@@ -13,10 +13,10 @@
 <body>
 	
 	<div th:replace="./header" :: header></div>
-
+	<div th:replace="./manufacturer/menu-manufacturer" :: menu-manufacturer></div>
 	
 	<div class="container-fluid appcontainer">	
-		<div th:replace="./manufacturer/menu-manufacturer" :: menu-manufacturer></div>
+
 		<form action="#" th:action="@{/manufacturers/{manufacturerId} (manufacturerId = ${manufacturerId})}" th:object="${manufacturer}" method="post" class="inline">
 		
 			<div class="card card-hf">
