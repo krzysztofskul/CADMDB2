@@ -45,6 +45,8 @@ public class Device {
 	@ManyToMany(mappedBy = "deviceList", cascade = CascadeType.ALL)
 	private List<Room> room = new ArrayList<Room>();
 
+	private boolean isActive = true;
+	
 	/**
 	 * Constructor
 	 */
@@ -205,6 +207,22 @@ public class Device {
 	 */
 	public void setRoom(List<Room> room) {
 		this.room = room;
+	}
+
+	/**
+	 * Getter
+	 * @return the isActive
+	 */
+	public boolean isActive() {
+		return isActive;
+	}
+
+	/**
+	 * Setter
+	 * @param isActive the isActive to set
+	 */
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
 	}
 
 	/*

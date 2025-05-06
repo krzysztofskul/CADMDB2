@@ -23,7 +23,10 @@ The main goal of this application is to build hospital rooms and departments str
     * code cleaning  
     * aplication.properties data update to deploy  
 * VER. 0.2-BETA-SNAPSHOT:  (in progress...)   
-    * implement(functionality): deactivate manufacturer (do not delete product already planned in hospitals)  
+    * implement(functionality): deactivate product (do not delete product already planned in hospitals) DONE COMMITTED
+    * implement(functionality): edit product  
+    * implement(functionality): activate product  
+    * implement(functionality): activate/deactivate manufacturer  
     * implement(functionality): equipment management  
     * implement(functionality): edit room, department, manufacturer, product  
     * refactor(device-package): create technicalData class (?) 
@@ -35,7 +38,7 @@ The main goal of this application is to build hospital rooms and departments str
       * technical  
       * laboratory  
       * office  
-    * implement(functionality): error page
+    * implement(functionality): error page  
     
 #### CONTACT
 *krzysztofskul@protonmail.com*

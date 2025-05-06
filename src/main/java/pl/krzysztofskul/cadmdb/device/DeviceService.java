@@ -31,6 +31,10 @@ public class DeviceService {
 		return deviceRepo.findAll();
 	}
 	
+	public List<Device> LoadAllActive() {
+		return deviceRepo.findAllByIsActive(true);
+	}
+	
 	public Device loadById(Long id) {
 		return deviceRepo.findById(id).get();
 	}

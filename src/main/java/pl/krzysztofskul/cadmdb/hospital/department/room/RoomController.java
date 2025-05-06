@@ -50,7 +50,7 @@ public class RoomController {
 		if (edit == true) {
 			mav.addObject("edit", true);
 			mav.addObject("room", roomService.loadById(id));
-			mav.addObject("deviceList", deviceService.loadAll());
+			mav.addObject("deviceList", deviceService.LoadAllActive());
 			mav.setViewName("hospital/department/room/idAddEquipment");
 			
 		} else {

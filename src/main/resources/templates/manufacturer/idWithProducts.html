@@ -89,7 +89,7 @@
 											<p class="langPL">USUŃ Z BAZY DANYCH</p>
 											<p class="langEN">DELETE FROM DB</p>
 										  </a>
-									      <a class="dropdown-item disabled" href="#">
+									      <a class="dropdown-item" th:href="@{|/manufacturers/${product.manufacturer.id}/products/${product.id}/deactivate-product|}">
 											<p class="langPL">DEZAKTYWUJ</p>
 											<p class="langEN">DEACTIVATE</p>
 										  </a>

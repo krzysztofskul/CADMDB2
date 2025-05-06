@@ -136,4 +136,29 @@ public class ManufacturerController {
 		mav.setViewName("redirect:/manufacturers/"+manufacturerId+"/products");
 		return mav;
 	}
+	
+	@GetMapping("/{manufacturerId}/products/{productId}/deactivate-product")
+	public ModelAndView getManufacturerDeactivateProduct(
+			@PathVariable Long manufacturerId,
+			@PathVariable Long productId
+			){
+		mav.clear();
+		Device device = deviceService.loadById(productId);
+		device.setActive(false);
+		deviceService.save(device);
+		mav.setViewName("redirect:/manufacturers/"+manufacturerId+"/products");
+		return mav;
+	}
+	@GetMapping("/{manufacturerId}/products/{productId}/activate-product")
+	public ModelAndView getManufacturerActivateProduct(
+			@PathVariable Long manufacturerId,
+			@PathVariable Long productId
+			){
+		mav.clear();
+		Device device = deviceService.loadById(productId);
+		device.setActive(true);
+		deviceService.save(device);
+		mav.setViewName("redirect:/manufacturers/"+manufacturerId+"/products");
+		return mav;
+	}
 }
