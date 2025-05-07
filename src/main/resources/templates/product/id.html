@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>CADMDB</title>
+	<!-- CSS -->
+	<link th:href="@{/css/appstyle.css}" rel="stylesheet" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	<!-- JS -->
+	<script src="/js/main.js"></script>
+</head>
+<body>
+
+	<div th:replace="./header" :: header></div>
+	<div class="container-fluid appcontainer">
+		<form action="#" th:action="@{#}" method="POST" th:object="${product}">
+			<div class="card card-product">
+				<div class="card-header">					
+					<div class="form-group row d-none">
+						<label class="col-sm-2 col-form-label">
+							<p class="langPL">ID</p>
+							<p class="langEN">ID</p>
+						</label>
+						<div class="col-sm-10">
+							<input th:if="${edit == 'true'}" th:field="${product.id}" readonly type="hidden" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"/>
+							<h5 th:if="${edit == 'false' or edit == null}" th:text="${product.id}"></h5>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">
+							<p class="langPL">NAZWA STANDARYZOWANA</p>
+							<p class="langEN">STANDARDIZED NAME</p>
+						</label>
+						<div class="col-sm-10">
+							<input th:if="${edit == 'true'}" th:field="${product.category.id}" readonly type="hidden" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+							<p class="langPL" th:text="${product.category.namePL}"></p>
+							<p class="langEN" th:text="${product.category.nameEN}"></p>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">
+							<p class="langPL">PRODUCENT</p>
+							<p class="langEN">MANUFACTURER</p>
+						</label>
+						<div class="col-sm-10">
+							<input th:if="${edit == 'true'}" th:field="${product.manufacturer.id}" readonly type="hidden" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+							<p class="langPL" th:text="${product.manufacturer.name}"></p>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">
+							<p class="langPL">NAZWA MODELU</p>
+							<p class="langEN">MODEL NAME</p>
+						</label>
+						<div class="col-sm-10">
+							<input th:if="${edit == 'true'}" th:field="${product.modelName}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+							<p class="langPL" th:if="${edit == 'false' or edit == null}" th:text="${product.modelName}"></p>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">
+							<p class="langPL">CENA</p>
+							<p class="langEN">PRICE</p>
+						</label>
+						<div class="col-sm-10">
+							<input th:if="${edit == 'true'}" th:field="${product.dataFinancial.price}" type="number" step="0.01" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+							<p class="langPL" th:if="${edit == 'false' or edit == null}" th:text="${#numbers.formatCurrency(product.dataFinancial.price)}"></p>
+						</div>
+					</div>
+				</div>
+				<div class="card-body">
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">
+							<p class="langPL">MASA (CIĘŻAR) [KG]</p>
+							<p class="langEN">WEIGHT [KG]</p>
+						</label>
+						<div class="col-sm-10">
+							<input th:if="${edit == 'true'}" th:field="${product.weight}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+							<p class="langPL" th:if="${edit == 'false' or edit == null}" th:text="${product.weight}"></p>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">
+							<p class="langPL">EMISJA CIEPŁA DO OTOCZENIA [W]</p>
+							<p class="langEN">HEAT DISSIPATION [W]</p>
+						</label>
+						<div class="col-sm-10">
+							<input th:if="${edit == 'true'}" th:field="${product.heatDissipation}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+							<p class="langPL" th:if="${edit == 'false' or edit == null}" th:text="${product.heatDissipation}"></p>					
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">
+							<p class="langPL">MOC PRZYŁĄCZENIOWA [W]</p>
+							<p class="langEN">POWER CONNECTION VALUE [W]</p>
+						</label>
+						<div class="col-sm-10">
+							<input th:if="${edit == 'true'}" th:field="${product.powerConnectionValue}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+							<p class="langPL" th:if="${edit == 'false' or edit == null}" th:text="${product.powerConnectionValue}"></p>					
+						</div>
+					</div>
+					<hr>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">
+							<p class="langPL">AKTYWNY/NIEAKTYWNY</p>
+							<p class="langEN">AKTIVE/DISACTIVE</p>
+						</label>
+						<div class="col-sm-10">
+							<input th:if="${edit == 'true'}" th:field="${product.isActive}" type="checkbox" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">					
+							<input th:if="${edit == 'false' or edit == null}" disabled th:field="${product.isActive}" type="checkbox" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">					
+						</div>
+					</div>
+				</div>
+				<div class="card-footer">
+						<th:block th:if="${edit == 'true'}">
+							<a th:href="@{|/devices/${product.id}?edit=false|}" class="btn btn-sm btn-outline-warning app-btn-left">
+								<p class="langPL">ANULUJ</p>
+								<p class="langEN">cancel</p>
+							</a>
+							<button type="submit" class="btn btn-sm btn-outline-success app-btn-right">
+								<p class="langPL">ZAPISZ</p>
+								<p class="langEN">save</p>
+							</button>
+						</th:block>
+						<th:block th:if="${edit == 'false'} OR ${edit == null}">
+							<!--
+							<a href="/hospitals" class="btn btn-sm btn-outline-warning app-btn-left">
+								<p class="langPL">WSTECZ</p>
+								<p class="langEN">back</p>
+							</a>
+							-->
+							<a th:href="@{|/devices/${product.id}?edit=true|}" class="btn btn-sm btn-outline-primary app-btn-right">
+								<p class="langPL">EDYTUJ</p>
+								<p class="langEN">edit</p>
+							</a>
+						</th:block>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div th:replace="./footer" :: footer></div>
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+	
+</body>
+</html>

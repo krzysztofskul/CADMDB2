@@ -144,7 +144,7 @@ public class ManufacturerController {
 			){
 		mav.clear();
 		Device device = deviceService.loadById(productId);
-		device.setActive(false);
+		device.setIsActive(false);
 		deviceService.save(device);
 		mav.setViewName("redirect:/manufacturers/"+manufacturerId+"/products");
 		return mav;
@@ -156,7 +156,7 @@ public class ManufacturerController {
 			){
 		mav.clear();
 		Device device = deviceService.loadById(productId);
-		device.setActive(true);
+		device.setIsActive(true);
 		deviceService.save(device);
 		mav.setViewName("redirect:/manufacturers/"+manufacturerId+"/products");
 		return mav;

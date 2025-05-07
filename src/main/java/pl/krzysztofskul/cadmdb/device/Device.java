@@ -25,7 +25,7 @@ public class Device {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Manufacturer manufacturer;
 	
 	private String modelName;
@@ -42,7 +42,7 @@ public class Device {
 	private int heatDissipation;
 	private int powerConnectionValue;
 	
-	@ManyToMany(mappedBy = "deviceList", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "deviceList")
 	private List<Room> room = new ArrayList<Room>();
 
 	private boolean isActive = true;
@@ -213,7 +213,7 @@ public class Device {
 	 * Getter
 	 * @return the isActive
 	 */
-	public boolean isActive() {
+	public boolean getIsActive() {
 		return isActive;
 	}
 
@@ -221,7 +221,7 @@ public class Device {
 	 * Setter
 	 * @param isActive the isActive to set
 	 */
-	public void setActive(boolean isActive) {
+	public void setIsActive(boolean isActive) {
 		this.isActive = isActive;
 	}
 

@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DeviceRepo extends JpaRepository<Device, Long>{
 
-	List<Device> findAllByIsActive(boolean isActive);
+	List<Device> findAllByIsActiveOrderByCategoryNamePLAsc(boolean isActive);
 
 }

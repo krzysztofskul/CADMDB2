@@ -32,7 +32,7 @@ public class DeviceService {
 	}
 	
 	public List<Device> LoadAllActive() {
-		return deviceRepo.findAllByIsActive(true);
+		return deviceRepo.findAllByIsActiveOrderByCategoryNamePLAsc(true);
 	}
 	
 	public Device loadById(Long id) {
