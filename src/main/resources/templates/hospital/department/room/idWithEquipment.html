@@ -56,6 +56,12 @@
 				<div class="card-body">
 					<table class="table">
 						<thead class="bg-light">
+							<tr class="text-center border-bottom">
+								<td colspan="6">
+									<p class="langPL">WYPOSAŻENIE</p>
+									<p class="langEN">EQUIPMENT</p>
+								</td>
+							</tr>
 							<tr>
 								<td>
 									<p class="langPL">NAZAWA WYPOSAŻENIA</p>
@@ -77,7 +83,7 @@
 									<p class="langPL">SZCZEGÓLY</p>
 									<p class="langEN">details</p>
 								</td>
-								<td>
+								<td class="text-right">
 									<p class="langPL">USUŃ</p>
 									<p class="langEN">delete</p>
 								</td>
@@ -106,7 +112,7 @@
 										</a>
 									</td>
 									<td>
-										<a th:href="@{|/rooms/${room.id}/equipment/${device.id}/remove|}" class="btn btn-sm btn-outline-danger">
+										<a th:href="@{|/rooms/${room.id}/equipment/${device.id}/remove|}" class="btn btn-sm btn-outline-danger float-right">
 											<p class="langPL">USUŃ</p>
 											<p class="langEN">DELETE</p>
 										</a>
@@ -137,8 +143,8 @@
 					</a>
 					-->
 					<a th:href="@{|/rooms/${room.id}/equipment?edit=true|}" class="btn btn-sm btn-outline-success app-btn-right">
-						<p class="langPL">DODAJ</p>
-						<p class="langEN">ADD</p>
+						<p class="langPL">DODAJ WYPOSAŻENIE</p>
+						<p class="langEN">ADD EQUIPMENT</p>
 					</a>
 				</div>
 				

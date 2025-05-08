@@ -34,11 +34,28 @@ public class DepartmentController {
 	}
 	
 	@GetMapping("/{id}")
-	public ModelAndView getDepartmentById(@PathVariable Long id) {
+	public ModelAndView getDepartmentById(
+			@PathVariable Long id
+			, @RequestParam(name = "edit", required = false) boolean edit
+			) {
 		Department department = departmentService.loadById(id);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("department", department);
+		if (edit == true) {
+			mav.addObject("edit", true);
+		}
 		mav.setViewName("hospital/department/id");
+		return mav;
+	}
+	
+	@PostMapping("/{id}")
+	public ModelAndView postDepartmentById(
+			@PathVariable Long id,	
+			@ModelAttribute Department departmnet
+			) {
+		ModelAndView mav = new ModelAndView();
+		departmentService.save(departmnet);
+		mav.setViewName("redirect:/departments/"+departmnet.getId());
 		return mav;
 	}
 	

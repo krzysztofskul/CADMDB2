@@ -38,6 +38,7 @@
 							<td>
 								<p class="langPL">NAZWA STANDARYZOWANA</p>
 								<p class="langEN">standardized name</p>
+							</td>
 							<td>
 								<p class="langPL">MODEL</p>
 								<p class="langEN">model name</p>
@@ -47,12 +48,14 @@
 								<p class="langEN">price</p>
 							</td>
 							<td>
-								<p class="langPL">SZCZEGÓŁY</p>
-								<p class="langEN">details</p>
+								<p class="langPL">DOSTĘPNOŚĆ</p>
+								<p class="langEN">availability</p>
 							</td>
-							<td>
-								<p class="langPL">USUŃ</p>
-								<p class="langEN">delete</p>
+							<td class="float-right text-center">
+								<!--
+								<p class="langPL">OPERACJE</p>
+								<p class="langEN">actions</p>
+								-->
 							</td>
 						</tr>
 					</thead>
@@ -71,12 +74,20 @@
 									<p th:text="${#numbers.formatCurrency(product.dataFinancial.price)}"></p>
 								</td>
 								<td>
+									<div th:if="${product.isActive == true}" class="text-success">
+										<p class="langPL">DOSTĘPNY</p>
+										<p class="langEN">AVAILABLE</p>										
+									</div>
+									<div th:if="${product.isActive == false}" class="text-danger">
+										<p class="langPL">NIEDOSTĘPNY</p>
+										<p class="langEN">AUNVAILABLE</p>										
+									</div>
+								</td>
+								<td class="float-right">
 									<a href="#" th:href="@{|/devices/${product.id}|}" class="btn btn-sm btn-outline-primary">
 										<p class="langPL">SZCZEGÓŁY</p>
 										<p class="langEN">DETAILS</p>
 									</a>
-								</td>
-								<td>
 									<div class="btn-group" role="group">
 									    <button type="button" class="btn btn-sm btn-outline-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 											<div class="d-inline-block">

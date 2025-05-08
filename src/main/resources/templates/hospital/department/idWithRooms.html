@@ -43,6 +43,12 @@
 				<div class="card-body">
 					<table class="table">
 						<thead class="bg-light">
+							<tr class="text-center border-bottom">
+								<td colspan="4">
+									<p class="langPL">POMIESZCZENIA</p>
+									<p class="langEN">ROOMS</p>
+								</td>
+							</tr>
 							<tr>
 								<td>
 									<p class="langPL">POMIESZCZENIE</p>
@@ -56,7 +62,7 @@
 									<p class="langPL">SZCZEGÓŁY</p>
 									<p class="langEN">details</p>
 								</td>
-								<td>
+								<td class="text-right">
 									<p class="langPL">USUŃ</p>
 									<p class="langEN">delete</p>
 								</td>
@@ -80,7 +86,7 @@
 										</a>
 									</td>
 									<td>
-										<a th:href="@{/rooms/{roomId}/delete (roomId = ${room.id}) }" class="btn btn-sm btn-outline-danger">
+										<a th:href="@{/rooms/{roomId}/delete (roomId = ${room.id}) }" class="btn btn-sm btn-outline-danger float-right">
 											<p class="langPL">USUŃ</p>
 											<p class="langEN">DELETE</p>
 										</a>
@@ -108,8 +114,8 @@
 					</a>
 					-->
 					<a th:href="@{/departments/{id}/rooms?edit=true (id=${department.id})}" class="btn btn-sm btn-outline-success app-btn-right">
-						<p class="langPL">DODAJ</p>
-						<p class="langEN">ADD</p>
+						<p class="langPL">DODAJ POMIESZCZENIE</p>
+						<p class="langEN">ADD ROOM</p>
 					</a>
 				</div>
 			</div>

@@ -17,7 +17,7 @@
 	<div th:replace="./hospital/department/room/menu-room" :: menu-room></div>
 		
 	<div class="container-fluid appcontainer">
-		<form action="#" th:action="@{/rooms/{roomId} (roomId = ${roomId})}" th:object="${room}" method="post" class="inline">
+		<form action="#" th:action="@{/rooms/{roomId} (roomId = ${room.id})}" th:object="${room}" method="post" class="inline">
 			<div class="card card-hf">
 				<div class="card-header">
 					<div th:replace="./hospital/hospital-structure-path" :: hospital-structure-path></div>
@@ -27,8 +27,16 @@
 							<p class="langEN">room (standardized name)</p>
 						</label>
 						<div class="col-10">
-							<h5 th:if="${edit == false} OR ${edit == null}" th:text="${room.nameStandardized.nameStandardizedPl}"></h5>
-							<p th:if="${edit == false} OR ${edit == null}" th:text="${room.nameStandardized.nameStandardizedEn}"></p>
+							<h5 th:text="${room.nameStandardized.nameStandardizedPl}"></h5>
+							<p th:text="${room.nameStandardized.nameStandardizedEn}"></p>
+							<input th:if="${edit == true}" class="form-control" type="hidden" th:field="${room.nameStandardized.id}"></input>
+							<input th:if="${edit == true}" class="form-control" type="hidden" th:field="${room.department.id}"></input>
+							<input th:if="${edit == true}" class="form-control" type="hidden" th:field="${room.dataFinancial.id}"></input>
+
+							<select th:if="${edit == true}" th:field="${room.deviceList}" multiple class="d-none">
+								<option th:each="device : ${room.deviceList}" th:text="${device.id}" th:value="${device.id}"/>
+							</select>
+	
 						</div>
 					</div>
 					<div class="form-group row">
@@ -104,7 +112,7 @@
 							<p class="langEN">back</p>
 						</a>
 						-->
-						<a th:href="@{#/rooms/{id}?edit=true(id=${room.id})}" class="btn btn-sm btn-outline-primary app-btn-right">
+						<a th:href="@{/rooms/{id}?edit=true(id=${room.id})}" class="btn btn-sm btn-outline-primary app-btn-right">
 							<p class="langPL">EDYTUJ</p>
 							<p class="langEN">edit</p>
 						</a>

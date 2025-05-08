@@ -103,8 +103,8 @@
 					<hr>
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">
-							<p class="langPL">AKTYWNY/NIEAKTYWNY</p>
-							<p class="langEN">AKTIVE/DISACTIVE</p>
+							<p class="langPL">DOSTĘPNY/NIEDOSTĘPNY</p>
+							<p class="langEN">AVAILABLE/UNAVAILABLE</p>
 						</label>
 						<div class="col-sm-10">
 							<input th:if="${edit == 'true'}" th:field="${product.isActive}" type="checkbox" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">					
@@ -124,12 +124,10 @@
 							</button>
 						</th:block>
 						<th:block th:if="${edit == 'false'} OR ${edit == null}">
-							<!--
-							<a href="/hospitals" class="btn btn-sm btn-outline-warning app-btn-left">
+							<a th:href="@{|/manufacturers/${product.manufacturer.id}/products|}" class="btn btn-sm btn-outline-warning app-btn-left">
 								<p class="langPL">WSTECZ</p>
 								<p class="langEN">back</p>
 							</a>
-							-->
 							<a th:href="@{|/devices/${product.id}?edit=true|}" class="btn btn-sm btn-outline-primary app-btn-right">
 								<p class="langPL">EDYTUJ</p>
 								<p class="langEN">edit</p>

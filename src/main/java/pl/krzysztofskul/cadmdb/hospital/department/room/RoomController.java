@@ -3,6 +3,7 @@ package pl.krzysztofskul.cadmdb.hospital.department.room;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,10 +35,27 @@ public class RoomController {
 	}
 	
 	@GetMapping("/{id}")
-	public ModelAndView getRoomById(@PathVariable Long id) {
-		roomService.loadById(id);
+	public ModelAndView getRoomById(
+			@PathVariable Long id
+			, @RequestParam(name = "edit", required = false) boolean edit
+			) {
+		mav.clear();
+		if (edit == true) {
+			mav.addObject("edit", true);
+		}
 		mav.addObject("room", roomService.loadById(id));
 		mav.setViewName("hospital/department/room/id");
+		return mav;
+	}
+	
+	@PostMapping("/{id}")
+	public ModelAndView postRoomById(
+				@PathVariable Long id,
+				@ModelAttribute Room room
+			) {
+		mav.clear();
+		room = roomService.saveAndReturn(room);
+		mav.setViewName("redirect:/rooms/"+room.getId());
 		return mav;
 	}
 	

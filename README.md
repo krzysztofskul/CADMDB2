@@ -22,11 +22,10 @@ The main goal of this application is to build hospital rooms and departments str
 * VER. 0.2-ALPHA-FINAL:  
     * code cleaning  
     * aplication.properties data update to deploy  
-* VER. 0.2-BETA-SNAPSHOT:  (in progress...)  
+* VER. 0.2-BETA-SNAPSHOT:    
     * implement(functionality): activate/deactivate manufacturer  
-    * implement(functionality): product/equipment/device management  
-    * implement(functionality): edit room, department & manufacturer  
-    * refactor(device-package): create technicalData class (?) 
+    * refactor(): product/equipment/device nomenclature  
+    * refactor(): create technicalData class (?) 
 * VER. 0.3-ALPHA:  
     * implement(style): default application icons  
     * implement(code and functionality): equipment and room functional categories  

@@ -22,8 +22,8 @@ public class HealthcareFacility {
 	private String namePL;
 	private String nameEN;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "datafinancial")
+	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@JoinColumn(name = "hfdatafinancial")
 	private DataFinancial dataFinancial = new DataFinancial();
 	
 	@OneToOne(cascade = CascadeType.ALL)

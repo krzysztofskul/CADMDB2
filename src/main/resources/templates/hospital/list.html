@@ -19,8 +19,8 @@
 				<tr>
 					<td colspan="4">
 						<a href="/hospitals/0" class="btn btn-sm btn-outline-success app-btn-right">
-							<p class="langPL">NOWY</p>
-							<p class="langEN">NEW</p>
+							<p class="langPL">NOWY SZPITAL</p>
+							<p class="langEN">NEW HOSPITAL</p>
 						</a>
 					</td>
 				</tr>
@@ -36,16 +36,18 @@
 							<span th:text="${hospital.address.streetname+' '+hospital.address.streetno}"></span>
 						</td>
 						<td>
-							<a th:href="@{/hospitals/{id}(id=${hospital.id})}" class="btn btn-sm btn-outline-primary app-btn-right">
-								<p class="langPL">SZCZEGÓŁY</p>
-								<p class="langEN">DETAILS</p>
-							</a>
+							<p th:text="${#numbers.formatCurrency(hospital.dataFinancial.purCostOfDevicePlan)}"></p>
 						</td>
 						<td>
-							<a th:href="@{/hospitals/{id}/delete (id=${hospital.id}) }" class="btn btn-sm btn-outline-danger app-btn-right">
+							<a th:href="@{/hospitals/{id}/delete (id=${hospital.id}) }" class="btn btn-sm btn-outline-danger float-right">
 								<p class="langPL">USUŃ</p>
 								<p class="langEN">DELETE</p>
 							</a>
+							<a th:href="@{/hospitals/{id}(id=${hospital.id})}" class="btn btn-sm btn-outline-primary float-right">
+								<p class="langPL">SZCZEGÓŁY</p>
+								<p class="langEN">DETAILS</p>
+							</a>
+
 						</td>
 					</tr>
 				</th:block>
@@ -54,8 +56,8 @@
 				<tr>
 					<td colspan="4">
 						<a href="/hospitals/0" class="btn btn-sm btn-outline-success app-btn-right">
-							<p class="langPL">NOWY</p>
-							<p class="langEN">NEW</p>
+							<p class="langPL">NOWY SZPITAL</p>
+							<p class="langEN">NEW HOSPITAL</p>
 						</a>
 					</td>
 				</tr>

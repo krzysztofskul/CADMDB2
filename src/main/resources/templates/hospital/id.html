@@ -26,13 +26,15 @@
 					</div>
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">
-							<p class="langPL">NAZWA</p>
-							<p class="langEN">name</p>
+							<p class="langPL">NAZWA SZPITALA</p>
+							<p class="langEN">hospital name</p>
 						</label>
 						<div class="col-sm-10">
 							<h5 th:if="${edit == false} OR ${edit == null}" th:text="${hospital.name}"></h5>
 							<input th:if="${edit == true}" class="form-control" type="hidden" th:field="${hospital.id}"></input>
 							<input th:if="${edit == true}" class="form-control" type="text" th:field="${hospital.name}"></input>
+							<input th:if="${edit == true}" class="form-control" type="hidden" th:field="${hospital.dataFinancial.id}"></input>
+							<input th:if="${edit == true}" class="form-control" type="hidden" th:field="${hospital.address.id}"></input>
 						</div>
 					</div>
 				</div>

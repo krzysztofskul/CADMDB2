@@ -15,7 +15,7 @@ import pl.krzysztofskul.cadmdb.hospital.department.Department;
 @Entity
 public class Hospital extends HealthcareFacility {
 
-	@OneToMany(mappedBy = "hospital", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "hospital", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<Department> departmentList = new ArrayList<Department>();
 	
 	/**

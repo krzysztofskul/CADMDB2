@@ -17,7 +17,7 @@
 	<div th:replace="./hospital/department/menu-department" :: menu-department></div>
 		
 	<div class="container-fluid appcontainer">
-		<form action="#" th:action="@{/departments/{departmentId} (departmentId = ${departmentId})}" th:object="${department}" method="post" class="inline">
+		<form action="#" th:action="@{/departments/{departmentId} (departmentId = ${department.id})}" th:object="${department}" method="post" class="inline">
 			<div class="card card-hf">
 				<div class="card-header">
 					<div th:replace="./hospital/hospital-structure-path" :: hospital-structure-path></div>
@@ -27,8 +27,16 @@
 							<p class="langEN">department (stardized name)</p>
 						</label>
 						<div class="col-10">
-							<h5 th:if="${edit == false} OR ${edit == null}" th:text="${department.nameStandardized.nameStandardizedPl}"></h5>
-							<p th:if="${edit == false} OR ${edit == null}" th:text="${department.nameStandardized.nameStandardizedEn}"></p>
+							<h5 th:text="${department.nameStandardized.nameStandardizedPl}"></h5>
+							<p th:text="${department.nameStandardized.nameStandardizedEn}"></p>
+							<input th:if="${edit == true}" class="form-control" type="hidden" th:field="${department.nameStandardized.id}"></input>
+							<input th:if="${edit == true}" class="form-control" type="hidden" th:field="${department.hospital.id}"></input>
+							<input th:if="${edit == true}" class="form-control" type="hidden" th:field="${department.dataFinancial.id}"></input>
+							<!--
+							<select th:if="${edit == true}" th:field="${department.roomList}">
+								<option th:each="room : ${department.roomList}" th:text="${room.id}" th:value="${room.id}"/>
+							</select>
+							-->						
 						</div>
 					</div><div class="form-group row">
 						<label class="col-2 col-form-label">
@@ -96,7 +104,7 @@
 							<p class="langEN">back</p>
 						</a>
 						-->
-						<a th:href="@{#/departments/{id}?edit=true(id=${department.id})}" class="btn btn-sm btn-outline-primary app-btn-right">
+						<a th:href="@{/departments/{id}?edit=true(id=${department.id})}" class="btn btn-sm btn-outline-primary app-btn-right">
 							<p class="langPL">EDYTUJ</p>
 							<p class="langEN">edit</p>
 						</a>
