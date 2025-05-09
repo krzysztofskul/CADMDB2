@@ -20,8 +20,7 @@ The main goal of this application is to build hospital rooms and departments str
 **TODO:**  
 
 * VER. 0.2-BETA-FINAL | DONE  
-    * implement(style): default application icons  | DONE  
-* VER. 0.2-BETA-RC | TODO:
+* VER. 0.2-BETA-RC | TODO:  
     * refactor(config): aplication.properties data update to deploy  
 * VER. 0.3-ALPHA | TODO:  
     * implement(functionality): room data sheet  
