@@ -44,13 +44,13 @@
 					<table class="table">
 						<thead class="bg-light">
 							<tr class="text-center border-bottom">
-								<td colspan="4">
+								<td colspan="5">
 									<p class="langPL">POMIESZCZENIA</p>
 									<p class="langEN">ROOMS</p>
 								</td>
 							</tr>
 							<tr>
-								<td>
+								<td colspan="2">
 									<p class="langPL">POMIESZCZENIE</p>
 									<p class="langEN">room</p>
 								</td>
@@ -58,13 +58,7 @@
 									<p class="langPL">KOSZT WYPOSAŻENIA</p>
 									<p class="langEN">equipment cost</p>
 								</td>
-								<td>
-									<p class="langPL">SZCZEGÓŁY</p>
-									<p class="langEN">details</p>
-								</td>
-								<td class="text-right">
-									<p class="langPL">USUŃ</p>
-									<p class="langEN">delete</p>
+								<td colspan="2">
 								</td>
 							</tr>
 						</thead>
@@ -72,6 +66,9 @@
 						<tbody>
 							<th:block>
 								<tr th:each="room : ${department.roomList}">
+									<td style="width:80px">
+										<img th:src="@{/img/ico/room000.png}" alt="HOSPITAL ICON" width="75" height="75" class="border">
+									</td>
 									<td>
 										<p class="langPL" th:text="${room.nameStandardized.nameStandardizedPl}"></p>
 										<p class="langEN" th:text="${room.nameStandardized.nameStandardizedEn}"></p>
@@ -79,16 +76,14 @@
 									<td>
 										<p class="langPL" th:text="${#numbers.formatCurrency(room.dataFinancial.purCostOfDevicePlan)}"></p>
 									</td>
-									<td>
-										<a th:href="@{/rooms/{id}/equipment (id = ${room.id}) }" class="btn btn-sm btn-outline-primary">
-											<p class="langPL">SZCZEGÓŁY</p>
-											<p class="langEN">DETAILS</p>
-										</a>
-									</td>
-									<td>
+									<td colspan="2">
 										<a th:href="@{/rooms/{roomId}/delete (roomId = ${room.id}) }" class="btn btn-sm btn-outline-danger float-right">
 											<p class="langPL">USUŃ</p>
 											<p class="langEN">DELETE</p>
+										</a>
+										<a th:href="@{/rooms/{id}/equipment (id = ${room.id}) }" class="btn btn-sm btn-outline-primary float-right">
+											<p class="langPL">SZCZEGÓŁY</p>
+											<p class="langEN">DETAILS</p>
 										</a>
 									</td>
 								</tr>
@@ -96,7 +91,7 @@
 						</tbody>
 						<tfoot>
 							<tr>
-								<td></td>
+								<td colspan="2"></td>
 								<td class="bg-light">
 									<h6 th:text="${#numbers.formatCurrency(department.dataFinancial.purCostOfDevicePlan)}"></h6>
 								</td>

@@ -19,22 +19,31 @@ The main goal of this application is to build hospital rooms and departments str
 
 **TODO:**  
 
-* VER. 0.2-ALPHA-FINAL:  
-    * code cleaning  
-    * aplication.properties data update to deploy  
-* VER. 0.2-BETA-SNAPSHOT:    
-    * implement(functionality): activate/deactivate manufacturer  
-    * refactor(): product/equipment/device nomenclature  
-    * refactor(): create technicalData class (?) 
-* VER. 0.3-ALPHA:  
-    * implement(style): default application icons  
-    * implement(code and functionality): equipment and room functional categories  
-      * medical  
+* VER. 0.2-BETA-FINAL | DONE  
+    * implement(style): default application icons  | DONE  
+* VER. 0.2-BETA-RC | TODO:
+    * refactor(config): aplication.properties data update to deploy  
+* VER. 0.3-ALPHA | TODO:  
+    * implement(functionality): room data sheet  
+    * implement(functionality): equipment and room functional categories  
+      * medical
+      * medical-consultation  
+      * medical-examination/diagnostic  
+      * medical-treatmend  
+      * medical-operation  
+      * medical-preparation  
       * sanitary  
       * technical  
       * laboratory  
       * office  
+      * public  
+      * staff
+      * patient    
+      * support  
     * implement(functionality): error page  
+    * refactor(): product/equipment/device nomenclature  
+    * refactor(): create technicalData class (?) 
+    * implement(functionality): activate/deactivate manufacturer (?)  
     
 #### CONTACT
 *krzysztofskul@protonmail.com*

@@ -39,16 +39,14 @@
 							<span th:text="${manufacturer.address.streetname+' '+manufacturer.address.streetno}"></span>
 
 						</td>
-						<td>
-							<a th:href="@{/manufacturers/{id}(id=${manufacturer.id})}" class="btn btn-sm btn-outline-primary app-btn-right">
-								<p class="langPL">SZCZEGÓŁY</p>
-								<p class="langEN">DETAILS</p>
-							</a>
-						</td>
-						<td>
+						<td colspan="2">
 							<a th:href="@{/manufacturers/{id}/delete (id=${manufacturer.id}) }" class="btn btn-sm btn-outline-danger app-btn-right">
 								<p class="langPL">USUŃ</p>
 								<p class="langEN">DELETE</p>
+							</a>
+							<a th:href="@{/manufacturers/{id}(id=${manufacturer.id})}" class="btn btn-sm btn-outline-primary app-btn-right">
+								<p class="langPL">SZCZEGÓŁY</p>
+								<p class="langEN">DETAILS</p>
 							</a>
 						</td>
 					</tr>

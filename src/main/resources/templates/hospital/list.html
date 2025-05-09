@@ -17,7 +17,7 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<td colspan="4">
+					<td colspan="5">
 						<a href="/hospitals/0" class="btn btn-sm btn-outline-success app-btn-right">
 							<p class="langPL">NOWY SZPITAL</p>
 							<p class="langEN">NEW HOSPITAL</p>
@@ -26,8 +26,11 @@
 				</tr>
 			</thead>
 			<tbody>
-				<th:block th:each="hospital : ${hospitalList}">
+				<th:block th:each="hospital : ${hospitalList}">						
 					<tr>
+						<td style="width:80px">
+							<img th:src="@{/img/ico/hospital000.png}" alt="HOSPITAL ICON" width="75" height="75" class="border">
+						</td>
 						<td>
 							<h6 th:text="${hospital.name}"></h6>
 							<span th:text="${hospital.address.country}"></span>

@@ -38,7 +38,9 @@
 	margin-right: auto;
 }
 .menu-hospital-structure > div {
+	border-bottom: 1px solid gray;
+	margin-bottom: 10px;
 	text-align: center;
-	margin-left: auto;
+	margin-left: 30px;
 	margin-right: auto;
 }
