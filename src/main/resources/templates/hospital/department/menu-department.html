@@ -1,7 +1,7 @@
 <div th:fragment="menu-department" class="menu-main">	
 
 <div class="row menu-hospital-structure">
-	<div>
+	<div class="col">
 		<ul class="nav">
 			<li class="nav-item">
 				<img th:src="@{/img/ico/department000.png}" alt="HOSPITAL ICON" height="50" class="border">
@@ -13,7 +13,25 @@
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" th:href="@{/departments/{departmentId}/rooms (departmentId=${department.id}) }" href="#">
+				<a class="nav-link disabled" th:href="@{#}" href="#">
+					<p class="langPL">DANE ARCHITEKTONICZNE</p>
+					<p class="langEN">ARCHITECTURAL DATA</p>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link disabled" th:href="@{#}" href="#">
+					<p class="langPL">DANE TECHNICZNE</p>
+					<p class="langEN">TECHNICAL DATA</p>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link disabled" th:href="@{#}" href="#">
+					<p class="langPL">DANE FINANSOWE</p>
+					<p class="langEN">FINANCIAL DATA</p>
+				</a>
+			</li>
+			<li class="nav-item ml-auto">
+				<a class="nav-link text-rights" th:href="@{/departments/{departmentId}/rooms (departmentId=${department.id}) }" href="#">
 					<p class="langPL">WYKAZ POMIESZCZEŃ</p>
 					<p class="langEN">ROOMS LIST</p>
 				</a>

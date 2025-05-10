@@ -1,7 +1,7 @@
 <div th:fragment="menu-room" class="menu-main">	
 
 <div class="row menu-hospital-structure">
-	<div>
+	<div class="col">
 		<ul class="nav">
 			<li class="nav-item">
 				<img th:src="@{/img/ico/room000.png}" alt="HOSPITAL ICON" height="50" class="border">
@@ -12,8 +12,26 @@
 					<p class="langEN">INFORMATION</p>
 				</a>
 			</li>
+			<li class="nav-item disabled">
+				<a class="nav-link active" th:href="@{#}" href="#">
+					<p class="langPL">DANE ARCHITEKTONICZNE</p>
+					<p class="langEN">ARCHITECTURAL DATA</p>
+				</a>
+			</li>
 			<li class="nav-item">
-				<a class="nav-link" th:href="@{/rooms/{roomId}/equipment (roomId=${room.id}) }" href="#">
+				<a class="nav-link disabled" th:href="@{#}" href="#">
+					<p class="langPL">DANE TECHNICZNE</p>
+					<p class="langEN">TECHNICAL DATA</p>
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link disabled" th:href="@{#}" href="#">
+					<p class="langPL">DANE FINANSOWE</p>
+					<p class="langEN">FINANCIAL DATA</p>
+				</a>
+			</li>
+			<li class="nav-item ml-auto">
+				<a class="nav-link text-right" th:href="@{/rooms/{roomId}/equipment (roomId=${room.id}) }" href="#">
 					<p class="langPL">WYKAZ WYPOSAŻENIA</p>
 					<p class="langEN">EQUIPMENT LIST</p>
 				</a>

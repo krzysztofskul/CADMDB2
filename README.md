@@ -24,6 +24,8 @@ The main goal of this application is to build hospital rooms and departments str
     * refactor(config): aplication.properties data update to deploy  
 * VER.#0.3-ALPHA-SNAPSHOT | TODO:  
     * implement(functionality): room data sheet  
+      * implement(code): add dataTechnical class to the room  
+      * implement(code): add dataArchitectural class to the room  
     * implement(functionality): equipment and room functional categories  
       * medical  
       * medical-consultation  
