@@ -36,6 +36,12 @@ public class RoomService {
 		
 	}
 	
+	public Object loadByIdWithDataArchRoom(Long id) {
+		Room room = this.loadById(id);
+		Hibernate.initialize(room.getDataArchRoom());
+		return room;
+	}	
+	
 	public List<Room> loadAll() {
 		return roomRepo.findAll();
 	}

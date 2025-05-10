@@ -5,14 +5,17 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import pl.krzysztofskul.cadmdb.address.Address;
 import pl.krzysztofskul.cadmdb.device.Device;
 import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacility;
+import pl.krzysztofskul.cadmdb.healthcarefacility.dataarch.dataarchroom.DataArchRoom;
 import pl.krzysztofskul.cadmdb.hospital.department.Department;
 import pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameStandardized;
 
@@ -23,6 +26,14 @@ public class Room extends HealthcareFacility {
 	
 	@ManyToOne
 	private Department department;
+	
+    @OneToOne(
+            mappedBy    = "room",
+            cascade     = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch       = FetchType.LAZY
+        )
+    private DataArchRoom dataArchRoom;
 	
 	/*
 	 * STANDARDIZED NAME
@@ -91,7 +102,24 @@ public class Room extends HealthcareFacility {
 		this.department = department;
 		this.nameStandardized = nameStandardized;
 	}
-	
+
+	/**
+	 * Getter
+	 * @return the dataArchRoom
+	 */
+	public DataArchRoom getDataArchRoom() {
+		return dataArchRoom;
+	}
+
+	/**
+	 * Setter
+	 * @param dataArchRoom the dataArchRoom to set
+	 */
+	public void setDataArchRoom(DataArchRoom dataArchRoom) {
+		this.dataArchRoom = dataArchRoom;
+		dataArchRoom.setRoom(this);
+	}
+
 	/**
 	 * Getter
 	 * @return the roomNo

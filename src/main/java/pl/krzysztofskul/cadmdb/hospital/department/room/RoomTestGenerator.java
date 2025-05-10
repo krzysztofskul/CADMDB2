@@ -12,6 +12,7 @@ import com.thedeanda.lorem.LoremIpsum;
 
 import pl.krzysztofskul.cadmdb.device.Device;
 import pl.krzysztofskul.cadmdb.device.DeviceService;
+import pl.krzysztofskul.cadmdb.healthcarefacility.dataarch.dataarchroom.DataArchRoom;
 import pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameStandardized;
 import pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameStandardizedService;
 import pl.krzysztofskul.cadmdb.init.InitDataGenerator;
@@ -42,6 +43,9 @@ public class RoomTestGenerator implements InitDataGenerator<Room>{
 			} else {
 				room.setName(nameStandardized.getNameStandardizedPl());
 			}
+			DataArchRoom dataArchRoom = new DataArchRoom();
+			dataArchRoom.setArea(new Random().nextFloat(100));
+			room.setDataArchRoom(dataArchRoom);
 			roomList.add(room);
 		}
 		return roomList;

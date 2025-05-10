@@ -24,8 +24,8 @@ The main goal of this application is to build hospital rooms and departments str
     * refactor(config): aplication.properties data update to deploy  
 * VER.#0.3-ALPHA-SNAPSHOT | TODO:  
     * implement(functionality): room data sheet  
-      * implement(code): add dataTechnical class to the room  
-      * implement(code): add dataArchitectural class to the room  
+      * implement(code): add dataTechnical and dataArch package | DONE  
+      * implement: architectural data management functionality TODO NEXT...  
     * implement(functionality): equipment and room functional categories  
       * medical  
       * medical-consultation  
@@ -41,6 +41,8 @@ The main goal of this application is to build hospital rooms and departments str
       * staff  
       * patient  
       * support  
+    * implement(functionality): investor  
+    * update(springsecurity): register new user    
     * implement(functionality): error page  
     * refactor(): product/equipment/device nomenclature  
     * refactor(): create technicalData class (?)  

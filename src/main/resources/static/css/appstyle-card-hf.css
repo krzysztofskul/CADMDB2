@@ -4,6 +4,10 @@
 * Healthcare facility card overrides
 */
 
-.card.card-hf .card-header {
+.card.card-hf > .card-header {
 	min-height: 275px;
 	}
+	
+.card.room-data-arch {
+	width: 500px;
+}
