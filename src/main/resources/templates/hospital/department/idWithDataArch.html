@@ -15,45 +15,42 @@
 	
 	<div th:replace="./header" :: header></div>
 
-	<div th:replace="./hospital/department/room/menu-room" :: menu-room></div>
+	<div th:replace="./hospital/department/menu-department" :: menu-department></div>
 	
 	<div class="container-fluid appcontainer">
-		<form action="#" th:action="@{#}" th:object="${room}" method="post" class="inline">
-			<div class="card card-hf">
+		<form action="#" th:action="@{/departments/{departmentId} (departmentId = ${department.id})}" th:object="${department}" method="post" class="inline">
+			<div class="card card-hf">				
 				<div class="card-header">
 					<div th:replace="./hospital/hospital-structure-path" :: hospital-structure-path></div>
 					<div class="form-group row">
 						<label class="col-2 col-form-label">
-							<p class="langPL">POMIESZCZENIE (NAZWA STANDARYZOWANA)</p>
-							<p class="langEN">room (standardized name)</p>
+							<p class="langPL">ODDZIAŁ (NAZWA STANDARYSOWANA)</p>
+							<p class="langEN">department (stardized name)</p>
 						</label>
 						<div class="col-10">
-							<h5 th:if="${edit == false} OR ${edit == null}" th:text="${room.nameStandardized.nameStandardizedPl}"></h5>
-							<p th:if="${edit == false} OR ${edit == null}" th:text="${room.nameStandardized.nameStandardizedEn}"></p>
+							<h5 th:text="${department.nameStandardized.nameStandardizedPl}"></h5>
+							<p th:text="${department.nameStandardized.nameStandardizedEn}"></p>
+							<input th:if="${edit == true}" class="form-control" type="hidden" th:field="${department.nameStandardized.id}"></input>
+							<input th:if="${edit == true}" class="form-control" type="hidden" th:field="${department.hospital.id}"></input>
+							<input th:if="${edit == true}" class="form-control" type="hidden" th:field="${department.dataFinancial.id}"></input>
+							<!--
+							<select th:if="${edit == true}" th:field="${department.roomList}">
+								<option th:each="room : ${department.roomList}" th:text="${department.id}" th:value="${department.id}"/>
+							</select>
+							-->						
+						</div>
+					</div><div class="form-group row">
+						<label class="col-2 col-form-label">
+							<p class="langPL">NAZWA WŁASNA ODDZIAŁU</p>
+							<p class="langEN">department custom name</p>
+						</label>
+						<div class="col-10">
+							<h5 th:if="${edit == false} OR ${edit == null}" th:text="${department.name}"></h5>
+							<input th:if="${edit == true}" class="form-control" type="hidden" th:field="${department.id}"></input>
+							<input th:if="${edit == true}" class="form-control" type="text" th:field="${department.name}"></input>
 						</div>
 					</div>
-					<div class="form-group row">
-						<label class="col-2 col-form-label">
-							<p class="langPL">NAZWA WŁASNA POMIESZCZENIA</p>
-							<p class="langEN">custom room name</p>
-						</label>
-						<div class="col-10">
-							<h5 th:if="${edit == false} OR ${edit == null}" th:text="${room.name}"></h5>
-							<input th:if="${edit == true}" class="form-control" type="hidden" th:field="${room.id}"></input>
-							<input th:if="${edit == true}" class="form-control" type="text" th:field="${room.name}"></input>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-2 col-form-label">
-							<p class="langPL">NUMER POM.</p>
-							<p class="langEN">room no.</p>
-						</label>
-						<div class="col-10">
-							<h5 th:if="${edit == false} OR ${edit == null}" th:text="${room.roomNo}"></h5>
-							<input th:if="${edit == true}" class="form-control" type="text" th:field="${room.roomNo}"></input>
-						</div>
-					</div>	
-				</div>
+				</div>						
 				<div class="card-body">
 					<div class="room-data-arch">
 						<div class="card">
@@ -68,25 +65,7 @@
 										<p class="langEN">FLOOR AREA [m<sup>2</sup>]</p>
 									</div>
 									<div class="col-4">
-										<p class="value" th:text="${room.dataArchRoom.area}"></p>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-8">
-										<p class="langPL">WYSOKOŚĆ DO SUFITU KONSTRUKCYJNEGO [m]</p>
-										<p class="langEN">STRUCTURAL CEILING HEIGHT [m]</p>
-									</div>
-									<div class="col-4">
-										<p class="value" th:text="${room.dataArchRoom.heightCeilingStructural}"></p>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-8">
-										<p class="langPL">WYSOKOŚĆ DO SUFITU PODWIESZONEGO [m]</p>
-										<p class="langEN">SUSPENDED CEILING HEIGHT [m]</p>
-									</div>
-									<div class="col-4">
-										<p class="value" th:text="${room.dataArchRoom.heightCeiligSuspend}"></p>
+										<p class="value" th:text="${department.dataArchDepartment.areaTotal}"></p>
 									</div>
 								</div>
 							</div>

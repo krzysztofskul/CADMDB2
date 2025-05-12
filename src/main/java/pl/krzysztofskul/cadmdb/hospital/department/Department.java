@@ -5,11 +5,15 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import pl.krzysztofskul.cadmdb.address.Address;
 import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacility;
+import pl.krzysztofskul.cadmdb.healthcarefacility.dataarch.DataArchDepartment;
+import pl.krzysztofskul.cadmdb.healthcarefacility.dataarch.dataarchroom.DataArchRoom;
 import pl.krzysztofskul.cadmdb.hospital.Hospital;
 import pl.krzysztofskul.cadmdb.hospital.department.namestandardized.NameStandardized;
 import pl.krzysztofskul.cadmdb.hospital.department.room.Room;
@@ -25,6 +29,14 @@ public class Department extends HealthcareFacility {
 	
 	@OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
 	private List<Room> roomList = new ArrayList<Room>();
+
+    @OneToOne(
+            mappedBy    = "department",
+            cascade     = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch       = FetchType.LAZY
+        )
+    private DataArchDepartment dataArchDepartment = new DataArchDepartment(this);
 	
 	/**
 	 * 
@@ -127,9 +139,30 @@ public class Department extends HealthcareFacility {
 		this.roomList = roomList;
 	}
 	
+	/**
+	 * Getter
+	 * @return the dataArchDepartment
+	 */
+	public DataArchDepartment getDataArchDepartment() {
+		return dataArchDepartment;
+	}
+
+	/**
+	 * Setter
+	 * @param dataArchDepartment the dataArchDepartment to set
+	 */
+	public void setDataArchDepartment(DataArchDepartment dataArchDepartment) {
+		this.dataArchDepartment = dataArchDepartment;
+	}
+
 	public void addRoom(Room room) {
 		this.roomList.add(room);
 		room.setDepartment(this);
+	}
+
+	public void removeRoom(Room room) {
+		this.roomList.remove(room);
+		room.setDepartment(null);		
 	}
 	
 }

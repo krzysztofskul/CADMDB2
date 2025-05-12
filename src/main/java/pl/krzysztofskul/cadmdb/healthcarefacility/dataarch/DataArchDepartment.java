@@ -24,6 +24,19 @@ public class DataArchDepartment extends DataArch{
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	/**
+	 * Constructor
+	 * @param department
+	 */
+	public DataArchDepartment(Department department) {
+		super();
+		this.department = department;
+	}
+
+
 
 	/**
 	 * Getter

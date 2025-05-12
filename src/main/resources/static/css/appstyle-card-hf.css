@@ -7,7 +7,17 @@
 .card.card-hf > .card-header {
 	min-height: 275px;
 	}
+
+div.room-data-arch {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+} 
 	
-.card.room-data-arch {
-	width: 500px;
+div.room-data-arch > .card {
+  flex: 1 1 200px;
+  min-width: 400px;
+  max-width: 600px;
+  box-sizing: border-box;
 }

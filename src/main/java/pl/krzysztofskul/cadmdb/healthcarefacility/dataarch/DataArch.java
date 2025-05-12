@@ -153,7 +153,6 @@ public class DataArch {
 	public void setVolumeTech(float volumeTech) {
 		this.volumeTech = volumeTech;
 	}
-	
-	
+
 	
 }

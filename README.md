@@ -23,9 +23,17 @@ The main goal of this application is to build hospital rooms and departments str
 * VER.#0.2-BETA-RC | TODO:  
     * refactor(config): aplication.properties data update to deploy  
 * VER.#0.3-ALPHA-SNAPSHOT | TODO:  
-    * implement(functionality): room data sheet  
-      * implement(code): add dataTechnical and dataArch package | DONE  
-      * implement: architectural data management functionality TODO NEXT...  
+    * fix(functionality): add and remove room/department with recalculation of the cost and area TODO NEXT  
+    * implement(functionality): room data sheet   
+    * implement(functionality): recalculation of the costs and area of the department and hospital when data changes  
+    * implement(functionality): mounting type of the product  
+      * movable  
+      * bench-top
+      * floor stand-alone
+      * floor mounted  
+      * floor mobile    
+      * wall mounted
+      * ceiling mounted
     * implement(functionality): equipment and room functional categories  
       * medical  
       * medical-consultation  

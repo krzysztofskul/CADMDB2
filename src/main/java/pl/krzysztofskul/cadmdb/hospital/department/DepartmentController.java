@@ -110,8 +110,7 @@ public class DepartmentController {
 				room.getAddress().setFlatno(department.getAddress().getFlatno());
 			}
 		}
-		
-		department.addRoom(room);
+		department = departmentService.addRoom(department, room);
 		departmentService.save(department);
 		ModelAndView mav = new ModelAndView();
 		if (backToPage == null) {

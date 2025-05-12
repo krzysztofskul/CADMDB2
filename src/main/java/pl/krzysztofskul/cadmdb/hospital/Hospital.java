@@ -5,11 +5,14 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import pl.krzysztofskul.cadmdb.address.Address;
 import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacility;
+import pl.krzysztofskul.cadmdb.healthcarefacility.dataarch.DataArchHospital;
+import pl.krzysztofskul.cadmdb.healthcarefacility.dataarch.dataarchroom.DataArchRoom;
 import pl.krzysztofskul.cadmdb.hospital.department.Department;
 
 @Entity
@@ -17,6 +20,14 @@ public class Hospital extends HealthcareFacility {
 
 	@OneToMany(mappedBy = "hospital", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	private List<Department> departmentList = new ArrayList<Department>();
+
+    @OneToOne(
+            mappedBy    = "hospital",
+            cascade     = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch       = FetchType.LAZY
+        )
+    private DataArchHospital dataArchHospital;
 	
 	/**
 	 * 
@@ -54,7 +65,23 @@ public class Hospital extends HealthcareFacility {
 		}
 		this.departmentList = departmentList;
 	}
+	
+	/**
+	 * Getter
+	 * @return the dataArchHospital
+	 */
+	public DataArchHospital getDataArchHospital() {
+		return dataArchHospital;
+	}
 
+	/**
+	 * Setter
+	 * @param dataArchHospital the dataArchHospital to set
+	 */
+	public void setDataArchHospital(DataArchHospital dataArchHospital) {
+		this.dataArchHospital = dataArchHospital;
+	}
+	
 	public void addDepartment(Department department) {
 		this.departmentList.add(department);
 		department.setHospital(this);

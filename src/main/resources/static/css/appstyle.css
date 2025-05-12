@@ -20,6 +20,24 @@
 	width: 250px;
 }
 
+.appcontainer .value {
+	font-size: 1.2em;
+}
+
+.row-first {
+	padding: 2px;
+	border-top: 1px solid lightgray;
+}
+.row-middle {
+	padding: 2px;
+	border-top: 1px solid lightgray;
+}
+.row-last {
+	padding: 2px;
+	border-top: 1px solid lightgray;
+	border-bottom: 1px solid lightgray;
+}
+
 .footer	{
 	border-top: 1px solid gray;
 	height: 5em;
