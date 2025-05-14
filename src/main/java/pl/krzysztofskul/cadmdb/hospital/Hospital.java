@@ -12,13 +12,12 @@ import javax.persistence.OneToOne;
 import pl.krzysztofskul.cadmdb.address.Address;
 import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacility;
 import pl.krzysztofskul.cadmdb.healthcarefacility.dataarch.DataArchHospital;
-import pl.krzysztofskul.cadmdb.healthcarefacility.dataarch.dataarchroom.DataArchRoom;
 import pl.krzysztofskul.cadmdb.hospital.department.Department;
 
 @Entity
 public class Hospital extends HealthcareFacility {
 
-	@OneToMany(mappedBy = "hospital", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+	@OneToMany(mappedBy = "hospital", cascade = {CascadeType.ALL})
 	private List<Department> departmentList = new ArrayList<Department>();
 
     @OneToOne(
@@ -27,7 +26,7 @@ public class Hospital extends HealthcareFacility {
             orphanRemoval = true,
             fetch       = FetchType.LAZY
         )
-    private DataArchHospital dataArchHospital;
+    private DataArchHospital dataArchHospital = new DataArchHospital(this);
 	
 	/**
 	 * 
@@ -88,4 +87,8 @@ public class Hospital extends HealthcareFacility {
 		
 	}
 	
+	public void removeDepartment(Department department) {
+		this.departmentList.remove(department);
+		department.setHospital(null);
+	}
 }

@@ -13,8 +13,6 @@ import pl.krzysztofskul.cadmdb.device.Device;
 import pl.krzysztofskul.cadmdb.device.DeviceService;
 import pl.krzysztofskul.cadmdb.hospital.department.Department;
 import pl.krzysztofskul.cadmdb.hospital.department.DepartmentTestGenerator;
-import pl.krzysztofskul.cadmdb.hospital.department.namestandardized.NameStandardizedTestGenerator;
-import pl.krzysztofskul.cadmdb.hospital.department.namestandardized.NameStandardized;
 import pl.krzysztofskul.cadmdb.hospital.department.room.Room;
 import pl.krzysztofskul.cadmdb.init.InitDataGenerator;
 import pl.krzysztofskul.cadmdb.random.Random;
@@ -22,6 +20,8 @@ import pl.krzysztofskul.cadmdb.random.Random;
 @Service
 public class HospitalTestGenerator implements InitDataGenerator<Hospital> {
 
+	@Autowired
+	private HospitalService hospitalService;
 	@Autowired
 	private DepartmentTestGenerator departmentTestGenerator;
 	@Autowired
@@ -36,12 +36,12 @@ public class HospitalTestGenerator implements InitDataGenerator<Hospital> {
 		hospital.setNamePL("Szpital " + hospital.getName());
 		hospital.setNameEN(hospital.getName()+ " Hospital");
 		hospital.setAddress(addressTestGenerator.initDataAndReturn());
-		hospital.setDepartmentList(departmentTestGenerator.iniListAndReturn());
-		for (Department department : hospital.getDepartmentList()) {
+		for (Department department : departmentTestGenerator.iniListAndReturn()) {
 			department.setAddress(hospital.getAddress());
 			for (Room room : department.getRoomList()) {
 				room.setAddress(department.getAddress());
 			}
+			hospital = hospitalService.addDepartment(hospital, department);
 		}
 		return hospital;
 	}

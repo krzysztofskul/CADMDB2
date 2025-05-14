@@ -1,6 +1,5 @@
 package pl.krzysztofskul.cadmdb.hospital.department;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.hibernate.Hibernate;
@@ -21,6 +20,10 @@ public class DepartmentService {
 	public DepartmentService(DepartmentRepo departmentRepo) {
 		super();
 		this.departmentRepo = departmentRepo;
+	}
+	
+	public DepartmentService() {
+		// TODO Auto-generated constructor stub
 	}
 	
 	public void save(Department department) {
@@ -53,7 +56,7 @@ public class DepartmentService {
 		Hibernate.initialize(department.getDataArchDepartment());
 		return department;
 	}	
-	public void depeteById(Long id) {
+	public void deleteById(Long id) {
 		departmentRepo.deleteById(id);
 	}
 
@@ -98,16 +101,16 @@ public class DepartmentService {
 	 * @return the same Department instance, now without the specified room and with
 	 *         updated financial and area totals
 	 */
-	public Department removeRoom(Department department, Room room) {
-		department.getDataFinancial().setPurCostOfDevicePlan(
-					department.getDataFinancial().getPurCostOfDevicePlan().subtract(room.getDataFinancial().getPurCostOfDevicePlan())
-				);
-		department.getDataArchDepartment().setAreaTotal(
-					Float.sum(department.getDataArchDepartment().getAreaTotal(), -room.getDataArchRoom().getArea())
-				);
-		
-		department.removeRoom(room);
-		return department;
-		
-	}
+//	public Department removeRoom(Department department, Room room) {
+//		department.getDataFinancial().setPurCostOfDevicePlan(
+//					department.getDataFinancial().getPurCostOfDevicePlan().subtract(room.getDataFinancial().getPurCostOfDevicePlan())
+//				);
+//		department.getDataArchDepartment().setAreaTotal(
+//					Float.sum(department.getDataArchDepartment().getAreaTotal(), -room.getDataArchRoom().getArea())
+//				);
+//		
+//		department.removeRoom(room);
+//		return department;
+//		
+//	}
 }

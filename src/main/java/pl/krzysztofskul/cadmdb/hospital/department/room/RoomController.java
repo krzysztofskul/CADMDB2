@@ -1,5 +1,8 @@
 package pl.krzysztofskul.cadmdb.hospital.department.room;
 
+import java.util.Iterator;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,11 +15,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import pl.krzysztofskul.cadmdb.device.Device;
 import pl.krzysztofskul.cadmdb.device.DeviceService;
+import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacilityService;
 
 @Controller
 @RequestMapping("/rooms")
 public class RoomController {
 
+	private HealthcareFacilityService hfService;
 	private RoomService roomService;
 	private DeviceService deviceService;
 	private ModelAndView mav = new ModelAndView();
@@ -28,10 +33,12 @@ public class RoomController {
 	public RoomController(
 			RoomService roomService
 			, DeviceService deviceService
+			, HealthcareFacilityService hfCalcService
 			) {
 		super();
 		this.roomService = roomService;
 		this.deviceService = deviceService;
+		this.hfService = hfCalcService;
 	}
 	
 	@GetMapping("/{id}")
@@ -112,9 +119,8 @@ public class RoomController {
 				@PathVariable Long id
 			) {
 		ModelAndView mav = new ModelAndView();
-		Long departmentId = roomService.loadById(id).getDepartment().getId();
-		roomService.deleteById(id);
-		mav.setViewName("redirect:/departments/"+departmentId+"/rooms");
+		mav.setViewName("redirect:/departments/"+roomService.loadById(id).getDepartment().getId()+"/rooms");
+		hfService.removeRoomByIdWithEquipment(id);	
 		return mav;
 	}
 	

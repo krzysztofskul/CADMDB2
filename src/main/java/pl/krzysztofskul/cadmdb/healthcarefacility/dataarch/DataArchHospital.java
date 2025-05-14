@@ -24,6 +24,15 @@ public class DataArchHospital extends DataArch {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	/**
+	 * Constructor
+	 * @param hospital
+	 */
+	public DataArchHospital(Hospital hospital) {
+		super();
+		this.hospital = hospital;
+	}
 
 	/**
 	 * Getter

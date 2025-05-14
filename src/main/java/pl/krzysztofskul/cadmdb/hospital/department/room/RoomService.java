@@ -30,10 +30,8 @@ public class RoomService {
 
 	public Room loadByIdWithEquipment(Long id) {
 		Room room = this.loadById(id);
-		// TODO: create aa equipment management functionality
-		//Hibernate.initialize(room.getEquipmentList());
-		return room;
-		
+		Hibernate.initialize(room.getDeviceList());
+		return room;	
 	}
 	
 	public Object loadByIdWithDataArchRoom(Long id) {
@@ -42,11 +40,18 @@ public class RoomService {
 		return room;
 	}	
 	
+	public Room loadByIdWithEquipmentAndDataArch(Long id) {
+		Room room = this.loadById(id);
+		Hibernate.initialize(room.getDeviceList());
+		Hibernate.initialize(room.getDataArchRoom());
+		return room;
+	}
+	
 	public List<Room> loadAll() {
 		return roomRepo.findAll();
 	}
 
-	public void deleteById(Long id) {
+	public void deleteById(Long id) {	
 		roomRepo.deleteById(id);
 	}
 	

@@ -33,11 +33,8 @@ public class Room extends HealthcareFacility {
             orphanRemoval = true,
             fetch       = FetchType.LAZY
         )
-    private DataArchRoom dataArchRoom;
+    private DataArchRoom dataArchRoom = new DataArchRoom(this);
 	
-	/*
-	 * STANDARDIZED NAME
-	 */
 	@ManyToOne
 	private NameStandardized nameStandardized;
 	
@@ -198,9 +195,9 @@ public class Room extends HealthcareFacility {
 	 * Method that remove planned device from the room with cost of planned purchase calculation
 	 */
 	public void removeDevice(Device device) {
-		this.deviceList.remove(device);
 		this.getDataFinancial().setPurCostOfDevicePlan(this.getDataFinancial().getPurCostOfDevicePlan().subtract(device.getDataFinancial().getPrice()));
 		this.getDepartment().getDataFinancial().setPurCostOfDevicePlan(this.getDepartment().getDataFinancial().getPurCostOfDevicePlan().subtract(device.getDataFinancial().getPrice()));
 		this.getDepartment().getHospital().getDataFinancial().setPurCostOfDevicePlan(this.getDepartment().getHospital().getDataFinancial().getPurCostOfDevicePlan().subtract(device.getDataFinancial().getPrice()));
+		this.deviceList.remove(device);
 	}
 }

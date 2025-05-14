@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacilityService;
 import pl.krzysztofskul.cadmdb.hospital.department.room.Room;
 import pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameStandardizedService;
 
@@ -17,6 +18,7 @@ import pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameSta
 @RequestMapping("/departments")
 public class DepartmentController {
 
+	private HealthcareFacilityService hfService;
 	private DepartmentService departmentService;
 	private NameStandardizedService nameStandardizedService;
 
@@ -26,11 +28,13 @@ public class DepartmentController {
 	@Autowired
 	public DepartmentController(
 			DepartmentService departmentService,
-			NameStandardizedService nameStandardizedService
+			NameStandardizedService nameStandardizedService,
+			HealthcareFacilityService hfService
 			) {
 		super();
 		this.departmentService = departmentService;
 		this.nameStandardizedService = nameStandardizedService;
+		this.hfService = hfService;
 	}
 	
 	@GetMapping("/{id}")
@@ -126,10 +130,9 @@ public class DepartmentController {
 	public ModelAndView departmentDeleteById(
 				@PathVariable Long id
 			) {
-		Long hospitalId = departmentService.loadById(id).getHospital().getId();
-		departmentService.depeteById(id);
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:/hospitals/"+hospitalId+"/departments");
+		mav.setViewName("redirect:/hospitals/"+departmentService.loadById(id).getHospital().getId()+"/departments");
+		hfService.removeDepartmentByIdWithRooms(id);
 		return mav;
 	}
 	

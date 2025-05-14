@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacilityService;
 import pl.krzysztofskul.cadmdb.hospital.department.Department;
 import pl.krzysztofskul.cadmdb.hospital.department.namestandardized.NameStandardizedService;
 
@@ -20,6 +21,7 @@ import pl.krzysztofskul.cadmdb.hospital.department.namestandardized.NameStandard
 @RequestMapping("/hospitals")
 public class HospitalController {
 
+	private HealthcareFacilityService hfService;
 	private HospitalService hospitalService;
 	private NameStandardizedService nameStandardizedService;
 	private ModelAndView modelAndView = new ModelAndView();
@@ -30,11 +32,13 @@ public class HospitalController {
 	@Autowired
 	public HospitalController(
 				HospitalService hospitalService,
-				NameStandardizedService nameStandardizedService
+				NameStandardizedService nameStandardizedService,
+				HealthcareFacilityService hfService
 			) {
 		super();
 		this.nameStandardizedService = nameStandardizedService;
 		this.hospitalService = hospitalService;
+		this.hfService = hfService;
 	}
 
 	@GetMapping
@@ -145,7 +149,7 @@ public class HospitalController {
 		} else {
 			modelAndView.setViewName("redirect:/hospitals");
 		}
-		hospitalService.deleteById(hospitalId);
+		hfService.removeHospitalByIdWithDepartments(hospitalId);
 		return modelAndView;
 	}
 	

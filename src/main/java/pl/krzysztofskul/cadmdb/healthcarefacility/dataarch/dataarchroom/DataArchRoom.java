@@ -2,7 +2,6 @@ package pl.krzysztofskul.cadmdb.healthcarefacility.dataarch.dataarchroom;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
@@ -39,7 +38,10 @@ public class DataArchRoom {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
+	public DataArchRoom(Room room) {
+		this.room = room;
+	}
+
 	/**
 	 * Getter
 	 * @return the room
@@ -180,7 +182,5 @@ public class DataArchRoom {
 	public void setDescriptionLight(String descriptionLight) {
 		this.descriptionLight = descriptionLight;
 	}
-	
-	
 	
 }

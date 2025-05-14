@@ -6,6 +6,9 @@ import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import pl.krzysztofskul.cadmdb.hospital.department.Department;
+import pl.krzysztofskul.cadmdb.hospital.department.room.Room;
+
 @Service
 public class HospitalService {
 
@@ -41,9 +44,33 @@ public class HospitalService {
 		Hibernate.initialize(hospital.getDepartmentList());
 		return hospital;
 	}
-
+	public Hospital loadByIdWithDataArchHospital(Long id) {
+		Hospital hospital = this.loadById(id);
+		Hibernate.initialize(hospital.getDataArchHospital());
+		return hospital;
+	}
 	public void deleteById(Long hospitalId) {
 		hospitalRepo.deleteById(hospitalId);
 	}
 	
+	public Hospital addDepartment(Hospital hospital, Department department) {
+		hospital.addDepartment(department);
+		hospital.getDataArchHospital().setAreaTotal(
+					Float.sum(hospital.getDataArchHospital().getAreaTotal(), department.getDataArchDepartment().getAreaTotal())
+				);
+		return hospital;	
+	}
+	
+//	public Hospital removeDepartment(Hospital hospital, Department department) {
+//		hospital.getDataFinancial().setPurCostOfDevicePlan(
+//					hospital.getDataFinancial().getPurCostOfDevicePlan().subtract(department.getDataFinancial().getPurCostOfDevicePlan())
+//				);
+//		hospital.getDataArchHospital().setAreaTotal(
+//					Float.sum(hospital.getDataArchHospital().getAreaTotal(), -department.getDataArchDepartment().getAreaTotal())
+//				);
+//		
+//		hospital.removeDepartment(department);
+//		return hospital;
+//		
+//	}
 }
