@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacilityService;
+import pl.krzysztofskul.cadmdb.healthcarefacility.dataarch.dataarchroom.DataArchRoom;
 import pl.krzysztofskul.cadmdb.hospital.department.room.Room;
 import pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameStandardizedService;
 
@@ -62,7 +63,7 @@ public class DepartmentController {
 		mav.setViewName("redirect:/departments/"+departmnet.getId());
 		return mav;
 	}
-	
+
 	@GetMapping("/{id}/rooms")
 	public ModelAndView getRoomsByDepartmentId(
 			@PathVariable Long id,
@@ -78,15 +79,18 @@ public class DepartmentController {
 			mav.addObject("edit", true);
 			mav.setViewName("hospital/department/idAddRoom");
 			mav.addObject("nameStandardizedList", nameStandardizedService.loadAllByHospitalIdOrHospitalIsNull(department.getHospital().getId()));
-			mav.addObject("room", new Room(departmentService.loadById(id)));
+			Room room = new Room(department);
+			DataArchRoom dataArchRoom = new DataArchRoom(room);
+			room.setDataArchRoom(dataArchRoom);
+			mav.addObject("room", room);
 		}
 		mav.addObject("edit", edit);
 		return mav;
 	}
 	
-	@PostMapping("/{departmentId}/rooms")
+	@PostMapping("/{id}/rooms")
 	public ModelAndView postAddRoomToDepartment(
-				@PathVariable Long departmentId,
+				@PathVariable(name = "id") Long departmentId,
 				@RequestParam(required = false, name = "backToPage") String backToPage,
 				@ModelAttribute Room room
 			) {

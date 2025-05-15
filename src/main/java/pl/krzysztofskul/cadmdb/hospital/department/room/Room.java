@@ -33,7 +33,7 @@ public class Room extends HealthcareFacility {
             orphanRemoval = true,
             fetch       = FetchType.LAZY
         )
-    private DataArchRoom dataArchRoom = new DataArchRoom(this);
+    private DataArchRoom dataArchRoom;
 	
 	@ManyToOne
 	private NameStandardized nameStandardized;

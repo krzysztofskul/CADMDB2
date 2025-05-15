@@ -24,6 +24,7 @@ The main goal of this application is to build hospital rooms and departments str
     * refactor(config): aplication.properties data update to deploy  
 * VER.#0.3-ALPHA-SNAPSHOT | TODO:  
     * implement(functionality): add and remove room/department with recalculation of the area (TODO NEXT)  
+    * fix: when add new room/department set the address from the parent if it is not filled by the user  
     * implement(functionality): room data sheet   
     * implement(functionality): recalculation of the costs and area of the department and hospital when data changes  
     * implement(functionality): mounting type of the product  

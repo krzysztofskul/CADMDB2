@@ -86,7 +86,7 @@
 										<p class="langEN">SUSPENDED CEILING HEIGHT [m]</p>
 									</div>
 									<div class="col-4">
-										<p class="value" th:text="${room.dataArchRoom.heightCeiligSuspend}"></p>
+										<p class="value" th:text="${room.dataArchRoom.heightCeiligSuspended}"></p>
 									</div>
 								</div>
 							</div>
@@ -97,7 +97,9 @@
 								<p class="langPL">INFORMACJE OGÓLNE</p>
 								<p class="langEN">GENERAL INFORMATION</p>
 							</div>
-							<div class="card-body"></div>
+							<div class="card-body">
+								<p class="value" th:text="${room.dataArchRoom.descriptionGeneral}"></p>
+							</div>
 							<div class="card-footer"></div>
 						</div>
 						<div class="card">
@@ -105,7 +107,9 @@
 								<p class="langPL">INFORMACJE NT. PODŁOGI</p>
 								<p class="langEN">FLOOR INFORMATION</p>
 							</div>
-							<div class="card-body"></div>
+							<div class="card-body">
+								<p class="value" th:text="${room.dataArchRoom.descriptionFloor}"></p>
+							</div>
 							<div class="card-footer"></div>
 						</div>
 						<div class="card">
@@ -113,7 +117,9 @@
 								<p class="langPL">INFORMACJE NT. SUFITU</p>
 								<p class="langEN">CEILING INFORMATION</p>
 							</div>
-							<div class="card-body"></div>
+							<div class="card-body">
+								<p class="value" th:text="${room.dataArchRoom.descriptionCeiling}"></p>
+							</div>
 							<div class="card-footer"></div>
 						</div>
 						<div class="card">
@@ -121,7 +127,9 @@
 								<p class="langPL">INFORMACJE NT. ŚCIAN</p>
 								<p class="langEN">WALL INFORMATION</p>
 							</div>
-							<div class="card-body"></div>
+							<div class="card-body">
+								<p class="value" th:text="${room.dataArchRoom.descriptionWalls}"></p>
+							</div>
 							<div class="card-footer"></div>
 						</div>
 						<div class="card">
@@ -129,12 +137,19 @@
 								<p class="langPL">INFORMACJE NT. OŚWIETLENIA</p>
 								<p class="langEN">LIGHTNING INFORMATION</p>
 							</div>
-							<div class="card-body"></div>
+							<div class="card-body">
+								<p class="value" th:text="${room.dataArchRoom.descriptionLight}"></p>
+							</div>
 							<div class="card-footer"></div>
 						</div>
 					</div>
 				</div>
-				<div class="card-footer"></div>
+				<div class="card-footer">
+					<a class="btn btn-sm btn-outline-primary float-right" th:href="@{#}">
+						<p class="langPL">EDYTUJ</p>
+						<p class="langEN">EDIT</p>
+					</a>
+				</div>
 			</div>
 		</form>
 	</div>

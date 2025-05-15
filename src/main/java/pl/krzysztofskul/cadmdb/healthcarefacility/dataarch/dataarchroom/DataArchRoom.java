@@ -22,12 +22,12 @@ public class DataArchRoom {
 	
 	private float area;
 	private float heightCeilingStructural; //structural ceiling height
-	private float heightCeiligSuspend; //suspended ceiling height
+	private float heightCeiligSuspended; //suspended ceiling height
 	
 	private String descriptionGeneral;
 	private String descriptionFloor;
 	private String descriptionWalls;
-	private String descriptionCeilig;
+	private String descriptionCeiling;
 	private String descriptionLight;
 	
 	/**
@@ -100,17 +100,17 @@ public class DataArchRoom {
 	}
 	/**
 	 * Getter
-	 * @return the heightCeiligSuspend
+	 * @return the heightCeiligSuspended
 	 */
-	public float getHeightCeiligSuspend() {
-		return heightCeiligSuspend;
+	public float getHeightCeiligSuspended() {
+		return heightCeiligSuspended;
 	}
 	/**
 	 * Setter
-	 * @param heightCeiligSuspend the heightCeiligSuspend to set
+	 * @param heightCeiligSuspended the heightCeiligSuspended to set
 	 */
-	public void setHeightCeiligSuspend(float heightCeiligSuspend) {
-		this.heightCeiligSuspend = heightCeiligSuspend;
+	public void setHeightCeiligSuspended(float heightCeiligSuspended) {
+		this.heightCeiligSuspended = heightCeiligSuspended;
 	}
 	/**
 	 * Getter
@@ -156,17 +156,17 @@ public class DataArchRoom {
 	}
 	/**
 	 * Getter
-	 * @return the descriptionCeilig
+	 * @return the descriptionCeiling
 	 */
-	public String getDescriptionCeilig() {
-		return descriptionCeilig;
+	public String getDescriptionCeiling() {
+		return descriptionCeiling;
 	}
 	/**
 	 * Setter
-	 * @param descriptionCeilig the descriptionCeilig to set
+	 * @param descriptionCeiling the descriptionCeiling to set
 	 */
-	public void setDescriptionCeilig(String descriptionCeilig) {
-		this.descriptionCeilig = descriptionCeilig;
+	public void setDescriptionCeiling(String descriptionCeiling) {
+		this.descriptionCeiling = descriptionCeiling;
 	}
 	/**
 	 * Getter
