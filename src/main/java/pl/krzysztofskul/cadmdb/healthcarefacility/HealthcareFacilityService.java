@@ -39,6 +39,22 @@ public class HealthcareFacilityService {
 		this.hospitalService = hospitalService;
 	}
 
+	public Department addRoomToDepartment(Room room, Department department) {
+		//add room to department
+		department.addRoom(room);
+		//calculate area in department		
+		department.getDataArchDepartment().setAreaTotal(
+					department.getDataArchDepartment().getAreaTotal() + room.getDataArchRoom().getArea()
+				);
+		//calculate costs in department (?)
+		//save department
+		departmentService.save(department);
+		//recalculate costs in hospital(?)
+		//recalculate area in hospital
+		//save hospital
+		return department;
+	}
+	
 	public void removeRoomByIdWithEquipment(Long roomId) {
 		Room room = roomService.loadById(roomId);	
 	    List<Device> deviceList = new ArrayList<>(room.getDeviceList());

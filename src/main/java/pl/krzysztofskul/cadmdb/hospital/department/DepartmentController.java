@@ -94,7 +94,7 @@ public class DepartmentController {
 				@RequestParam(required = false, name = "backToPage") String backToPage,
 				@ModelAttribute Room room
 			) {
-		Department department = departmentService.loadById(departmentId);
+		Department department = departmentService.loadByIdWithRoomList(departmentId);
 		
 		if (room.getAddress() == null) {
 			room.setAddress(room.getDepartment().getAddress());
@@ -118,8 +118,9 @@ public class DepartmentController {
 				room.getAddress().setFlatno(department.getAddress().getFlatno());
 			}
 		}
-		department = departmentService.addRoom(department, room);
-		departmentService.save(department);
+		//department = departmentService.addRoom(department, room);
+		//departmentService.save(department);
+		hfService.addRoomToDepartment(room, department);
 		ModelAndView mav = new ModelAndView();
 		if (backToPage == null) {
 			mav.setViewName("redirect:/departments/"+department.getId()+"/rooms");
