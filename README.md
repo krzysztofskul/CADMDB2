@@ -22,8 +22,7 @@ The main goal of this application is to build hospital rooms and departments str
 * VER.#0.2-BETA-FINAL | DONE  
 * VER.#0.2-BETA-RC | TODO:  
     * refactor(config): aplication.properties data update to deploy  
-* VER.#0.3-ALPHA-SNAPSHOT | TODO:  
-    * update(): test/demo generator classes  
+* VER.#0.3-ALPHA-SNAPSHOT | TODO:    
     * implement(healthcarefacily): planned/result area  
     * fix: when add new room/department set the address from the parent if it is not filled by the user  
     * implement(functionality): room data sheet   

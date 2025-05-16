@@ -19,7 +19,7 @@ public class CategoryGenerator implements InitDataGenerator<Category> {
 	}
 
 	@Override
-	public List<Category> iniListAndReturn() {
+	public List<Category> initListAndReturn() {
 		List<Category> categoryList = new ArrayList<Category>();
 		categoryList.add(new Category("", "Łóżko szpitalne", "Hospital bed", "Łóżka szpitalne", "Hospital beds"));
 		categoryList.add(new Category("", "Stół operacyjny", "Surgical table", "Stoły operacyjne", "Surgical tables"));

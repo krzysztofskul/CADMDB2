@@ -1,6 +1,7 @@
 package pl.krzysztofskul.cadmdb.device;
 
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,12 @@ public class DeviceService {
 	
 	public Device loadById(Long id) {
 		return deviceRepo.findById(id).get();
+	}
+	
+	public Device loadRandom() {
+		List<Device> deviceList = this.loadAll();
+		Device device = deviceList.get(new Random().nextInt(deviceList.size()));
+		return device;
 	}
 	
 	public void deleteById(Long id) {

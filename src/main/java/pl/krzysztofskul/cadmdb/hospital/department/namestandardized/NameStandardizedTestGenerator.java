@@ -22,7 +22,7 @@ public class NameStandardizedTestGenerator implements InitDataGenerator<NameStan
 	}
 
 	@Override
-	public List<NameStandardized> iniListAndReturn() {
+	public List<NameStandardized> initListAndReturn() {
 		List<NameStandardized> nameStandardizedList = new ArrayList<NameStandardized>();
 		for (Map.Entry<String, String> entry : nameStandardizedMap.entrySet()) {
 			NameStandardized nameStandardized = this.initDataAndReturn();

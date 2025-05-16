@@ -30,7 +30,7 @@ public class AddressTestGenerator implements InitDataGenerator<Address> {
 	}
 
 	@Override
-	public List<Address> iniListAndReturn() {
+	public List<Address> initListAndReturn() {
 		List<Address> addressList = new ArrayList<Address>();
 		for (int i = 0; i < 2; i++) {
 			addressList.add(initDataAndReturn());

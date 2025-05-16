@@ -6,6 +6,6 @@ public interface InitDataGenerator<T> {
 	
 	T initDataAndReturn();
 	
-	List<T> iniListAndReturn();
+	List<T> initListAndReturn();
 
 }

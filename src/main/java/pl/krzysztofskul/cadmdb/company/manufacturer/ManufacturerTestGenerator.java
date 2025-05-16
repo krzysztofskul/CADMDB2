@@ -39,7 +39,7 @@ public class ManufacturerTestGenerator implements InitDataGenerator<Manufacturer
 	}
 
 	@Override
-	public List<Manufacturer> iniListAndReturn() {
+	public List<Manufacturer> initListAndReturn() {
 		List<Manufacturer> manufacturerList = new ArrayList<Manufacturer>();
 		for (int i = 0; i < 5; i++) {
 			manufacturerList.add(this.initDataAndReturn());

@@ -18,7 +18,7 @@ import pl.krzysztofskul.cadmdb.init.InitDataGenerator;
 import pl.krzysztofskul.cadmdb.random.Random;
 
 @Service
-public class DeviceDemoGenerator implements InitDataGenerator<Device> {
+public class DeviceTestGenerator implements InitDataGenerator<Device> {
 
 	//private List<String> demoManufacturerList = new ArrayList<String>();
 	
@@ -32,7 +32,7 @@ public class DeviceDemoGenerator implements InitDataGenerator<Device> {
 	 * Constructor
 	 */
 	@Autowired
-	public DeviceDemoGenerator(
+	public DeviceTestGenerator(
 			Random random 
 			, CategoryGenerator categoryGenerator
 			, CategoryService categoryService
@@ -68,7 +68,7 @@ public class DeviceDemoGenerator implements InitDataGenerator<Device> {
 	}
 
 	@Override
-	public List<Device> iniListAndReturn() {
+	public List<Device> initListAndReturn() {
 		List<Device> deviceList = new ArrayList<Device>();
 		for (Category category : categoryService.loadAll()) {
 			Device device = this.initDataAndReturn();

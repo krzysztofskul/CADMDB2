@@ -28,14 +28,7 @@ public class RoomTestGenerator implements InitDataGenerator<Room>{
 	@Override
 	public Room initDataAndReturn() {
 		Room room = new Room();
-		return room;
-	}
-
-	@Override
-	public List<Room> iniListAndReturn() {		
-		List<Room> roomList = new ArrayList<Room>();
 		for (NameStandardized nameStandardized : nameStandardizedService.loadRandomList(Random.randomInt(5, 7))) {
-			Room room = this.initDataAndReturn();
 			room.setRoomNo(String.valueOf(new Random().nextInt(200)));
 			room.setNameStandardized(nameStandardized);
 			if (nameStandardized.getNameStandardizedPl().equals("Sala Operacyjna")) {
@@ -46,8 +39,17 @@ public class RoomTestGenerator implements InitDataGenerator<Room>{
 			DataArchRoom dataArchRoom = new DataArchRoom();
 			dataArchRoom.setArea(new Random().nextFloat(100));
 			room.setDataArchRoom(dataArchRoom);
-			roomList.add(room);
 		}
+		return room;
+	}
+
+	@Override
+	public List<Room> initListAndReturn() {		
+		List<Room> roomList = new ArrayList<Room>();
+		for (int i = 0; i < Random.randomInt(2, 3); i++) {
+			roomList.add(this.initDataAndReturn());			
+		}
+
 		return roomList;
 	}
 

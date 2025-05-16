@@ -34,10 +34,10 @@ public class HomeController {
 		return new ModelAndView("home");
 	}
 	
-	@GetMapping("/initDbDemo")
+	@GetMapping("/initDbTest")
 	public ModelAndView getInitDbDemo() {
 		ModelAndView mav = new ModelAndView("redirect:/home");
-		homeService.initDbDemo();
+		homeService.initDbTest();
 		mav.addObject("hospitalList", hospitalService.loadAll());
 		return mav;
 	}

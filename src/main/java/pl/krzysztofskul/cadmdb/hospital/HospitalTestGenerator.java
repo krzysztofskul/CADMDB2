@@ -36,32 +36,15 @@ public class HospitalTestGenerator implements InitDataGenerator<Hospital> {
 		hospital.setNamePL("Szpital " + hospital.getName());
 		hospital.setNameEN(hospital.getName()+ " Hospital");
 		hospital.setAddress(addressTestGenerator.initDataAndReturn());
-		for (Department department : departmentTestGenerator.iniListAndReturn()) {
-			department.setAddress(hospital.getAddress());
-			for (Room room : department.getRoomList()) {
-				room.setAddress(department.getAddress());
-			}
-			hospital = hospitalService.addDepartment(hospital, department);
-		}
 		return hospital;
 	}
 
 	@Override
-	public List<Hospital> iniListAndReturn() {
+	public List<Hospital> initListAndReturn() {
 		
 		List<Hospital> hospitalList = new ArrayList<Hospital>();
-		for (int i = 0; i < Random.randomInt(3, 5) ; i++) {
+		for (int i = 0; i < 3 ; i++) {
 			hospitalList.add(this.initDataAndReturn());			
-		}
-		for (Hospital hospital : hospitalList) {
-			for (Department department : hospital.getDepartmentList()) {
-				for (Room room : department.getRoomList()) {
-					List<Device> deviceListAll = deviceService.loadAll();
-					room.addDevice(deviceListAll.get(new Random().nextInt(deviceListAll.size())));
-					room.addDevice(deviceListAll.get(new Random().nextInt(deviceListAll.size())));
-					room.addDevice(deviceListAll.get(new Random().nextInt(deviceListAll.size())));
-				}
-			}
 		}
 		return hospitalList;
 	}
