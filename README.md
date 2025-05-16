@@ -23,11 +23,8 @@ The main goal of this application is to build hospital rooms and departments str
 * VER.#0.2-BETA-RC | TODO:  
     * refactor(config): aplication.properties data update to deploy  
 * VER.#0.3-ALPHA-SNAPSHOT | TODO:  
-    * implement(functionality):  
-        * add a room to a department with recalculation of the total area in the hospital(TODO NEXT)  
-      * add a department to a hospital with recalculation of the total area in the hospital (TODO)  
+    * update(): test/demo generator classes  
     * implement(healthcarefacily): planned/result area  
-    * update(): test generator classes  
     * fix: when add new room/department set the address from the parent if it is not filled by the user  
     * implement(functionality): room data sheet   
     * implement(functionality): recalculation of the costs and area of the department and hospital when data changes  

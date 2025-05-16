@@ -42,16 +42,28 @@ public class HealthcareFacilityService {
 	public Department addRoomToDepartment(Room room, Department department) {
 		//add room to department
 		department.addRoom(room);
-		//calculate area in department		
-		department.getDataArchDepartment().setAreaTotal(
-					department.getDataArchDepartment().getAreaTotal() + room.getDataArchRoom().getArea()
-				);
+		//calculate area in department with recalculation of the area in the hospital	
+		calculateDepartmentArea(department, room, true);
 		//calculate costs in department (?)
-		//save department
+		//save department with hospital
 		departmentService.save(department);
-		//recalculate costs in hospital(?)
+		return department;
+	}
+
+	private Department calculateDepartmentArea(Department department, Room room, boolean trueForAddfalseForSubtract) {
+		long x = 1;
+		if (trueForAddfalseForSubtract == false) {
+			x = -1;
+		}
+		department.getDataArchDepartment().setAreaTotal(
+					department.getDataArchDepartment().getAreaTotal() + (x*room.getDataArchRoom().getArea())
+				);
 		//recalculate area in hospital
-		//save hospital
+		if (department.getHospital() != null) {
+		department.getHospital().getDataArchHospital().setAreaTotal(
+					department.getHospital().getDataArchHospital().getAreaTotal() + (x*room.getDataArchRoom().getArea())
+				);
+		}
 		return department;
 	}
 	
@@ -61,7 +73,11 @@ public class HealthcareFacilityService {
 	    for (Device device : deviceList) {
 	        room.removeDevice(device); // updates costs and removes from list
 	    }
-		room = roomService.saveAndReturn(room);
+	    //calculate area in the department and hospital
+	    Department department = room.getDepartment();
+	    department = this.calculateDepartmentArea(department, room, false);
+		//save room
+	    room = roomService.saveAndReturn(room);
 		roomService.deleteById(roomId);
 	};	
 	
