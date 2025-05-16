@@ -100,6 +100,22 @@
 							<p class="langPL" th:if="${edit == 'false' or edit == null}" th:text="${product.powerConnectionValue}"></p>					
 						</div>
 					</div>
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">
+							<p class="langPL">MONTAŻ</p>
+							<p class="langEN">MOUNTING TYPE</p>
+						</label>
+						<div class="col-sm-10">
+							<!--
+							<input th:if="${edit == 'true'}" th:field="${product.mountingTypeEnum}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+							-->
+							<select th:if="${edit == 'true'}" th:field="${product.mountingTypeEnum}">
+								<option th:each="mountingTypeEnum : ${mountingTypeEnumList}" th:text="${mountingTypeEnum.namePL}" th:value="${mountingTypeEnum}"></option>
+							</select>
+							<p class="langPL" th:if="${edit == 'false' or edit == null}" th:text="${product.mountingTypeEnum.namePL}"></p>					
+							<p class="langEN" th:if="${edit == 'false' or edit == null}" th:text="${product.mountingTypeEnum.nameEN}"></p>					
+						</div>
+					</div>
 					<hr>
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">

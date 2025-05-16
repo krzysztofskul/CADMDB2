@@ -76,6 +76,10 @@
 									<p class="langEN">model name</p>
 								</td>
 								<td>
+									<p class="langPL">MONTAŻ</p>
+									<p class="langEN">mounting type</p>
+								</td>
+								<td>
 									<p class="langPL">KOSZT ZAKUPU</p>
 									<p class="langEN">cost</p>
 								</td>
@@ -98,6 +102,9 @@
 									</td>
 									<td>
 										<p class="langPL" th:text="${device.modelName}"></p>
+									</td>
+									<td>
+										<p class="langPL" th:text="${device.mountingTypeEnum.namePL}"></p>
 									</td>
 									<td>
 										<p class="langPL" th:text="${#numbers.formatCurrency(device.dataFinancial.price)}"></p>

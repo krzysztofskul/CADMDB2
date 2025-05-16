@@ -1,5 +1,6 @@
 package pl.krzysztofskul.cadmdb.device;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import pl.krzysztofskul.cadmdb.device.mounting.MountingTypeEnum;
 
 @Controller
 @RequestMapping("/devices")
@@ -19,6 +22,7 @@ public class DeviceController {
 	 * Constructor
 	 * @param deviceService
 	 */
+	@Autowired
 	public DeviceController(DeviceService deviceService) {
 		super();
 		this.deviceService = deviceService;
@@ -31,6 +35,7 @@ public class DeviceController {
 				, @RequestParam(name = "edit", required = false) String edit
 			) {
 		model.addAttribute("product", deviceService.loadById(deviceId));
+		model.addAttribute("mountingTypeEnumList", MountingTypeEnum.values());
 		if (edit == null) {
 			edit = "false";
 		}

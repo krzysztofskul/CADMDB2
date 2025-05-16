@@ -14,6 +14,7 @@ import pl.krzysztofskul.cadmdb.device.category.Category;
 import pl.krzysztofskul.cadmdb.device.category.CategoryGenerator;
 import pl.krzysztofskul.cadmdb.device.category.CategoryService;
 import pl.krzysztofskul.cadmdb.device.datafinancial.DataFinancial;
+import pl.krzysztofskul.cadmdb.device.mounting.MountingTypeEnum;
 import pl.krzysztofskul.cadmdb.init.InitDataGenerator;
 import pl.krzysztofskul.cadmdb.random.Random;
 
@@ -56,15 +57,20 @@ public class DeviceTestGenerator implements InitDataGenerator<Device> {
 	@Override
 	public Device initDataAndReturn() {
 		Device device = new Device();
-		//device.setManufacturer(demoManufacturerList.get(random.nextInt(demoManufacturerList.size())));
 		device.setManufacturer(manufacturerService.loadRandom());
 		device.setModelName(LoremIpsum.getInstance().getTitle(1));
 		device.setWeight(random.randomInt(10, 200));
 		device.setHeatDissipation(random.randomInt(10, 200));
 		device.setPowerConnectionValue(random.randomInt(10, 200));
-		//device.setPrice(BigDecimal.valueOf(random.randomInt(10000, 200000)).setScale(2));
+		device.setMountingTypeEnum(this.randomMountingType());
 		device.setDataFinancial(new DataFinancial(BigDecimal.valueOf(random.randomInt(10000, 200000)).setScale(2)));
 		return device;
+	}
+
+	private MountingTypeEnum randomMountingType() {
+		MountingTypeEnum[] mteTable = MountingTypeEnum.values();
+		int mteTableLengt = mteTable.length;
+		return mteTable[random.nextInt(mteTableLengt)];
 	}
 
 	@Override

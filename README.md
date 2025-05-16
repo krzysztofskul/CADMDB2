@@ -23,25 +23,19 @@ The main goal of this application is to build hospital rooms and departments str
 * VER.#0.2-BETA-RC | TODO:  
     * refactor(config): aplication.properties data update to deploy  
 * VER.#0.3-ALPHA-SNAPSHOT | TODO:    
-    * implement(healthcarefacily): planned/result area  
+    * implement(healthcarefacily): planned/result area and budget  
     * fix: when add new room/department set the address from the parent if it is not filled by the user  
     * implement(functionality): room data sheet   
     * implement(functionality): recalculation of the costs and area of the department and hospital when data changes  
-    * implement(functionality): mounting type of the product  
-      * movable  
-      * bench-top
-      * floor stand-alone
-      * floor mounted  
-      * floor mobile    
-      * wall mounted
-      * ceiling mounted
     * implement(functionality): equipment and room functional categories  
       * medical  
       * medical-consultation  
       * medical-examination/diagnostic  
-      * medical-treatmend  
+      * medical-treatment  
       * medical-operation  
       * medical-preparation  
+      * medical-care-standard
+      * medical-care-intensive
       * sanitary  
       * technical  
       * laboratory  

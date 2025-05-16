@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +19,7 @@ import javax.persistence.OneToOne;
 import pl.krzysztofskul.cadmdb.company.manufacturer.Manufacturer;
 import pl.krzysztofskul.cadmdb.device.category.Category;
 import pl.krzysztofskul.cadmdb.device.datafinancial.DataFinancial;
+import pl.krzysztofskul.cadmdb.device.mounting.MountingTypeEnum;
 import pl.krzysztofskul.cadmdb.hospital.department.room.Room;
 
 @Entity
@@ -41,6 +45,9 @@ public class Device {
 	private int weight;
 	private int heatDissipation;
 	private int powerConnectionValue;
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private MountingTypeEnum mountingTypeEnum;
 	
 	@ManyToMany(mappedBy = "deviceList")
 	private List<Room> room = new ArrayList<Room>();
@@ -54,8 +61,6 @@ public class Device {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	
 	
 	/**
 	 * @param room
@@ -191,6 +196,22 @@ public class Device {
 	 */
 	public void setPowerConnectionValue(int powerConnectionValue) {
 		this.powerConnectionValue = powerConnectionValue;
+	}
+
+	/**
+	 * Getter
+	 * @return the mountingTypeEnum
+	 */
+	public MountingTypeEnum getMountingTypeEnum() {
+		return mountingTypeEnum;
+	}
+
+	/**
+	 * Setter
+	 * @param mountingTypeEnum the mountingTypeEnum to set
+	 */
+	public void setMountingTypeEnum(MountingTypeEnum mountingTypeEnum) {
+		this.mountingTypeEnum = mountingTypeEnum;
 	}
 
 	/**
