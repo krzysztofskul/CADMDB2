@@ -1,5 +1,7 @@
 package pl.krzysztofskul.cadmdb.device;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import pl.krzysztofskul.cadmdb.device.mounting.MountingTypeEnum;
+import pl.krzysztofskul.cadmdb.function.FunctionEnum;
 
 @Controller
 @RequestMapping("/devices")
@@ -36,6 +39,7 @@ public class DeviceController {
 			) {
 		model.addAttribute("product", deviceService.loadById(deviceId));
 		model.addAttribute("mountingTypeEnumList", MountingTypeEnum.values());
+		model.addAttribute("functionEnumList", FunctionEnum.values());
 		if (edit == null) {
 			edit = "false";
 		}

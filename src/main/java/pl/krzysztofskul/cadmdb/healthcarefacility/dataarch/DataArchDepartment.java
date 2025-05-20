@@ -1,6 +1,5 @@
 package pl.krzysztofskul.cadmdb.healthcarefacility.dataarch;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -12,7 +11,7 @@ import pl.krzysztofskul.cadmdb.hospital.department.Department;
 @Entity
 public class DataArchDepartment extends DataArch{
 
-    @OneToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
     @MapsId
     @JoinColumn(name = "id")
     private Department department;
@@ -24,8 +23,6 @@ public class DataArchDepartment extends DataArch{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 
 	/**
 	 * Constructor

@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 import com.thedeanda.lorem.LoremIpsum;
 
 import pl.krzysztofskul.cadmdb.hospital.department.namestandardized.NameStandardizedService;
+import pl.krzysztofskul.cadmdb.function.FunctionEnum;
 import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacilityService;
+import pl.krzysztofskul.cadmdb.healthcarefacility.dataarch.DataArchDepartment;
 import pl.krzysztofskul.cadmdb.hospital.department.namestandardized.NameStandardized;
 import pl.krzysztofskul.cadmdb.init.InitDataGenerator;
 import pl.krzysztofskul.cadmdb.random.Random;
@@ -26,7 +28,6 @@ public class DepartmentTestGenerator implements InitDataGenerator<Department>{
 	
 	@Override
 	public Department initDataAndReturn() {
-		
 		return new Department();
 	}
 
@@ -37,6 +38,9 @@ public class DepartmentTestGenerator implements InitDataGenerator<Department>{
 		for (NameStandardized nameStandardized : depCategoryList) {
 			Department department = this.initDataAndReturn();
 			department.setNameStandardized(nameStandardized);
+			department.setFunctionEnum(FunctionEnum.OTHERS);
+			DataArchDepartment dataArchDepartment = new DataArchDepartment();
+			department.setDataArchDepartment(dataArchDepartment);
 			if (nameStandardized.getNameStandardizedPl().equals("Blok Operacyjny")) {
 				department.setName(nameStandardized.getNameStandardizedPl()+" im. Prof. "+LoremIpsum.getInstance().getName());
 			} else {

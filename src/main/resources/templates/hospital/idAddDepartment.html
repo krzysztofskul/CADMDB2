@@ -34,6 +34,7 @@
 				  <th:block th:if="${edit}">
 				    <!-- hidden FK -->
 				    <input type="hidden" th:field="${department.hospital.id}"/>
+				    <input type="hidden" th:field="${department.dataArchDepartment.id}"/>
 				
 				    <!-- ► row 1 — standardized department name + “add” button -->
 				    <div class="form-group">
@@ -70,6 +71,16 @@
 				             class="form-control"
 				             th:field="${department.name}"/>
 				    </div>
+				    
+					<div class="form-group">
+						<label class="mb-1">
+							<p class="langPL">FUNKCJA</p>
+							<p class="langEN">FUNCTION</p>
+						</label>
+						<select th:field="${department.functionEnum}" class="form-control">
+							<option th:each="functionEnum : ${functionEnumList}" th:value="${functionEnum}" th:text="${functionEnum.namePL}"/>
+						</select>
+					</div>
 				  </th:block>
 				</div>
 				<div class="card-footer">

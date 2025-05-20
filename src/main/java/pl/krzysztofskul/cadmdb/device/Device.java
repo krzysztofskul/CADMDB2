@@ -20,6 +20,7 @@ import pl.krzysztofskul.cadmdb.company.manufacturer.Manufacturer;
 import pl.krzysztofskul.cadmdb.device.category.Category;
 import pl.krzysztofskul.cadmdb.device.datafinancial.DataFinancial;
 import pl.krzysztofskul.cadmdb.device.mounting.MountingTypeEnum;
+import pl.krzysztofskul.cadmdb.function.FunctionEnum;
 import pl.krzysztofskul.cadmdb.hospital.department.room.Room;
 
 @Entity
@@ -48,9 +49,12 @@ public class Device {
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private MountingTypeEnum mountingTypeEnum;
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = true)
+	private FunctionEnum functionEnum;
 	
 	@ManyToMany(mappedBy = "deviceList")
-	private List<Room> room = new ArrayList<Room>();
+	private List<Room> roomList = new ArrayList<Room>();
 
 	private boolean isActive = true;
 	
@@ -65,9 +69,9 @@ public class Device {
 	/**
 	 * @param room
 	 */
-	public Device(List<Room> room) {
+	public Device(List<Room> roomList) {
 		super();
-		this.room = room;
+		this.roomList = roomList;
 	}
 	
 	/**
@@ -216,18 +220,34 @@ public class Device {
 
 	/**
 	 * Getter
+	 * @return the functionEnum
+	 */
+	public FunctionEnum getFunctionEnum() {
+		return functionEnum;
+	}
+
+	/**
+	 * Setter
+	 * @param functionEnum the functionEnum to set
+	 */
+	public void setFunctionEnum(FunctionEnum functionEnum) {
+		this.functionEnum = functionEnum;
+	}
+
+	/**
+	 * Getter
 	 * @return the room
 	 */
-	public List<Room> getRoom() {
-		return room;
+	public List<Room> getRoomList() {
+		return roomList;
 	}
 
 	/**
 	 * Setter
 	 * @param room the room to set
 	 */
-	public void setRoom(List<Room> room) {
-		this.room = room;
+	public void setRoomList(List<Room> roomList) {
+		this.roomList = roomList;
 	}
 
 	/**
@@ -250,13 +270,13 @@ public class Device {
 	 * Method that adds room to the device
 	 */
 	public void addRoom(Room room) {
-		this.room.add(room);
+		this.roomList.add(room);
 	}
 
 	/*
 	 * Method that remove room from the device
 	 */
 	public void removeRoom(Room room) {
-		this.room.remove(room);
+		this.roomList.remove(room);
 	}
 }

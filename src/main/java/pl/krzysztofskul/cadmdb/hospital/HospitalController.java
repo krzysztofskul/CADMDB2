@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import pl.krzysztofskul.cadmdb.function.FunctionEnum;
 import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacilityService;
+import pl.krzysztofskul.cadmdb.healthcarefacility.dataarch.DataArchDepartment;
 import pl.krzysztofskul.cadmdb.hospital.department.Department;
 import pl.krzysztofskul.cadmdb.hospital.department.namestandardized.NameStandardizedService;
 
@@ -90,7 +92,10 @@ public class HospitalController {
 			modelAndView.addObject("edit", true);
 			modelAndView.setViewName("hospital/idAddDepartment");
 			modelAndView.addObject("nameStandardizedList", nameStandardizedService.loadAllByHospitalIdOrHospitalIsNull(hospitalId));
-			modelAndView.addObject("department", new Department(hospitalService.loadById(hospitalId)));
+			Department department = new Department(hospitalService.loadById(hospitalId));
+			department.setDataArchDepartment(new DataArchDepartment());
+			modelAndView.addObject("department", department);
+			modelAndView.addObject("functionEnumList", FunctionEnum.values());
 		}
 
 		return modelAndView;

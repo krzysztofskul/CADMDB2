@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -14,6 +17,7 @@ import javax.persistence.OneToOne;
 
 import pl.krzysztofskul.cadmdb.address.Address;
 import pl.krzysztofskul.cadmdb.device.Device;
+import pl.krzysztofskul.cadmdb.function.FunctionEnum;
 import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacility;
 import pl.krzysztofskul.cadmdb.healthcarefacility.dataarch.dataarchroom.DataArchRoom;
 import pl.krzysztofskul.cadmdb.hospital.department.Department;
@@ -31,7 +35,7 @@ public class Room extends HealthcareFacility {
             mappedBy    = "room",
             cascade     = CascadeType.ALL,
             orphanRemoval = true,
-            fetch       = FetchType.LAZY
+            fetch       = FetchType.EAGER
         )
     private DataArchRoom dataArchRoom;
 	
@@ -45,6 +49,10 @@ public class Room extends HealthcareFacility {
             inverseJoinColumns = @JoinColumn(name = "device_id")
     )
 	private List<Device> deviceList = new ArrayList<Device>();
+	
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = true)
+	private FunctionEnum functionEnum;
 	
 	/**
 	 * 
@@ -179,6 +187,22 @@ public class Room extends HealthcareFacility {
 	 */
 	public void setDeviceList(List<Device> deviceList) {
 		this.deviceList = deviceList;
+	}
+
+	/**
+	 * Getter
+	 * @return the functionEnum
+	 */
+	public FunctionEnum getFunctionEnum() {
+		return functionEnum;
+	}
+
+	/**
+	 * Setter
+	 * @param functionEnum the functionEnum to set
+	 */
+	public void setFunctionEnum(FunctionEnum functionEnum) {
+		this.functionEnum = functionEnum;
 	}
 
 	/**

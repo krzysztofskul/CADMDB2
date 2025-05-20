@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import pl.krzysztofskul.cadmdb.function.FunctionEnum;
 import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacilityService;
 import pl.krzysztofskul.cadmdb.healthcarefacility.dataarch.dataarchroom.DataArchRoom;
 import pl.krzysztofskul.cadmdb.hospital.department.room.Room;
@@ -46,6 +47,7 @@ public class DepartmentController {
 		Department department = departmentService.loadById(id);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("department", department);
+		mav.addObject("functionEnumList", FunctionEnum.values());
 		if (edit == true) {
 			mav.addObject("edit", true);
 		}
@@ -74,6 +76,7 @@ public class DepartmentController {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("hospital/department/idWithRooms");
 		mav.addObject("department", department);
+		mav.addObject("functionEnumList", FunctionEnum.values());
 		
 		if (edit == true) {
 			mav.addObject("edit", true);

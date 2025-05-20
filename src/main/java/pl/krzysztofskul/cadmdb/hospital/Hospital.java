@@ -8,9 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
 
 import pl.krzysztofskul.cadmdb.address.Address;
 import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacility;
+import pl.krzysztofskul.cadmdb.healthcarefacility.dataarch.DataArchDepartment;
 import pl.krzysztofskul.cadmdb.healthcarefacility.dataarch.DataArchHospital;
 import pl.krzysztofskul.cadmdb.hospital.department.Department;
 
@@ -24,10 +26,19 @@ public class Hospital extends HealthcareFacility {
             mappedBy    = "hospital",
             cascade     = CascadeType.ALL,
             orphanRemoval = true,
-            fetch       = FetchType.LAZY
+            fetch       = FetchType.EAGER
         )
-    private DataArchHospital dataArchHospital = new DataArchHospital(this);
+    private DataArchHospital dataArchHospital;
 	
+    @PrePersist
+    private void ensureDataArchHospital() {
+        if (this.dataArchHospital == null) {
+            DataArchHospital dArch = new DataArchHospital();
+            dArch.setHospital(this);
+            this.dataArchHospital = dArch;
+        }
+    }
+    
 	/**
 	 * 
 	 */
@@ -79,6 +90,7 @@ public class Hospital extends HealthcareFacility {
 	 */
 	public void setDataArchHospital(DataArchHospital dataArchHospital) {
 		this.dataArchHospital = dataArchHospital;
+		dataArchHospital.setHospital(this);
 	}
 	
 	public void addDepartment(Department department) {

@@ -13,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 import pl.krzysztofskul.cadmdb.device.Device;
 import pl.krzysztofskul.cadmdb.device.DeviceService;
 import pl.krzysztofskul.cadmdb.device.category.CategoryService;
+import pl.krzysztofskul.cadmdb.device.mounting.MountingTypeEnum;
+import pl.krzysztofskul.cadmdb.function.FunctionEnum;
 
 @Controller
 @RequestMapping("/manufacturers")
@@ -37,6 +39,15 @@ public class ManufacturerController {
 		this.manufacturerService = manufacturerService;
 		this.categoryService = categoryService;
 		this.deviceService = deviceService;
+	}
+	
+	@ModelAttribute
+	public FunctionEnum[] getModelFunctionEnumList() {
+		return FunctionEnum.values();
+	}
+	@ModelAttribute
+	public MountingTypeEnum[] getModelMountingTypeEnumList() {
+		return MountingTypeEnum.values();
 	}
 	
 	@GetMapping

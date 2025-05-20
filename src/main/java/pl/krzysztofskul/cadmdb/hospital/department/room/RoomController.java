@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import pl.krzysztofskul.cadmdb.device.Device;
 import pl.krzysztofskul.cadmdb.device.DeviceService;
+import pl.krzysztofskul.cadmdb.function.FunctionEnum;
 import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacilityService;
 
 @Controller
@@ -49,6 +50,7 @@ public class RoomController {
 		mav.clear();
 		if (edit == true) {
 			mav.addObject("edit", true);
+			mav.addObject("functionEnumList", FunctionEnum.values());
 		}
 		mav.addObject("room", roomService.loadById(id));
 		mav.setViewName("hospital/department/room/id");

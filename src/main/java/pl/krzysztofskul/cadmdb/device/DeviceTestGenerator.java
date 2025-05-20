@@ -15,6 +15,7 @@ import pl.krzysztofskul.cadmdb.device.category.CategoryGenerator;
 import pl.krzysztofskul.cadmdb.device.category.CategoryService;
 import pl.krzysztofskul.cadmdb.device.datafinancial.DataFinancial;
 import pl.krzysztofskul.cadmdb.device.mounting.MountingTypeEnum;
+import pl.krzysztofskul.cadmdb.function.FunctionEnum;
 import pl.krzysztofskul.cadmdb.init.InitDataGenerator;
 import pl.krzysztofskul.cadmdb.random.Random;
 
@@ -59,6 +60,7 @@ public class DeviceTestGenerator implements InitDataGenerator<Device> {
 		Device device = new Device();
 		device.setManufacturer(manufacturerService.loadRandom());
 		device.setModelName(LoremIpsum.getInstance().getTitle(1));
+		device.setFunctionEnum(this.randomFunction());
 		device.setWeight(random.randomInt(10, 200));
 		device.setHeatDissipation(random.randomInt(10, 200));
 		device.setPowerConnectionValue(random.randomInt(10, 200));
@@ -68,9 +70,14 @@ public class DeviceTestGenerator implements InitDataGenerator<Device> {
 	}
 
 	private MountingTypeEnum randomMountingType() {
-		MountingTypeEnum[] mteTable = MountingTypeEnum.values();
-		int mteTableLengt = mteTable.length;
-		return mteTable[random.nextInt(mteTableLengt)];
+		MountingTypeEnum[] rTable= MountingTypeEnum.values();
+		int mteTableLengt = rTable.length;
+		return rTable[random.nextInt(mteTableLengt)];
+	}
+	private FunctionEnum randomFunction() {
+		FunctionEnum[] rTable = FunctionEnum.values();
+		int rTableLengt = rTable.length;
+		return rTable[random.nextInt(rTableLengt)];
 	}
 
 	@Override

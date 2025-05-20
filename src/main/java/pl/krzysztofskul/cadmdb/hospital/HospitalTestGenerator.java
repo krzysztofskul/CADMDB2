@@ -11,6 +11,7 @@ import com.thedeanda.lorem.LoremIpsum;
 import pl.krzysztofskul.cadmdb.address.AddressTestGenerator;
 import pl.krzysztofskul.cadmdb.device.Device;
 import pl.krzysztofskul.cadmdb.device.DeviceService;
+import pl.krzysztofskul.cadmdb.healthcarefacility.dataarch.DataArchHospital;
 import pl.krzysztofskul.cadmdb.hospital.department.Department;
 import pl.krzysztofskul.cadmdb.hospital.department.DepartmentTestGenerator;
 import pl.krzysztofskul.cadmdb.hospital.department.room.Room;
@@ -36,6 +37,8 @@ public class HospitalTestGenerator implements InitDataGenerator<Hospital> {
 		hospital.setNamePL("Szpital " + hospital.getName());
 		hospital.setNameEN(hospital.getName()+ " Hospital");
 		hospital.setAddress(addressTestGenerator.initDataAndReturn());
+		DataArchHospital dataArchHospital = new DataArchHospital();
+		hospital.setDataArchHospital(dataArchHospital);
 		return hospital;
 	}
 

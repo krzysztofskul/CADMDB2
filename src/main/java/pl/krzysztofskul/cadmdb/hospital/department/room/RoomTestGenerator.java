@@ -12,6 +12,7 @@ import com.thedeanda.lorem.LoremIpsum;
 
 import pl.krzysztofskul.cadmdb.device.Device;
 import pl.krzysztofskul.cadmdb.device.DeviceService;
+import pl.krzysztofskul.cadmdb.function.FunctionEnum;
 import pl.krzysztofskul.cadmdb.healthcarefacility.dataarch.dataarchroom.DataArchRoom;
 import pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameStandardized;
 import pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameStandardizedService;
@@ -31,6 +32,7 @@ public class RoomTestGenerator implements InitDataGenerator<Room>{
 		for (NameStandardized nameStandardized : nameStandardizedService.loadRandomList(Random.randomInt(5, 7))) {
 			room.setRoomNo(String.valueOf(new Random().nextInt(200)));
 			room.setNameStandardized(nameStandardized);
+			room.setFunctionEnum(FunctionEnum.OTHERS);
 			if (nameStandardized.getNameStandardizedPl().equals("Sala Operacyjna")) {
 				room.setName("Sala operacyjna im. Prof. "+LoremIpsum.getInstance().getName());
 			} else {

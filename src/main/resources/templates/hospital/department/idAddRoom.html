@@ -87,7 +87,17 @@
 				             class="form-control"
 				             th:field="${room.roomNo}"/>
 				    </div>
-
+					
+					<div class="form-group">
+						<label class="input-functionEnum">
+							<p class="langPL">FUNKCJA</p>
+							<p class="langEN">FUNCTION</p>
+						</label>
+						<select th:field="${room.functionEnum}" id="input-functionEnum" class="form-control">
+							<option th:each="functionEnum : ${functionEnumList}" th:value="${functionEnum}" th:text="${functionEnum.namePL}"/>
+						</select>
+					</div>
+					
 					<hr>
 					
 				    <!-- ► row 4 — room architectural data -->

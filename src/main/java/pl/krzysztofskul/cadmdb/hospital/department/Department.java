@@ -4,16 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 import pl.krzysztofskul.cadmdb.address.Address;
+import pl.krzysztofskul.cadmdb.function.FunctionEnum;
 import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacility;
 import pl.krzysztofskul.cadmdb.healthcarefacility.dataarch.DataArchDepartment;
-import pl.krzysztofskul.cadmdb.healthcarefacility.dataarch.dataarchroom.DataArchRoom;
 import pl.krzysztofskul.cadmdb.hospital.Hospital;
 import pl.krzysztofskul.cadmdb.hospital.department.namestandardized.NameStandardized;
 import pl.krzysztofskul.cadmdb.hospital.department.room.Room;
@@ -34,18 +40,31 @@ public class Department extends HealthcareFacility {
             mappedBy    = "department",
             cascade     = CascadeType.ALL,
             orphanRemoval = true,
-            fetch       = FetchType.LAZY
+            fetch = FetchType.EAGER
         )
-    private DataArchDepartment dataArchDepartment = new DataArchDepartment(this);
+    private DataArchDepartment dataArchDepartment;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = true)
+	private FunctionEnum functionEnum;
+
+    @PrePersist
+    private void ensureDataArchDepartment() {
+        if (this.dataArchDepartment == null) {
+            DataArchDepartment dArch = new DataArchDepartment();
+            dArch.setDepartment(this);
+            this.dataArchDepartment = dArch;
+        }
+    }
 	
 	/**
-	 * 
+	 * Constructor
 	 */
 	public Department() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	/**
 	 * @param hospital
 	 */
@@ -153,6 +172,23 @@ public class Department extends HealthcareFacility {
 	 */
 	public void setDataArchDepartment(DataArchDepartment dataArchDepartment) {
 		this.dataArchDepartment = dataArchDepartment;
+		dataArchDepartment.setDepartment(this);
+	}
+
+	/**
+	 * Getter
+	 * @return the functionEnum
+	 */
+	public FunctionEnum getFunctionEnum() {
+		return functionEnum;
+	}
+
+	/**
+	 * Setter
+	 * @param functionEnum the functionEnum to set
+	 */
+	public void setFunctionEnum(FunctionEnum functionEnum) {
+		this.functionEnum = functionEnum;
 	}
 
 	public void addRoom(Room room) {
