@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
@@ -19,28 +20,25 @@ import pl.krzysztofskul.cadmdb.hospital.department.Department;
 @Entity
 public class Hospital extends HealthcareFacility {
 
-	@OneToMany(mappedBy = "hospital", cascade = {CascadeType.ALL})
+	@OneToMany(mappedBy = "hospital", cascade = CascadeType.ALL)
 	private List<Department> departmentList = new ArrayList<Department>();
 
-    @OneToOne(
-            mappedBy    = "hospital",
-            cascade     = CascadeType.ALL,
-            orphanRemoval = true,
-            fetch       = FetchType.EAGER
-        )
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "dataarchhospital_id")
     private DataArchHospital dataArchHospital;
 	
     @PrePersist
     private void ensureDataArchHospital() {
         if (this.dataArchHospital == null) {
-            DataArchHospital dArch = new DataArchHospital();
-            dArch.setHospital(this);
-            this.dataArchHospital = dArch;
+        	this.dataArchHospital = new DataArchHospital(this);
+            //DataArchHospital dArch = new DataArchHospital();
+            //this.dataArchHospital = dArch;
+            //dArch.setHospital(this);
         }
     }
-    
+	
 	/**
-	 * 
+	 * Constructor
 	 */
 	public Hospital() {
 		super();
@@ -48,34 +46,24 @@ public class Hospital extends HealthcareFacility {
 	}
 
 	/**
-	 * @param name
-	 * @param address
-	 * @param contactdetails
+	 * Getter
+	 * @return the departmentList
 	 */
-	public Hospital(String name, Address address, String contactdetails) {
-		super(name, address, contactdetails);
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @param name
-	 */
-	public Hospital(String name) {
-		super(name);
-		// TODO Auto-generated constructor stub
-	}
-
 	public List<Department> getDepartmentList() {
 		return departmentList;
 	}
 
+	/**
+	 * Setter
+	 * @param departmentList the departmentList to set
+	 */
 	public void setDepartmentList(List<Department> departmentList) {
+		this.departmentList.clear();
 		for (Department department : departmentList) {
-			department.setHospital(this);
+			this.addDepartment(department);
 		}
-		this.departmentList = departmentList;
 	}
-	
+
 	/**
 	 * Getter
 	 * @return the dataArchHospital
@@ -90,13 +78,12 @@ public class Hospital extends HealthcareFacility {
 	 */
 	public void setDataArchHospital(DataArchHospital dataArchHospital) {
 		this.dataArchHospital = dataArchHospital;
-		dataArchHospital.setHospital(this);
+		//dataArchHospital.setHospital(this);
 	}
-	
+
 	public void addDepartment(Department department) {
 		this.departmentList.add(department);
 		department.setHospital(this);
-		
 	}
 	
 	public void removeDepartment(Department department) {

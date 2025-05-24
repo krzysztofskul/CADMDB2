@@ -1,5 +1,7 @@
 package pl.krzysztofskul.cadmdb.healthcarefacility.dataarch;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
@@ -7,6 +9,7 @@ import javax.persistence.MappedSuperclass;
 public class DataArch {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private float areaTotal;
@@ -34,6 +37,7 @@ public class DataArch {
 	public Long getId() {
 		return id;
 	}
+
 	/**
 	 * Setter
 	 * @param id the id to set
@@ -41,6 +45,7 @@ public class DataArch {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	/**
 	 * Getter
 	 * @return the areaTotal

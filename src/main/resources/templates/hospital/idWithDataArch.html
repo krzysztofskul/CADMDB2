@@ -22,9 +22,6 @@
 	<div class="container-fluid appcontainer">
 		<form action="#" th:action="@{/hospitals/{hospitalId} (hospitalId = ${hospitalId})}" th:object="${hospital}" method="post" class="inline">
 			<div class="card card-hf">				
-				
-				
-				
 				<div class="card-header">
 					<div th:if="${hospital.id}">
 						<div th:replace="./hospital/hospital-structure-path" :: hospital-structure-path></div>
@@ -39,7 +36,9 @@
 							<input th:if="${edit == true}" class="form-control" type="hidden" th:field="${hospital.id}"></input>
 							<input th:if="${edit == true}" class="form-control" type="text" th:field="${hospital.name}"></input>
 							<input th:if="${edit == true}" class="form-control" type="hidden" th:field="${hospital.dataFinancial.id}"></input>
+							<input th:if="${edit == true}" class="form-control" type="hidden" th:field="${hospital.dataTech.id}"></input>
 							<input th:if="${edit == true}" class="form-control" type="hidden" th:field="${hospital.address.id}"></input>
+							<input th:if="${edit == true}" class="form-control" type="hidden" th:field="${hospital.dataArchHospital.id}"></input>
 						</div>
 					</div>
 				</div>							

@@ -1,6 +1,5 @@
 package pl.krzysztofskul.cadmdb.healthcarefacility.dataarch;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -12,9 +11,7 @@ import pl.krzysztofskul.cadmdb.hospital.Hospital;
 @Entity
 public class DataArchHospital extends DataArch {
 
-    @OneToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @MapsId
-    @JoinColumn(name = "id")
+    @OneToOne(mappedBy = "dataArchHospital")
     private Hospital hospital;
 
 	/**

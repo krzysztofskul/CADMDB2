@@ -36,12 +36,8 @@ public class Department extends HealthcareFacility {
 	@OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
 	private List<Room> roomList = new ArrayList<Room>();
 
-    @OneToOne(
-            mappedBy    = "department",
-            cascade     = CascadeType.ALL,
-            orphanRemoval = true,
-            fetch = FetchType.EAGER
-        )
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "dataarchdepartment_id")
     private DataArchDepartment dataArchDepartment;
 	
 	@Enumerated(EnumType.STRING)
@@ -51,9 +47,9 @@ public class Department extends HealthcareFacility {
     @PrePersist
     private void ensureDataArchDepartment() {
         if (this.dataArchDepartment == null) {
-            DataArchDepartment dArch = new DataArchDepartment();
-            dArch.setDepartment(this);
-            this.dataArchDepartment = dArch;
+            this.dataArchDepartment = new DataArchDepartment(this);
+        	//DataArchDepartment dArch = new DataArchDepartment();
+            //this.dataArchDepartment = dArch;
         }
     }
 	

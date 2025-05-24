@@ -73,7 +73,7 @@ public class HospitalController {
 	public ModelAndView postHospitalById(
 				@ModelAttribute Hospital hospital
 			) {
-		hospitalService.save(hospital);
+		hospital = hospitalService.saveAndReturn(hospital);
 		modelAndView.setViewName("redirect:/hospitals/"+hospital.getId());
 		return modelAndView;
 	}

@@ -22,8 +22,7 @@ The main goal of this application is to build hospital rooms and departments str
 * VER.#0.2-BETA-FINAL | DONE  
 * VER.#0.2-BETA-RC | TODO:  
     * refactor(config): aplication.properties data update to deploy  
-* VER.#0.3-ALPHA-SNAPSHOT | TODO:    
-    * fix(healthcarefacility): fix the crash when editing healthcare fiacility  
+* VER.#0.3-ALPHA-SNAPSHOT | TODO:  
     * implement(healthcarefacily): planned/result area and budget  
     * fix: when add new room/department set the address from the parent if it is not filled by the user  
     * implement(functionality): room data sheet  
@@ -31,6 +30,8 @@ The main goal of this application is to build hospital rooms and departments str
     * implement(functionality): investor  
     * update(springsecurity): register new user  
     * implement(functionality): error page  
+    * update(views): current page set on menu button  
+    * update(views): area and power values in a column of tables  
     * refactor(): product/equipment/device nomenclature  
     * refactor(): create technicalData class (?)  
     * implement(functionality): activate/deactivate manufacturer (?)  

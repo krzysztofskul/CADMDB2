@@ -11,9 +11,7 @@ import pl.krzysztofskul.cadmdb.hospital.department.Department;
 @Entity
 public class DataArchDepartment extends DataArch{
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @MapsId
-    @JoinColumn(name = "id")
+    @OneToOne(mappedBy = "dataArchDepartment")
     private Department department;
 
 	/**
