@@ -45,8 +45,12 @@
 									<p class="langEN">department</p>
 								</td>
 								<td>
-									<p class="langPL">KOSZT WYPOSAŻENIA</p>
-									<p class="langEN">equipment cost</p>
+									<p class="langPL">PLANOWANY KOSZT WYPOSAŻENIA</p>
+									<p class="langEN">equipment cost planned</p>
+								</td>
+								<td>
+									<p class="langPL">POWIERZCHNIA CAŁKOWITA</p>
+									<p class="langEN">areat total</p>
 								</td>
 								<td colspan="2">
 								</td>
@@ -64,6 +68,9 @@
 									</td>
 									<td>
 										<p class="langPL" th:text="${#numbers.formatCurrency(department.dataFinancial.purCostOfDevicePlan)}"></p>
+									</td>
+									<td>
+										<p class="langPL" th:text="${#numbers.formatDecimal(department.dataArchDepartment.areaTotal, 0, 2)+ ' m2'}"></p>
 									</td>
 									<td colspan="2">
 										<a th:href="@{/departments/{departmentId}/delete (departmentId = ${department.id}) }" class="btn btn-sm btn-outline-danger float-right">
@@ -85,24 +92,15 @@
 								<td class="bg-light">
 									<h6 th:text="${#numbers.formatCurrency(hospital.dataFinancial.purCostOfDevicePlan)}"></h6>
 								</td>
-								<td></td>
+								<td class="bg-light">
+									<h6 th:text="${#numbers.formatDecimal(hospital.dataArchHospital.areaTotal, 0, 2)+ ' m2'}"></h6>
+								</td>
 								<td></td>
 							</tr>
 						</tfooter>
 					</table>
 				</div>
 				<div class="card-footer">
-					<!--
-					<a th:href="@{/hospitals/{id} (id=${hospital.id}) }" class="btn btn-sm btn-outline-warning app-btn-left">
-						<p class="langPL">WSTECZ</p>
-						<p class="langEN">back</p>
-					</a>
-					-->
-					<a th:href="@{/hospitals/{id}/departments?edit=true (id=${hospital.id})}" class="btn btn-sm btn-outline-success app-btn-right">
-						<p class="langPL">DODAJ ODDZIAŁ</p>
-						<p class="langEN">ADD DEPARTMENT</p>
-					</a>
-				</div>
 			</div>
 	</div>
 	

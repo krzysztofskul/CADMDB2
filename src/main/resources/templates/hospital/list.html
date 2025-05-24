@@ -12,16 +12,32 @@
 <body>
 	
 	<div th:replace="./header" :: header></div>
-
+	
+	<div th:replace="./hospital/menu-hospital-list" :: menu-hospital-list></div>
+	
 	<div class="container-fluid appcontainer">
 		<table class="table">
 			<thead>
 				<tr>
-					<td colspan="5">
+<!--					<td colspan="5">
 						<a href="/hospitals/0" class="btn btn-sm btn-outline-success app-btn-right">
 							<p class="langPL">NOWY SZPITAL</p>
 							<p class="langEN">NEW HOSPITAL</p>
 						</a>
+					</td>-->
+				</tr>
+				<tr>
+					<td colspan="2">
+						<p class="langPL">NAZWA I ADRES SZPITALA</p>
+						<p class="langEN">hospital name and address</p>
+					</td>
+					<td>
+						<p class="langPL">PLANOWANY KOSZT WYPOSAŻENIA</p>
+						<p class="langEN">equipment cost planned</p>
+					</td>
+					<td>
+						<p class="langPL">POWIERZCHNIA CAŁKOWITA</p>
+						<p class="langEN">area total</p>
 					</td>
 				</tr>
 			</thead>
@@ -42,6 +58,9 @@
 							<p th:text="${#numbers.formatCurrency(hospital.dataFinancial.purCostOfDevicePlan)}"></p>
 						</td>
 						<td>
+							<p th:text="${#numbers.formatDecimal(hospital.dataArchHospital.areaTotal, 0, 1)}+' m2'"></p>
+						</td>
+						<td>
 							<a th:href="@{/hospitals/{id}/delete (id=${hospital.id}) }" class="btn btn-sm btn-outline-danger float-right">
 								<p class="langPL">USUŃ</p>
 								<p class="langEN">DELETE</p>
@@ -56,14 +75,14 @@
 				</th:block>
 			</tbody>
 			<tfoot>
-				<tr>
-					<td colspan="4">
+<!--				<tr>
+					<td colspan="5">
 						<a href="/hospitals/0" class="btn btn-sm btn-outline-success app-btn-right">
 							<p class="langPL">NOWY SZPITAL</p>
 							<p class="langEN">NEW HOSPITAL</p>
 						</a>
 					</td>
-				</tr>
+				</tr>-->
 			</tfoot>
 		</table>
 	</div>

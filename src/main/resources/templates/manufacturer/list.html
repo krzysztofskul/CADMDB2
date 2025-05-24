@@ -13,20 +13,13 @@
 <body>
 	
 	<div th:replace="./header" :: header></div>
+
+	<div th:replace="./manufacturer/menu-manufacturer-list" :: menu-manufacturer-list></div>
 	
 	<div class="container-fluid appcontainer">
 	
-
 		<table class="table">
 			<thead>
-				<tr>
-					<td colspan="4">
-						<a href="/manufacturers/0" class="btn btn-sm btn-outline-success app-btn-right">
-							<p class="langPL">NOWY PRODUCENT</p>
-							<p class="langEN">NEW MANUFACTURER</p>
-						</a>
-					</td>
-				</tr>
 			</thead>
 			<tbody>
 				<th:block th:each="manufacturer : ${manufacturerList}">
@@ -53,14 +46,6 @@
 				</th:block>
 			</tbody>
 			<tfoot>
-				<tr>
-					<td colspan="4">
-						<a href="/manufacturers/0" class="btn btn-sm btn-outline-success app-btn-right">
-							<p class="langPL">NOWY PRODUCENT</p>
-							<p class="langEN">NEW MANUFACTURER</p>
-						</a>
-					</td>
-				</tr>
 			</tfoot>
 		</table>
 

@@ -16,30 +16,32 @@
 	<div th:replace="./hospital/menu-hospital" :: menu-hospital></div>
 	
 	<div class="container-fluid appcontainer">
-		<div class="card">
-			<form action="#" th:action="@{#}" th:object="${nameStandardized}" method="POST">
-				<div class="card-header">
-				</div>
-				<div class="card-body">
+		<form action="#" th:action="@{#}" th:object="${nameStandardized}" method="POST">
+			<div class="card card-hf">
 	
-						<label>ID:</label>
-						<input type="text" th:field="${nameStandardized.id}"/>
-						
-						<label>Hospital ID:</label>
-						<input type="text" th:field="${nameStandardized.hospital.id}"/>
-						
-						<label>Standardized Name Candidate PL:</label>
-						<input type="text" th:field="${nameStandardized.nameStandardizedPl}"/>		
+					<div class="card-header">
+					</div>
+					<div class="card-body">
+							<input type="hidden" th:field="${nameStandardized.id}"/>
+							<input type="hidden" th:field="${nameStandardized.hospital.id}"/>
+							
+							<div class="form-group">
+								<label>
+									<p class="langPL">NOWA NAZWA STANDARYZOWANA [PL]:</label>
+									<p class="langEN">NEW STANDARDIZED NAME [PL]:</p>
+								</label>
+								<input class="form-control" type="text" th:field="${nameStandardized.nameStandardizedPl}"/>		
+							</div>	
+					</div>
+					<div class="card-footer">
+						<button type="submit" class="btn btn-sm btn-outline-success float-right">
+							<p class="langPL">ZAPISZ</p>
+							<p class="langEN">save</p>
+					</button>
+					</div>
 	
-				</div>
-				<div class="card-footer">
-					<button type="submit" class="btn btn-sm btn-outline-success float-right">
-						<p class="langPL">ZAPISZ</p>
-						<p class="langEN">save</p>
-				</button>
-				</div>
-			</form>
-		</div>
+			</div>
+		</form>
 	</div>
 
 	<div th:replace="./footer" :: footer></div>

@@ -37,9 +37,11 @@ public class DeviceController {
 				, Model model
 				, @RequestParam(name = "edit", required = false) String edit
 			) {
-		model.addAttribute("product", deviceService.loadById(deviceId));
+		Device product = deviceService.loadById(deviceId);
+		model.addAttribute("product", product);
 		model.addAttribute("mountingTypeEnumList", MountingTypeEnum.values());
 		model.addAttribute("functionEnumList", FunctionEnum.values());
+		model.addAttribute("manufacturer", product.getManufacturer());
 		if (edit == null) {
 			edit = "false";
 		}

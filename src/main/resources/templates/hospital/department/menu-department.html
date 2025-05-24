@@ -1,6 +1,6 @@
 <div th:fragment="menu-department" class="menu-main">	
 
-<div class="row menu-hospital-structure">
+<div class="menu-hospital-structure">
 	<div class="col">
 		<ul class="nav">
 			<li class="nav-item">
@@ -30,10 +30,16 @@
 					<p class="langEN">FINANCIAL DATA</p>
 				</a>
 			</li>
-			<li class="nav-item ml-auto">
-				<a class="nav-link text-rights" th:href="@{/departments/{departmentId}/rooms (departmentId=${department.id}) }" href="#">
+			<li class="nav-item">
+				<a class="nav-link" th:href="@{/departments/{departmentId}/rooms (departmentId=${department.id}) }" href="#">
 					<p class="langPL">WYKAZ POMIESZCZEŃ</p>
 					<p class="langEN">ROOMS LIST</p>
+				</a>
+			</li>
+			<li th:if="${#request.requestURI.contains('/rooms')}" class="nav-item ml-auto">
+				<a class="nav-link text-right text-success" th:href="@{/departments/{id}/rooms?edit=true (id=${department.id})}" href="#">
+					<p class="langPL">DODAJ POMIESZCZENIE</p>
+					<p class="langEN">ADD ROOM</p>
 				</a>
 			</li>
 		</ul>

@@ -117,6 +117,7 @@ public class ManufacturerController {
 		device.setManufacturer(manufacturerService.loadById(manufacturerId));
 		mav.addObject("categoryList", categoryService.loadAll());
 		mav.addObject("device", device);
+		mav.addObject("manufacturer", device.getManufacturer());
 		mav.setViewName("manufacturer/idAddProduct");
 		return mav;
 	}

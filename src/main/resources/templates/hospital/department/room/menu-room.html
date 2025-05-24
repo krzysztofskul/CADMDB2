@@ -1,6 +1,6 @@
 <div th:fragment="menu-room" class="menu-main">	
 
-<div class="row menu-hospital-structure">
+<div class="menu-hospital-structure">
 	<div class="col">
 		<ul class="nav">
 			<li class="nav-item">
@@ -30,10 +30,16 @@
 					<p class="langEN">FINANCIAL DATA</p>
 				</a>
 			</li>
-			<li class="nav-item ml-auto">
-				<a class="nav-link text-right" th:href="@{/rooms/{roomId}/equipment (roomId=${room.id}) }" href="#">
+			<li class="nav-item">
+				<a class="nav-link" th:href="@{/rooms/{roomId}/equipment (roomId=${room.id}) }" href="#">
 					<p class="langPL">WYKAZ WYPOSAŻENIA</p>
 					<p class="langEN">EQUIPMENT LIST</p>
+				</a>
+			</li>
+			<li th:if="${#request.requestURI.contains('/equipment')}" class="nav-item ml-auto">
+				<a class="nav-link text-right text-success" th:href="@{|/rooms/${room.id}/equipment?edit=true|}" href="#">
+					<p class="langPL">DODAJ WYPOSAŻENIE</p>
+					<p class="langEN">ADD EQUIPMENT</p>
 				</a>
 			</li>
 		</ul>

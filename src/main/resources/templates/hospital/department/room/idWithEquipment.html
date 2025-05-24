@@ -58,8 +58,8 @@
 						<thead class="bg-light">
 							<tr class="text-center border-bottom">
 								<td colspan="7">
-									<p class="langPL">WYPOSAŻENIE</p>
-									<p class="langEN">EQUIPMENT</p>
+									<p class="langPL">PLANOWANE WYPOSAŻENIE</p>
+									<p class="langEN">EQUIPMENT PLANNED</p>
 								</td>
 							</tr>
 							<tr>
@@ -80,8 +80,8 @@
 									<p class="langEN">mounting type</p>
 								</td>
 								<td>
-									<p class="langPL">KOSZT ZAKUPU</p>
-									<p class="langEN">cost</p>
+									<p class="langPL">PLANOWANY KOSZT ZAKUPU</p>
+									<p class="langEN">cost planned</p>
 								</td>
 								<td colspan="2">
 								</td>
@@ -138,18 +138,8 @@
 						</tfoot>
 					</table>
 				</div>
-				
+			
 				<div class="card-footer">
-					<!--
-					<a th:href="@{/departments/{id}/rooms (id=${room.department.id})}" class="btn btn-sm btn-outline-warning app-btn-left">
-						<p class="langPL">WSTECZ</p>
-						<p class="langEN">back</p>
-					</a>
-					-->
-					<a th:href="@{|/rooms/${room.id}/equipment?edit=true|}" class="btn btn-sm btn-outline-success app-btn-right">
-						<p class="langPL">DODAJ WYPOSAŻENIE</p>
-						<p class="langEN">ADD EQUIPMENT</p>
-					</a>
 				</div>
 				
 			</div>

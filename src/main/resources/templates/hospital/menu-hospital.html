@@ -1,6 +1,6 @@
 <div th:fragment="menu-hospital" class="menu-main">	
 
-<div class="row menu-hospital-structure">
+<div class="menu-hospital-structure">
 	<div class="col">
 		<ul class="nav">
 			<li class="nav-item">
@@ -30,10 +30,16 @@
 					<p class="langEN">FINANCIAL DATA</p>
 				</a>
 			</li>
-			<li class="nav-item ml-auto text-right">
+			<li class="nav-item">
 				<a class="nav-link" th:href="@{/hospitals/{hospitalId}/departments (hospitalId=${hospital.id}) }" href="#">
 					<p class="langPL">WYKAZ ODDZIAŁÓW</p>
 					<p class="langEN">DEPARTMENTS LIST</p>
+				</a>
+			</li>
+			<li th:if="${#request.requestURI.contains('/departments')}" class="nav-item ml-auto text-right">
+				<a class="nav-link text-success" th:href="@{/hospitals/{id}/departments?edit=true (id=${hospital.id})}" href="#">
+					<p class="langPL">DODAJ ODDZIAŁ</p>
+					<p class="langEN">ADD DEPARTMENT</p>
 				</a>
 			</li>
 		</ul>

@@ -13,6 +13,8 @@
 <body>
 
 	<div th:replace="./header" :: header></div>
+	<div th:replace="./manufacturer/menu-manufacturer" :: menu-manufacturer></div>
+	
 	<div class="container-fluid appcontainer">
 		<form action="#" th:action="@{#}" method="POST" th:object="${product}">
 			<div class="card card-product">

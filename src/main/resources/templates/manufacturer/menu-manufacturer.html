@@ -1,23 +1,29 @@
 <div th:fragment="menu-manufacturer" class="menu-main">	
 
-<div class="row menu-hospital-structure">
-	<div>
-		<ul class="nav">
-			<li class="nav-item">
-				<a class="nav-link active" th:href="@{/manufacturers/{manufacturerId} (manufacturerId=${manufacturer.id}) }" href="#">
-					<p class="langPL">INFORMACJE</p>
-					<p class="langEN">INFORMATION</p>
-				</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" th:href="@{/manufacturers/{manufacturerId}/products (manufacturerId=${manufacturer.id}) }" href="#">
-					<p class="langPL">PRODUKTY</p>
-					<p class="langEN">PRODUCTS</p>
-				</a>
-			</li>
-		</ul>
+	<div class="menu-hospital-structure">
+		<div>
+			<ul class="nav">
+				<li class="nav-item">
+					<a class="nav-link active" th:href="@{/manufacturers/{manufacturerId} (manufacturerId=${manufacturer.id}) }" href="#">
+						<p class="langPL">INFORMACJE</p>
+						<p class="langEN">INFORMATION</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/manufacturers/{manufacturerId}/products (manufacturerId=${manufacturer.id}) }" href="#">
+						<p class="langPL">PRODUKTY</p>
+						<p class="langEN">PRODUCTS</p>
+					</a>
+				</li>
+				<li th:if="${#request.requestURI.contains('/products')}" class="nav-item ml-auto">
+					<a class="nav-link active text-success" th:href="@{|/manufacturers/${manufacturer.id}/create-product|}" href="#">
+						<p class="langPL">NOWY PRODUKT</p>
+						<p class="langEN">NEW PRODUCT</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+		
 	</div>
-	
-</div>
 
 </div>
