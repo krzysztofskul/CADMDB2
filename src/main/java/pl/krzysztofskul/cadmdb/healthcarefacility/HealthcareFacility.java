@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
 
 import pl.krzysztofskul.cadmdb.address.Address;
 import pl.krzysztofskul.cadmdb.healthcarefacility.datafinancial.DataFinancial;
@@ -31,8 +32,9 @@ public class HealthcareFacility {
 	@JoinColumn(name = "hfdatatech")
 	private DataTech dataTech = new DataTech();
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	private Address address = new Address();
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "address_id")
+	private Address address;
 	
 	private String contactdetails;
 	

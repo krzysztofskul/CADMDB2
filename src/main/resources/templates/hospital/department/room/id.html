@@ -17,7 +17,7 @@
 	<div th:replace="./hospital/department/room/menu-room" :: menu-room></div>
 		
 	<div class="container-fluid appcontainer">
-		<form action="#" th:action="@{/rooms/{roomId} (roomId = ${room.id})}" th:object="${room}" method="post" class="inline">
+		<form action="#" th:action="@{/rooms/{roomId}/savedetails (roomId = ${room.id})}" th:object="${room}" method="post" class="inline">
 			<div class="card card-hf">
 				<div class="card-header">
 					<div th:replace="./hospital/hospital-structure-path" :: hospital-structure-path></div>
@@ -81,30 +81,55 @@
 							<p class="langPL">ADRES:</p>
 							<p class="langEN">ADDRESS:</p>
 						</div>
-						<div class="col-10">
-							<p>
-								<span th:if="${edit == false} OR ${edit == null}" th:text="${room.address.country}"></span>
-								<input th:if="${edit == true}" class="form-control d-inline-block" style="width: 30em" type="text" th:field="${room.address.country}"></input>
-							</p>
-							<p>
-								
-								<span th:if="${edit == false} OR ${edit == null}" th:text="${room.address.postalcode}"></span>
-								<input th:if="${edit == true}" class="form-control d-inline-block" style="width: 10em" type="text" th:field="${room.address.postalcode}"></input>
-								
-								<span th:if="${edit == false} OR ${edit == null}" th:text="${room.address.city}"></span>
-								<input th:if="${edit == true}" class="form-control d-inline-block" style="width: 20em" type="text" th:field="${room.address.city}"></input>
-							</p>
-							<p>
-								<span th:if="${edit == false} OR ${edit == null}" th:text="${room.address.streetname}"></span>
-								<input th:if="${edit == true}" class="form-control d-inline-block" style="width: 20em" type="text" th:field="${room.address.streetname}"></input>
-								
-								<span th:if="${edit == false} OR ${edit == null}" th:text="${room.address.streetno}"></span>
-								<input th:if="${edit == true}" class="form-control d-inline-block" style="width: 5em" type="text" th:field="${room.address.streetno}"></input>
-								
-								<span th:if="${edit == false} OR ${edit == null}" th:text="${room.address.flatno}"></span>
-								<input th:if="${edit == true}" class="form-control d-inline-block" style="width: 5em" type="text" th:field="${room.address.flatno}"></input>					
-							</p>
-						</div>
+						<th:block th:if="${edit == true}">
+							<div class="col-10">
+								<p>
+									<input class="form-control d-inline-block" style="width: 30em" type="text" th:field="${room.address.country}"></input>
+								</p>
+								<p>
+									
+									<input class="form-control d-inline-block" style="width: 10em" type="text" th:field="${room.address.postalcode}"></input>
+									<input class="form-control d-inline-block" style="width: 20em" type="text" th:field="${room.address.city}"></input>
+								</p>
+								<p>
+									<input class="form-control d-inline-block" style="width: 20em" type="text" th:field="${room.address.streetname}"></input>
+									<input class="form-control d-inline-block" style="width: 5em" type="text" th:field="${room.address.streetno}"></input>
+									<input class="form-control d-inline-block" style="width: 5em" type="text" th:field="${room.address.flatno}"></input>					
+								</p>
+							</div>
+						</th:block>
+						<th:block th:if="${room.address != null and (edit == false or edit == null)}">
+							<div class="col-10">
+								<p>
+									<span th:text="${room.address.country}"></span>
+								</p>
+								<p>
+									<span th:text="${room.address.postalcode}"></span>
+									<span th:text="${room.address.city}"></span>
+								</p>
+								<p>
+									<span th:text="${room.address.streetname}"></span>
+									<span th:text="${room.address.streetno}"></span>
+									<span th:text="${room.address.flatno}"></span>					
+								</p>
+							</div>
+						</th:block>
+						<th:block th:if="${room.address == null}">
+							<div class="col-10">
+								<div class="d-inline-block">
+									<p class="langPL">BRAK ADRESU</p>
+									<p class="langEN">NO ADDRESS</p>
+								</div>
+								<button type="button" class="d-inline-block disabled float-right">
+									<p class="langPL">SKOPIUJ ADRES SZPITALNY</p>
+									<p class="langEN">COPY HOSPITAL ADDRESS</p>
+								</button>
+								<button type="button" class="d-inline-block disabled float-right">
+									<p class="langPL">SKOPIUJ ADRES ODDZIAŁU</p>
+									<p class="langEN">COPY DEPARTMENT ADDRESS</p>
+								</button>
+							</div>
+						</th:block>
 					</div>
 					
 				</div>

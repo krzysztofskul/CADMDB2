@@ -14,9 +14,6 @@ public class Address {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@OneToOne(mappedBy = "address")
-	private Hospital hospital;
 	
 	private String country;
 	
@@ -39,15 +36,6 @@ public class Address {
 	}
 
 	/**
-	 * @param hospital
-	 */
-	public Address(Hospital hospital) {
-		super();
-		this.hospital = hospital;
-	}
-
-	/**
-	 * @param hospital
 	 * @param country
 	 * @param city
 	 * @param postalcode
@@ -55,10 +43,9 @@ public class Address {
 	 * @param streetno
 	 * @param flatno
 	 */
-	public Address(Hospital hospital, String country, String city, String postalcode, String streetname,
+	public Address(String country, String city, String postalcode, String streetname,
 			String streetno, String flatno) {
 		super();
-		this.hospital = hospital;
 		this.country = country;
 		this.city = city;
 		this.postalcode = postalcode;
@@ -73,14 +60,6 @@ public class Address {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Hospital getHospital() {
-		return hospital;
-	}
-
-	public void setHospital(Hospital hospital) {
-		this.hospital = hospital;
 	}
 
 	public String getCountry() {

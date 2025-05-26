@@ -65,6 +65,25 @@ public class DepartmentController {
 		mav.setViewName("redirect:/departments/"+departmnet.getId());
 		return mav;
 	}
+	
+	@PostMapping("/{id}/savedetails")
+	public ModelAndView postDepartmentByIdSaveDetails(
+			@PathVariable Long id,	
+			@ModelAttribute Department departmnet
+			) {
+		ModelAndView mav = new ModelAndView();
+		
+		Department departmnetDB = departmentService.loadById(id);
+		departmnetDB.setName(departmnet.getName());
+		departmnetDB.setNamePL(departmnet.getNamePL());
+		departmnetDB.setNameEN(departmnet.getNameEN());
+		departmnetDB.setFunctionEnum(departmnet.getFunctionEnum());
+		departmnetDB.setAddress(departmnet.getAddress());
+		
+		departmnetDB = departmentService.saveAndReturn(departmnetDB);
+		mav.setViewName("redirect:/departments/"+departmnetDB.getId());
+		return mav;
+	}
 
 	@GetMapping("/{id}/rooms")
 	public ModelAndView getRoomsByDepartmentId(

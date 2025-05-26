@@ -17,6 +17,7 @@ import pl.krzysztofskul.cadmdb.device.Device;
 import pl.krzysztofskul.cadmdb.device.DeviceService;
 import pl.krzysztofskul.cadmdb.function.FunctionEnum;
 import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacilityService;
+import pl.krzysztofskul.cadmdb.hospital.department.Department;
 
 @Controller
 @RequestMapping("/rooms")
@@ -57,6 +58,25 @@ public class RoomController {
 		return mav;
 	}
 	
+	@PostMapping("/{id}/savedetails")
+	public ModelAndView postRoomByIdSaveDetails(
+			@PathVariable Long id,
+			@ModelAttribute Room room
+			) {
+		mav.clear();
+		
+		Room roomDB = roomService.loadById(id);
+		roomDB.setName(room.getName());
+		roomDB.setNamePL(room.getNamePL());
+		roomDB.setNameEN(room.getNameEN());
+		roomDB.setFunctionEnum(room.getFunctionEnum());
+		roomDB.setAddress(room.getAddress());
+		
+		roomDB = roomService.saveAndReturn(room);
+		mav.setViewName("redirect:/rooms/"+roomDB.getId());
+		return mav;
+	}
+
 	@PostMapping("/{id}")
 	public ModelAndView postRoomById(
 				@PathVariable Long id,
