@@ -1,9 +1,11 @@
 package pl.krzysztofskul.cadmdb.healthcarefacility.dataarch.dataarchroom;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
@@ -24,10 +26,20 @@ public class DataArchRoom {
 	private float heightCeilingStructural; //structural ceiling height
 	private float heightCeiligSuspended; //suspended ceiling height
 	
+	@Lob
+	@Column(columnDefinition = "TEXT")
 	private String descriptionGeneral;
+	@Lob
+	@Column(columnDefinition = "TEXT")
 	private String descriptionFloor;
+	@Lob
+	@Column(columnDefinition = "TEXT")
 	private String descriptionWalls;
+	@Lob
+	@Column(columnDefinition = "TEXT")
 	private String descriptionCeiling;
+	@Lob
+	@Column(columnDefinition = "TEXT")
 	private String descriptionLight;
 	
 	/**

@@ -34,7 +34,7 @@ public class RoomService {
 		return room;	
 	}
 	
-	public Object loadByIdWithDataArchRoom(Long id) {
+	public Room loadByIdWithDataArchRoom(Long id) {
 		Room room = this.loadById(id);
 		Hibernate.initialize(room.getDataArchRoom());
 		return room;

@@ -18,7 +18,8 @@
 	<div th:replace="./hospital/department/room/menu-room" :: menu-room></div>
 	
 	<div class="container-fluid appcontainer">
-		<form action="#" th:action="@{#}" th:object="${room}" method="post" class="inline">
+		<form th:action="@{|/rooms/architectural-data/${room.id}|}" th:object="${room}" method="post" class="inline">
+			<input type="hidden" th:field="${room.dataArchRoom.id}" visible="false"/>
 			<div class="card card-hf">
 				<div class="card-header">
 					<div th:replace="./hospital/hospital-structure-path" :: hospital-structure-path></div>
@@ -30,6 +31,9 @@
 						<div class="col-10">
 							<h5 th:if="${edit == false} OR ${edit == null}" th:text="${room.nameStandardized.nameStandardizedPl}"></h5>
 							<p th:if="${edit == false} OR ${edit == null}" th:text="${room.nameStandardized.nameStandardizedEn}"></p>
+							<select th:if="${edit == true}" class="form-control" type="text" th:field="${room.nameStandardized}">
+								<option th:each="nameStandardized : ${nameStandardizedList}" th:value="${nameStandardized.id}" th:text="${nameStandardized.nameStandardizedPl}"/>
+							</select>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -68,7 +72,8 @@
 										<p class="langEN">FLOOR AREA [m<sup>2</sup>]</p>
 									</div>
 									<div class="col-4">
-										<p class="value" th:text="${room.dataArchRoom.area}"></p>
+										<p th:if="${edit != true}" class="value" th:text="${room.dataArchRoom.area}"></p>
+										<input th:if="${edit == true}" class="form-control" type="text" th:field="${room.dataArchRoom.area}"></input>
 									</div>
 								</div>
 								<div class="row">
@@ -77,7 +82,8 @@
 										<p class="langEN">STRUCTURAL CEILING HEIGHT [m]</p>
 									</div>
 									<div class="col-4">
-										<p class="value" th:text="${room.dataArchRoom.heightCeilingStructural}"></p>
+										<p th:if="${edit != true}" class="value" th:text="${room.dataArchRoom.heightCeilingStructural}"></p>
+										<input th:if="${edit == true}" class="form-control" type="text" th:field="${room.dataArchRoom.heightCeilingStructural}"/>
 									</div>
 								</div>
 								<div class="row">
@@ -86,7 +92,8 @@
 										<p class="langEN">SUSPENDED CEILING HEIGHT [m]</p>
 									</div>
 									<div class="col-4">
-										<p class="value" th:text="${room.dataArchRoom.heightCeiligSuspended}"></p>
+										<p th:if="${edit != true}" class="value" th:text="${room.dataArchRoom.heightCeiligSuspended}"></p>
+										<input th:if="${edit == true}" class="form-control" type="text" th:field=="${room.dataArchRoom.heightCeiligSuspended}"/>
 									</div>
 								</div>
 							</div>
@@ -98,14 +105,13 @@
 								<p class="langEN">GENERAL INFORMATION</p>
 							</div>
 							<div class="card-body">
-								<textarea id="descGeneral" th:field="*{dataArchRoom.descriptionGeneral}" 
-								class="form-control"></textarea>
-								<!--
-								<p class="value" th:text="${room.dataArchRoom.descriptionGeneral}"></p>
-								-->
+								<textarea 	th:if="${edit == true}" id="descGeneral" th:field="*{dataArchRoom.descriptionGeneral}" 
+											class="form-control">
+								</textarea>
+								<textarea th:if="${edit != true}" class="value w-100 h-100" th:text="${room.dataArchRoom.descriptionGeneral}" disabled></textarea>
 							</div>
 							<div class="card-footer">
-								<div class="form-group">
+								<div th:if="${edit == true}" class="form-group">
 								  <a href="#" class="btn btn-link btn-sm" onclick="suggestDescription('general'); return false;">
 										<p class="langPL">ZASUGERUJ</p>
 										<p class="langEN">SUGGEST</p>
@@ -119,14 +125,12 @@
 								<p class="langEN">FLOOR INFORMATION</p>
 							</div>
 							<div class="card-body">
-								<textarea id="descFloor" th:field="*{dataArchRoom.descriptionFloor}" 
+								<textarea th:if="${edit == true}" id="descFloor" th:field="*{dataArchRoom.descriptionFloor}" 
 								class="form-control"></textarea>
-								<!--
-								<p class="value" th:text="${room.dataArchRoom.descriptionFloor}"></p>
-								-->
+								<textarea th:if="${edit != true}" class="value w-100 h-100" th:text="${room.dataArchRoom.descriptionFloor}" disabled></textarea>
 							</div>
 							<div class="card-footer">
-								<div class="form-group">
+								<div th:if="${edit == true}" class="form-group">
 								  <a href="#" class="btn btn-link btn-sm" onclick="suggestDescription('floor'); return false;">
 										<p class="langPL">ZASUGERUJ</p>
 										<p class="langEN">SUGGEST</p>
@@ -140,22 +144,17 @@
 								<p class="langEN">CEILING INFORMATION</p>
 							</div>
 							<div class="card-body">
-								<!--
-								<p class="value" th:text="${room.dataArchRoom.descriptionCeiling}"></p>
-								-->
-								<textarea id="descCeiling" th:field="*{dataArchRoom.descriptionCeiling}" 
+								<textarea th:if="${edit == true}" id="descCeiling" th:field="*{dataArchRoom.descriptionCeiling}" 
 								class="form-control"></textarea>
-								
+								<textarea th:if="${edit != true}" class="value w-100 h-100" th:text="${room.dataArchRoom.descriptionCeiling}" disabled></textarea>
 							</div>
 							<div class="card-footer">
-							<div class="form-group">
+								<div th:if="${edit == true}" class="form-group">
 								  <a href="#" class="btn btn-link btn-sm" onclick="suggestDescription('ceiling'); return false;">
 										<p class="langPL">ZASUGERUJ</p>
 										<p class="langEN">SUGGEST</p>
 								  </a>
-								</div>
-								
-								
+								</div>	
 							</div>
 						</div>
 						<div class="card">
@@ -164,16 +163,12 @@
 								<p class="langEN">WALL INFORMATION</p>
 							</div>
 							<div class="card-body">
-								<!--
-								<p class="value" th:text="${room.dataArchRoom.descriptionWalls}"></p>
-								-->
-								<textarea id="descWalls" th:field="*{dataArchRoom.descriptionWalls}" 
+								<textarea th:if="${edit == true}" id="descWalls" th:field="*{dataArchRoom.descriptionWalls}" 
 								class="form-control"></textarea>
-								
-								
+								<textarea th:if="${edit != true}" class="value w-100 h-100" th:text="${room.dataArchRoom.descriptionWalls}" disabled></textarea>							
 							</div>
 							<div class="card-footer">
-							<div class="form-group">
+								<div th:if="${edit == true}" class="form-group">
 								  <a href="#" class="btn btn-link btn-sm" onclick="suggestDescription('walls'); return false;">
 										<p class="langPL">ZASUGERUJ</p>
 										<p class="langEN">SUGGEST</p>
@@ -189,15 +184,12 @@
 								<p class="langEN">LIGHTNING INFORMATION</p>
 							</div>
 							<div class="card-body">
-								<!--
-								<p class="value" th:text="${room.dataArchRoom.descriptionLight}"></p>
-								-->
-								<textarea id="descLightning" th:field="*{dataArchRoom.descriptionLight}" 
+								<textarea th:if="${edit == true}" id="descLightning" th:field="*{dataArchRoom.descriptionLight}" 
 								class="form-control"></textarea>
-								
+								<textarea th:if="${edit != true}" class="value w-100 h-100" th:text="${room.dataArchRoom.descriptionLight}" disabled></textarea>							
 							</div>
 							<div class="card-footer">
-							<div class="form-group">
+								<div th:if="${edit == true}" class="form-group">
 								  <a href="#" class="btn btn-link btn-sm" onclick="suggestDescription('lightning'); return false;">
 										<p class="langPL">ZASUGERUJ</p>
 										<p class="langEN">SUGGEST</p>
@@ -210,10 +202,25 @@
 					</div>
 				</div>
 				<div class="card-footer">
-					<a class="btn btn-sm btn-outline-primary float-right" th:href="@{#}">
-						<p class="langPL">EDYTUJ</p>
-						<p class="langEN">EDIT</p>
-					</a>
+					<section th:if="${edit != null and edit == true}">
+						<a		type="button"
+									th:href="@{|/rooms/architectural-data/${room.id}?edit=false|}"
+									class="btn btn-outline-warning">
+							<p class="langPL">ANULUJ</p>
+							<p class="langEN">CANCEL</p>
+						</a>
+						<button type="submit" class="btn btn-sm btn-outline-success float-right">
+							<p class="langPL">ZAPISZ</p>
+							<p class="langEN">SAVE</p>
+						</button>
+					</section>
+					<section th:if="${edit == null or edit == false}">
+						<a th:href="@{|/rooms/architectural-data/${room.id}?edit=true|}"
+							class="btn btn-sm btn-outline-primary float-right">
+							<p class="langPL">EDYTUJ</p>
+							<p class="langEN">EDIT</p>
+						</a>
+					</section>
 				</div>
 			</div>
 		</form>
