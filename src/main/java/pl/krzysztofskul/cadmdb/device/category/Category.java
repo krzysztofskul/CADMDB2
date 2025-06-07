@@ -3,10 +3,14 @@ package pl.krzysztofskul.cadmdb.device.category;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import pl.krzysztofskul.cadmdb.device.Device;
@@ -26,6 +30,18 @@ public class Category {
 	private String namePLplural;
 	private String nameENplural;
 	
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_id")
+	private Category categoryParent;
+	
+    @OneToMany(
+            mappedBy = "categoryParent",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+        )
+    private List<Category> categoryChildren = new ArrayList<Category>();
+    
 	@OneToMany(mappedBy = "category")
 	private List<Device> deviceList = new ArrayList<Device>();
 
@@ -106,9 +122,46 @@ public class Category {
 		this.deviceList = deviceList;
 	}
 	
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public Category getCategoryParent() {
+		return categoryParent;
+	}
+
+	public void setCategoryParent(Category categoryParent) {
+		this.categoryParent = categoryParent;
+	}
+
+	public List<Category> getCategoryChildren() {
+		return categoryChildren;
+	}
+
+	public void setCategoryChildren(List<Category> categoryChildren) {
+		this.categoryChildren = categoryChildren;
+	}
+	
 	/*
-	 * Methods
+	 * Additional methods
 	 */
+
+    public void addChildCategory(Category child) {
+        if (child == null) return;
+        child.setCategoryParent(this);
+        this.categoryChildren.add(child);
+    }
+
+    public void removeChildCategory(Category child) {
+        if (child == null) return;
+        if (this.categoryChildren.remove(child)) {
+            child.setCategoryParent(null);
+        }
+    }
 	
 	public void addDevice(Device device) {
 		this.deviceList.add(device);

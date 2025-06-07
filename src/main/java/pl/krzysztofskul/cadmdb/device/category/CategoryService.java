@@ -2,6 +2,7 @@ package pl.krzysztofskul.cadmdb.device.category;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +38,24 @@ public class CategoryService {
 	
 	public Category loadByCategoryCode(String code) {
 		return categoryRepo.findByCode(code);
+	}
+	
+	public Category loadByCategoryCodeWithDeviceList(String code) {
+		Category category = this.loadByCategoryCode(code);
+		Hibernate.initialize(category.getDeviceList());
+		return category;
+	}
+	
+	public List<Category> loadAllByCategoryCode(String code) {
+		return categoryRepo.findAllByCode(code);
+	}
+
+	public List<Category> loadByCategoryCodeStartingWith(String prefix) {
+		List<Category> categoryList = categoryRepo.findAllByCodeStartingWith(prefix);
+		for (Category category : categoryList) {
+			Hibernate.initialize(category.getCategoryChildren());
+		}
+		return categoryList;
 	}
 	
 	public Category loadByCategoryNamePL(String namePL) {

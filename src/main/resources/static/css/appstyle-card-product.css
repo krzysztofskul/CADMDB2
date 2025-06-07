@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+/* 
+* Product card overrides
+*/
+
+.card.card-product-sm {
+	padding: .25rem;
+	display: inline-block;
+	width: 275px;
+	border: 1px solid darkred;
+}
+
+.card.card-product-sm .card-footer {
+	text-align: right;
+	background-color: white;
+}

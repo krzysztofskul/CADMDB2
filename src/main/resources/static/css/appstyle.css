@@ -5,6 +5,7 @@
 @import url(./appstyle-buttons.css);
 @import url(./appstyle-tables.css);
 @import url(./appstyle-card-hf.css);
+@import url(./appstyle-card-product.css);
 
 body {
   padding-top: 200px;  /* adjust this to your menu’s actual height */
