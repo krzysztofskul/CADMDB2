@@ -93,7 +93,7 @@ public class ManufacturerController {
 	@GetMapping("/{manufacturerId}/delete")
 	public ModelAndView deleteManufacturer(@PathVariable Long manufacturerId) {
 		mav.clear();
-		manufacturerService.deleteById(manufacturerId);
+//		manufacturerService.deleteById(manufacturerId);
 		mav.setViewName("redirect:/manufacturers");
 		return mav;
 	}
@@ -141,10 +141,10 @@ public class ManufacturerController {
 				@PathVariable Long productId
 			) {
 		mav.clear();
-		Manufacturer manufacturer = manufacturerService.loadByIdWithProducts(manufacturerId);
-		manufacturer.removeDevice(deviceService.loadById(productId));
-		deviceService.deleteById(productId);
-		manufacturerService.save(manufacturer);
+//		Manufacturer manufacturer = manufacturerService.loadByIdWithProducts(manufacturerId);
+//		manufacturer.removeDevice(deviceService.loadById(productId));
+//		deviceService.deleteById(productId);
+//		manufacturerService.save(manufacturer);
 		mav.setViewName("redirect:/manufacturers/"+manufacturerId+"/products");
 		return mav;
 	}

@@ -15,7 +15,7 @@
 						<p class="langEN">PRODUCTS</p>
 					</a>
 				</li>
-				<li th:if="${#request.requestURI.contains('/products')}" class="nav-item ml-auto">
+				<li th:if="${#request.requestURI.contains('/products')}" class="nav-item ml-auto text-right">
 					<a class="nav-link active text-success" th:href="@{|/manufacturers/${manufacturer.id}/create-product|}" href="#">
 						<p class="langPL">NOWY PRODUKT</p>
 						<p class="langEN">NEW PRODUCT</p>

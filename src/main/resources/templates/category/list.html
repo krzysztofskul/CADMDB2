@@ -11,43 +11,53 @@
 	<script src="/js/main.js"></script>
 </head>
 <body>	
-	
-	<!-- Header -->
-	<div th:replace="./header" :: header></div>
-	
-	<!-- Main container-->
-	<div class="container-fluid appcontainer">
-	
-		<!-- Fragment loop -->
-		<div th:fragment="categoryList (list)">
-			<ul>
-				<li th:each="cat : ${list}">
-					<a th:href="@{|/category/medical?code=${cat.code}|}">
-						<div class="border">
-							<p class="langPL" th:text="${cat.namePLplural}"></p>
-							<p class="langEN" th:text="${cat.nameENplural}"></p>
-						</div>
-					</a>
-					<div th:if="${!#lists.isEmpty(cat.categoryChildren)}"
-							th:insert="~{this :: categoryList(${cat.categoryChildren})}"
-						>						
+
+	<!-- ***** -->	
+	<!-- Fragment creates menu -->	
+	<!-- ***** -->	
+	<div th:fragment="categoryList (list)">
+		<ul>
+			<li th:each="cat : ${list}">
+				<a th:href="@{|/category/medical?code=${cat.code}|}">
+					<div class="border">
+						<p class="langPL" th:text="${cat.namePLplural}"></p>
+						<p class="langEN" th:text="${cat.nameENplural}"></p>
 					</div>
-				</li>
-			</ul>
-		</div>
-		
-		<!-- Main row for content -->
-		<div class="row">	
-			<!-- Menu -->
-			<div class="col-3">
-				<div th:insert="~{this :: categoryList(${categoryListMenu})}"></div>
-			</div>
+				</a>
+				<div th:if="${!#lists.isEmpty(cat.categoryChildren)}"
+						th:insert="~{this :: categoryList(${cat.categoryChildren})}"
+					>						
+				</div>
+			</li>
+		</ul>
+	</div>	
+
+	<!--  *****  -->
+	<!--  Fragment creates cards with device informatio -->
+	<!--  *****  -->
+	<div th:fragment="deviceCard (cat)">
+
 			
-			<!-- Content -->
-			<div class="col-9 border-left">
-				<div class="card card-product-sm" th:if="${null != category?.deviceList}" th:each="device : ${category?.deviceList}">
+				<div class="card card-product-sm" th:if="${null != category?.deviceList}" th:each="device : ${cat?.deviceList}">
 					<div class="card-header">
-						<p th:text="${device.manufacturer.name+' '+device.modelName}"></p>
+						<div class="row">
+							<div class="col-12">
+								<p class="langPL" th:text="${device.category.namePL}"></p>
+								<p class="langEN" th:text="${device.category.nameEN}"></p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12">
+								<p th:text="${device.manufacturer.name}"></p>
+							</div>
+						</div>
+					</div>
+					<div class="card-body">
+						<div class="row">
+							<div class="col-6">
+								<p class="value" th:text="${device.modelName}"></p>
+							</div>
+						</div>
 					</div>
 					<div class="card-footer">
 						<a th:href="@{|/devices/${device.id}|}">
@@ -56,9 +66,42 @@
 						</a>
 					</div>
 				</div>
+			
+			
+
+		<div th:if="${!#lists.isEmpty(cat?.categoryChildren)}" th:each="subcat : ${cat?.categoryChildren}">
+			<div
+			     th:insert="~{this :: deviceCard(${subcat})}">
 			</div>
 		</div>
+	</div>
 	
+	<!-- Header -->
+	<div th:replace="./header" :: header></div>
+	
+	<!-- Main container-->
+	<div class="container-fluid appcontainer">
+		
+		<!-- Main row for content -->
+		<div class="row">	
+			<!-- Menu -->
+			<div class="col-3">
+				<div th:insert="~{this :: categoryList(${categoryListMenu})}"></div>
+			</div>
+			
+			<!-- Content -->	
+			<div class="col-9 border-left">
+
+				
+			<div th:if="${category != null} "th:insert="~{this :: deviceCard(${category})}">
+			</div>
+
+
+
+			</div>
+
+		</div>
+
 	</div>
 	
 	<!--Footer-->

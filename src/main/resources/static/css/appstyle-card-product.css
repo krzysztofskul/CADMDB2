@@ -5,10 +5,11 @@
 */
 
 .card.card-product-sm {
-	padding: .25rem;
-	display: inline-block;
-	width: 275px;
-	border: 1px solid darkred;
+  padding: 0.25rem;
+  width: 420px;
+  border: 1px solid darkred;
+  vertical-align: top;   /* keep cards aligned at the top */
+  margin-right: 1rem;    /* space between cards */
 }
 
 .card.card-product-sm .card-footer {
