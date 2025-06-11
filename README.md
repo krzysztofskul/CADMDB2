@@ -20,8 +20,8 @@ The main goal of this application is to build hospital rooms and departments str
 **TODO:**  
 
 * VER.#0.3-ALPHA-FINAL | DONE  
-* VER.#0.3-ALPHA-RC | TODO:  
-    * refactor(config): application.properties data update to deploy  TODO  
+* VER.#0.3-ALPHA-FINAL-RC | DONE  
+    * refactor(config): application.properties data update for deployment DONE  
 * VER.#0.4-ALPHA-SNAPSHOT | TODO:  
 	* implement(functionality): currency management  
 	* implement(functionality): contact details management  
