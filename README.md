@@ -3,6 +3,9 @@
 #### INTRODUCTION
 The main goal of this application is to build hospital rooms and departments structure as well as to calculate equipment costs, service and power consumption per room and department.
 
+#### DEMO PAGE
+https://cadmedica-426c866a6bb5.herokuapp.com/login
+
 #### SCREENSHOTS
 **HOME PAGE**  
 <img src="./src/main/resources/static/img/readme/homepage-01.jpg" width="720px"/>   
@@ -12,6 +15,7 @@ The main goal of this application is to build hospital rooms and departments str
 * SpringSecurity  
 * MySQL/Hibernate  
 * Thymeleaf/Bootstrap
+* OpenAI
 
 #### PROJECT STATUS AND TODO'S
 
@@ -19,23 +23,20 @@ The main goal of this application is to build hospital rooms and departments str
 
 **TODO:**  
 
-* VER.#0.3-ALPHA-FINAL | DONE  
-* VER.#0.3-ALPHA-FINAL-RC | DONE  
-    * refactor(config): application.properties data update for deployment DONE  
-* VER.#0.4-ALPHA-SNAPSHOT | TODO:  
-	* implement(functionality): currency management  
-	* implement(functionality): contact details management  
-    * implement(healthcarefacily): planned/result area and budget   
-    * implement(functionality): room data sheet  
-    * implement(functionality): recalculation of the costs and area of the department and hospital when data changes  
-    * implement(functionality): investor  
-    * update(springsecurity): register new user  
-    * implement(functionality): error page  
-    * update(views): current page set on menu button  
-    * update(views): area and power values in a column of tables  
-    * refactor(): product/equipment/device nomenclature  
-    * refactor(): create technicalData class (?)  
-    * implement(functionality): activate/deactivate manufacturer (?)  
+* VER.#0.4-ALPHA | TODO:  
+    * feat: implement currency management  
+    * feat: implement contact details management  
+    * feat: implement planned and resulted area and budget   
+    * feat: implement room data sheet  
+    * feat: implement recalculation of the costs and area of the department and hospital when data changes  
+    * feat: implement investor management  
+    * feat(springsecurity): register new user  
+    * feat(ui): show error page when sth went wrong  
+    * feat(ui): highlight the menu button at current page  
+    * feat: show power values at the page with a list of hospitals/departments/rooms  
+    * refactor: standardize the nomenclature of the product/equipment/device  
+    * refactor: create technicalData class (?)  
+    * feat: delete, activate and deactivate the manufacturer and its products (?)  
     
 #### CONTACT
 *krzysztofskul@protonmail.com*
