@@ -115,7 +115,8 @@ public class RoomController {
 		mav = new ModelAndView();
 		Room room = roomService.loadByIdWithEquipment(Long.valueOf(roomId));
 		Device device = deviceService.loadById(Long.valueOf(deviceId));
-		room.addDevice(device);
+//		room.addDevice(device);
+		room = hfService.addDeviceToRoom(device, room);
 		room = roomService.saveAndReturn(room);
 		mav.addObject("edit", false);
 		mav.setViewName("redirect:/rooms/"+room.getId()+"/equipment");
@@ -129,7 +130,8 @@ public class RoomController {
 			) {
 		Room room = roomService.loadByIdWithEquipment(roomId);
 		Device device = deviceService.loadById(deviceId);
-		room.removeDevice(device);
+//		room.removeDevice(device);
+		room = hfService.removeDeviceFromRoom(device, room);
 		room = roomService.saveAndReturn(room);
 		mav.addObject("edit", false);
 		mav.setViewName("redirect:/rooms/"+room.getId()+"/equipment");

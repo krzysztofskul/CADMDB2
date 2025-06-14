@@ -137,7 +137,7 @@ public class HomeService {
 			//init and add test equipment to rooms
 			for (Room room : roomService.loadAll()) {
 				for (int i = 0; i < Random.randomInt(2, 3); i++) {
-					room.addDevice(deviceService.loadRandom());					
+					room = healthcareFacilityService.addDeviceToRoom(deviceService.loadRandom(), room);
 				}
 				roomService.saveAndReturn(room);
 			}

@@ -22,13 +22,15 @@ https://cadmedica-426c866a6bb5.herokuapp.com/login
 **Project status:** *in progress*  
 
 **TODO:**  
-
+    * fix(hospital): create new hospital bug; when creates new hospital the form is still visible; update edit true/false parameter  
+    * feat(room): add AI suggestion when creating new room  
+    * feat(product): navigate to the product details from the product list inside the room  
 * VER.#0.4-ALPHA | TODO:  
+    * feat: implement recalculation of the costs and area of the department and hospital when data changes  
     * feat: implement currency management  
     * feat: implement contact details management  
-    * feat: implement planned and resulted area and budget   
+    * feat: implement planned and resulted area and budget  
     * feat: implement room data sheet  
-    * feat: implement recalculation of the costs and area of the department and hospital when data changes  
     * feat: implement investor management  
     * feat(springsecurity): register new user  
     * feat(ui): show error page when sth went wrong  

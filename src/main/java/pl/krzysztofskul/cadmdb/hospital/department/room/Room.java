@@ -210,18 +210,14 @@ public class Room extends HealthcareFacility {
 	 */
 	public void addDevice(Device device) {
 		this.deviceList.add(device);
-		this.getDataFinancial().setPurCostOfDevicePlan(this.getDataFinancial().getPurCostOfDevicePlan().add(device.getDataFinancial().getPrice()));
-		this.getDepartment().getDataFinancial().setPurCostOfDevicePlan(this.getDepartment().getDataFinancial().getPurCostOfDevicePlan().add(device.getDataFinancial().getPrice()));
-		this.getDepartment().getHospital().getDataFinancial().setPurCostOfDevicePlan(this.getDepartment().getHospital().getDataFinancial().getPurCostOfDevicePlan().add(device.getDataFinancial().getPrice()));
+		device.addRoom(this);
 	}
 	
 	/**
 	 * Method that remove planned device from the room with cost of planned purchase calculation
 	 */
 	public void removeDevice(Device device) {
-		this.getDataFinancial().setPurCostOfDevicePlan(this.getDataFinancial().getPurCostOfDevicePlan().subtract(device.getDataFinancial().getPrice()));
-		this.getDepartment().getDataFinancial().setPurCostOfDevicePlan(this.getDepartment().getDataFinancial().getPurCostOfDevicePlan().subtract(device.getDataFinancial().getPrice()));
-		this.getDepartment().getHospital().getDataFinancial().setPurCostOfDevicePlan(this.getDepartment().getHospital().getDataFinancial().getPurCostOfDevicePlan().subtract(device.getDataFinancial().getPrice()));
 		this.deviceList.remove(device);
+		device.removeRoom(this);
 	}
 }

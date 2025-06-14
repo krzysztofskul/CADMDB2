@@ -71,7 +71,8 @@ public class HealthcareFacilityService {
 		Room room = roomService.loadById(roomId);	
 	    List<Device> deviceList = new ArrayList<>(room.getDeviceList());
 	    for (Device device : deviceList) {
-	        room.removeDevice(device); // updates costs and removes from list
+	        //room.removeDevice(device); // updates costs and removes from list
+	    	room = this.removeDeviceFromRoom(device, room);
 	    }
 	    //calculate area in the department and hospital
 	    Department department = room.getDepartment();
@@ -100,4 +101,21 @@ public class HealthcareFacilityService {
 		hospital = hospitalService.saveAndReturn(hospital);
 		hospitalService.deleteById(hospitalId);
 	}
+
+	public Room addDeviceToRoom (Device device, Room room) {
+		room.addDevice(device);
+		room.getDataFinancial().setPurCostOfDevicePlan(room.getDataFinancial().getPurCostOfDevicePlan().add(device.getDataFinancial().getPrice()));
+		room.getDepartment().getDataFinancial().setPurCostOfDevicePlan(room.getDepartment().getDataFinancial().getPurCostOfDevicePlan().add(device.getDataFinancial().getPrice()));
+		room.getDepartment().getHospital().getDataFinancial().setPurCostOfDevicePlan(room.getDepartment().getHospital().getDataFinancial().getPurCostOfDevicePlan().add(device.getDataFinancial().getPrice()));
+		return room;
+	}
+	
+	public Room removeDeviceFromRoom (Device device, Room room) {
+		room.getDataFinancial().setPurCostOfDevicePlan(room.getDataFinancial().getPurCostOfDevicePlan().subtract(device.getDataFinancial().getPrice()));
+		room.getDepartment().getDataFinancial().setPurCostOfDevicePlan(room.getDepartment().getDataFinancial().getPurCostOfDevicePlan().subtract(device.getDataFinancial().getPrice()));
+		room.getDepartment().getHospital().getDataFinancial().setPurCostOfDevicePlan(room.getDepartment().getHospital().getDataFinancial().getPurCostOfDevicePlan().subtract(device.getDataFinancial().getPrice()));
+		room.removeDevice(device);
+		return room;
+	}
+
 }
