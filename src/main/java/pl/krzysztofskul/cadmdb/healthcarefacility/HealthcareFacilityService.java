@@ -50,7 +50,7 @@ public class HealthcareFacilityService {
 		return department;
 	}
 
-	private Department calculateDepartmentArea(Department department, Room room, boolean trueForAddfalseForSubtract) {
+	public Department calculateDepartmentArea(Department department, Room room, boolean trueForAddfalseForSubtract) {
 		long x = 1;
 		if (trueForAddfalseForSubtract == false) {
 			x = -1;
@@ -117,5 +117,5 @@ public class HealthcareFacilityService {
 		room.removeDevice(device);
 		return room;
 	}
-
+	
 }

@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacilityService;
+import pl.krzysztofskul.cadmdb.hospital.department.Department;
+import pl.krzysztofskul.cadmdb.hospital.department.DepartmentService;
 import pl.krzysztofskul.cadmdb.hospital.department.room.Room;
 import pl.krzysztofskul.cadmdb.hospital.department.room.RoomService;
 import pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameStandardizedService;
@@ -20,16 +23,20 @@ public class DataArchRoomController {
 
 	private RoomService roomService;
 	private NameStandardizedService nameStandardizedService;
+	private HealthcareFacilityService healthcareFacilityService;
+	private DepartmentService departmentService;
 	
 	/**
 	 * Constructor
 	 * @param roomService
 	 */
 	@Autowired
-	public DataArchRoomController(RoomService roomService, NameStandardizedService nameStandardizedService) {
+	public DataArchRoomController(RoomService roomService, NameStandardizedService nameStandardizedService, HealthcareFacilityService healthcareFacilityService, DepartmentService departmentService) {
 		super();
 		this.roomService = roomService;
 		this.nameStandardizedService = nameStandardizedService;
+		this.healthcareFacilityService = healthcareFacilityService;
+		this.departmentService = departmentService;
 	}
 
 	@GetMapping("/{id}")
@@ -52,11 +59,17 @@ public class DataArchRoomController {
 				@ModelAttribute Room room
 			) {
 		Room roomDB = roomService.loadByIdWithDataArchRoom(id);
+		Department department = roomDB.getDepartment();
+		department = healthcareFacilityService.calculateDepartmentArea(department, roomDB, false);
+		department = healthcareFacilityService.calculateDepartmentArea(department, room, true);
+		
 		roomDB.setNameStandardized(room.getNameStandardized());
 		roomDB.setName(room.getName());
 		roomDB.setRoomNo(room.getRoomNo());
 		roomDB.setDataArchRoom(room.getDataArchRoom());
+		
 		roomDB = roomService.saveAndReturn(roomDB);
+		departmentService.save(department);
 		return "redirect:/rooms/architectural-data/"+id;
 	}
 	

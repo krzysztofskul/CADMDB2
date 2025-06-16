@@ -14,21 +14,29 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import pl.krzysztofskul.cadmdb.device.mounting.MountingTypeEnum;
 import pl.krzysztofskul.cadmdb.function.FunctionEnum;
+import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacility;
+import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacilityService;
+import pl.krzysztofskul.cadmdb.hospital.department.room.Room;
+import pl.krzysztofskul.cadmdb.hospital.department.room.RoomService;
 
 @Controller
 @RequestMapping("/devices")
 public class DeviceController {
 
 	private DeviceService deviceService;
+	private RoomService roomService;
+	private HealthcareFacilityService healthcareFacilityService;
 	
 	/**
 	 * Constructor
 	 * @param deviceService
 	 */
 	@Autowired
-	public DeviceController(DeviceService deviceService) {
+	public DeviceController(DeviceService deviceService, RoomService roomService, HealthcareFacilityService healthcareFacilityService) {
 		super();
 		this.deviceService = deviceService;
+		this.roomService = roomService;
+		this.healthcareFacilityService = healthcareFacilityService;
 	}
 
 	@GetMapping("{deviceId}")
@@ -53,7 +61,20 @@ public class DeviceController {
 	public String postDeviceById(
 				@ModelAttribute Device device
 			) {
+		//Load all room where device is planned
+		List<Room> roomList = roomService.loadAllByDeviceList_Id(device.getId());
+ 		//Remove old device from all rooms
+		Device deviceDB = deviceService.loadById(device.getId());
+		for (Room room : roomList) {
+			healthcareFacilityService.removeDeviceFromRoom(deviceDB, room);
+		}
+		//Updated device in DB
 		device = deviceService.saveAndReturn(device);
+		//add device to all rooms and save rooms
+		for (Room room : roomList) {
+			room = healthcareFacilityService.addDeviceToRoom(device, room);
+			roomService.saveAndReturn(room);
+		}
 		return "redirect:/devices/"+device.getId();
 	}
 	

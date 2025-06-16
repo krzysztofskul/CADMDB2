@@ -51,6 +51,11 @@ public class RoomService {
 		return roomRepo.findAll();
 	}
 
+	public List<Room> loadAllByDeviceList_Id(Long deviceId) {
+		List<Room> roomList = roomRepo.findAllByDeviceList_Id(deviceId);
+		return roomList;
+	}
+	
 	public void deleteById(Long id) {	
 		roomRepo.deleteById(id);
 	}
