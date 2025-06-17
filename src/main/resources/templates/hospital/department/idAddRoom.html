@@ -51,7 +51,7 @@
 				      </label>
 				
 				      <div class="d-flex">
-				        <select id="select-room" class="form-control mr-2"
+				        <select id="selectRoomStandardizedName" class="form-control mr-2"
 				                th:field="${room.nameStandardized}">
 				          <option th:each="nameStandardized : ${nameStandardizedList}"
 				                  th:text="${nameStandardized.nameStandardizedPl}"
@@ -135,45 +135,75 @@
 				        <span class="langPL d-block">INFORMACJE OGÓLNE</span>
 				        <span class="langEN d-block">general information</span>
 				      </label>
-				      <textarea id="input-roomdescriptionGeneral"
+				      <textarea id="descGeneral"
 				             class="form-control"
 				             th:field="${room.dataArchRoom.descriptionGeneral}"/>
+						<div th:if="${edit == true}" class="form-group">
+						  <a href="#" class="btn btn-link btn-sm" onclick="suggestDescription('general'); return false;">
+								<p class="langPL">ZASUGERUJ</p>
+								<p class="langEN">SUGGEST</p>
+						  </a>
+						</div>
 				    </div>
 				    <div class="form-group">
 				      <label for="input-roomdescriptionFloor" class="mb-1">
 				        <span class="langPL d-block">INFORMACJE NT. PODŁOGI</span>
 				        <span class="langEN d-block">floor information</span>
 				      </label>
-				      <textarea id="input-roomdescriptionFloor"
+				      <textarea id="descFloor"
 				             class="form-control"
 				             th:field="${room.dataArchRoom.descriptionFloor}"/>
+						<div th:if="${edit == true}" class="form-group">
+						  <a href="#" class="btn btn-link btn-sm" onclick="suggestDescription('floor'); return false;">
+								<p class="langPL">ZASUGERUJ</p>
+								<p class="langEN">SUGGEST</p>
+						  </a>
+						</div>
 				    </div>
 				    <div class="form-group">
 				      <label for="input-roomdescriptionWalls" class="mb-1">
 				        <span class="langPL d-block">INFORMACJE NT. ŚCIAN</span>
 				        <span class="langEN d-block">walls information</span>
 				      </label>
-				      <textarea id="input-roomdescriptionWalls"
+				      <textarea id="descWalls"
 				             class="form-control"
 				             th:field="${room.dataArchRoom.descriptionWalls}"/>
+						<div th:if="${edit == true}" class="form-group">
+						  <a href="#" class="btn btn-link btn-sm" onclick="suggestDescription('walls'); return false;">
+								<p class="langPL">ZASUGERUJ</p>
+								<p class="langEN">SUGGEST</p>
+						  </a>
+						</div>
 				    </div>
 				    <div class="form-group">
 				      <label for="input-roomdescriptionCeiling" class="mb-1">
 				        <span class="langPL d-block">INFORMACJE NT. SUFITU</span>
 				        <span class="langEN d-block">ceiling information</span>
 				      </label>
-				      <textarea id="input-roomdescriptionCeiling"
+				      <textarea id="descCeiling"
 				             class="form-control"
 				             th:field="${room.dataArchRoom.descriptionCeiling}"/>
+						<div th:if="${edit == true}" class="form-group">
+						  <a href="#" class="btn btn-link btn-sm" onclick="suggestDescription('ceiling'); return false;">
+								<p class="langPL">ZASUGERUJ</p>
+								<p class="langEN">SUGGEST</p>
+						  </a>
+						</div>	
 				    </div>
 				    <div class="form-group">
 				      <label for="input-roomdescriptionLight" class="mb-1">
 				        <span class="langPL d-block">INFORMACJE NT. OŚWIETLENIA</span>
 				        <span class="langEN d-block">lightning information</span>
 				      </label>
-				      <textarea id="input-roomdescriptionLight"
+				      <textarea id="descLightning"
 				             class="form-control"
 				             th:field="${room.dataArchRoom.descriptionLight}"/>
+						<div th:if="${edit == true}" class="form-group">
+						  <a href="#" class="btn btn-link btn-sm" onclick="suggestDescription('lightning'); return false;">
+								<p class="langPL">ZASUGERUJ</p>
+								<p class="langEN">SUGGEST</p>
+						  </a>
+						</div>
 				    </div>
 				  </th:block>
 				</div>
@@ -208,6 +238,27 @@
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+	<script th:inline="javascript">
+	  function suggestDescription(type) {
+	    const sel = document.getElementById('selectRoomStandardizedName');
+	    const roomStandardizedName = sel.options[sel.selectedIndex].text;
+	    fetch(`/api/rooms/standardized-name/${roomStandardizedName}/describe?section=${type}`)
+	      .then(r => r.text())
+	      .then(text => {
+	        document.querySelector(
+	          type === 'general' ? '#descGeneral'
+	                             : type === 'floor'   ? '#descFloor'
+	                             : type === 'ceiling'   ? '#descCeiling'
+	                             : type === 'walls'   ? '#descWalls'
+	                             : type === 'lightning'   ? '#descLightning'
+	                             : /*…*/                '#desc'
+	        ).value = text;
+	      })
+	      .catch(console.error);
+	  }
+	</script>
+
 
 </body>
 </html>

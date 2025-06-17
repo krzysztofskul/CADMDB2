@@ -94,5 +94,75 @@ public class RoomAiController {
     return ai.chatCompletion(prompt);
   }
 
+  @GetMapping("/standardized-name/{standardizedName}/describe")
+  public String describeSectionStandardizedName(
+      @PathVariable String standardizedName,
+      @RequestParam String section
+  ) {
+    String prompt = "";
+    switch (section) {
+	case "general": {
+		// prepare a small prompt
+	    prompt = String.format("""
+		  Given a room standardized name: %s.
+		  Provide guidelines on how the room should be designed and laid out in general.
+		  Write your response in English and in Polish.
+	      """,
+	      standardizedName,
+	      section
+	    );
+	    break;
+	}
+	case "floor": {
+		  // prepare a small prompt
+		  prompt = String.format("""
+		  Given a room standardized name: %s.
+		  Provide guidelines on how the floor should be designed and finished.
+		  Write your response in English and in Polish.
+	      """,
+	      standardizedName,
+	      section
+				  );		
+		break;}
+	case "ceiling": {
+		  // prepare a small prompt
+		  prompt = String.format("""
+		  Given a room standardized name: %s.
+		  Provide guidelines on how the ceiling should be designed and finished.
+		  Write your response in English and in Polish.
+	      """,
+	      standardizedName,
+	      section
+				  );
+		break;}
+	case "walls": {
+		  // prepare a small prompt
+		  prompt = String.format("""
+		  Given a room standardized name: %s.
+		  Provide guidelines on how the walls should be designed and finished.
+		  Write your response in English and in Polish.
+	      """,
+	      standardizedName,
+	      section
+				  );
+		break;}
+	case "lightning": {
+		  // prepare a small prompt
+		  prompt = String.format("""
+		  Given a room standardized name: %s.
+		  Provide guidelines on how the lightning should be designed and finished.
+		  Write your response in English and in Polish.
+	      """,
+	      standardizedName,
+	      section
+				  );
+		break;}
+	default:
+		throw new IllegalArgumentException("Unexpected value: " + section);
+	}
+    
+
+    return ai.chatCompletion(prompt);
+  }
 
 }
