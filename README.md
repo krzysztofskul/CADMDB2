@@ -26,7 +26,6 @@ https://cadmedica-426c866a6bb5.herokuapp.com/login
 * VER.#0.4-BETA | TODO:    
     * feat(contact): implement contact details management  
     * feat(address): implement api https://restcountries.com/   
-    * feat(address): update ui and validation when save address  
     * feat: implement currency management  
     * feat: implement planned and resulted area and budget  
     * feat: implement room data sheet  

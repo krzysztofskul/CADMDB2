@@ -32,7 +32,10 @@
 						<div class="col-sm-10">
 							<h5 th:if="${edit == false} OR ${edit == null}" th:text="${hospital.name}"></h5>
 							<input th:if="${edit == true}" class="form-control" type="hidden" th:field="${hospital.id}"></input>
-							<input th:if="${edit == true}" class="form-control" type="text" th:field="${hospital.name}"></input>
+							<input th:if="${edit == true}" class="form-control" type="text" th:field="${hospital.name}"
+								th:classappend="${#fields.hasErrors('name')} ? 'border-danger' : ''"
+							>
+							</input>
 							<input th:if="${edit == true}" class="form-control" type="hidden" th:field="${hospital.dataFinancial.id}"></input>
 							<input th:if="${edit == true}" class="form-control" type="hidden" th:field="${hospital.dataArchHospital}"></input>
 							<input th:if="${edit == true}" class="form-control" type="hidden" th:field="${hospital.address.id}"></input>
@@ -46,33 +49,77 @@
 							<p class="langEN">ADDRESS:</p>
 						</div>
 						<div class="col-10">
-							<p>
-								<span th:if="${edit == false} OR ${edit == null}" th:text="${hospital.address.country}"></span>
-								<input th:if="${edit == true}" class="form-control d-inline-block" style="width: 30em" type="text" th:field="${hospital.address.country}"></input>
-							</p>
-							<p>
-								
-								<span th:if="${edit == false} OR ${edit == null}" th:text="${hospital.address.postalcode}"></span>
-								<input th:if="${edit == true}" class="form-control d-inline-block" style="width: 10em" type="text" th:field="${hospital.address.postalcode}"></input>
-								
-								<span th:if="${edit == false} OR ${edit == null}" th:text="${hospital.address.city}"></span>
-								<input th:if="${edit == true}" class="form-control d-inline-block" style="width: 20em" type="text" th:field="${hospital.address.city}"></input>
-							</p>
-							<p>
-								<span th:if="${edit == false} OR ${edit == null}" th:text="${hospital.address.streetname}"></span>
-								<input th:if="${edit == true}" class="form-control d-inline-block" style="width: 20em" type="text" th:field="${hospital.address.streetname}"></input>
-								
-								<span th:if="${edit == false} OR ${edit == null}" th:text="${hospital.address.streetno}"></span>
-								<input th:if="${edit == true}" class="form-control d-inline-block" style="width: 5em" type="text" th:field="${hospital.address.streetno}"></input>
-								
-								<span th:if="${edit == false} OR ${edit == null}" th:text="${hospital.address.flatno}"></span>
-								<input th:if="${edit == true}" class="form-control d-inline-block" style="width: 5em" type="text" th:field="${hospital.address.flatno}"></input>
-							
-							</p>
-
+							<div class="row">
+								<div class="input-group-cadmedica">
+							        <div class="input-group-prepend">
+							          <div class="input-group-text">
+										<p class="langPL">PAŃSTWO:</p>
+										<p class="langEN">country:</p>
+									  </div>
+							        </div>
+									<input th:if="${edit == false} OR ${edit == null}" th:field="*{address.country}" disabled></input>
+									<input th:if="${edit == true}" class="form-control" type="text" th:field="*{address.country}"
+										th:classappend="${#fields.hasErrors('address.country')} ? 'border-danger' : ''"
+									>
+									</input>
+								</div>
+							</div>
+							<div class="row">
+								<div class="input-group-cadmedica">
+							        <div class="input-group-prepend">
+							          <div class="input-group-text">
+										<p class="langPL">KOD POCZTOWY:</p>
+										<p class="langEN">postal code:</p>
+									  </div>
+							        </div>
+									<input th:if="${edit == false} OR ${edit == null}" type="text" th:field="${hospital.address.postalcode}" disabled></input>
+									<input th:if="${edit == true}" class="form-control"  type="text" th:field="${hospital.address.postalcode}"></input>
+  						        </div>
+  						        <div class="input-group-cadmedica">
+							        <div class="input-group-prepend">
+							          <div class="input-group-text">
+										<p class="langPL">MIAST0:</p>
+										<p class="langEN">city:</p>
+									  </div>
+							        </div>
+									<input th:if="${edit == false} OR ${edit == null}" th:field="${hospital.address.city}" disabled></input>
+									<input th:if="${edit == true}" class="form-control" type="text" th:field="${hospital.address.city}"></input>
+								</div>
+							</div>
+							<div class="row">
+								<div class="input-group-cadmedica">
+							        <div class="input-group-prepend">
+							          <div class="input-group-text">
+										<p class="langPL">ULICA:</p>
+										<p class="langEN">street name:</p>
+									  </div>
+							        </div>
+									<input th:if="${edit == false} OR ${edit == null}" th:field="${hospital.address.streetname}" disabled></input>
+									<input th:if="${edit == true}" class="form-control" type="text" th:field="${hospital.address.streetname}"></input>
+								</div>
+								<div class="input-group-cadmedica">
+							        <div class="input-group-prepend">
+							          <div class="input-group-text">
+										<p class="langPL">NUMER:</p>
+										<p class="langEN">street no:</p>
+									  </div>
+							        </div>
+									<input th:if="${edit == false} OR ${edit == null}" th:field="${hospital.address.streetno}" disabled></input>
+									<input th:if="${edit == true}" class="form-control" type="text" th:field="${hospital.address.streetno}"></input>
+								</div>
+						        <div class="input-group-cadmedica">
+							        <div class="input-group-prepend">
+							          <div class="input-group-text">
+										<p class="langPL">NUMER LOKALU:</p>
+										<p class="langEN">unit no:</p>
+									  </div>
+							        </div>
+									<input th:if="${edit == false} OR ${edit == null}" th:field="${hospital.address.flatno}" disabled></input>
+									<input th:if="${edit == true}" class="form-control" type="text" th:field="${hospital.address.flatno}"></input>
+								</div>
+							</div>
 						</div>
-					</div>
-					
+					</div>			
 				</div>
 				<div class="card-footer">
 					<th:block th:if="${edit == true}">

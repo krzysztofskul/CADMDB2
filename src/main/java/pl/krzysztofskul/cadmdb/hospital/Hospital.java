@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 
 import pl.krzysztofskul.cadmdb.address.Address;
 import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacility;
@@ -20,6 +22,10 @@ import pl.krzysztofskul.cadmdb.hospital.department.Department;
 @Entity
 public class Hospital extends HealthcareFacility {
 
+	@Valid
+	@NotBlank(message = "Name can't be blank!")
+	private String name;
+	
 	@OneToMany(mappedBy = "hospital", cascade = CascadeType.ALL)
 	private List<Department> departmentList = new ArrayList<Department>();
 
@@ -43,6 +49,16 @@ public class Hospital extends HealthcareFacility {
 	public Hospital() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**

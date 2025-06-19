@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+.input-group-cadmedica {
+	display: inline-flex;
+	align-items: stretch;
+	margin: 5px;
+	padding: 0px;
+}
+
+.input-group-cadmedica .input-group-prepend {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 120px;
+	text-align: right;
+	border-radius: 5px 0 0 5px;
+	border-left: 1px solid lightgray;
+	border-top: 1px solid lightgray;
+	border-bottom: 1px solid lightgray;
+}
+.input-group-cadmedica .input-group-prepend .input-group-text {
+	color: gray;
+	display: flex;
+	flex-direction: column;
+	padding: 0;
+}
+
+.input-group-cadmedica .form-control {
+	display: inline-block;
+}

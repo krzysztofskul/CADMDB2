@@ -65,39 +65,76 @@
 							<p class="langPL">ADRES:</p>
 							<p class="langEN">ADDRESS:</p>
 						</div>
-						<th:block th:if="${edit == true}">
-							<div class="col-10">
-								<p>
-									<input class="form-control d-inline-block" style="width: 30em" type="text" th:field="${department.address.country}"></input>
-								</p>
-								<p>
-									
-									<input class="form-control d-inline-block" style="width: 10em" type="text" th:field="${department.address.postalcode}"></input>
-									<input class="form-control d-inline-block" style="width: 20em" type="text" th:field="${department.address.city}"></input>
-								</p>
-								<p>
-									<input class="form-control d-inline-block" style="width: 20em" type="text" th:field="${department.address.streetname}"></input>
-									<input class="form-control d-inline-block" style="width: 5em" type="text" th:field="${department.address.streetno}"></input>
-									<input class="form-control d-inline-block" style="width: 5em" type="text" th:field="${department.address.flatno}"></input>					
-								</p>
+						
+						<div class="col-10">
+							<div class="row">
+								<div class="input-group-cadmedica">
+							        <div class="input-group-prepend">
+							          <div class="input-group-text">
+										<p class="langPL">PAŃSTWO:</p>
+										<p class="langEN">country:</p>
+									  </div>
+							        </div>
+									<input th:if="${department.address != null and (edit == false or edit == null)}" th:field="${department.address.country}" disabled></input>
+									<input th:if="${edit == true}" class="form-control" type="text" th:field="${department.address.country}"></input>
+								</div>
 							</div>
-						</th:block>
-						<th:block th:if="${department.address != null and (edit == false or edit == null)}">
-							<div class="col-10">
-								<p>
-									<span th:text="${department.address.country}"></span>
-								</p>
-								<p>
-									<span th:text="${department.address.postalcode}"></span>
-									<span th:text="${department.address.city}"></span>
-								</p>
-								<p>
-									<span th:text="${department.address.streetname}"></span>
-									<span th:text="${department.address.streetno}"></span>
-									<span th:text="${department.address.flatno}"></span>					
-								</p>
+							<div class="row">
+								<div class="input-group-cadmedica">
+							        <div class="input-group-prepend">
+							          <div class="input-group-text">
+										<p class="langPL">KOD POCZTOWY:</p>
+										<p class="langEN">postal code:</p>
+									  </div>
+							        </div>
+									<input th:if="${department.address != null and (edit == false or edit == null)}" type="text" th:field="${department.address.postalcode}" disabled></input>
+									<input th:if="${edit == true}" class="form-control"  type="text" th:field="${department.address.postalcode}"></input>
+  						        </div>
+  						        <div class="input-group-cadmedica">
+							        <div class="input-group-prepend">
+							          <div class="input-group-text">
+										<p class="langPL">MIAST0:</p>
+										<p class="langEN">city:</p>
+									  </div>
+							        </div>
+									<input th:if="${department.address != null and (edit == false or edit == null)}" th:field="${department.address.city}" disabled></input>
+									<input th:if="${edit == true}" class="form-control" type="text" th:field="${department.address.city}"></input>
+								</div>
 							</div>
-						</th:block>
+							<div class="row">
+								<div class="input-group-cadmedica">
+							        <div class="input-group-prepend">
+							          <div class="input-group-text">
+										<p class="langPL">ULICA:</p>
+										<p class="langEN">street name:</p>
+									  </div>
+							        </div>
+									<input th:if="${department.address != null and (edit == false or edit == null)}" th:field="${department.address.streetname}" disabled></input>
+									<input th:if="${edit == true}" class="form-control" type="text" th:field="${department.address.streetname}"></input>
+								</div>
+								<div class="input-group-cadmedica">
+							        <div class="input-group-prepend">
+							          <div class="input-group-text">
+										<p class="langPL">NUMER:</p>
+										<p class="langEN">street no:</p>
+									  </div>
+							        </div>
+									<input th:if="${department.address != null and (edit == false or edit == null)}" th:field="${department.address.streetno}" disabled></input>
+									<input th:if="${edit == true}" class="form-control" type="text" th:field="${department.address.streetno}"></input>
+								</div>
+						        <div class="input-group-cadmedica">
+							        <div class="input-group-prepend">
+							          <div class="input-group-text">
+										<p class="langPL">NUMER LOKALU:</p>
+										<p class="langEN">unit no:</p>
+									  </div>
+							        </div>
+									<input th:if="${department.address != null and (edit == false or edit == null)}" th:field="${department.address.flatno}" disabled></input>
+									<input th:if="${edit == true}" class="form-control" type="text" th:field="${department.address.flatno}"></input>
+								</div>
+							</div>
+						</div>
+						
 						<th:block th:if="${department.address == null}">
 							<div class="col-10">
 								<div class="d-inline-block">

@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
 @import url(./test.css);
+@import url(./appstyle-form-input.css);
 @import url(./appstyle-lang.css);
 @import url(./appstyle-buttons.css);
 @import url(./appstyle-tables.css);
