@@ -60,7 +60,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<th:block th:each="product : ${manufacturer.deviceList}">
+						<th:block th:each="product : ${manufacturer.productList}">
 							<tr>
 								<td>
 									<p class="langPL" th:text="${product.category.namePL}"></p>
@@ -84,7 +84,7 @@
 									</div>
 								</td>
 								<td class="float-right">
-									<a href="#" th:href="@{|/devices/${product.id}|}" class="btn btn-sm btn-outline-primary">
+									<a href="#" th:href="@{|/products/${product.id}|}" class="btn btn-sm btn-outline-primary">
 										<p class="langPL">SZCZEGÓŁY</p>
 										<p class="langEN">DETAILS</p>
 									</a>

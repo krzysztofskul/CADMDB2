@@ -34,8 +34,8 @@
 							<input th:if="${edit == true}" class="form-control" type="hidden" th:field="${room.dataFinancial.id}"></input>
 							<input th:if="${edit == true}" class="form-control" type="hidden" th:field="${room.dataArchRoom}"></input>
 
-							<select th:if="${edit == true}" th:field="${room.deviceList}" multiple class="d-none">
-								<option th:each="device : ${room.deviceList}" th:text="${device.id}" th:value="${device.id}"/>
+							<select th:if="${edit == true}" th:field="${room.productList}" multiple class="d-none">
+								<option th:each="product : ${room.productList}" th:text="${product.id}" th:value="${product.id}"/>
 							</select>
 	
 						</div>

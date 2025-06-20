@@ -1,4 +1,4 @@
-package pl.krzysztofskul.cadmdb.device;
+package pl.krzysztofskul.cadmdb.product;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -10,17 +10,17 @@ import org.springframework.stereotype.Service;
 import com.thedeanda.lorem.LoremIpsum;
 
 import pl.krzysztofskul.cadmdb.company.manufacturer.ManufacturerService;
-import pl.krzysztofskul.cadmdb.device.category.Category;
-import pl.krzysztofskul.cadmdb.device.category.CategoryGenerator;
-import pl.krzysztofskul.cadmdb.device.category.CategoryService;
-import pl.krzysztofskul.cadmdb.device.datafinancial.DataFinancial;
-import pl.krzysztofskul.cadmdb.device.mounting.MountingTypeEnum;
 import pl.krzysztofskul.cadmdb.function.FunctionEnum;
 import pl.krzysztofskul.cadmdb.init.InitDataGenerator;
+import pl.krzysztofskul.cadmdb.product.category.Category;
+import pl.krzysztofskul.cadmdb.product.category.CategoryGenerator;
+import pl.krzysztofskul.cadmdb.product.category.CategoryService;
+import pl.krzysztofskul.cadmdb.product.datafinancial.DataFinancial;
+import pl.krzysztofskul.cadmdb.product.mounting.MountingTypeEnum;
 import pl.krzysztofskul.cadmdb.random.Random;
 
 @Service
-public class DeviceTestGenerator implements InitDataGenerator<Device> {
+public class ProductTestGenerator implements InitDataGenerator<Product> {
 
 	//private List<String> demoManufacturerList = new ArrayList<String>();
 	
@@ -34,7 +34,7 @@ public class DeviceTestGenerator implements InitDataGenerator<Device> {
 	 * Constructor
 	 */
 	@Autowired
-	public DeviceTestGenerator(
+	public ProductTestGenerator(
 			Random random 
 			, CategoryGenerator categoryGenerator
 			, CategoryService categoryService
@@ -56,17 +56,17 @@ public class DeviceTestGenerator implements InitDataGenerator<Device> {
 	}
 
 	@Override
-	public Device initDataAndReturn() {
-		Device device = new Device();
-		device.setManufacturer(manufacturerService.loadRandom());
-		device.setModelName(LoremIpsum.getInstance().getTitle(1));
-		device.setFunctionEnum(this.randomFunction());
-		device.setWeight(random.randomInt(10, 200));
-		device.setHeatDissipation(random.randomInt(10, 200));
-		device.setPowerConnectionValue(random.randomInt(10, 200));
-		device.setMountingTypeEnum(this.randomMountingType());
-		device.setDataFinancial(new DataFinancial(BigDecimal.valueOf(random.randomInt(10000, 200000)).setScale(2)));
-		return device;
+	public Product initDataAndReturn() {
+		Product product = new Product();
+		product.setManufacturer(manufacturerService.loadRandom());
+		product.setModelName(LoremIpsum.getInstance().getTitle(1));
+		product.setFunctionEnum(this.randomFunction());
+		product.setWeight(random.randomInt(10, 200));
+		product.setHeatDissipation(random.randomInt(10, 200));
+		product.setPowerConnectionValue(random.randomInt(10, 200));
+		product.setMountingTypeEnum(this.randomMountingType());
+		product.setDataFinancial(new DataFinancial(BigDecimal.valueOf(random.randomInt(10000, 200000)).setScale(2)));
+		return product;
 	}
 
 	private MountingTypeEnum randomMountingType() {
@@ -81,14 +81,14 @@ public class DeviceTestGenerator implements InitDataGenerator<Device> {
 	}
 
 	@Override
-	public List<Device> initListAndReturn() {
-		List<Device> deviceList = new ArrayList<Device>();
+	public List<Product> initListAndReturn() {
+		List<Product> productList = new ArrayList<Product>();
 		for (Category category : categoryService.loadAll()) {
-			Device device = this.initDataAndReturn();
-			device.setCategory(category);
-			deviceList.add(device);
+			Product product = this.initDataAndReturn();
+			product.setCategory(category);
+			productList.add(product);
 		}
-		return deviceList;
+		return productList;
 	}
 
 

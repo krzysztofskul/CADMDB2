@@ -35,7 +35,7 @@ public class HomeController {
 	}
 	
 	@GetMapping("/initDbTest")
-	public ModelAndView getInitDbDemo() {
+	public ModelAndView getInitDbTest() {
 		ModelAndView mav = new ModelAndView("redirect:/home");
 		homeService.initDbTest();
 		mav.addObject("hospitalList", hospitalService.loadAll());

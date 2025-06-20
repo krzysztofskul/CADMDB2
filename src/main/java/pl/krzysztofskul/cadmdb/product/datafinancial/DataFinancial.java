@@ -1,4 +1,4 @@
-package pl.krzysztofskul.cadmdb.device.datafinancial;
+package pl.krzysztofskul.cadmdb.product.datafinancial;
 
 import java.math.BigDecimal;
 
@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-import pl.krzysztofskul.cadmdb.device.Device;
+import pl.krzysztofskul.cadmdb.product.Product;
 
 @Entity
 public class DataFinancial {
@@ -18,8 +18,8 @@ public class DataFinancial {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@OneToOne
-	private Device device;
+	@OneToOne(mappedBy = "dataFinancial")
+	private Product product;
 	
 	private BigDecimal price = BigDecimal.ZERO;
 
@@ -42,12 +42,12 @@ public class DataFinancial {
 
 	/**
 	 * Constructor
-	 * @param device
+	 * @param product
 	 * @param price
 	 */
-	public DataFinancial(Device device, BigDecimal price) {
+	public DataFinancial(Product product, BigDecimal price) {
 		super();
-		this.device = device;
+		this.product = product;
 		this.price = price;
 	}
 
@@ -69,18 +69,18 @@ public class DataFinancial {
 
 	/**
 	 * Getter
-	 * @return the device
+	 * @return the product
 	 */
-	public Device getDevice() {
-		return device;
+	public Product getProduct() {
+		return product;
 	}
 
 	/**
 	 * Setter
-	 * @param device the device to set
+	 * @param product the product to set
 	 */
-	public void setDevice(Device device) {
-		this.device = device;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	/**

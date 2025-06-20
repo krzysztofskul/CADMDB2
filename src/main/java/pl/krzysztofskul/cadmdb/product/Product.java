@@ -1,4 +1,4 @@
-package pl.krzysztofskul.cadmdb.device;
+package pl.krzysztofskul.cadmdb.product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,14 +17,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import pl.krzysztofskul.cadmdb.company.manufacturer.Manufacturer;
-import pl.krzysztofskul.cadmdb.device.category.Category;
-import pl.krzysztofskul.cadmdb.device.datafinancial.DataFinancial;
-import pl.krzysztofskul.cadmdb.device.mounting.MountingTypeEnum;
 import pl.krzysztofskul.cadmdb.function.FunctionEnum;
 import pl.krzysztofskul.cadmdb.hospital.department.room.Room;
+import pl.krzysztofskul.cadmdb.product.category.Category;
+import pl.krzysztofskul.cadmdb.product.datafinancial.DataFinancial;
+import pl.krzysztofskul.cadmdb.product.mounting.MountingTypeEnum;
 
 @Entity
-public class Device {
+public class Product {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,7 +39,7 @@ public class Device {
 	private Category category;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "datafinacial_id")
+	@JoinColumn(name = "datafinancial_id")
 	private DataFinancial dataFinancial = new DataFinancial();
 	
 	//private DataTechnical dataTechnical;
@@ -53,7 +53,7 @@ public class Device {
 	@Column(nullable = true)
 	private FunctionEnum functionEnum;
 	
-	@ManyToMany(mappedBy = "deviceList")
+	@ManyToMany(mappedBy = "productList")
 	private List<Room> roomList = new ArrayList<Room>();
 
 	private boolean isActive = true;
@@ -61,7 +61,7 @@ public class Device {
 	/**
 	 * Constructor
 	 */
-	public Device() {
+	public Product() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -69,7 +69,7 @@ public class Device {
 	/**
 	 * @param room
 	 */
-	public Device(List<Room> roomList) {
+	public Product(List<Room> roomList) {
 		super();
 		this.roomList = roomList;
 	}
@@ -267,14 +267,14 @@ public class Device {
 	}
 
 	/*
-	 * Method that adds room to the device
+	 * Method that adds room to the product
 	 */
 	public void addRoom(Room room) {
 		this.roomList.add(room);
 	}
 
 	/*
-	 * Method that remove room from the device
+	 * Method that remove room from the product
 	 */
 	public void removeRoom(Room room) {
 		this.roomList.remove(room);

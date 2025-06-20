@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import pl.krzysztofskul.cadmdb.device.Device;
-import pl.krzysztofskul.cadmdb.device.DeviceService;
 import pl.krzysztofskul.cadmdb.function.FunctionEnum;
 import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacilityService;
 import pl.krzysztofskul.cadmdb.hospital.department.Department;
+import pl.krzysztofskul.cadmdb.product.Product;
+import pl.krzysztofskul.cadmdb.product.ProductService;
 
 @Controller
 @RequestMapping("/rooms")
@@ -25,7 +25,7 @@ public class RoomController {
 
 	private HealthcareFacilityService hfService;
 	private RoomService roomService;
-	private DeviceService deviceService;
+	private ProductService productService;
 	private ModelAndView mav = new ModelAndView();
 	
 	/**
@@ -34,12 +34,12 @@ public class RoomController {
 	@Autowired
 	public RoomController(
 			RoomService roomService
-			, DeviceService deviceService
+			, ProductService productService
 			, HealthcareFacilityService hfCalcService
 			) {
 		super();
 		this.roomService = roomService;
-		this.deviceService = deviceService;
+		this.productService = productService;
 		this.hfService = hfCalcService;
 	}
 	
@@ -97,7 +97,7 @@ public class RoomController {
 		if (edit == true) {
 			mav.addObject("edit", true);
 			mav.addObject("room", roomService.loadById(id));
-			mav.addObject("deviceList", deviceService.LoadAllActive());
+			mav.addObject("productList", productService.LoadAllActive());
 			mav.setViewName("hospital/department/room/idAddEquipment");
 			
 		} else {
@@ -110,28 +110,26 @@ public class RoomController {
 	@PostMapping("/{id}/equipment")
 	public ModelAndView postEquipmentToRoom(
 			@RequestParam String roomId,
-			@RequestParam String deviceId
+			@RequestParam String productId
 			) {
 		mav = new ModelAndView();
 		Room room = roomService.loadByIdWithEquipment(Long.valueOf(roomId));
-		Device device = deviceService.loadById(Long.valueOf(deviceId));
-//		room.addDevice(device);
-		room = hfService.addDeviceToRoom(device, room);
+		Product product = productService.loadById(Long.valueOf(productId));
+		room = hfService.addProductToRoom(product, room);
 		room = roomService.saveAndReturn(room);
 		mav.addObject("edit", false);
 		mav.setViewName("redirect:/rooms/"+room.getId()+"/equipment");
 		return mav;
 	}
 	
-	@GetMapping("/{id}/equipment/{deviceId}/remove")
+	@GetMapping("/{id}/equipment/{productId}/remove")
 	public ModelAndView getRemoveEquipmentFromRoom(
 			@PathVariable(name ="id") Long roomId,
-			@PathVariable(name="deviceId") Long deviceId
+			@PathVariable(name="productId") Long productId
 			) {
 		Room room = roomService.loadByIdWithEquipment(roomId);
-		Device device = deviceService.loadById(deviceId);
-//		room.removeDevice(device);
-		room = hfService.removeDeviceFromRoom(device, room);
+		Product product = productService.loadById(productId);
+		room = hfService.removeProductFromRoom(product, room);
 		room = roomService.saveAndReturn(room);
 		mav.addObject("edit", false);
 		mav.setViewName("redirect:/rooms/"+room.getId()+"/equipment");

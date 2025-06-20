@@ -1,6 +1,5 @@
 package pl.krzysztofskul.cadmdb;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +8,6 @@ import org.springframework.stereotype.Service;
 import pl.krzysztofskul.cadmdb.company.manufacturer.Manufacturer;
 import pl.krzysztofskul.cadmdb.company.manufacturer.ManufacturerService;
 import pl.krzysztofskul.cadmdb.company.manufacturer.ManufacturerTestGenerator;
-import pl.krzysztofskul.cadmdb.device.Device;
-import pl.krzysztofskul.cadmdb.device.DeviceTestGenerator;
-import pl.krzysztofskul.cadmdb.device.DeviceService;
-import pl.krzysztofskul.cadmdb.device.category.Category;
-import pl.krzysztofskul.cadmdb.device.category.CategoryGenerator;
-import pl.krzysztofskul.cadmdb.device.category.CategoryService;
 import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacilityService;
 import pl.krzysztofskul.cadmdb.hospital.Hospital;
 import pl.krzysztofskul.cadmdb.hospital.HospitalService;
@@ -28,6 +21,12 @@ import pl.krzysztofskul.cadmdb.hospital.department.namestandardized.NameStandard
 import pl.krzysztofskul.cadmdb.hospital.department.room.Room;
 import pl.krzysztofskul.cadmdb.hospital.department.room.RoomService;
 import pl.krzysztofskul.cadmdb.hospital.department.room.RoomTestGenerator;
+import pl.krzysztofskul.cadmdb.product.Product;
+import pl.krzysztofskul.cadmdb.product.ProductService;
+import pl.krzysztofskul.cadmdb.product.ProductTestGenerator;
+import pl.krzysztofskul.cadmdb.product.category.Category;
+import pl.krzysztofskul.cadmdb.product.category.CategoryGenerator;
+import pl.krzysztofskul.cadmdb.product.category.CategoryService;
 import pl.krzysztofskul.cadmdb.random.Random;
 
 
@@ -47,13 +46,13 @@ public class HomeService {
 	private pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameStandardizedTestGenerator room_nameStandardizedTestGenerator;
 	private CategoryService categoryService;
 	private CategoryGenerator categoryGenerator;
-	private DeviceTestGenerator deviceTestGenerator;
-	private DeviceService deviceService;
+	private ProductTestGenerator productTestGenerator;
+	private ProductService productService;
 	private ManufacturerTestGenerator manufacturerTestGenerator;
 	private ManufacturerService manufacturerService;
 	
 	private boolean isEssentailDataInit = false;
-	private boolean isDemoDataInit = false;
+	private boolean isTestDataInit = false;
 	
 	/**
 	 * Constructor
@@ -62,7 +61,7 @@ public class HomeService {
 	public HomeService(HealthcareFacilityService healthcareFacilityService, HospitalTestGenerator hospitalTestGenerator, HospitalService hospitalService,
 			NameStandardizedService department_nameStandardizedService, NameStandardizedTestGenerator department_nameStandardizedTestGenerator,
 			pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameStandardizedService room_nameStandardizedService, pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameStandardizedTestGenerator room_nameStandardizedTestGenerator,
-			CategoryService categoryService, CategoryGenerator categoryGenerator, DeviceTestGenerator deviceTestGenerator, DeviceService deviceService, ManufacturerTestGenerator manufacturerTestGenerator, ManufacturerService manufacturerService,
+			CategoryService categoryService, CategoryGenerator categoryGenerator, ProductTestGenerator productTestGenerator, ProductService productService, ManufacturerTestGenerator manufacturerTestGenerator, ManufacturerService manufacturerService,
 			DepartmentTestGenerator departmentTestGenerator, DepartmentService departmentService, RoomTestGenerator roomTestGenerator, RoomService roomService) {
 		super();
 		this.healthcareFacilityService = healthcareFacilityService;
@@ -78,15 +77,15 @@ public class HomeService {
 		this.room_nameStandardizedTestGenerator = room_nameStandardizedTestGenerator;
 		this.categoryService = categoryService;
 		this.categoryGenerator = categoryGenerator;
-		this.deviceTestGenerator = deviceTestGenerator;
-		this.deviceService = deviceService;
+		this.productTestGenerator = productTestGenerator;
+		this.productService = productService;
 		this.manufacturerTestGenerator = manufacturerTestGenerator;
 		this.manufacturerService = manufacturerService;
 	}
 
 	public void initialDbEssentials() {
 		if (isEssentailDataInit == false) {
-			//init device categories
+			//init product categories
 			for (Category category : categoryGenerator.initListAndReturn()) {
 				categoryService.save(category);
 			}
@@ -105,14 +104,14 @@ public class HomeService {
 	}
 	
 	public void initDbTest() {
-		if (isDemoDataInit == false) {
-			//init test manufcturers
+		if (isTestDataInit == false) {
+			//init test manufacturers
 			for (Manufacturer manufacturer : manufacturerTestGenerator.initListAndReturn()) {
 				manufacturerService.save(manufacturer);
 			}
-			//init test devices
-			for (Device device : deviceTestGenerator.initListAndReturn()) {
-				deviceService.save(device);
+			//init test products
+			for (Product product : productTestGenerator.initListAndReturn()) {
+				productService.save(product);
 			}
 			;
 			//init test hospitals
@@ -137,12 +136,12 @@ public class HomeService {
 			//init and add test equipment to rooms
 			for (Room room : roomService.loadAll()) {
 				for (int i = 0; i < Random.randomInt(2, 3); i++) {
-					room = healthcareFacilityService.addDeviceToRoom(deviceService.loadRandom(), room);
+					room = healthcareFacilityService.addProductToRoom(productService.loadRandom(), room);
 				}
 				roomService.saveAndReturn(room);
 			}
 			//set demo data initialized
-			isDemoDataInit = true;
+			isTestDataInit = true;
 		}
 	}
 	

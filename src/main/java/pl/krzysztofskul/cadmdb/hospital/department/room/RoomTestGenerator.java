@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service;
 import com.thedeanda.lorem.Lorem;
 import com.thedeanda.lorem.LoremIpsum;
 
-import pl.krzysztofskul.cadmdb.device.Device;
-import pl.krzysztofskul.cadmdb.device.DeviceService;
 import pl.krzysztofskul.cadmdb.function.FunctionEnum;
 import pl.krzysztofskul.cadmdb.healthcarefacility.dataarch.dataarchroom.DataArchRoom;
 import pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameStandardized;
 import pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameStandardizedService;
 import pl.krzysztofskul.cadmdb.init.InitDataGenerator;
+import pl.krzysztofskul.cadmdb.product.Product;
+import pl.krzysztofskul.cadmdb.product.ProductService;
 import pl.krzysztofskul.cadmdb.random.Random;
 
 

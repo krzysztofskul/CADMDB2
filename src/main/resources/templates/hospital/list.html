@@ -55,7 +55,7 @@
 							<span th:text="${hospital.address.streetname+' '+hospital.address.streetno}"></span>
 						</td>
 						<td>
-							<p th:text="${#numbers.formatCurrency(hospital.dataFinancial.purCostOfDevicePlan)}"></p>
+							<p th:text="${#numbers.formatCurrency(hospital.dataFinancial.purCostOfProductPlan)}"></p>
 						</td>
 						<td>
 							<p th:text="${#numbers.formatDecimal(hospital.dataArchHospital.areaTotal, 0, 1)}+' m2'"></p>

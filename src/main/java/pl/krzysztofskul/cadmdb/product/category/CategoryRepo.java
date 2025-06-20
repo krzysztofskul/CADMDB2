@@ -1,4 +1,4 @@
-package pl.krzysztofskul.cadmdb.device.category;
+package pl.krzysztofskul.cadmdb.product.category;
 
 import java.util.List;
 

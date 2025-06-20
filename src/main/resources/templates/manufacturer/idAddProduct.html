@@ -15,7 +15,7 @@
 	<div th:replace="./manufacturer/menu-manufacturer" :: menu-manufacturer></div>
 	
 	<div class="container-fluid appcontainer">
-		<form th:action="@{#}" th:object="${device}" method="POST">
+		<form th:action="@{#}" th:object="${product}" method="POST">
 			<div class="card card-hf">
 				<div class="card-header">
 					<div class="form-group row">
@@ -24,11 +24,11 @@
 							<p class="langEN">name</p>
 						</label>
 						<div class="col-sm-10">
-							<h5 th:if="${edit == false} OR ${edit == null}" th:text="${device.manufacturer.name}"></h5>
+							<h5 th:if="${edit == false} OR ${edit == null}" th:text="${product.manufacturer.name}"></h5>
 						</div>
 					</div>
-					<input type="hidden" th:field="${device.id}"/>
-					<input type="hidden" th:field="${device.manufacturer.id}"/>
+					<input type="hidden" th:field="${product.id}"/>
+					<input type="hidden" th:field="${product.manufacturer.id}"/>
 				</div>
 				<div class="card-body">
 					<div class="form-group">
@@ -36,7 +36,7 @@
 							<p class="langPL">KATEGORIA / NAZWA STANDARYZOWANA:</p>
 							<p class="langEN">CATEGORY / STANDARDIZEN NAME:</p>
 						</label>
-						<select class="form-control" th:field="${device.category}">
+						<select class="form-control" th:field="${product.category}">
 							<option th:each="category : ${categoryList}" th:text="${category.namePL}" th:value="${category.id}"/>
 						</select>
 					</div>
@@ -45,14 +45,14 @@
 							<p class="langPL">NAZWA MODELU:</p>
 							<p class="langEN">MODEL NAME:</p>
 						</label>
-						<input class="form-control" type="text" th:field="${device.modelName}"/>
+						<input class="form-control" type="text" th:field="${product.modelName}"/>
 					</div>
 					<div class="form-group">
 						<label>
 							<p class="langPL">FUNKCJA</p>
 							<p class="langEN">FUNCTION</p>
 						</label>
-						<select th:field="${device.functionEnum}" class="form-control">
+						<select th:field="${product.functionEnum}" class="form-control">
 							<option th:each="functionEnum : ${functionEnumList}" th:value="${functionEnum}" th:text="${functionEnum.namePL}"/>
 						</select>
 					</div>
@@ -61,7 +61,7 @@
 							<p class="langPL">SPOSÓB MONTAŻU</p>
 							<p class="langEN">MOUNTING TYPE</p>
 						</label>
-						<select th:field="${device.mountingTypeEnum}" class="form-control">
+						<select th:field="${product.mountingTypeEnum}" class="form-control">
 							<option th:each="mountingTypeEnum : ${mountingTypeEnumList}" th:value="${mountingTypeEnum}" th:text="${mountingTypeEnum.namePL}"/>
 						</select>
 					</div>
@@ -70,32 +70,32 @@
 							<p class="langPL">MASA [KG]:</p>
 							<p class="langEN">MASS [KG]:</p>
 						</label>
-						<input class="form-control" type="number" th:field="${device.weight}"/>
+						<input class="form-control" type="number" th:field="${product.weight}"/>
 					</div>
 					<div class="form-group w-25 d-inline-block">
 						<label>
 							<p class="langPL">EMISJA CIEPŁA [W]:</p>
 							<p class="langEN">HEAT DISSIPATION [W]:</p>
 						</label>
-						<input class="form-control" type="number" th:field="${device.heatDissipation}"/>
+						<input class="form-control" type="number" th:field="${product.heatDissipation}"/>
 					</div>
 					<div class="form-group w-25 d-inline-block">
 						<label>
 							<p class="langPL">MOC PRZYŁĄCZENIOWA [KVA]:</p>
 							<p class="langEN">POWER CONNECTION VALUE [KVA]:</p>
 						</label>
-						<input class="form-control" type="number" th:field="${device.powerConnectionValue}"/>
+						<input class="form-control" type="number" th:field="${product.powerConnectionValue}"/>
 					</div>
 					<div class="form-group">
 						<label>
 							<p class="langPL">CENA:</p>
 							<p class="langEN">PRICE:</p>
 						</label>
-						<input class="form-control" type="number" step="0.01" th:field="${device.dataFinancial.price}"/>
+						<input class="form-control" type="number" step="0.01" th:field="${product.dataFinancial.price}"/>
 					</div>
 				</div>
 				<div class="card-footer">
-					<a href="#" th:href="@{|/manufacturers/${device.manufacturer.id}/products|}" type="button" class="btn btn-sm btn-outline-warning app-btn-left">
+					<a href="#" th:href="@{|/manufacturers/${product.manufacturer.id}/products|}" type="button" class="btn btn-sm btn-outline-warning app-btn-left">
 						<p class="langPL">ANULUJ</p>
 						<p class="langEN">cancel</p>
 					</a>

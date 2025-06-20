@@ -1,4 +1,4 @@
-package pl.krzysztofskul.cadmdb.device.category;
+package pl.krzysztofskul.cadmdb.product.category;
 
 import java.util.List;
 
@@ -40,9 +40,9 @@ public class CategoryService {
 		return categoryRepo.findByCode(code);
 	}
 	
-	public Category loadByCategoryCodeWithDeviceList(String code) {
+	public Category loadByCategoryCodeWithProductList(String code) {
 		Category category = this.loadByCategoryCode(code);
-		Hibernate.initialize(category.getDeviceList());
+		Hibernate.initialize(category.getProductList());
 		return category;
 	}
 	

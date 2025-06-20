@@ -145,7 +145,7 @@
 				</div>
 				<div class="card-footer">
 						<th:block th:if="${edit == 'true'}">
-							<a th:href="@{|/devices/${product.id}?edit=false|}" class="btn btn-sm btn-outline-warning app-btn-left">
+							<a th:href="@{|/products/${product.id}?edit=false|}" class="btn btn-sm btn-outline-warning app-btn-left">
 								<p class="langPL">ANULUJ</p>
 								<p class="langEN">cancel</p>
 							</a>
@@ -159,7 +159,7 @@
 								<p class="langPL">WSTECZ</p>
 								<p class="langEN">back</p>
 							</a>
-							<a th:href="@{|/devices/${product.id}?edit=true|}" class="btn btn-sm btn-outline-primary app-btn-right">
+							<a th:href="@{|/products/${product.id}?edit=true|}" class="btn btn-sm btn-outline-primary app-btn-right">
 								<p class="langPL">EDYTUJ</p>
 								<p class="langEN">edit</p>
 							</a>

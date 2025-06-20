@@ -34,7 +34,6 @@ https://cadmedica-426c866a6bb5.herokuapp.com/login
     * feat(ui): show error page when sth went wrong  
     * feat(ui): highlight the menu button at current page  
     * feat: show power values at the page with a list of hospitals/departments/rooms  
-    * refactor: standardize the nomenclature of the product/equipment/device  
     * refactor: create technicalData class (?)  
     * feat: delete, activate and deactivate the manufacturer and its products (?)  
     

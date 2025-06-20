@@ -78,7 +78,7 @@
 										<p class="langEN" th:text="${room.nameStandardized.nameStandardizedEn}"></p>
 									</td>
 									<td>
-										<p class="langPL" th:text="${#numbers.formatCurrency(room.dataFinancial.purCostOfDevicePlan)}"></p>
+										<p class="langPL" th:text="${#numbers.formatCurrency(room.dataFinancial.purCostOfProductPlan)}"></p>
 									</td>
 									<td>
 										<p class="langPL" th:text="${#numbers.formatDecimal(room.dataArchRoom.area, 0, 2)+ ' m2'}"></p>
@@ -100,7 +100,7 @@
 							<tr>
 								<td colspan="2"></td>
 								<td class="bg-light">
-									<h6 th:text="${#numbers.formatCurrency(department.dataFinancial.purCostOfDevicePlan)}"></h6>
+									<h6 th:text="${#numbers.formatCurrency(department.dataFinancial.purCostOfProductPlan)}"></h6>
 								</td>
 								<td class="bg-light">
 									<h6 th:text="${#numbers.formatDecimal(department.dataArchDepartment.areaTotal, 0, 2)+ ' m2'}"></h6>									

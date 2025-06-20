@@ -17,12 +17,12 @@ public class DataFinancial {
 	private Long id;
 	
 	// costs of purchase
-	private BigDecimal purCostOfDevice = BigDecimal.ZERO;
-	private BigDecimal purCostOfDevicePlan = BigDecimal.ZERO;
+	private BigDecimal purCostOfProduct = BigDecimal.ZERO;
+	private BigDecimal purCostOfProductPlan = BigDecimal.ZERO;
 	
 	// cost of maintenance
-	private BigDecimal maintCostOfDevice = BigDecimal.ZERO;
-	private BigDecimal maintCostOfDevicePlan = BigDecimal.ZERO;
+	private BigDecimal maintCostOfProduct = BigDecimal.ZERO;
+	private BigDecimal maintCostOfProductPlan = BigDecimal.ZERO;
 	
 	/**
 	 * Constructor
@@ -50,66 +50,66 @@ public class DataFinancial {
 
 	/**
 	 * Getter
-	 * @return the purCostOfDevice
+	 * @return the purCostOfProduct
 	 */
-	public BigDecimal getPurCostOfDevice() {
-		return purCostOfDevice;
+	public BigDecimal getPurCostOfProduct() {
+		return purCostOfProduct;
 	}
 
 	/**
 	 * Setter
-	 * @param purCostOfDevice the purCostOfDevice to set
+	 * @param purCostOfProduct the purCostOfProduct to set
 	 */
-	public void setPurCostOfDevice(BigDecimal purCostOfDevice) {
-		this.purCostOfDevice = purCostOfDevice;
+	public void setPurCostOfProduct(BigDecimal purCostOfProduct) {
+		this.purCostOfProduct = purCostOfProduct;
 	}
 
 	/**
 	 * Getter
-	 * @return the purCostOfDevicePlan
+	 * @return the purCostOfProductPlan
 	 */
-	public BigDecimal getPurCostOfDevicePlan() {
-		return purCostOfDevicePlan;
+	public BigDecimal getPurCostOfProductPlan() {
+		return purCostOfProductPlan;
 	}
 
 	/**
 	 * Setter
-	 * @param purCostOfDevicePlan the purCostOfDevicePlan to set
+	 * @param purCostOfProductPlan the purCostOfProductPlan to set
 	 */
-	public void setPurCostOfDevicePlan(BigDecimal purCostOfDevicePlan) {
-		this.purCostOfDevicePlan = purCostOfDevicePlan;
+	public void setPurCostOfProductPlan(BigDecimal purCostOfProductPlan) {
+		this.purCostOfProductPlan = purCostOfProductPlan;
 	}
 
 	/**
 	 * Getter
-	 * @return the maintCostOfDevice
+	 * @return the maintCostOfProduct
 	 */
-	public BigDecimal getMaintCostOfDevice() {
-		return maintCostOfDevice;
+	public BigDecimal getMaintCostOfProduct() {
+		return maintCostOfProduct;
 	}
 
 	/**
 	 * Setter
-	 * @param maintCostOfDevice the maintCostOfDevice to set
+	 * @param maintCostOfProduct the maintCostOfProduct to set
 	 */
-	public void setMaintCostOfDevice(BigDecimal maintCostOfDevice) {
-		this.maintCostOfDevice = maintCostOfDevice;
+	public void setMaintCostOfProduct(BigDecimal maintCostOfProduct) {
+		this.maintCostOfProduct = maintCostOfProduct;
 	}
 
 	/**
 	 * Getter
-	 * @return the maintCostOfDevicePlan
+	 * @return the maintCostOfProductPlan
 	 */
-	public BigDecimal getMaintCostOfDevicePlan() {
-		return maintCostOfDevicePlan;
+	public BigDecimal getMaintCostOfProductPlan() {
+		return maintCostOfProductPlan;
 	}
 
 	/**
 	 * Setter
-	 * @param maintCostOfDevicePlan the maintCostOfDevicePlan to set
+	 * @param maintCostOfProductPlan the maintCostOfProductPlan to set
 	 */
-	public void setMaintCostOfDevicePlan(BigDecimal maintCostOfDevicePlan) {
-		this.maintCostOfDevicePlan = maintCostOfDevicePlan;
+	public void setMaintCostOfProductPlan(BigDecimal maintCostOfProductPlan) {
+		this.maintCostOfProductPlan = maintCostOfProductPlan;
 	}
 	
 	

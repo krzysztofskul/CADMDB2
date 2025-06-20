@@ -1,4 +1,4 @@
-package pl.krzysztofskul.cadmdb.device.category;
+package pl.krzysztofskul.cadmdb.product.category;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import pl.krzysztofskul.cadmdb.device.Device;
+import pl.krzysztofskul.cadmdb.product.Product;
 
 @Entity
 public class Category {
@@ -43,7 +43,7 @@ public class Category {
     private List<Category> categoryChildren = new ArrayList<Category>();
     
 	@OneToMany(mappedBy = "category")
-	private List<Device> deviceList = new ArrayList<Device>();
+	private List<Product> productList = new ArrayList<Product>();
 
 	/**
 	 * Constructor
@@ -114,12 +114,12 @@ public class Category {
 		this.nameENplural = nameENplural;
 	}
 
-	public List<Device> getDeviceList() {
-		return deviceList;
+	public List<Product> getProductList() {
+		return productList;
 	}
 
-	public void setDeviceList(List<Device> deviceList) {
-		this.deviceList = deviceList;
+	public void setProductList(List<Product> productList) {
+		this.productList = productList;
 	}
 	
 	public String getCode() {
@@ -163,13 +163,13 @@ public class Category {
         }
     }
 	
-	public void addDevice(Device device) {
-		this.deviceList.add(device);
-		device.setCategory(this);
+	public void addProduct(Product product) {
+		this.productList.add(product);
+		product.setCategory(this);
 	}
 	
-	public void removeDevice(Device device) {
-		this.deviceList.remove(device);
-		device.setCategory(null);
+	public void removeProduct(Product product) {
+		this.productList.remove(product);
+		product.setCategory(null);
 	}
 }

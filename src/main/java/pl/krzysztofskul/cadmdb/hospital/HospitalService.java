@@ -61,16 +61,4 @@ public class HospitalService {
 		return hospital;	
 	}
 	
-//	public Hospital removeDepartment(Hospital hospital, Department department) {
-//		hospital.getDataFinancial().setPurCostOfDevicePlan(
-//					hospital.getDataFinancial().getPurCostOfDevicePlan().subtract(department.getDataFinancial().getPurCostOfDevicePlan())
-//				);
-//		hospital.getDataArchHospital().setAreaTotal(
-//					Float.sum(hospital.getDataArchHospital().getAreaTotal(), -department.getDataArchDepartment().getAreaTotal())
-//				);
-//		
-//		hospital.removeDepartment(department);
-//		return hospital;
-//		
-//	}
 }

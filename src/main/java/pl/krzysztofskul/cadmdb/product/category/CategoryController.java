@@ -1,4 +1,4 @@
-package pl.krzysztofskul.cadmdb.device.category;
+package pl.krzysztofskul.cadmdb.product.category;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ public class CategoryController {
 		model.addAttribute("categoryListMenu", categoryList);
 		
 		if (code != null) {
-			Category category = categoryService.loadByCategoryCodeWithDeviceList(code);
+			Category category = categoryService.loadByCategoryCodeWithProductList(code);
 			model.addAttribute(category);
 		}
 		

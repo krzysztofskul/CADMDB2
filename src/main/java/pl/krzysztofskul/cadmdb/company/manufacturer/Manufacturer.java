@@ -9,13 +9,13 @@ import javax.persistence.OneToMany;
 
 import pl.krzysztofskul.cadmdb.address.Address;
 import pl.krzysztofskul.cadmdb.company.Company;
-import pl.krzysztofskul.cadmdb.device.Device;
+import pl.krzysztofskul.cadmdb.product.Product;
 
 @Entity
 public class Manufacturer extends Company {
 
 	@OneToMany(mappedBy = "manufacturer", cascade = CascadeType.ALL)
-	private List<Device> deviceList = new ArrayList<Device>();
+	private List<Product> productList = new ArrayList<Product>();
 
 	/**
 	 * Constructor
@@ -38,28 +38,28 @@ public class Manufacturer extends Company {
 
 	/**
 	 * Getter
-	 * @return the deviceList
+	 * @return the productList
 	 */
-	public List<Device> getDeviceList() {
-		return deviceList;
+	public List<Product> getProductList() {
+		return productList;
 	}
 
 	/**
 	 * Setter
-	 * @param deviceList the deviceList to set
+	 * @param productList the productList to set
 	 */
-	public void setDeviceList(List<Device> deviceList) {
-		this.deviceList = deviceList;
+	public void setProductList(List<Product> productList) {
+		this.productList = productList;
 	}
 	
-	public void addDevice(Device device) {
-		this.deviceList.add(device);
-		device.setManufacturer(this);
+	public void addProduct(Product product) {
+		this.productList.add(product);
+		product.setManufacturer(this);
 	}
 	
-	public void removeDevice(Device device) {
-		this.deviceList.remove(device);
-		device.setManufacturer(null);
+	public void removeProduct(Product product) {
+		this.productList.remove(product);
+		product.setManufacturer(null);
 	}
 	
 }

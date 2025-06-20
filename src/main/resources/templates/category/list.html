@@ -33,34 +33,34 @@
 	</div>	
 
 	<!--  *****  -->
-	<!--  Fragment creates cards with device informatio -->
+	<!--  Fragment creates cards with product informatio -->
 	<!--  *****  -->
-	<div th:fragment="deviceCard (cat)">
+	<div th:fragment="productCard (cat)">
 
 			
-				<div class="card card-product-sm" th:if="${null != category?.deviceList}" th:each="device : ${cat?.deviceList}">
+				<div class="card card-product-sm" th:if="${null != category?.productList}" th:each="product : ${cat?.productList}">
 					<div class="card-header">
 						<div class="row">
 							<div class="col-12">
-								<p class="langPL" th:text="${device.category.namePL}"></p>
-								<p class="langEN" th:text="${device.category.nameEN}"></p>
+								<p class="langPL" th:text="${product.category.namePL}"></p>
+								<p class="langEN" th:text="${product.category.nameEN}"></p>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-12">
-								<p th:text="${device.manufacturer.name}"></p>
+								<p th:text="${product.manufacturer.name}"></p>
 							</div>
 						</div>
 					</div>
 					<div class="card-body">
 						<div class="row">
 							<div class="col-6">
-								<p class="value" th:text="${device.modelName}"></p>
+								<p class="value" th:text="${product.modelName}"></p>
 							</div>
 						</div>
 					</div>
 					<div class="card-footer">
-						<a th:href="@{|/devices/${device.id}|}">
+						<a th:href="@{|/products/${product.id}|}">
 							<p class="langPL">SZCZEGÓŁY</p>
 							<p class="langEN">DETAILS</p>
 						</a>
@@ -71,7 +71,7 @@
 
 		<div th:if="${!#lists.isEmpty(cat?.categoryChildren)}" th:each="subcat : ${cat?.categoryChildren}">
 			<div
-			     th:insert="~{this :: deviceCard(${subcat})}">
+			     th:insert="~{this :: productCard(${subcat})}">
 			</div>
 		</div>
 	</div>
@@ -93,7 +93,7 @@
 			<div class="col-9 border-left">
 
 				
-			<div th:if="${category != null} "th:insert="~{this :: deviceCard(${category})}">
+			<div th:if="${category != null} "th:insert="~{this :: productCard(${category})}">
 			</div>
 
 

@@ -7,13 +7,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pl.krzysztofskul.cadmdb.device.Device;
 import pl.krzysztofskul.cadmdb.hospital.Hospital;
 import pl.krzysztofskul.cadmdb.hospital.HospitalService;
 import pl.krzysztofskul.cadmdb.hospital.department.Department;
 import pl.krzysztofskul.cadmdb.hospital.department.DepartmentService;
 import pl.krzysztofskul.cadmdb.hospital.department.room.Room;
 import pl.krzysztofskul.cadmdb.hospital.department.room.RoomService;
+import pl.krzysztofskul.cadmdb.product.Product;
 
 @Service
 public class HealthcareFacilityService {
@@ -69,10 +69,9 @@ public class HealthcareFacilityService {
 	
 	public void removeRoomByIdWithEquipment(Long roomId) {
 		Room room = roomService.loadById(roomId);	
-	    List<Device> deviceList = new ArrayList<>(room.getDeviceList());
-	    for (Device device : deviceList) {
-	        //room.removeDevice(device); // updates costs and removes from list
-	    	room = this.removeDeviceFromRoom(device, room);
+	    List<Product> productList = new ArrayList<>(room.getProductList());
+	    for (Product product : productList) {
+	    	room = this.removeProductFromRoom(product, room);
 	    }
 	    //calculate area in the department and hospital
 	    Department department = room.getDepartment();
@@ -102,19 +101,19 @@ public class HealthcareFacilityService {
 		hospitalService.deleteById(hospitalId);
 	}
 
-	public Room addDeviceToRoom (Device device, Room room) {
-		room.addDevice(device);
-		room.getDataFinancial().setPurCostOfDevicePlan(room.getDataFinancial().getPurCostOfDevicePlan().add(device.getDataFinancial().getPrice()));
-		room.getDepartment().getDataFinancial().setPurCostOfDevicePlan(room.getDepartment().getDataFinancial().getPurCostOfDevicePlan().add(device.getDataFinancial().getPrice()));
-		room.getDepartment().getHospital().getDataFinancial().setPurCostOfDevicePlan(room.getDepartment().getHospital().getDataFinancial().getPurCostOfDevicePlan().add(device.getDataFinancial().getPrice()));
+	public Room addProductToRoom (Product product, Room room) {
+		room.addProduct(product);
+		room.getDataFinancial().setPurCostOfProductPlan(room.getDataFinancial().getPurCostOfProductPlan().add(product.getDataFinancial().getPrice()));
+		room.getDepartment().getDataFinancial().setPurCostOfProductPlan(room.getDepartment().getDataFinancial().getPurCostOfProductPlan().add(product.getDataFinancial().getPrice()));
+		room.getDepartment().getHospital().getDataFinancial().setPurCostOfProductPlan(room.getDepartment().getHospital().getDataFinancial().getPurCostOfProductPlan().add(product.getDataFinancial().getPrice()));
 		return room;
 	}
 	
-	public Room removeDeviceFromRoom (Device device, Room room) {
-		room.getDataFinancial().setPurCostOfDevicePlan(room.getDataFinancial().getPurCostOfDevicePlan().subtract(device.getDataFinancial().getPrice()));
-		room.getDepartment().getDataFinancial().setPurCostOfDevicePlan(room.getDepartment().getDataFinancial().getPurCostOfDevicePlan().subtract(device.getDataFinancial().getPrice()));
-		room.getDepartment().getHospital().getDataFinancial().setPurCostOfDevicePlan(room.getDepartment().getHospital().getDataFinancial().getPurCostOfDevicePlan().subtract(device.getDataFinancial().getPrice()));
-		room.removeDevice(device);
+	public Room removeProductFromRoom (Product product, Room room) {
+		room.getDataFinancial().setPurCostOfProductPlan(room.getDataFinancial().getPurCostOfProductPlan().subtract(product.getDataFinancial().getPrice()));
+		room.getDepartment().getDataFinancial().setPurCostOfProductPlan(room.getDepartment().getDataFinancial().getPurCostOfProductPlan().subtract(product.getDataFinancial().getPrice()));
+		room.getDepartment().getHospital().getDataFinancial().setPurCostOfProductPlan(room.getDepartment().getHospital().getDataFinancial().getPurCostOfProductPlan().subtract(product.getDataFinancial().getPrice()));
+		room.removeProduct(product);
 		return room;
 	}
 	

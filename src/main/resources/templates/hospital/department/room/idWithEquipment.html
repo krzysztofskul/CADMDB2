@@ -89,32 +89,32 @@
 						</thead>
 						<tbody>
 							<th:block>
-								<tr th:each="device : ${room.deviceList}">
+								<tr th:each="product : ${room.productList}">
 									<td style="width:80px">
 										<img th:src="@{/img/ico/equipment000.png}" alt="HOSPITAL ICON" width="75" height="75" class="border">
 									</td>
 									<td>
-										<p class="langPL" th:text="${device.category.namePL}"></p>
-										<p class="langEN" th:text="${device.category.nameEN}"></p>
+										<p class="langPL" th:text="${product.category.namePL}"></p>
+										<p class="langEN" th:text="${product.category.nameEN}"></p>
 									</td>
 									<td>
-										<p class="langPL" th:text="${device.manufacturer.name}"></p>
+										<p class="langPL" th:text="${product.manufacturer.name}"></p>
 									</td>
 									<td>
-										<p class="langPL" th:text="${device.modelName}"></p>
+										<p class="langPL" th:text="${product.modelName}"></p>
 									</td>
 									<td>
-										<p class="langPL" th:text="${device.mountingTypeEnum.namePL}"></p>
+										<p class="langPL" th:text="${product.mountingTypeEnum.namePL}"></p>
 									</td>
 									<td>
-										<p class="langPL" th:text="${#numbers.formatCurrency(device.dataFinancial.price)}"></p>
+										<p class="langPL" th:text="${#numbers.formatCurrency(product.dataFinancial.price)}"></p>
 									</td>
 									<td>
-										<a th:href="@{|/rooms/${room.id}/equipment/${device.id}/remove|}" class="btn btn-sm btn-outline-danger float-right">
+										<a th:href="@{|/rooms/${room.id}/equipment/${product.id}/remove|}" class="btn btn-sm btn-outline-danger float-right">
 											<p class="langPL">USUŃ</p>
 											<p class="langEN">DELETE</p>
 										</a>
-										<a th:href="@{|/devices/${device.id}|}" class="btn btn-sm btn-outline-primary float-right">
+										<a th:href="@{|/products/${product.id}|}" class="btn btn-sm btn-outline-primary float-right">
 											<p class="langPL">SZCZEGÓŁY</p>
 											<p class="langEN">DETAILS</p>
 										</a>
@@ -130,7 +130,7 @@
 								<td></td>
 								<td></td>
 								<td class="bg-light">
-									<h6 th:text="${#numbers.formatCurrency(room.dataFinancial.purCostOfDevicePlan)}"></h6>
+									<h6 th:text="${#numbers.formatCurrency(room.dataFinancial.purCostOfProductPlan)}"></h6>
 								</td>
 								<td></td>
 
