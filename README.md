@@ -23,7 +23,7 @@ https://cadmedica-426c866a6bb5.herokuapp.com/login
 
 **TODO:**  
 
-* VER.#0.4-BETA | TODO:    
+* VER.#0.4-BETA | TODO: 
     * feat(contact): implement contact details management  
     * feat(address): implement api https://restcountries.com/   
     * feat: implement currency management  
