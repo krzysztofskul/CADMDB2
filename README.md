@@ -23,7 +23,9 @@ https://cadmedica-426c866a6bb5.herokuapp.com/login
 
 **TODO:**  
 
-* VER.#0.4-BETA | TODO: 
+* VER.#0.4-BETA | TODO:   
+    * feat(product): update product list style at product category page  
+    * feat(simulation): create cost simulation over the time    
     * feat(contact): implement contact details management  
     * feat(address): implement api https://restcountries.com/   
     * feat: implement currency management  

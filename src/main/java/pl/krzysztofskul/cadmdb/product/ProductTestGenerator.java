@@ -84,9 +84,26 @@ public class ProductTestGenerator implements InitDataGenerator<Product> {
 	public List<Product> initListAndReturn() {
 		List<Product> productList = new ArrayList<Product>();
 		for (Category category : categoryService.loadAll()) {
-			Product product = this.initDataAndReturn();
-			product.setCategory(category);
-			productList.add(product);
+			for (int i = 0; i < 5; i++) {
+				Product product = this.initDataAndReturn();
+				product.setCategory(category);
+				productList.add(product);				
+			}
+		}
+		return productList;
+	}
+
+	public List<Product> initListAndReturn(String type) {
+		List<Product> productList = new ArrayList<Product>();
+		if (type == "demo") {
+			productList = new ArrayList<Product>();
+			for (Category category : categoryService.loadAll()) {
+				for (int i = 0; i < 2; i++) {
+					Product product = this.initDataAndReturn();
+					product.setCategory(category);
+					productList.add(product);				
+				}
+			}
 		}
 		return productList;
 	}

@@ -53,6 +53,7 @@ public class HomeService {
 	
 	private boolean isEssentailDataInit = false;
 	private boolean isTestDataInit = false;
+	private boolean isDemoDataInit = false;
 	
 	/**
 	 * Constructor
@@ -103,45 +104,58 @@ public class HomeService {
 		
 	}
 	
-	public void initDbTest() {
-		if (isTestDataInit == false) {
-			//init test manufacturers
-			for (Manufacturer manufacturer : manufacturerTestGenerator.initListAndReturn()) {
-				manufacturerService.save(manufacturer);
-			}
-			//init test products
-			for (Product product : productTestGenerator.initListAndReturn()) {
-				productService.save(product);
-			}
-			;
-			//init test hospitals
-			for (Hospital hospital : hospitalTestGenerator.initListAndReturn()) {
-				hospitalService.save(hospital);
-			}
-			//init and add test departments to hospitals
-			for (Hospital hospital : hospitalService.loadAll()) {
-				List<Department> departmentList = departmentTestGenerator.initListAndReturn();
-				for (Department department : departmentList) {
-					hospital.addDepartment(department);
+	public void initDbTest(String type) {
+		if (isEssentailDataInit == true) {
+			if (isTestDataInit == false & isDemoDataInit == false) {
+				//init test manufacturers
+				List<Manufacturer> manufacturerList = manufacturerTestGenerator.initListAndReturn();
+				for (Manufacturer manufacturer : manufacturerList) {
+					manufacturerService.save(manufacturer);
+				}
+				//init test/demop products
+				List<Product> productList;
+				if (type == "demo") {
+					productList = productTestGenerator.initListAndReturn("demo");
+				} else if (type == "test"){
+					productList = productTestGenerator.initListAndReturn();
+				} else {
+					productList = productTestGenerator.initListAndReturn();				
+				}
+				for (Product product : productList) {
+					productService.save(product);
+				}
+				;
+				//init test hospitals
+				for (Hospital hospital : hospitalTestGenerator.initListAndReturn()) {
 					hospitalService.save(hospital);
 				}
-			}
-			//init and add test rooms to departments
-			for (Department department : departmentService.loadAll()) {
-				List<Room> roomList = roomTestGenerator.initListAndReturn();
-				for (Room room : roomList) {
-					healthcareFacilityService.addRoomToDepartment(room, department);
+				//init and add test departments to hospitals
+				for (Hospital hospital : hospitalService.loadAll()) {
+					List<Department> departmentList = departmentTestGenerator.initListAndReturn();
+					for (Department department : departmentList) {
+						hospital.addDepartment(department);
+						hospitalService.save(hospital);
+					}
 				}
-			}
-			//init and add test equipment to rooms
-			for (Room room : roomService.loadAll()) {
-				for (int i = 0; i < Random.randomInt(2, 3); i++) {
-					room = healthcareFacilityService.addProductToRoom(productService.loadRandom(), room);
+				//init and add test rooms to departments
+				for (Department department : departmentService.loadAll()) {
+					List<Room> roomList = roomTestGenerator.initListAndReturn();
+					for (Room room : roomList) {
+						healthcareFacilityService.addRoomToDepartment(room, department);
+					}
 				}
-				roomService.saveAndReturn(room);
+				//init and add test equipment to rooms
+				for (Room room : roomService.loadAll()) {
+					for (int i = 0; i < Random.randomInt(2, 3); i++) {
+						room = healthcareFacilityService.addProductToRoom(productService.loadRandom(), room);
+					}
+					roomService.saveAndReturn(room);
+				}
+				//set test data initialized
+				isTestDataInit = true;
+				//set demo data initialized
+				isDemoDataInit = true;
 			}
-			//set demo data initialized
-			isTestDataInit = true;
 		}
 	}
 	
