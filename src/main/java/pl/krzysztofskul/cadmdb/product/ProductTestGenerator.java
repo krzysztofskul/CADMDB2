@@ -47,8 +47,7 @@ public class ProductTestGenerator implements InitDataGenerator<Product> {
 		this.createDemoManufacturers();
 	}
 
-	private void createDemoManufacturers() {
-		
+	private void createDemoManufacturers() {	
 		//demoManufacturerList.add(LoremIpsum.getInstance().getTitle(1)+" Inc.");
 		//demoManufacturerList.add(LoremIpsum.getInstance().getTitle(1)+" Ltd.");
 		//demoManufacturerList.add(LoremIpsum.getInstance().getTitle(1)+" GmbH");
@@ -66,6 +65,7 @@ public class ProductTestGenerator implements InitDataGenerator<Product> {
 		product.setPowerConnectionValue(random.randomInt(10, 200));
 		product.setMountingTypeEnum(this.randomMountingType());
 		product.setDataFinancial(new DataFinancial(BigDecimal.valueOf(random.randomInt(10000, 200000)).setScale(2)));
+		product.getDataFinancial().setMaintenanceCost(product.getDataFinancial().getPrice().divide(BigDecimal.valueOf(10)));
 		return product;
 	}
 

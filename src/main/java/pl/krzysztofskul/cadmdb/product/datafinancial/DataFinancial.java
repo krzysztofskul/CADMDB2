@@ -22,6 +22,11 @@ public class DataFinancial {
 	private Product product;
 	
 	private BigDecimal price = BigDecimal.ZERO;
+	
+	/*
+	 * Maintenance cost per year
+	 */
+	private BigDecimal maintenanceCost = BigDecimal.ZERO;
 
 	/**
 	 * Constructor
@@ -98,5 +103,21 @@ public class DataFinancial {
 	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
-	
+
+	/**
+	 * Getter
+	 * @return the maintenanceCostPerYear
+	 */
+	public BigDecimal getMaintenanceCost() {
+		return maintenanceCost;
+	}
+
+	/**
+	 * Setter
+	 * @param maintenanceCostPerYear the maintenanceCostPerYear to set
+	 */
+	public void setMaintenanceCost(BigDecimal maintenanceCost) {
+		this.maintenanceCost = maintenanceCost;
+	}
+
 }
