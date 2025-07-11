@@ -57,7 +57,7 @@
 					<table class="table">
 						<thead class="bg-light">
 							<tr class="text-center border-bottom">
-								<td colspan="7">
+								<td colspan="8">
 									<p class="langPL">PLANOWANE WYPOSAŻENIE</p>
 									<p class="langEN">EQUIPMENT PLANNED</p>
 								</td>
@@ -82,6 +82,10 @@
 								<td>
 									<p class="langPL">PLANOWANY KOSZT ZAKUPU</p>
 									<p class="langEN">cost planned</p>
+								</td>
+								<td>
+									<p class="langPL">KOSZT EKSPLOATACJI</p>
+									<p class="langEN">maintenance cost</p>
 								</td>
 								<td colspan="2">
 								</td>
@@ -110,6 +114,9 @@
 										<p class="langPL" th:text="${#numbers.formatCurrency(product.dataFinancial.price)}"></p>
 									</td>
 									<td>
+										<p class="langPL" th:text="${#numbers.formatCurrency(product.dataFinancial.maintenanceCost)}"></p>
+									</td>
+									<td>
 										<a th:href="@{|/rooms/${room.id}/equipment/${product.id}/remove|}" class="btn btn-sm btn-outline-danger float-right">
 											<p class="langPL">USUŃ</p>
 											<p class="langEN">DELETE</p>
@@ -131,6 +138,9 @@
 								<td></td>
 								<td class="bg-light">
 									<h6 th:text="${#numbers.formatCurrency(room.dataFinancial.purCostOfProductPlan)}"></h6>
+								</td>
+								<td class="bg-light">
+									<h6 th:text="${#numbers.formatCurrency(room.dataFinancial.maintCostOfProductPlan)}"></h6>
 								</td>
 								<td></td>
 

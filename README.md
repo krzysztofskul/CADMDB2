@@ -25,11 +25,6 @@ https://cadmedica-426c866a6bb5.herokuapp.com/login
 
 * VER.#0.4-BETA | TODO:   
     * feat(product): update product list style at product category page  
-    * feat(simulation): create cost simulation time set IN PROGRESS...  
-      * chore(simulation): create classes and relations DONE  
-      * chore(simulation): update calculations  TODO NEXT
-      * feat(simulation): create js file and  rest controller that allow to change the simulation time value by user  DONE  
-      * feat(simulation): update product form that allow to add maintenance costs  
     * feat(contact): implement contact details management  
     * feat(address): implement api https://restcountries.com/   
     * feat: implement currency management  

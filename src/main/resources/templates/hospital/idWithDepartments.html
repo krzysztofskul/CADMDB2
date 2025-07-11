@@ -34,7 +34,7 @@
 					<table class="table">
 						<thead class="bg-light">
 							<tr class="text-center border-bottom">
-								<td colspan="5">
+								<td colspan="6">
 									<p class="langPL">ODDZIAŁY</p>
 									<p class="langEN">DEPARTMENTS</p>
 								</td>
@@ -47,6 +47,10 @@
 								<td>
 									<p class="langPL">PLANOWANY KOSZT WYPOSAŻENIA</p>
 									<p class="langEN">equipment cost planned</p>
+								</td>
+								<td>
+									<p class="langPL">SZACOWANY KOSZT EKSPLOATACJI WYPOSAŻENIA</p>
+									<p class="langEN">equipment maintenace cost forecast</p>
 								</td>
 								<td>
 									<p class="langPL">POWIERZCHNIA CAŁKOWITA</p>
@@ -70,6 +74,9 @@
 										<p class="langPL" th:text="${#numbers.formatCurrency(department.dataFinancial.purCostOfProductPlan)}"></p>
 									</td>
 									<td>
+										<p class="langPL" th:text="${#numbers.formatCurrency(department.dataFinancial.maintCostOfProductPlan)}"></p>
+									</td>
+									<td>
 										<p class="langPL" th:text="${#numbers.formatDecimal(department.dataArchDepartment.areaTotal, 0, 2)+ ' m2'}"></p>
 									</td>
 									<td colspan="2">
@@ -91,6 +98,9 @@
 								<td colspan="2"></td>
 								<td class="bg-light">
 									<h6 th:text="${#numbers.formatCurrency(hospital.dataFinancial.purCostOfProductPlan)}"></h6>
+								</td>
+								<td class="bg-light">
+									<h6 th:text="${#numbers.formatCurrency(hospital.dataFinancial.maintCostOfProductPlan)}"></h6>
 								</td>
 								<td class="bg-light">
 									<h6 th:text="${#numbers.formatDecimal(hospital.dataArchHospital.areaTotal, 0, 2)+ ' m2'}"></h6>

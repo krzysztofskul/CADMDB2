@@ -93,6 +93,13 @@
 						</label>
 						<input class="form-control" type="number" step="0.01" th:field="${product.dataFinancial.price}"/>
 					</div>
+					<div class="form-group">
+						<label>
+							<p class="langPL">ROCZNY KOSZT EKSPLOATACJI:</p>
+							<p class="langEN">MAINTENANCE COST PER YEAR:</p>
+						</label>
+						<input class="form-control" type="number" step="0.01" th:field="${product.dataFinancial.maintenanceCost}"/>
+					</div>
 				</div>
 				<div class="card-footer">
 					<a href="#" th:href="@{|/manufacturers/${product.manufacturer.id}/products|}" type="button" class="btn btn-sm btn-outline-warning app-btn-left">

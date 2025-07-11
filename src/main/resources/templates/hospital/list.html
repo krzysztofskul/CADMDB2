@@ -36,6 +36,10 @@
 						<p class="langEN">equipment cost planned</p>
 					</td>
 					<td>
+						<p class="langPL">SZACOWANY KOSZT EKSPLOATACJI WYPOSAŻENIA</p>
+						<p class="langEN">equipment maintenace cost forecast</p>
+					</td>
+					<td>
 						<p class="langPL">POWIERZCHNIA CAŁKOWITA</p>
 						<p class="langEN">area total</p>
 					</td>
@@ -56,6 +60,9 @@
 						</td>
 						<td>
 							<p th:text="${#numbers.formatCurrency(hospital.dataFinancial.purCostOfProductPlan)}"></p>
+						</td>
+						<td>
+							<p th:text="|${#numbers.formatCurrency(hospital.dataFinancial.maintCostOfProductPlan)} na ${hospital.simulation.time} lat (per ${hospital.simulation.time} years)|"></p>
 						</td>
 						<td>
 							<p th:text="${#numbers.formatDecimal(hospital.dataArchHospital.areaTotal, 0, 1)}+' m2'"></p>

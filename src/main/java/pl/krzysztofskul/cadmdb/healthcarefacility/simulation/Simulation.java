@@ -22,7 +22,7 @@ public class Simulation {
 	@JsonIgnore
 	private Hospital hospital;
 	
-	private int time = 0;
+	private int time = 2;
 
 	/**
 	 * Constructor
