@@ -29,60 +29,82 @@
 							<h5 th:if="${edit == 'false' or edit == null}" th:text="${product.id}"></h5>
 						</div>
 					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">
-							<p class="langPL">NAZWA STANDARYZOWANA</p>
-							<p class="langEN">STANDARDIZED NAME</p>
-						</label>
-						<div class="col-sm-10">
-							<input th:if="${edit == 'true'}" th:field="${product.category.id}" readonly type="hidden" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-							<p class="langPL" th:text="${product.category.namePL}"></p>
-							<p class="langEN" th:text="${product.category.nameEN}"></p>
+					
+					<div class="row">
+						<div class="col-8">
+							<div class="form-group row">
+								<label class="col-sm-2 col-form-label">
+									<p class="langPL">NAZWA STANDARYZOWANA</p>
+									<p class="langEN">STANDARDIZED NAME</p>
+								</label>
+								<div class="col-sm-10">
+									<input th:if="${edit == 'true'}" th:field="${product.category.id}" readonly type="hidden" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+									<p class="langPL" th:text="${product.category.namePL}"></p>
+									<p class="langEN" th:text="${product.category.nameEN}"></p>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-2 col-form-label">
+									<p class="langPL">PRODUCENT</p>
+									<p class="langEN">MANUFACTURER</p>
+								</label>
+								<div class="col-sm-10">
+									<input th:if="${edit == 'true'}" th:field="${product.manufacturer.id}" readonly type="hidden" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+									<p class="langPL" th:text="${product.manufacturer.name}"></p>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-2 col-form-label">
+									<p class="langPL">NAZWA MODELU</p>
+									<p class="langEN">MODEL NAME</p>
+								</label>
+								<div class="col-sm-10">
+									<input th:if="${edit == 'true'}" th:field="${product.modelName}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+									<p class="langPL" th:if="${edit == 'false' or edit == null}" th:text="${product.modelName}"></p>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-2 col-form-label">
+									<p class="langPL">FUNKCJA</p>
+									<p class="langEN">FUNCTION</p>
+								</label>
+								<div class="col-sm-10">
+									<select th:if="${edit == 'true'}" th:field="${product.functionEnum}">
+										<option th:each="functionEnum : ${functionEnumList}" th:value="${functionEnum}" th:text="${functionEnum.namePL}"/>
+									</select>
+									<p class="langPL" th:if="${edit != 'true'}" th:text="${product.functionEnum.namePL}"></p>
+									<p class="langEN" th:if="${edit != 'true'}" th:text="${product.functionEnum.nameEN}"></p>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-2 col-form-label">
+									<p class="langPL">CENA</p>
+									<p class="langEN">PRICE</p>
+								</label>
+								<div class="col-sm-10">
+									<input th:if="${edit == 'true'}" th:field="${product.dataFinancial.price}" type="number" step="0.01" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+									<p class="langPL" th:if="${edit == 'false' or edit == null}" th:text="${#numbers.formatCurrency(product.dataFinancial.price)}"></p>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-2 col-form-label">
+									<p class="langPL">ROCZNY KOSZT EKSPLOTACJI</p>
+									<p class="langEN">MAINTENANCE COST PER YEAR</p>
+								</label>
+								<div class="col-sm-10">
+									<input th:if="${edit == 'true'}" th:field="${product.dataFinancial.maintenanceCost}" type="number" step="0.01" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+									<p class="langPL" th:if="${edit == 'false' or edit == null}" th:text="${#numbers.formatCurrency(product.dataFinancial.maintenanceCost)}"></p>
+								</div>
+							</div>
 						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">
-							<p class="langPL">PRODUCENT</p>
-							<p class="langEN">MANUFACTURER</p>
-						</label>
-						<div class="col-sm-10">
-							<input th:if="${edit == 'true'}" th:field="${product.manufacturer.id}" readonly type="hidden" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-							<p class="langPL" th:text="${product.manufacturer.name}"></p>
+						
+						<div class="col-4 text-right">
+							<img th:src="@{/img/ico/equipment000.png}" class="border" height="250"/>
 						</div>
+						
 					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">
-							<p class="langPL">NAZWA MODELU</p>
-							<p class="langEN">MODEL NAME</p>
-						</label>
-						<div class="col-sm-10">
-							<input th:if="${edit == 'true'}" th:field="${product.modelName}" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-							<p class="langPL" th:if="${edit == 'false' or edit == null}" th:text="${product.modelName}"></p>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">
-							<p class="langPL">FUNKCJA</p>
-							<p class="langEN">FUNCTION</p>
-						</label>
-						<div class="col-sm-10">
-							<select th:if="${edit == 'true'}" th:field="${product.functionEnum}">
-								<option th:each="functionEnum : ${functionEnumList}" th:value="${functionEnum}" th:text="${functionEnum.namePL}"/>
-							</select>
-							<p class="langPL" th:if="${edit != 'true'}" th:text="${product.functionEnum.namePL}"></p>
-							<p class="langEN" th:if="${edit != 'true'}" th:text="${product.functionEnum.nameEN}"></p>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">
-							<p class="langPL">CENA</p>
-							<p class="langEN">PRICE</p>
-						</label>
-						<div class="col-sm-10">
-							<input th:if="${edit == 'true'}" th:field="${product.dataFinancial.price}" type="number" step="0.01" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-							<p class="langPL" th:if="${edit == 'false' or edit == null}" th:text="${#numbers.formatCurrency(product.dataFinancial.price)}"></p>
-						</div>
-					</div>
+					
+					
 				</div>
 				<div class="card-body">
 					<div class="form-group row">
@@ -145,7 +167,7 @@
 				</div>
 				<div class="card-footer">
 						<th:block th:if="${edit == 'true'}">
-							<a th:href="@{|/devices/${product.id}?edit=false|}" class="btn btn-sm btn-outline-warning app-btn-left">
+							<a th:href="@{|/products/${product.id}?edit=false|}" class="btn btn-sm btn-outline-warning app-btn-left">
 								<p class="langPL">ANULUJ</p>
 								<p class="langEN">cancel</p>
 							</a>
@@ -159,7 +181,7 @@
 								<p class="langPL">WSTECZ</p>
 								<p class="langEN">back</p>
 							</a>
-							<a th:href="@{|/devices/${product.id}?edit=true|}" class="btn btn-sm btn-outline-primary app-btn-right">
+							<a th:href="@{|/products/${product.id}?edit=true|}" class="btn btn-sm btn-outline-primary app-btn-right">
 								<p class="langPL">EDYTUJ</p>
 								<p class="langEN">edit</p>
 							</a>

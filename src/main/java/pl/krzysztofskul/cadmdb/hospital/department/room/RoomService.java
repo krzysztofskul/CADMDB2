@@ -30,7 +30,7 @@ public class RoomService {
 
 	public Room loadByIdWithEquipment(Long id) {
 		Room room = this.loadById(id);
-		Hibernate.initialize(room.getDeviceList());
+		Hibernate.initialize(room.getProductList());
 		return room;	
 	}
 	
@@ -42,7 +42,7 @@ public class RoomService {
 	
 	public Room loadByIdWithEquipmentAndDataArch(Long id) {
 		Room room = this.loadById(id);
-		Hibernate.initialize(room.getDeviceList());
+		Hibernate.initialize(room.getProductList());
 		Hibernate.initialize(room.getDataArchRoom());
 		return room;
 	}
@@ -51,8 +51,8 @@ public class RoomService {
 		return roomRepo.findAll();
 	}
 
-	public List<Room> loadAllByDeviceList_Id(Long deviceId) {
-		List<Room> roomList = roomRepo.findAllByDeviceList_Id(deviceId);
+	public List<Room> loadAllByProductList_Id(Long productId) {
+		List<Room> roomList = roomRepo.findAllByProductList_Id(productId);
 		return roomList;
 	}
 	

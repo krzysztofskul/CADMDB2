@@ -15,7 +15,7 @@ https://cadmedica-426c866a6bb5.herokuapp.com/login
 * SpringSecurity  
 * MySQL/Hibernate  
 * Thymeleaf/Bootstrap
-* OpenAI
+* OpenAI/chatGPT
 
 #### PROJECT STATUS AND TODO'S
 
@@ -23,10 +23,11 @@ https://cadmedica-426c866a6bb5.herokuapp.com/login
 
 **TODO:**  
 
-* VER.#0.4-BETA | TODO:    
+* VER.#0.4-FINAL DONE  
+* VER.#0.5-ALPHA | TODO:  
+    * feat(product): update product list style at product category page  
     * feat(contact): implement contact details management  
     * feat(address): implement api https://restcountries.com/   
-    * feat(address): update ui and validation when save address  
     * feat: implement currency management  
     * feat: implement planned and resulted area and budget  
     * feat: implement room data sheet  
@@ -35,7 +36,6 @@ https://cadmedica-426c866a6bb5.herokuapp.com/login
     * feat(ui): show error page when sth went wrong  
     * feat(ui): highlight the menu button at current page  
     * feat: show power values at the page with a list of hospitals/departments/rooms  
-    * refactor: standardize the nomenclature of the product/equipment/device  
     * refactor: create technicalData class (?)  
     * feat: delete, activate and deactivate the manufacturer and its products (?)  
     

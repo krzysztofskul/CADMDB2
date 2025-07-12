@@ -1,4 +1,4 @@
-package pl.krzysztofskul.cadmdb.device;
+package pl.krzysztofskul.cadmdb.product;
 
 import java.util.List;
 
@@ -12,40 +12,40 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import pl.krzysztofskul.cadmdb.device.mounting.MountingTypeEnum;
 import pl.krzysztofskul.cadmdb.function.FunctionEnum;
 import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacility;
 import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacilityService;
 import pl.krzysztofskul.cadmdb.hospital.department.room.Room;
 import pl.krzysztofskul.cadmdb.hospital.department.room.RoomService;
+import pl.krzysztofskul.cadmdb.product.mounting.MountingTypeEnum;
 
 @Controller
-@RequestMapping("/devices")
-public class DeviceController {
+@RequestMapping("/products")
+public class ProductController {
 
-	private DeviceService deviceService;
+	private ProductService productService;
 	private RoomService roomService;
 	private HealthcareFacilityService healthcareFacilityService;
 	
 	/**
 	 * Constructor
-	 * @param deviceService
+	 * @param productService
 	 */
 	@Autowired
-	public DeviceController(DeviceService deviceService, RoomService roomService, HealthcareFacilityService healthcareFacilityService) {
+	public ProductController(ProductService productService, RoomService roomService, HealthcareFacilityService healthcareFacilityService) {
 		super();
-		this.deviceService = deviceService;
+		this.productService = productService;
 		this.roomService = roomService;
 		this.healthcareFacilityService = healthcareFacilityService;
 	}
 
-	@GetMapping("{deviceId}")
-	public String getDeviceById(
-				@PathVariable Long deviceId
+	@GetMapping("{productId}")
+	public String getProductById(
+				@PathVariable Long productId
 				, Model model
 				, @RequestParam(name = "edit", required = false) String edit
 			) {
-		Device product = deviceService.loadById(deviceId);
+		Product product = productService.loadById(productId);
 		model.addAttribute("product", product);
 		model.addAttribute("mountingTypeEnumList", MountingTypeEnum.values());
 		model.addAttribute("functionEnumList", FunctionEnum.values());
@@ -57,25 +57,25 @@ public class DeviceController {
 		return "product/id";
 	}
 	
-	@PostMapping("/{deviceId}")
-	public String postDeviceById(
-				@ModelAttribute Device device
+	@PostMapping("/{productId}")
+	public String postProductById(
+				@ModelAttribute Product product
 			) {
-		//Load all room where device is planned
-		List<Room> roomList = roomService.loadAllByDeviceList_Id(device.getId());
- 		//Remove old device from all rooms
-		Device deviceDB = deviceService.loadById(device.getId());
+		//Load all room where product is planned
+		List<Room> roomList = roomService.loadAllByProductList_Id(product.getId());
+ 		//Remove old product from all rooms
+		Product productDB = productService.loadById(product.getId());
 		for (Room room : roomList) {
-			healthcareFacilityService.removeDeviceFromRoom(deviceDB, room);
+			healthcareFacilityService.removeProductFromRoom(productDB, room);
 		}
-		//Updated device in DB
-		device = deviceService.saveAndReturn(device);
-		//add device to all rooms and save rooms
+		//Updated product in DB
+		product = productService.saveAndReturn(product);
+		//add product to all rooms and save rooms
 		for (Room room : roomList) {
-			room = healthcareFacilityService.addDeviceToRoom(device, room);
+			room = healthcareFacilityService.addProductToRoom(product, room);
 			roomService.saveAndReturn(room);
 		}
-		return "redirect:/devices/"+device.getId();
+		return "redirect:/products/"+product.getId();
 	}
 	
 }

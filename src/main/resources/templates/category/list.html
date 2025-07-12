@@ -33,45 +33,54 @@
 	</div>	
 
 	<!--  *****  -->
-	<!--  Fragment creates cards with device informatio -->
+	<!--  Fragment creates cards with product informatio -->
 	<!--  *****  -->
-	<div th:fragment="deviceCard (cat)">
-
+	<div th:fragment="productCard (cat)" id="container-cards" class="d-flex flex-wrap justify-content-start">
+		<div class="w-100 bg-light border-top mb-2">
+			<p class="langPL" th:text="${cat?.namePLplural}"></p>
+			<p class="langEN" th:text="${cat?.nameENplural}"></p>
 			
-				<div class="card card-product-sm" th:if="${null != category?.deviceList}" th:each="device : ${cat?.deviceList}">
-					<div class="card-header">
-						<div class="row">
-							<div class="col-12">
-								<p class="langPL" th:text="${device.category.namePL}"></p>
-								<p class="langEN" th:text="${device.category.nameEN}"></p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-12">
-								<p th:text="${device.manufacturer.name}"></p>
-							</div>
-						</div>
+		</div>
+		<div class="card card-product-sm" 
+			th:if="${null != category?.productList}" 
+			th:each="product : ${cat?.productList}"
+			>
+			<div class="card-header">
+				<div class="row">
+					<div class="col-8">
+						<p class="langPL" th:text="${product.category.namePL}"></p>
+						<p class="langEN" th:text="${product.category.nameEN}"></p>
 					</div>
-					<div class="card-body">
-						<div class="row">
-							<div class="col-6">
-								<p class="value" th:text="${device.modelName}"></p>
-							</div>
-						</div>
-					</div>
-					<div class="card-footer">
-						<a th:href="@{|/devices/${device.id}|}">
-							<p class="langPL">SZCZEGÓŁY</p>
-							<p class="langEN">DETAILS</p>
-						</a>
+					<div class="col-4 text-right">
+						<img th:src="@{/img/ico/equipment000.png}" width="50" height="50" class="border"/>
 					</div>
 				</div>
-			
-			
-
-		<div th:if="${!#lists.isEmpty(cat?.categoryChildren)}" th:each="subcat : ${cat?.categoryChildren}">
+				<div class="row">
+					<div class="col-12">
+						<p th:text="${product.manufacturer.name}"></p>
+					</div>
+				</div>
+			</div>
+			<div class="card-body">
+				<div class="row">
+					<div class="col-6">
+						<p class="value" th:text="${product.modelName}"></p>
+					</div>
+				</div>
+			</div>
+			<div class="card-footer">
+				<a th:href="@{|/products/${product.id}|}">
+					<p class="langPL">SZCZEGÓŁY</p>
+					<p class="langEN">DETAILS</p>
+				</a>
+			</div>
+		</div>		
+		<div th:if="${!#lists.isEmpty(cat?.categoryChildren)}" 
+			th:each="subcat : ${cat?.categoryChildren}"
+			class="border-top mt-5"
+			>
 			<div
-			     th:insert="~{this :: deviceCard(${subcat})}">
+			     th:replace="~{this :: productCard(${subcat})}">
 			</div>
 		</div>
 	</div>
@@ -90,14 +99,10 @@
 			</div>
 			
 			<!-- Content -->	
-			<div class="col-9 border-left">
-
-				
-			<div th:if="${category != null} "th:insert="~{this :: deviceCard(${category})}">
-			</div>
-
-
-
+			<div class="col-9 border-left"
+					th:if="${category != null} 
+					"th:insert="~{this :: productCard(${category})}">
+			>
 			</div>
 
 		</div>

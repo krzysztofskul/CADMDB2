@@ -40,10 +40,10 @@
 								<div class="form-group">
 									<label for="select-department">
 										<p class="langPL">URZĄDZENIE</p>
-										<p class="langEN">device</p>
+										<p class="langEN">product</p>
 									</label>
-									<select id="select-device" class="form-control" name="deviceId">
-									<option th:each="device : ${deviceList}" th:text="${device.category.namePL+' | '+device.manufacturer.name+' - '+device.modelName}" th:value="${device.id}"></option>
+									<select id="select-product" class="form-control" name="productId">
+									<option th:each="product : ${productList}" th:text="${product.category.namePL+' | '+product.manufacturer.name+' - '+product.modelName}" th:value="${product.id}"></option>
 									</select>
 								</div>
 							</td>

@@ -41,7 +41,7 @@ public class ManufacturerService {
 	
 	public Manufacturer loadByIdWithProducts(Long manufacturerId) {
 		Manufacturer manufacturer = this.loadById(manufacturerId);
-		Hibernate.initialize(manufacturer.getDeviceList());
+		Hibernate.initialize(manufacturer.getProductList());
 		return manufacturer;
 	}
 	

@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RoomRepo extends JpaRepository<Room, Long> {
 
-	List<Room> findAllByDeviceList_Id(Long deviceId);
+	List<Room> findAllByProductList_Id(Long productId);
 
 }

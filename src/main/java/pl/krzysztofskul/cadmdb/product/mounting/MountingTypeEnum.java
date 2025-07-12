@@ -1,4 +1,4 @@
-package pl.krzysztofskul.cadmdb.device.mounting;
+package pl.krzysztofskul.cadmdb.product.mounting;
 
 public enum MountingTypeEnum {
 	

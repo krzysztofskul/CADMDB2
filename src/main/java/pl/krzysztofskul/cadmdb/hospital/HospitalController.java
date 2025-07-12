@@ -2,9 +2,11 @@ package pl.krzysztofskul.cadmdb.hospital;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -71,8 +73,16 @@ public class HospitalController {
 	
 	@PostMapping("/{hospitalId}")
 	public ModelAndView postHospitalById(
-				@ModelAttribute Hospital hospital
+				@PathVariable Long hospitalId,
+				@Valid @ModelAttribute("hospital") Hospital hospital,
+				BindingResult bindingResult
 			) {
+		if (bindingResult.hasErrors()) {
+	        ModelAndView mav = new ModelAndView("hospital/id");
+	        mav.addObject("hospital", hospital);
+	        mav.addObject("edit", true);
+	        return mav;
+		}
 		hospital = hospitalService.saveAndReturn(hospital);
 		modelAndView.setViewName("redirect:/hospitals/"+hospital.getId());
 		return modelAndView;

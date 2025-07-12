@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
+import javax.validation.Valid;
 
 import pl.krzysztofskul.cadmdb.address.Address;
 import pl.krzysztofskul.cadmdb.healthcarefacility.datafinancial.DataFinancial;
@@ -34,6 +35,7 @@ public class HealthcareFacility {
 	
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "address_id")
+	@Valid
 	private Address address;
 	
 	private String contactdetails;

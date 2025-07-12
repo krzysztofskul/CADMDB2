@@ -16,12 +16,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import pl.krzysztofskul.cadmdb.address.Address;
-import pl.krzysztofskul.cadmdb.device.Device;
 import pl.krzysztofskul.cadmdb.function.FunctionEnum;
 import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacility;
 import pl.krzysztofskul.cadmdb.healthcarefacility.dataarch.dataarchroom.DataArchRoom;
 import pl.krzysztofskul.cadmdb.hospital.department.Department;
 import pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameStandardized;
+import pl.krzysztofskul.cadmdb.product.Product;
 
 @Entity
 public class Room extends HealthcareFacility {
@@ -44,11 +44,11 @@ public class Room extends HealthcareFacility {
 	
 	@ManyToMany
     @JoinTable(
-            name = "rooms_devices",
+            name = "rooms_products",
             joinColumns = @JoinColumn(name = "room_id"),
-            inverseJoinColumns = @JoinColumn(name = "device_id")
+            inverseJoinColumns = @JoinColumn(name = "product_id")
     )
-	private List<Device> deviceList = new ArrayList<Device>();
+	private List<Product> productList = new ArrayList<Product>();
 	
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = true)
@@ -175,18 +175,18 @@ public class Room extends HealthcareFacility {
 
 	/**
 	 * Getter
-	 * @return the deviceList
+	 * @return the productList
 	 */
-	public List<Device> getDeviceList() {
-		return deviceList;
+	public List<Product> getProductList() {
+		return productList;
 	}
 
 	/**
 	 * Setter
-	 * @param deviceList the deviceList to set
+	 * @param productList the productList to set
 	 */
-	public void setDeviceList(List<Device> deviceList) {
-		this.deviceList = deviceList;
+	public void setProductList(List<Product> productList) {
+		this.productList = productList;
 	}
 
 	/**
@@ -206,18 +206,18 @@ public class Room extends HealthcareFacility {
 	}
 
 	/**
-	 * Method that add planned device to the room with cost of planned purchase calculation
+	 * Method that add planned product to the room with cost of planned purchase calculation
 	 */
-	public void addDevice(Device device) {
-		this.deviceList.add(device);
-		device.addRoom(this);
+	public void addProduct(Product product) {
+		this.productList.add(product);
+		product.addRoom(this);
 	}
 	
 	/**
-	 * Method that remove planned device from the room with cost of planned purchase calculation
+	 * Method that remove planned product from the room with cost of planned purchase calculation
 	 */
-	public void removeDevice(Device device) {
-		this.deviceList.remove(device);
-		device.removeRoom(this);
+	public void removeProduct(Product product) {
+		this.productList.remove(product);
+		product.removeRoom(this);
 	}
 }

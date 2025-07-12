@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>pl.krzysztofskul</groupId>
 	<artifactId>CADMDB2</artifactId>
-	<version>0.4-ALPHA-FINAL</version>
+	<version>0.4-FINAL</version>
 	<name>CADmedica</name>
 	<description>CADmedica application created in SpringBoot</description>
 	<url/>
@@ -41,6 +41,10 @@
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+		<dependency>
+		  <groupId>org.springframework.boot</groupId>
+		  <artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>

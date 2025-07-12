@@ -10,16 +10,23 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 
 import pl.krzysztofskul.cadmdb.address.Address;
 import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacility;
 import pl.krzysztofskul.cadmdb.healthcarefacility.dataarch.DataArchDepartment;
 import pl.krzysztofskul.cadmdb.healthcarefacility.dataarch.DataArchHospital;
+import pl.krzysztofskul.cadmdb.healthcarefacility.simulation.Simulation;
 import pl.krzysztofskul.cadmdb.hospital.department.Department;
 
 @Entity
 public class Hospital extends HealthcareFacility {
 
+	@Valid
+	@NotBlank(message = "Name can't be blank!")
+	private String name;
+	
 	@OneToMany(mappedBy = "hospital", cascade = CascadeType.ALL)
 	private List<Department> departmentList = new ArrayList<Department>();
 
@@ -27,22 +34,33 @@ public class Hospital extends HealthcareFacility {
 	@JoinColumn(name = "dataarchhospital_id")
     private DataArchHospital dataArchHospital;
 	
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "simulation_id")
+    private Simulation simulation;
+	
     @PrePersist
     private void ensureDataArchHospital() {
         if (this.dataArchHospital == null) {
         	this.dataArchHospital = new DataArchHospital(this);
-            //DataArchHospital dArch = new DataArchHospital();
-            //this.dataArchHospital = dArch;
-            //dArch.setHospital(this);
+        }
+        if (this.simulation == null) {
+        	this.simulation = new Simulation(this);
         }
     }
-	
+    
 	/**
 	 * Constructor
 	 */
 	public Hospital() {
 		super();
-		// TODO Auto-generated constructor stub
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**
@@ -71,6 +89,22 @@ public class Hospital extends HealthcareFacility {
 	public DataArchHospital getDataArchHospital() {
 		return dataArchHospital;
 	}
+	
+	/**
+	 * Getter
+	 * @return the simulation
+	 */
+	public Simulation getSimulation() {
+		return simulation;
+	}
+
+	/**
+	 * Setter
+	 * @param simulation the simulation to set
+	 */
+	public void setSimulation(Simulation simulation) {
+		this.simulation = simulation;
+	}
 
 	/**
 	 * Setter
@@ -78,7 +112,6 @@ public class Hospital extends HealthcareFacility {
 	 */
 	public void setDataArchHospital(DataArchHospital dataArchHospital) {
 		this.dataArchHospital = dataArchHospital;
-		//dataArchHospital.setHospital(this);
 	}
 
 	public void addDepartment(Department department) {

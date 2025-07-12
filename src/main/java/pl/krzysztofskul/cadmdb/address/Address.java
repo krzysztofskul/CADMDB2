@@ -4,9 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-
-import pl.krzysztofskul.cadmdb.hospital.Hospital;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Address {
@@ -15,6 +13,7 @@ public class Address {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotBlank(message = "Country can't be blank!")
 	private String country;
 	
 	private String city;
