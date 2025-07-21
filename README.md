@@ -23,7 +23,6 @@ https://cadmedica-426c866a6bb5.herokuapp.com/login
 
 **TODO:**  
 
-* VER.#0.4-FINAL DONE  
 * VER.#0.5-ALPHA | TODO:  
     * feat(product): update product list style at product category page  
     * feat(contact): implement contact details management  
