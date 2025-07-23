@@ -24,7 +24,11 @@ https://cadmedica-426c866a6bb5.herokuapp.com/login
 **TODO:**  
 
 * VER.#0.5-ALPHA | TODO:  
-    * feat(product): update product list style at product category page  
+    * feat(product): update product list style at product category page  IN PROGRESS...
+      * create js file DONE  
+        * code a functionality to show categories in menu and products in chosen category TODO NEXT...  
+          * menu categories (or main/root category with children only) / category with products TODO NEXT
+      * create rest controller (with jsonignore managemend dynamicaly) DONE  
     * feat(contact): implement contact details management  
     * feat(address): implement api https://restcountries.com/   
     * feat: implement currency management  

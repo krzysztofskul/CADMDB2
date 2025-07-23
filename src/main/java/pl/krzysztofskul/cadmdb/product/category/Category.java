@@ -13,6 +13,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import pl.krzysztofskul.cadmdb.product.Product;
 
 @Entity
@@ -32,7 +38,8 @@ public class Category {
 	
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
-	private Category categoryParent;
+    @JsonBackReference
+    private Category categoryParent;
 	
     @OneToMany(
             mappedBy = "categoryParent",
@@ -40,6 +47,7 @@ public class Category {
             orphanRemoval = true,
             fetch = FetchType.LAZY
         )
+    @JsonManagedReference
     private List<Category> categoryChildren = new ArrayList<Category>();
     
 	@OneToMany(mappedBy = "category")

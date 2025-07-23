@@ -16,6 +16,12 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import pl.krzysztofskul.cadmdb.company.manufacturer.Manufacturer;
 import pl.krzysztofskul.cadmdb.function.FunctionEnum;
 import pl.krzysztofskul.cadmdb.hospital.department.room.Room;
@@ -31,15 +37,18 @@ public class Product {
 	private Long id;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JsonManagedReference
 	private Manufacturer manufacturer;
 	
 	private String modelName;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JsonIgnore
 	private Category category;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "datafinancial_id")
+	@JsonManagedReference
 	private DataFinancial dataFinancial = new DataFinancial();
 	
 	//private DataTechnical dataTechnical;
@@ -54,6 +63,7 @@ public class Product {
 	private FunctionEnum functionEnum;
 	
 	@ManyToMany(mappedBy = "productList")
+	@JsonIgnore
 	private List<Room> roomList = new ArrayList<Room>();
 
 	private boolean isActive = true;

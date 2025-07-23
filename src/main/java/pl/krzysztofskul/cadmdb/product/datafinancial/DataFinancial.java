@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import pl.krzysztofskul.cadmdb.product.Product;
 
 @Entity
@@ -19,6 +21,7 @@ public class DataFinancial {
 	private Long id;
 	
 	@OneToOne(mappedBy = "dataFinancial")
+	@JsonBackReference
 	private Product product;
 	
 	private BigDecimal price = BigDecimal.ZERO;

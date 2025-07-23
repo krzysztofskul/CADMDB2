@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class CategoryService {
@@ -45,6 +46,16 @@ public class CategoryService {
 		Hibernate.initialize(category.getProductList());
 		return category;
 	}
+
+	@Transactional
+    public Category loadByCategoryCodeWithChildrenAndProducts(String code) {
+        Category category = categoryRepo.findByCode(code);
+        if (category != null) {
+            Hibernate.initialize(category.getCategoryChildren());
+            Hibernate.initialize(category.getProductList());
+        }
+        return category;
+    }
 	
 	public List<Category> loadAllByCategoryCode(String code) {
 		return categoryRepo.findAllByCode(code);

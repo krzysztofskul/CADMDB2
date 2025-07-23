@@ -7,6 +7,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import pl.krzysztofskul.cadmdb.address.Address;
 import pl.krzysztofskul.cadmdb.company.Company;
 import pl.krzysztofskul.cadmdb.product.Product;
@@ -15,6 +17,7 @@ import pl.krzysztofskul.cadmdb.product.Product;
 public class Manufacturer extends Company {
 
 	@OneToMany(mappedBy = "manufacturer", cascade = CascadeType.ALL)
+	@JsonBackReference
 	private List<Product> productList = new ArrayList<Product>();
 
 	/**
