@@ -16,7 +16,7 @@
 	<div th:fragment="categoryList (list)">
 		<ul>
 			<li th:each="cat : ${list}">
-				<a th:href="@{|/category/medical?code=${cat.code}|}">
+				<a th:href="@{|/category/medical?code=${cat.code}|}" th:data-category-code="${cat.code}" class="btn-menu">
 					<div class="border">
 						<p class="langPL" th:text="${cat.namePLplural}"></p>
 						<p class="langEN" th:text="${cat.nameENplural}"></p>
@@ -97,10 +97,10 @@
 			</div>
 			
 			<!-- Content -->	
-			<div id="content-products" class="col-9 border-left"
-					th:if="${category != null} 
-					"th:insert="~{this :: productCard(${category})}">
-			>
+			<div id="content-products" class="col-9 border"
+
+					>
+					
 			</div>
 
 		</div>
