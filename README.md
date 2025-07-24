@@ -24,8 +24,7 @@ https://cadmedica-426c866a6bb5.herokuapp.com/login
 **TODO:**  
 
 * VER.#0.5-ALPHA | TODO:  
-    * feat(product): update product list style at product category page  IN PROGRESS...
-        * show products by category code including category children TODO NEXT  
+    * feat(product): update product card styling at product category page IN PROGRESS...  
     * feat(contact): implement contact details management  
     * feat(address): implement api https://restcountries.com/   
     * feat: implement currency management  

@@ -44,6 +44,7 @@ public class ProductController {
 				@PathVariable Long productId
 				, Model model
 				, @RequestParam(name = "edit", required = false) String edit
+				, @RequestParam(name = "backToPage", required = false) String backToPage
 			) {
 		Product product = productService.loadById(productId);
 		model.addAttribute("product", product);
@@ -52,6 +53,9 @@ public class ProductController {
 		model.addAttribute("manufacturer", product.getManufacturer());
 		if (edit == null) {
 			edit = "false";
+		}
+		if (backToPage != null) {
+			model.addAttribute("backToPage", backToPage);
 		}
 		model.addAttribute("edit", edit);
 		return "product/id";

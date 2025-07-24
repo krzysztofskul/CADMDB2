@@ -177,7 +177,11 @@
 							</button>
 						</th:block>
 						<th:block th:if="${edit == 'false'} OR ${edit == null}">
-							<a th:href="@{|/manufacturers/${product.manufacturer.id}/products|}" class="btn btn-sm btn-outline-warning app-btn-left">
+							<a th:if="backToPage == null" th:href="@{|/manufacturers/${product.manufacturer.id}/products|}" class="btn btn-sm btn-outline-warning app-btn-left">
+								<p class="langPL">WSTECZ</p>
+								<p class="langEN">back</p>
+							</a>
+							<a th:if="backToPage != null" th:href="@{${backToPage}}" class="btn btn-sm btn-outline-warning app-btn-left">
 								<p class="langPL">WSTECZ</p>
 								<p class="langEN">back</p>
 							</a>
