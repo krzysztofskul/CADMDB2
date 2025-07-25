@@ -15,3 +15,22 @@
 	text-align: right;
 	background-color: white;
 }
+
+a.card.card-product-js:hover {
+	border-color: blue;
+}
+
+a.card.card-product-js:link {
+	text-decoration: none;
+}
+
+.card.card-product-js {
+	display: inline-block;
+	margin: 2px;
+	padding: 1px;
+	width: 400px;
+}
+
+.card.card-product-js .card-body {
+	margin: 2px;	
+}

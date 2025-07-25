@@ -89,29 +89,33 @@
 						//declare product card's info
 						//card
 						const productCard = document.createElement("a");
-						productCard.className = "card-product-js card d-inline-block m-1 p-1 w-25";
+						productCard.className = "card card-product-js";
 						productCard.href = "/products/"+product.id+"?backToPage=/category/medical";
-						productCard.style = "height:175px";
+						productCard.style = "height:275px;";
 						//header
 						const productCardHeader = document.createElement("div");
 						productCardHeader.className = "card-header";
 						productCardHeader.style = "height: 75px";
-						productCardHeader.textContent = product.manufacturer.name+" "+product.modelName;
+						productCardHeader.innerHTML = `
+							<h6>${product.manufacturer.name}</p>
+							<h6>${product.modelName}</p>
+						`;
 						//body
-						const productCardBody = document.createElement("card-body");
-						//price
-						const productCardInfoPrice = document.createElement("p");
-						const price = product.dataFinancial.price;
+						const productCardBody = document.createElement("div");
+						productCardBody.className = "card-body";
 						const formattedPrice = new Intl.NumberFormat('en-US', {
 						  style: 'currency',
 						  currency: 'USD',
-						}).format(price);
-						productCardInfoPrice.textContent = formattedPrice;
-						
+						}).format(product.dataFinancial.price);
+						productCardBody.innerHTML = `
+							<h6>${product.mountingTypeEnum.namePL} / ${product.mountingTypeEnum.nameEN}</h6>
+							<h6>${product.weight} kg</h6>
+							<h6>${product.powerConnectionValue} VA</h6>
+							<h6>${formattedPrice}</h6>
+						`;
 						//build card
 						productCard.appendChild(productCardHeader);
-						productCard.appendChild(productCardBody);
-						productCardBody.appendChild(productCardInfoPrice);						
+						productCard.appendChild(productCardBody);					
 						
 						//add productCard to the header of the category
 						header.appendChild(productCard);

@@ -23,15 +23,15 @@ https://cadmedica-426c866a6bb5.herokuapp.com/login
 
 **TODO:**  
 
-* VER.#0.5-ALPHA | TODO:  
-    * feat(product): update product card styling at product category page IN PROGRESS...  
-    * feat(contact): implement contact details management  
-    * feat(address): implement api https://restcountries.com/   
-    * feat: implement currency management  
-    * feat: implement planned and resulted area and budget  
-    * feat: implement room data sheet  
+* VER.#0.5-ALPHA | TODO:    
+    * feat: implement currency management
     * feat: implement investor management  
     * feat(springsecurity): register new user  
+    * feat(user-role): create user roles functionality  
+    * feat(contact): implement contact details management  
+    * feat(address): implement api https://restcountries.com/   
+    * feat: implement planned and resulted area and budget  
+    * feat: implement room data sheet  
     * feat(ui): show error page when sth went wrong  
     * feat(ui): highlight the menu button at current page  
     * feat: show power values at the page with a list of hospitals/departments/rooms  
