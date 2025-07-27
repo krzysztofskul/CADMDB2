@@ -32,7 +32,6 @@ https://cadmedica-426c866a6bb5.herokuapp.com/login
     * feat(address): implement api https://restcountries.com/   
     * feat: implement planned and resulted area and budget  
     * feat: implement room data sheet  
-    * feat(ui): show error page when sth went wrong  
     * feat(ui): highlight the menu button at current page  
     * feat: show power values at the page with a list of hospitals/departments/rooms  
     * refactor: create technicalData class (?)  

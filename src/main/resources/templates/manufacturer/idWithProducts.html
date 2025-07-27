@@ -7,8 +7,8 @@
 	<link th:href="@{/css/appstyle.css}" rel="stylesheet" />
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-	<!-- JS -->
-	<script src="/js/main.js"></script>
+    <!--In app js files-->
+    <script type="module" th:src="@{/js/main.js}" defer></script>
 </head>
 <body>
 
@@ -88,6 +88,11 @@
 										<p class="langPL">SZCZEGÓŁY</p>
 										<p class="langEN">DETAILS</p>
 									</a>
+									<a th:href="@{|/manufacturers/${product.manufacturer.id}/products/${product.id}/deactivate-product|}" class="btn btn-sm btn-outline-danger float-right">
+										<p class="langPL">DEZAKTYWUJ</p>
+										<p class="langEN">DEACTIVATE</p>
+									</a>
+									<!--
 									<div class="btn-group" role="group">
 									    <button type="button" class="btn btn-sm btn-outline-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 											<div class="d-inline-block">
@@ -95,6 +100,7 @@
 												<p class="langEN">DELETE</p>
 											</div>
 									    </button>
+									    
 									    <div class="dropdown-menu">
 									      <a class="dropdown-item disabled" th:href="@{#}">
 											<p class="langPL">USUŃ Z BAZY DANYCH</p>
@@ -106,6 +112,7 @@
 										  </a>
 									    </div>
 									</div>
+									-->
 								</td>
 							</tr>
 						</th:block>

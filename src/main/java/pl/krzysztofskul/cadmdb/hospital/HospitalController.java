@@ -167,5 +167,6 @@ public class HospitalController {
 		hfService.removeHospitalByIdWithDepartments(hospitalId);
 		return modelAndView;
 	}
+
 	
 }
