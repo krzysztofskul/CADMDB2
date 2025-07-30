@@ -28,11 +28,13 @@ import pl.krzysztofskul.cadmdb.product.category.Category;
 import pl.krzysztofskul.cadmdb.product.category.CategoryGenerator;
 import pl.krzysztofskul.cadmdb.product.category.CategoryService;
 import pl.krzysztofskul.cadmdb.random.Random;
+import pl.krzysztofskul.cadmdb.user.UserService;
 
 
 @Service
 public class HomeService {
 
+	private UserService userService;
 	private HealthcareFacilityService healthcareFacilityService;
 	private HospitalTestGenerator hospitalTestGenerator;
 	private DepartmentTestGenerator departmentTestGenerator;
@@ -59,12 +61,13 @@ public class HomeService {
 	 * Constructor
 	 */
 	@Autowired
-	public HomeService(HealthcareFacilityService healthcareFacilityService, HospitalTestGenerator hospitalTestGenerator, HospitalService hospitalService,
+	public HomeService(UserService userService, HealthcareFacilityService healthcareFacilityService, HospitalTestGenerator hospitalTestGenerator, HospitalService hospitalService,
 			NameStandardizedService department_nameStandardizedService, NameStandardizedTestGenerator department_nameStandardizedTestGenerator,
 			pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameStandardizedService room_nameStandardizedService, pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameStandardizedTestGenerator room_nameStandardizedTestGenerator,
 			CategoryService categoryService, CategoryGenerator categoryGenerator, ProductTestGenerator productTestGenerator, ProductService productService, ManufacturerTestGenerator manufacturerTestGenerator, ManufacturerService manufacturerService,
 			DepartmentTestGenerator departmentTestGenerator, DepartmentService departmentService, RoomTestGenerator roomTestGenerator, RoomService roomService) {
 		super();
+		this.userService = userService;
 		this.healthcareFacilityService = healthcareFacilityService;
 		this.hospitalTestGenerator = hospitalTestGenerator;
 		this.departmentTestGenerator = departmentTestGenerator;
@@ -107,12 +110,15 @@ public class HomeService {
 	public void initDbTest(String type) {
 		if (isEssentailDataInit == true) {
 			if (isTestDataInit == false & isDemoDataInit == false) {
+				//init test users
+				userService.createAndSaveTestUsers();
+				
 				//init test manufacturers
 				List<Manufacturer> manufacturerList = manufacturerTestGenerator.initListAndReturn();
 				for (Manufacturer manufacturer : manufacturerList) {
 					manufacturerService.save(manufacturer);
 				}
-				//init test/demop products
+				//init test/demo products
 				List<Product> productList;
 				if (type == "demo") {
 					productList = productTestGenerator.initListAndReturn("demo");
