@@ -24,9 +24,15 @@ https://cadmedica-426c866a6bb5.herokuapp.com/login
 **TODO:**  
 
 * VER.#0.5-ALPHA | TODO:    
+    * **feat(springsecurity-users-management) IN PROGRESS...**  
+      * create a User entity DONE  
+      * create a UserRepository for saving and finding users  DONE  
+      * add a UserService  DONE  
+      * create a UserController  DONE  
+      * create UserGuestGenerator  TODO  
+      * configure Spring Security  TODO  
     * feat: implement currency management
     * feat: implement investor management  
-    * feat(springsecurity): register new user  
     * feat(user-role): create user roles functionality  
     * feat(contact): implement contact details management  
     * feat(address): implement api https://restcountries.com/   
