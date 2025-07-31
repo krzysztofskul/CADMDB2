@@ -22,7 +22,7 @@ public class CadmdbSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 	   auth.inMemoryAuthentication()
-	       .passwordEncoder(new BCryptPasswordEncoder())
+	       .passwordEncoder(passwordEncoder())
 	           .withUser("krzysztofskul")
 	           .password(passwordEncoder().encode("password"))
 	           .roles("ADMIN")
@@ -30,6 +30,15 @@ public class CadmdbSecurityConfig extends WebSecurityConfigurerAdapter {
 	           .withUser("userguest")
 	           .password(passwordEncoder().encode("password"))
 	           .roles("USER")
+	           .and()
+	           .withUser("guest_investor").password(passwordEncoder().encode("password")).roles("USER_GUEST_INVESTOR")
+	           .and()
+	           .withUser("guest_hospital").password(passwordEncoder().encode("password")).roles("USER_GUEST_HOSPITAL")
+	           .and()
+	           .withUser("guest_manufacturer").password(passwordEncoder().encode("password")).roles("USER_GUEST_MANUFACTURER")
+	           .and()
+	           .withUser("guest_designer").password(passwordEncoder().encode("password")).roles("USER_GUEST_DESIGNER");
+
 	       ;
 	}
 	
@@ -38,18 +47,20 @@ public class CadmdbSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.csrf().disable()
 			.authorizeRequests()
-			.antMatchers("/", "/login", "/test/**", "/css/**", "/js/**", "/img/**").permitAll()
-			.antMatchers("/").hasRole("{USER, ADMIN}")
+			.antMatchers("/", "/login", "/users/register", "/test/**", "/css/**", "/js/**", "/img/**").permitAll()
+			.antMatchers("/").hasAnyRole("USER, ADMIN, USER_GUEST_INVESTOR, USER_GUEST_HOSPITAL, USER_GUEST_MANUFACTURER, USER_GUEST_DESIGNER")
 			.anyRequest().authenticated()
 			.and()
 	        	.formLogin()
 	            .loginPage("/login").permitAll()
 	            .defaultSuccessUrl("/home", true)
-	            .failureUrl("/login").permitAll()
+	            .failureUrl("/login?error=true")
+	            //.failureUrl("/login").permitAll()
             .and()
             	.logout()
+	            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 	            .permitAll()
-	            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+	            ;
 	}
 	
 	

@@ -23,17 +23,9 @@ https://cadmedica-426c866a6bb5.herokuapp.com/login
 
 **TODO:**  
 
-* VER.#0.5-ALPHA | TODO:    
-    * **feat(springsecurity-users-management) IN PROGRESS...**  
-      * create a User entity DONE  
-      * create a UserRepository for saving and finding users  DONE  
-      * add a UserService  DONE  
-      * create a UserController  DONE  
-      * create UserGuestGenerator  TODO  
-      * configure Spring Security  TODO  
-    * feat: implement currency management
-    * feat: implement investor management  
-    * feat(user-role): create user roles functionality  
+* VER.#0.5-ALPHA:  
+    * feat: implement currency management  
+    * feat: implement investor management   
     * feat(contact): implement contact details management  
     * feat(address): implement api https://restcountries.com/   
     * feat: implement planned and resulted area and budget  
@@ -42,6 +34,10 @@ https://cadmedica-426c866a6bb5.herokuapp.com/login
     * feat: show power values at the page with a list of hospitals/departments/rooms  
     * refactor: create technicalData class (?)  
     * feat: delete, activate and deactivate the manufacturer and its products (?)  
+* VER.#0.6-ALPHA:  
+    * feat(springsecurity-users-management): update functionality  
+      * create user registration functionality  
+      * update login functionality to MySQL backed user system  
     
 #### CONTACT
 *krzysztofskul@protonmail.com*
