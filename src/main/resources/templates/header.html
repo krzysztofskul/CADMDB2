@@ -1,6 +1,19 @@
 <div th:fragment="header" class="header">	
 	
-	<img class="logo" th:src="@{/img/CADmedica.jpg}" alt="CADmedica logo" height="60em"/>	
+	<div class="row">
+		<div class="col-4">
+			<!--empty-->
+		</div>
+		<div class="col-4">
+			<img class="logo" th:src="@{/img/CADmedica.jpg}" alt="CADmedica logo" height="60em"/>
+		</div>
+		<div class="col-4 text-right pr-5">
+			<a href="#" class="border p-1">PLN</a>
+			<a href="#" class="border p-1">EUR</a>
+			<a href="#" class="border p-1">USD</a>
+		</div>
+	</div>
+		
 
 	<div th:replace="./menu-main" :: menu-main></div>
 

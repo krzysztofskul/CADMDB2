@@ -24,7 +24,9 @@ https://cadmedica-426c866a6bb5.herokuapp.com/login
 **TODO:**  
 
 * VER.#0.5-ALPHA:  
-    * feat: implement currency management  
+    * feat(currency): implement currency management  IN PROGRESS...   
+      * create js file and rest controller for currency conversion ...  
+        * (?) implement calculation on the fly or add fields with other currencies in entity classes  
     * feat: implement investor management   
     * feat(contact): implement contact details management  
     * feat(address): implement api https://restcountries.com/   

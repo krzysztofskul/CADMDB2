@@ -1,6 +1,7 @@
 package pl.krzysztofskul.cadmdb.healthcarefacility.datafinancial;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,12 +18,24 @@ public class DataFinancial {
 	private Long id;
 	
 	// costs of purchase
-	private BigDecimal purCostOfProduct = BigDecimal.ZERO;
-	private BigDecimal purCostOfProductPlan = BigDecimal.ZERO;
+	/*
+	 * Cost in PLN
+	 */
+	private BigDecimal purCostOfProduct = BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP);
+	/*
+	 * Cost in PLN
+	 */
+	private BigDecimal purCostOfProductPlan = BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP);
 	
 	// cost of maintenance
-	private BigDecimal maintCostOfProduct = BigDecimal.ZERO;
-	private BigDecimal maintCostOfProductPlan = BigDecimal.ZERO;
+	/*
+	 * Cost in PLN
+	 */
+	private BigDecimal maintCostOfProduct = BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP);
+	/*
+	 * Cost in PLN
+	 */
+	private BigDecimal maintCostOfProductPlan = BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP);
 	
 	/**
 	 * Constructor

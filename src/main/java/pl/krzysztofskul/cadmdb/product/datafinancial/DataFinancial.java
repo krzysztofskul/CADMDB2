@@ -24,6 +24,9 @@ public class DataFinancial {
 	@JsonBackReference
 	private Product product;
 	
+	/*
+	 * Price in PLN
+	 */
 	private BigDecimal price = BigDecimal.ZERO;
 	
 	/*

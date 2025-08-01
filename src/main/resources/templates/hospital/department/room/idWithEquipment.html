@@ -111,10 +111,24 @@
 										<p class="langPL" th:text="${product.mountingTypeEnum.namePL}"></p>
 									</td>
 									<td>
-										<p class="langPL" th:text="${#numbers.formatCurrency(product.dataFinancial.price)}"></p>
+										<p class="langPL currency" 
+										    th:with="
+										        formatted=${#numbers.formatDecimal(product.dataFinancial.price, 1, 'COMMA', 2, 'POINT')},
+										        spaced=${#strings.replace(formatted, ',', ' ')},
+										        final=${#strings.replace(spaced, '.', ',')}"
+										    th:text="${final}">													
+										</p>
 									</td>
 									<td>
-										<p class="langPL" th:text="${#numbers.formatCurrency(product.dataFinancial.maintenanceCost)}"></p>
+										<p class="langPL currency" 										
+										    th:with="
+										        formatted=${#numbers.formatDecimal(product.dataFinancial.maintenanceCost, 1, 'COMMA', 2, 'POINT')},
+										        spaced=${#strings.replace(formatted, ',', ' ')},
+										        final=${#strings.replace(spaced, '.', ',')}"
+										    th:text="${final}">		
+										</p>
+										<p class="langPL" th:text="|rocznie|"></p>
+										<p class="langEN" th:text="|per one year|"></p>
 									</td>
 									<td>
 										<a th:href="@{|/rooms/${room.id}/equipment/${product.id}/remove|}" class="btn btn-sm btn-outline-danger float-right">
@@ -137,10 +151,24 @@
 								<td></td>
 								<td></td>
 								<td class="bg-light">
-									<h6 th:text="${#numbers.formatCurrency(room.dataFinancial.purCostOfProductPlan)}"></h6>
+									<h6 class="currency" 
+									    th:with="
+									        formatted=${#numbers.formatDecimal(room.dataFinancial.purCostOfProductPlan, 1, 'COMMA', 2, 'POINT')},
+									        spaced=${#strings.replace(formatted, ',', ' ')},
+									        final=${#strings.replace(spaced, '.', ',')}"
+									    th:text="${final}">											
+									</h6>
 								</td>
 								<td class="bg-light">
-									<h6 th:text="${#numbers.formatCurrency(room.dataFinancial.maintCostOfProductPlan)}"></h6>
+									<h6 class="currency" 
+									    th:with="
+									        formatted=${#numbers.formatDecimal(room.dataFinancial.maintCostOfProductPlan, 1, 'COMMA', 2, 'POINT')},
+									        spaced=${#strings.replace(formatted, ',', ' ')},
+									        final=${#strings.replace(spaced, '.', ',')}"
+									    th:text="${final}">																				
+									</h6>
+									<p class="langPL" th:text="|w okresie ${room.department.hospital.simulation.time} lat|"></p>
+									<p class="langEN" th:text="|over ${room.department.hospital.simulation.time} years|"></p>
 								</td>
 								<td></td>
 

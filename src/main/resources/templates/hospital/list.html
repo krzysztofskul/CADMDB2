@@ -60,10 +60,25 @@
 							<span th:text="${hospital.address.streetname+' '+hospital.address.streetno}"></span>
 						</td>
 						<td>
-							<p th:text="${#numbers.formatCurrency(hospital.dataFinancial.purCostOfProductPlan)}"></p>
+							<p class="currency"
+							    th:with="
+							        formatted=${#numbers.formatDecimal(hospital.dataFinancial.purCostOfProductPlan, 1, 'COMMA', 2, 'POINT')},
+							        spaced=${#strings.replace(formatted, ',', ' ')},
+							        final=${#strings.replace(spaced, '.', ',')}"
+							    th:text="${final}">
+							</p>
 						</td>
-						<td>
-							<p th:text="|${#numbers.formatCurrency(hospital.dataFinancial.maintCostOfProductPlan)} na ${hospital.simulation.time} lat (per ${hospital.simulation.time} years)|"></p>
+						<td>							
+							<p class="currency"
+							    th:with="
+							        formatted=${#numbers.formatDecimal(hospital.dataFinancial.maintCostOfProductPlan, 1, 'COMMA', 2, 'POINT')},
+							        spaced=${#strings.replace(formatted, ',', ' ')},
+							        final=${#strings.replace(spaced, '.', ',')}"
+							    th:text="${final}">
+							</p>
+							<p class="langPL" th:text="|w okresie ${hospital.simulation.time} lat|"></p>
+							<p class="langEN" th:text="|over ${hospital.simulation.time} years|"></p>
+							
 						</td>
 						<td>
 							<p th:text="${#numbers.formatDecimal(hospital.dataArchHospital.areaTotal, 0, 1)}+' m2'"></p>
