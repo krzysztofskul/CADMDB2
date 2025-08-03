@@ -8,10 +8,17 @@
 			<img class="logo" th:src="@{/img/CADmedica.jpg}" alt="CADmedica logo" height="60em"/>
 		</div>
 		<div class="col-4 text-right pr-5">
-			<a href="#" class="border p-1">PLN</a>
-			<a href="#" class="border p-1">EUR</a>
-			<a href="#" class="border p-1">USD</a>
+			<a href="#" class="btn-currency text-muted border p-1" data-code="PLN">PLN</a>
+			<a href="#" class="btn-currency text-muted border p-1" data-code="EUR">EUR</a>
+			<a href="#" class="btn-currency text-muted border p-1" data-code="USD">USD</a>
+			<!--
+				<p>Current currency: <span th:text="${session.selectedCurrency}"></span></p>
+			-->
+			<script th:inline="javascript">
+			  const selectedCurrency = /*[[${session.selectedCurrency}]]*/ 'USD';
+			</script>
 		</div>
+
 	</div>
 		
 
