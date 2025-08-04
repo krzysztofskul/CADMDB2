@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 	
-	let simulationId = document.getElementById("simulationId").dataset.simulationId;
+	let simulationId = () => {
+		if (document.getElementById("simulationId").dataset.simulationId != null) document.getElementById("simulationId").dataset.simulationId;					
+	}
 	let input = document.getElementById("inputSimulationTime");
 	let button = document.getElementById("btnSimulationTimeEdit");
 
@@ -58,17 +60,19 @@ document.addEventListener('DOMContentLoaded', () => {
 			})
 	}
 	
-	  button.addEventListener("click", (event) => {
-	    event.preventDefault();
-	    if (button.dataset.mode === "edit") {
-	      changeButtonToSave();
-	      button.dataset.mode = "save";
-	    } else {
-	      changeButtonToEdit();
-	      button.dataset.mode = "edit";
-	      doFetch();
-	    }
-	  });
+	if (button != null) {
+		button.addEventListener("click", (event) => {
+		event.preventDefault();
+		if (button.dataset.mode === "edit") {
+			changeButtonToSave();
+			button.dataset.mode = "save";
+		} else {
+			changeButtonToEdit();
+			button.dataset.mode = "edit";
+			doFetch();
+		}
+	});
+	}
 
 	
 });
