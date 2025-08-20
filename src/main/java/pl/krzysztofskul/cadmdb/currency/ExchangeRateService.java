@@ -22,12 +22,12 @@ public class ExchangeRateService {
         rates.put(CurrencyEnum.USD, new BigDecimal("0.25")); // temporary static
     }
 
-    public BigDecimal getRate(Currency currency) {
-        return rates.getOrDefault(currency, BigDecimal.ONE);
+    public BigDecimal getRate(CurrencyEnum currencyEnum) {
+        return rates.getOrDefault(currencyEnum, BigDecimal.ONE);
     }
 
-    public BigDecimal convert(BigDecimal amountPln, Currency currency) {
-        return amountPln.multiply(getRate(currency)).setScale(2, RoundingMode.HALF_UP);
+    public BigDecimal convert(BigDecimal amountPln, CurrencyEnum currencyEnum) {
+        return amountPln.multiply(getRate(currencyEnum)).setScale(2, RoundingMode.HALF_UP);
     }
 
     // Optional: Fetch live rates via NBP API or ECB JSON/XML later

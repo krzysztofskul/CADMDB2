@@ -103,15 +103,10 @@
 						//body
 						const productCardBody = document.createElement("div");
 						productCardBody.className = "card-body";
-						const formattedPrice = new Intl.NumberFormat('en-US', {
-						  style: 'currency',
-						  currency: 'USD',
-						}).format(product.dataFinancial.price);
 						productCardBody.innerHTML = `
 							<h6>${product.mountingTypeEnum.namePL} / ${product.mountingTypeEnum.nameEN}</h6>
 							<h6>${product.weight} kg</h6>
 							<h6>${product.powerConnectionValue} VA</h6>
-							<h6>${formattedPrice}</h6>
 						`;
 						//build card
 						productCard.appendChild(productCardHeader);

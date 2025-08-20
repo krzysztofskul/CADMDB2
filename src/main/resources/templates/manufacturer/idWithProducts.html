@@ -71,7 +71,17 @@
 									<p th:text="${product.modelName}"></p>
 								</td>
 								<td>
-									<p th:text="${#numbers.formatCurrency(product.dataFinancial.price)}"></p>
+									
+									
+									<p class="langPL currency" th:if="${edit == 'false' or edit == null}" 
+									    th:with="
+									        formatted=${#numbers.formatDecimal(product.dataFinancial.price, 1, 'COMMA', 2, 'POINT')},
+									        spaced=${#strings.replace(formatted, ',', ' ')},
+									        final=${#strings.replace(spaced, '.', ',')}"
+									    th:text="${final}">
+									
+									</p>
+									
 								</td>
 								<td>
 									<div th:if="${product.isActive == true}" class="text-success">

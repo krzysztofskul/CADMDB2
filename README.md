@@ -25,10 +25,7 @@ https://cadmedica-426c866a6bb5.herokuapp.com/login
 
 * VER.#0.5-ALPHA:  
     * feat(currency): implement currency management  IN PROGRESS...   
-      * create js file and rest controller for currency conversion ... 
-        * create ExchangeRateService DONE
-        * initial create currency.js file for setting actual currency to the session key DONE 
-        * (?) implement calculation on the fly or add fields with other currencies in entity classes  
+        * update forms with prices in order to currency management IN PROGERESS...
     * feat: implement investor management   
     * feat(contact): implement contact details management  
     * feat(address): implement api https://restcountries.com/   

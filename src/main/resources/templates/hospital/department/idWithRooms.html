@@ -88,7 +88,7 @@
 										        formatted=${#numbers.formatDecimal(room.dataFinancial.purCostOfProductPlan, 1, 'COMMA', 2, 'POINT')},
 										        spaced=${#strings.replace(formatted, ',', ' ')},
 										        final=${#strings.replace(spaced, '.', ',')}"
-										    th:text="${final}">										
+										    th:text="${final} + ' ' + ${currency}">									
 										</p>
 									</td>
 									<td>
@@ -97,7 +97,7 @@
 										        formatted=${#numbers.formatDecimal(room.dataFinancial.maintCostOfProductPlan, 1, 'COMMA', 2, 'POINT')},
 										        spaced=${#strings.replace(formatted, ',', ' ')},
 										        final=${#strings.replace(spaced, '.', ',')}"
-										    th:text="${final}">										
+										    th:text="${final} + ' ' + ${currency}">									
 										</p>
 										<p class="langPL" th:text="|w okresie ${department.hospital.simulation.time} lat|"></p>
 										<p class="langEN" th:text="|over ${department.hospital.simulation.time} years|"></p>
@@ -127,7 +127,7 @@
 									        formatted=${#numbers.formatDecimal(department.dataFinancial.purCostOfProductPlan, 1, 'COMMA', 2, 'POINT')},
 									        spaced=${#strings.replace(formatted, ',', ' ')},
 									        final=${#strings.replace(spaced, '.', ',')}"
-									    th:text="${final}">									
+									    th:text="${final} + ' ' + ${currency}">								
 									</h6>
 								</td>
 								<td class="bg-light">

@@ -17,15 +17,18 @@
 	<div th:replace="./hospital/menu-hospital-list" :: menu-hospital-list></div>
 	
 	<div class="container-fluid appcontainer">
+		
 		<table class="table">
 			<thead>
 				<tr>
-<!--					<td colspan="5">
+					<!--					
+					<td colspan="5">
 						<a href="/hospitals/0" class="btn btn-sm btn-outline-success app-btn-right">
 							<p class="langPL">NOWY SZPITAL</p>
 							<p class="langEN">NEW HOSPITAL</p>
 						</a>
-					</td>-->
+					</td>
+					-->
 				</tr>
 				<tr>
 					<td colspan="2">
@@ -65,7 +68,7 @@
 							        formatted=${#numbers.formatDecimal(hospital.dataFinancial.purCostOfProductPlan, 1, 'COMMA', 2, 'POINT')},
 							        spaced=${#strings.replace(formatted, ',', ' ')},
 							        final=${#strings.replace(spaced, '.', ',')}"
-							    th:text="${final}">
+							    th:text="|${final} PLN|">
 							</p>
 						</td>
 						<td>							
@@ -74,7 +77,7 @@
 							        formatted=${#numbers.formatDecimal(hospital.dataFinancial.maintCostOfProductPlan, 1, 'COMMA', 2, 'POINT')},
 							        spaced=${#strings.replace(formatted, ',', ' ')},
 							        final=${#strings.replace(spaced, '.', ',')}"
-							    th:text="${final}">
+							    th:text="|${final} PLN|">
 							</p>
 							<p class="langPL" th:text="|w okresie ${hospital.simulation.time} lat|"></p>
 							<p class="langEN" th:text="|over ${hospital.simulation.time} years|"></p>
