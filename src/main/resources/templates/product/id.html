@@ -16,7 +16,7 @@
 	<div th:replace="./manufacturer/menu-manufacturer" :: menu-manufacturer></div>
 	
 	<div class="container-fluid appcontainer">
-		<form action="#" th:action="@{#}" method="POST" th:object="${product}">
+		<form id="form" action="#" th:action="@{#}" method="POST" th:object="${product}">
 			<div class="card card-product">
 				<div class="card-header">					
 					<div class="form-group row d-none">
@@ -184,7 +184,7 @@
 								<p class="langPL">ANULUJ</p>
 								<p class="langEN">cancel</p>
 							</a>
-							<button type="submit" class="btn btn-sm btn-outline-success app-btn-right">
+							<button id="btn-submit" type="submit" class="btn btn-sm btn-outline-success app-btn-right">
 								<p class="langPL">ZAPISZ</p>
 								<p class="langEN">save</p>
 							</button>

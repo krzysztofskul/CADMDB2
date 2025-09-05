@@ -2,10 +2,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	let btnCurrencyList = Array.from(document.getElementsByClassName("btn-currency"));
 	let divCurrencyValue = Array.from(document.getElementsByClassName("currency"));
+	let form = document.getElementById('form');
 	//let selectedCurrency = selectedCurrency; //session value (from header.html)
 	//let exchangeRateEUR //session value (from header.html)
 	//let exchangeRateUSD //session value (from header.html)
 
+	function setUpForm() {
+		form.addEventListener('submit', function(event) {
+			event.preventDefault();
+			console.log("*** TEST: submit has been clicked! ***")
+			divCurrencyValue.forEach((element)=> {
+				if (selectedCurrency === 'EUR') {
+				element.value = (element.value / exchangeRateEUR).toFixed(2);					
+				}
+				if (selectedCurrency === 'USD') {
+					element.value = (element.value / exchangeRateUSD).toFixed(2);						
+				}
+
+			});
+			form.submit(); 
+		});		
+	}
+
+	
 	function setCurrency(code) {
 	    fetch("/currency/set", {
 	        method: "POST",
@@ -40,38 +59,50 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	}
 	
+	/* 
+	textValue: text of the currency in text format
+	currency: EUR or USD
+	*/
+	function exchangeCurrencyValue(textValue, currency) {
+		const rawText = textValue.trim();
+	    // Replace space (thousands separator) with empty string
+	    // Replace comma (decimal separator) with dot
+	    const normalized = rawText.replace(/\s/g, '').replace(',', '.');
+	    const valuePLN = parseFloat(normalized);	
+    	const valueEUR = (valuePLN * exchangeRateEUR).toFixed(2);
+        const valueUSD = (valuePLN * exchangeRateUSD).toFixed(2);
+		
+		if (currency === 'EUR') {
+			return valueEUR;
+		}
+		if (currency === 'USD') {
+			return valueUSD;
+		}
+		return valuePLN;
+	}
+	
 	function checkSelectedCurrency(btn) {
 		if (selectedCurrency === btn.dataset.code) {
-			//window.alert("TEST: "+selectedCurrency+" === "+btn.dataset.code);
-			//console.log("TEST: actual currency: " + selectedCurrency);
-			//console.log("TEST: exchangeRateEUR = " + exchangeRateEUR);
-			//console.log("TEST: exchangeRateUSD = " + exchangeRateUSD);
 			divCurrencyValue.forEach((element) => {
-/*				console.log("---TEST---");
-				console.log("---currency exchange---");
-				console.log(element.innerText + " PLN");
-				console.log(((parseFloat(element.innerText))*exchangeRateEUR).toFixed(2) + " EUR");
-*/
-    			const rawText = element.innerText.trim();
-			    // Replace space (thousands separator) with empty string
-			    // Replace comma (decimal separator) with dot
-			    const normalized = rawText.replace(/\s/g, '').replace(',', '.');
-			    const valuePLN = parseFloat(normalized);			
-			    if (!isNaN(valuePLN)) {
-			        const valueEUR = (valuePLN * exchangeRateEUR).toFixed(2);
-			        const valueUSD = (valuePLN * exchangeRateUSD).toFixed(2);
-			        //console.log(`${valuePLN} PLN`);
-			        //console.log(`${valueEUR} EUR`);
+				//check and exchange currency for input fields
+				if (element.classList.contains("form-control")) { 
 			        if (selectedCurrency === 'EUR') {
-						//set th:text = ${valueEUR}
-						element.textContent = `${valueEUR} EUR`;
+						element.value = exchangeCurrencyValue(element.value, 'EUR');
 					}
 			        if (selectedCurrency === 'USD') {
-						//set th:text = ${valueUSD}
-						element.textContent = `${valueUSD} USD`;
+						element.value = exchangeCurrencyValue(element.value, 'USD');
 					}
-			    }
-
+				}
+				//check and exchange currency for not input fields 
+				else { 
+			        if (selectedCurrency === 'EUR') {
+						element.textContent = exchangeCurrencyValue(element.innerText, 'EUR') + ' EUR';
+					}
+			        if (selectedCurrency === 'USD') {
+						element.textContent = exchangeCurrencyValue(element.innerText, 'USD') + ' USD';
+					}					
+				}
+	
 			});
 			btn.classList.add("bg-light", "text-dark" , "font-weight-bold");
 		}
@@ -82,6 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			checkSelectedCurrency(btn);
 		});
 		setUpButtons(btnCurrencyList);
+		setUpForm();
 	}
 	
 	init();

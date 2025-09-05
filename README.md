@@ -25,7 +25,9 @@ https://cadmedica-426c866a6bb5.herokuapp.com/login
 
 * VER.#0.5-ALPHA:  
     * feat(currency): implement currency management  IN PROGRESS...   
-        * update forms with prices in order to currency management IN PROGERESS...
+        * update forms with prices in order to currency management DONE COMMITED  
+        * update submit button for sending price in EUR and USD DONE COMMITED  
+        * update a form for adding an new product TODO...
     * feat: implement investor management   
     * feat(contact): implement contact details management  
     * feat(address): implement api https://restcountries.com/   
