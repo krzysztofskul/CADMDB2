@@ -10,6 +10,7 @@ import pl.krzysztofskul.cadmdb.company.manufacturer.ManufacturerService;
 import pl.krzysztofskul.cadmdb.company.manufacturer.ManufacturerTestGenerator;
 import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacilityService;
 import pl.krzysztofskul.cadmdb.hospital.Hospital;
+import pl.krzysztofskul.cadmdb.hospital.HospitalDemoGenerator;
 import pl.krzysztofskul.cadmdb.hospital.HospitalService;
 import pl.krzysztofskul.cadmdb.hospital.HospitalTestGenerator;
 import pl.krzysztofskul.cadmdb.hospital.department.Department;
@@ -37,6 +38,7 @@ public class HomeService {
 	private UserService userService;
 	private HealthcareFacilityService healthcareFacilityService;
 	private HospitalTestGenerator hospitalTestGenerator;
+	private HospitalDemoGenerator hospitalDemoGenerator;
 	private DepartmentTestGenerator departmentTestGenerator;
 	private RoomTestGenerator roomTestGenerator;
 	private HospitalService hospitalService;
@@ -61,7 +63,7 @@ public class HomeService {
 	 * Constructor
 	 */
 	@Autowired
-	public HomeService(UserService userService, HealthcareFacilityService healthcareFacilityService, HospitalTestGenerator hospitalTestGenerator, HospitalService hospitalService,
+	public HomeService(UserService userService, HealthcareFacilityService healthcareFacilityService, HospitalTestGenerator hospitalTestGenerator, HospitalDemoGenerator hospitalDemoGenerator, HospitalService hospitalService,
 			NameStandardizedService department_nameStandardizedService, NameStandardizedTestGenerator department_nameStandardizedTestGenerator,
 			pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameStandardizedService room_nameStandardizedService, pl.krzysztofskul.cadmdb.hospital.department.room.namestandardized.NameStandardizedTestGenerator room_nameStandardizedTestGenerator,
 			CategoryService categoryService, CategoryGenerator categoryGenerator, ProductTestGenerator productTestGenerator, ProductService productService, ManufacturerTestGenerator manufacturerTestGenerator, ManufacturerService manufacturerService,
@@ -70,6 +72,7 @@ public class HomeService {
 		this.userService = userService;
 		this.healthcareFacilityService = healthcareFacilityService;
 		this.hospitalTestGenerator = hospitalTestGenerator;
+		this.hospitalDemoGenerator = hospitalDemoGenerator;
 		this.departmentTestGenerator = departmentTestGenerator;
 		this.roomTestGenerator = roomTestGenerator;
 		this.hospitalService = hospitalService;
@@ -132,9 +135,16 @@ public class HomeService {
 				}
 				;
 				//init test hospitals
-				for (Hospital hospital : hospitalTestGenerator.initListAndReturn()) {
-					hospitalService.save(hospital);
+				if (type == "demo") {
+					for (Hospital hospital : hospitalDemoGenerator.initListAndReturn()) {
+						hospitalService.save(hospital);
+					}					
+				}else if (type == "test") {
+					for (Hospital hospital : hospitalTestGenerator.initListAndReturn()) {
+						hospitalService.save(hospital);
+					}					
 				}
+
 				//init and add test departments to hospitals
 				for (Hospital hospital : hospitalService.loadAll()) {
 					List<Department> departmentList = departmentTestGenerator.initListAndReturn();
