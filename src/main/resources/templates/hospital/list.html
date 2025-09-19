@@ -87,15 +87,20 @@
 							<p th:text="${#numbers.formatDecimal(hospital.dataArchHospital.areaTotal, 0, 1)}+' m2'"></p>
 						</td>
 						<td>
-							<a th:href="@{/hospitals/{id}/delete (id=${hospital.id}) }" class="btn btn-sm btn-outline-danger float-right">
-								<p class="langPL">USUŃ</p>
-								<p class="langEN">DELETE</p>
-							</a>
-							<a th:href="@{/hospitals/{id}(id=${hospital.id})}" class="btn btn-sm btn-outline-primary float-right">
+							<a th:href="@{/hospitals/{id}(id=${hospital.id})}" class="btn btn-sm btn-outline-light float-right">
+								<!--
 								<p class="langPL">SZCZEGÓŁY</p>
 								<p class="langEN">DETAILS</p>
+								-->
+								<img class="btn-details" th:src="@{/img/btn/btn-details.jpg}" alt="DEL"/>	
 							</a>
-
+							<a th:href="@{/hospitals/{id}/delete (id=${hospital.id}) }" class="btn btn-sm btn-outline-light float-right">
+								<!--
+								<p class="langPL">USUŃ</p>
+								<p class="langEN">DELETE</p>
+								-->
+								<img class="btn-delete" th:src="@{/img/btn/btn-delete.jpg}" alt="DEL"/>
+							</a>
 						</td>
 					</tr>
 				</th:block>

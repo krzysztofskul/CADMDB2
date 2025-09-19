@@ -1,4 +1,4 @@
-<img src="./src/main/resources/static/img/CADmedica.jpg" width="200px"/>  
+<img src="./src/main/resources/static/img/CAEmedica.jpg" width="200px"/>  
 
 #### INTRODUCTION
 The main goal of this application is to build hospital rooms and departments structure as well as to calculate equipment costs, service and power consumption per room and department.
