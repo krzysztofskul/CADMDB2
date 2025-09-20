@@ -88,7 +88,7 @@
 									        formatted=${#numbers.formatDecimal(product.dataFinancial.price, 1, 'COMMA', 2, 'POINT')},
 									        spaced=${#strings.replace(formatted, ',', ' ')},
 									        final=${#strings.replace(spaced, '.', ',')}"
-									    th:text="${final}">	
+									    th:text="|${final} PLN|">	
 									</p>
 								</div>
 							</div>
@@ -104,7 +104,7 @@
 									        formatted=${#numbers.formatDecimal(product.dataFinancial.maintenanceCost, 1, 'COMMA', 2, 'POINT')},
 									        spaced=${#strings.replace(formatted, ',', ' ')},
 									        final=${#strings.replace(spaced, '.', ',')}"
-									    th:text="${final}">
+									    th:text="|${final} PLN|">
 									
 									</p>
 								</div>

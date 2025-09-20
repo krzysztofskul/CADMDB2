@@ -8,14 +8,14 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 	<!-- JS -->
-	<script src="/js/main.js"></script>
+    <script type="module" th:src="@{/js/main.js}" defer></script>
 </head>
 <body>
 	<div th:replace="./header" :: header></div>
 	<div th:replace="./manufacturer/menu-manufacturer" :: menu-manufacturer></div>
 	
 	<div class="container-fluid appcontainer">
-		<form th:action="@{#}" th:object="${product}" method="POST">
+		<form id="form" th:action="@{#}" th:object="${product}" method="POST">
 			<div class="card card-hf">
 				<div class="card-header">
 					<div class="form-group row">
@@ -91,14 +91,14 @@
 							<p class="langPL">CENA:</p>
 							<p class="langEN">PRICE:</p>
 						</label>
-						<input class="form-control" type="number" step="0.01" th:field="${product.dataFinancial.price}"/>
+						<input class="form-control currency" type="number" step="0.01" th:field="${product.dataFinancial.price}"/>
 					</div>
 					<div class="form-group">
 						<label>
 							<p class="langPL">ROCZNY KOSZT EKSPLOATACJI:</p>
 							<p class="langEN">MAINTENANCE COST PER YEAR:</p>
 						</label>
-						<input class="form-control" type="number" step="0.01" th:field="${product.dataFinancial.maintenanceCost}"/>
+						<input class="form-control currency" type="number" step="0.01" th:field="${product.dataFinancial.maintenanceCost}"/>
 					</div>
 				</div>
 				<div class="card-footer">
@@ -106,7 +106,7 @@
 						<p class="langPL">ANULUJ</p>
 						<p class="langEN">cancel</p>
 					</a>
-					<button type="submit" class="btn btn-sm btn-outline-success app-btn-right">
+					<button id="btn-submit" type="submit" class="btn btn-sm btn-outline-success app-btn-right">
 						<p class="langPL">ZAPISZ</p>
 						<p class="langEN">save</p>
 					</button>

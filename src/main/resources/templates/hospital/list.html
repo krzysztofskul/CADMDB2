@@ -63,7 +63,8 @@
 							<span th:text="${hospital.address.streetname+' '+hospital.address.streetno}"></span>
 						</td>
 						<td>
-							<p class="currency"
+							<img class="ico-money-sm" th:src="@{/img/ico/money.png}"/>
+							<p class="currency d-inline-block"
 							    th:with="
 							        formatted=${#numbers.formatDecimal(hospital.dataFinancial.purCostOfProductPlan, 1, 'COMMA', 2, 'POINT')},
 							        spaced=${#strings.replace(formatted, ',', ' ')},
@@ -71,8 +72,9 @@
 							    th:text="|${final} PLN|">
 							</p>
 						</td>
-						<td>							
-							<p class="currency"
+						<td>
+							<img class="ico-money-sm" th:src="@{/img/ico/money.png}"/>
+							<p class="currency d-inline-block"
 							    th:with="
 							        formatted=${#numbers.formatDecimal(hospital.dataFinancial.maintCostOfProductPlan, 1, 'COMMA', 2, 'POINT')},
 							        spaced=${#strings.replace(formatted, ',', ' ')},
@@ -84,7 +86,11 @@
 							
 						</td>
 						<td>
-							<p th:text="${#numbers.formatDecimal(hospital.dataArchHospital.areaTotal, 0, 1)}+' m2'"></p>
+							<p> 
+								<img class="ico-sm" th:src="@{/img/ico/square.png}"/>
+								<span th:text="${#numbers.formatDecimal(hospital.dataArchHospital.areaTotal, 0, 1)}"></span><span> m<sup>2</sup></span> 
+								
+							</p>
 						</td>
 						<td>
 							<a th:href="@{/hospitals/{id}(id=${hospital.id})}" class="btn btn-sm btn-outline-light float-right">
