@@ -18,7 +18,7 @@
 	
 	<div class="container-fluid appcontainer">
 		
-		<table class="table">
+		<table class="table table-hover">
 			<thead>
 				<tr>
 					<!--					
@@ -50,65 +50,69 @@
 				</tr>
 			</thead>
 			<tbody>
-				<th:block th:each="hospital : ${hospitalList}">						
-					<tr>
-						<td style="width:80px">
-							<img th:src="@{/img/ico/hospital000.png}" alt="HOSPITAL ICON" width="75" height="75" class="border">
-						</td>
-						<td>
-							<h6 th:text="${hospital.name}"></h6>
-							<span th:text="${hospital.address.country}"></span>
-							<br>
-							<span th:text="${hospital.address.postalcode+' '+hospital.address.city+', '}"></span>
-							<span th:text="${hospital.address.streetname+' '+hospital.address.streetno}"></span>
-						</td>
-						<td>
-							<img class="ico-money-sm" th:src="@{/img/ico/money.png}"/>
-							<p class="currency d-inline-block"
-							    th:with="
-							        formatted=${#numbers.formatDecimal(hospital.dataFinancial.purCostOfProductPlan, 1, 'COMMA', 2, 'POINT')},
-							        spaced=${#strings.replace(formatted, ',', ' ')},
-							        final=${#strings.replace(spaced, '.', ',')}"
-							    th:text="|${final} PLN|">
-							</p>
-						</td>
-						<td>
-							<img class="ico-money-sm" th:src="@{/img/ico/money.png}"/>
-							<p class="currency d-inline-block"
-							    th:with="
-							        formatted=${#numbers.formatDecimal(hospital.dataFinancial.maintCostOfProductPlan, 1, 'COMMA', 2, 'POINT')},
-							        spaced=${#strings.replace(formatted, ',', ' ')},
-							        final=${#strings.replace(spaced, '.', ',')}"
-							    th:text="|${final} PLN|">
-							</p>
-							<p class="langPL" th:text="|w okresie ${hospital.simulation.time} lat|"></p>
-							<p class="langEN" th:text="|over ${hospital.simulation.time} years|"></p>
-							
-						</td>
-						<td>
-							<p> 
-								<img class="ico-sm" th:src="@{/img/ico/square.png}"/>
-								<span th:text="${#numbers.formatDecimal(hospital.dataArchHospital.areaTotal, 0, 1)}"></span><span> m<sup>2</sup></span> 
+				<th:block th:each="hospital : ${hospitalList}">									
+					<tr th:onclick="|window.location.href='@{/hospitals/{id}(id=${hospital.id})}'|" style="cursor:pointer;">					
+						<a th:href="@{/hospitals/{id}(id=${hospital.id})}">	
+							<td style="width:80px">
+								<img th:src="@{/img/ico/hospital000.png}" alt="HOSPITAL ICON" width="75" height="75" class="border">
+							</td>
+							<td>
+								<h6 th:text="${hospital.name}"></h6>
+								<span th:text="${hospital.address.country}"></span>
+								<br>
+								<span th:text="${hospital.address.postalcode+' '+hospital.address.city+', '}"></span>
+								<span th:text="${hospital.address.streetname+' '+hospital.address.streetno}"></span>
+							</td>
+							<td>
+								<img class="ico-money-sm" th:src="@{/img/ico/money.png}"/>
+								<p class="currency d-inline-block"
+								    th:with="
+								        formatted=${#numbers.formatDecimal(hospital.dataFinancial.purCostOfProductPlan, 1, 'COMMA', 2, 'POINT')},
+								        spaced=${#strings.replace(formatted, ',', ' ')},
+								        final=${#strings.replace(spaced, '.', ',')}"
+								    th:text="|${final} PLN|">
+								</p>
+							</td>
+							<td>
+								<img class="ico-money-sm" th:src="@{/img/ico/money.png}"/>
+								<p class="currency d-inline-block"
+								    th:with="
+								        formatted=${#numbers.formatDecimal(hospital.dataFinancial.maintCostOfProductPlan, 1, 'COMMA', 2, 'POINT')},
+								        spaced=${#strings.replace(formatted, ',', ' ')},
+								        final=${#strings.replace(spaced, '.', ',')}"
+								    th:text="|${final} PLN|">
+								</p>
+								<p class="langPL" th:text="|w okresie ${hospital.simulation.time} lat|"></p>
+								<p class="langEN" th:text="|over ${hospital.simulation.time} years|"></p>
 								
-							</p>
-						</td>
-						<td>
-							<a th:href="@{/hospitals/{id}(id=${hospital.id})}" class="btn btn-sm btn-outline-light float-right">
-								<!--
-								<p class="langPL">SZCZEGÓŁY</p>
-								<p class="langEN">DETAILS</p>
-								-->
-								<img class="btn-details" th:src="@{/img/btn/btn-details.jpg}" alt="DEL"/>	
-							</a>
-							<a th:href="@{/hospitals/{id}/delete (id=${hospital.id}) }" class="btn btn-sm btn-outline-light float-right">
-								<!--
-								<p class="langPL">USUŃ</p>
-								<p class="langEN">DELETE</p>
-								-->
-								<img class="btn-delete" th:src="@{/img/btn/btn-delete.jpg}" alt="DEL"/>
-							</a>
-						</td>
-					</tr>
+							</td>
+							<td>
+								<p> 
+									<img class="ico-sm" th:src="@{/img/ico/square.png}"/>
+									<span th:text="${#numbers.formatDecimal(hospital.dataArchHospital.areaTotal, 0, 1)}"></span><span> m<sup>2</sup></span> 
+									
+								</p>
+							</td>
+							<td>
+								<a th:href="@{/hospitals/{id}(id=${hospital.id})}" class="btn btn-sm btn-outline-light float-right">
+									<!--
+									<p class="langPL">SZCZEGÓŁY</p>
+									<p class="langEN">DETAILS</p>
+									-->
+									<img class="btn-details" th:src="@{/img/btn/btn-details.jpg}" alt="DEL"/>	
+								</a>
+								<a th:href="@{/hospitals/{id}/delete (id=${hospital.id}) }" 
+									class="btn btn-sm btn-outline-light float-right"
+									onclick="event.stopPropagation(); return confirm('Czy na pewno chcesz usunąć ten szpital? \nAre you sure you want to delete this hospital?');"
+								>
+									<!--
+									<p class="langPL">USUŃ</p>
+									<p class="langEN">DELETE</p>
+									-->
+									<img class="btn-delete" th:src="@{/img/btn/btn-delete.jpg}" alt="DEL"/>
+								</a>
+							</td>
+					</tr>				
 				</th:block>
 			</tbody>
 			<tfoot>
