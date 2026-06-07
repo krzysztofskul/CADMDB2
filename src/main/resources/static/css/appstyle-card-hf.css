@@ -5,8 +5,22 @@
 */
 
 .card.card-hf > .card-header {
-	min-height: 275px;
+	/*min-height: 275px;*/
 	}
+.card.card-hf .span-address-input {
+	margin: .2rem .2rem .2rem 0;
+}
+
+.address-row {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: .5rem;
+}
+
+.address-row span {
+    display: inline-block;
+}
 
 div.room-data-arch {
   display: flex;
@@ -20,4 +34,9 @@ div.room-data-arch > .card {
   min-width: 400px;
   max-width: 600px;
   box-sizing: border-box;
+}
+
+div.room-data-arch .row {
+
+	margin: 0 0 .5rem 0;
 }

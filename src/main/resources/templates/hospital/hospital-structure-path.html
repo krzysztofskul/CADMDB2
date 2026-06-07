@@ -1,11 +1,13 @@
 <div th:fragment="hospital-structure-path">	
 	
 	<div class="row border-bottom pb-2 text-left">
+		<!--
 		<div class="col-2">
 			<p class="langPL">MIEJSCE W STRUKTURZE SZPITALA:</p>
 			<p class="langEN">HOSPITAL STRUCTURE PATH:</p>
 		</div>
-		<div class="col-7">
+		-->
+		<div class="col-9">
 			<div class="d-inline-block" th:if="${hospital != null}">
 				<a th:href="@{|/hospitals/${hospital.id}/departments|}" th:text="${hospital?.name}" class="btn btn-sm btn-outline-primary disabled"></a>
 			</div>
