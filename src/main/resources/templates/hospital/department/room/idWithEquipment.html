@@ -54,7 +54,7 @@
 					</div>	
 				</div>
 				<div class="card-body">
-					<table class="table">
+					<table class="table table-hover">
 						<thead class="bg-light">
 							<tr class="text-center border-bottom">
 								<td colspan="8">
@@ -92,10 +92,10 @@
 							</tr>
 						</thead>
 						<tbody>
-							<th:block>
-								<tr th:each="product : ${room.productList}">
+							<th:block th:each="product : ${room.productList}">
+								<tr th:onclick="|window.location.href='@{|/products/${product.id}|}'|" style="cursor:pointer;">
 									<td style="width:80px">
-										<img th:src="@{/img/ico/equipment000.png}" alt="HOSPITAL ICON" width="75" height="75" class="border">
+										<img th:src="@{/img/ico/equipment000.png}" alt="ROOM ICON" width="75" height="75" class="border">
 									</td>
 									<td>
 										<p class="langPL" th:text="${product.category.namePL}"></p>
@@ -111,21 +111,23 @@
 										<p class="langPL" th:text="${product.mountingTypeEnum.namePL}"></p>
 									</td>
 									<td>
-										<p class="langPL currency" 
+										<img class="ico-money-sm" th:src="@{/img/ico/money.png}"/>
+										<p class="currency d-inline-block"
 										    th:with="
 										        formatted=${#numbers.formatDecimal(product.dataFinancial.price, 1, 'COMMA', 2, 'POINT')},
 										        spaced=${#strings.replace(formatted, ',', ' ')},
 										        final=${#strings.replace(spaced, '.', ',')}"
-										    th:text="${final}">												
+										    th:text="|${final} PLN|">												
 										</p>
 									</td>
 									<td>
-										<p class="langPL currency" 										
+										<img class="ico-money-sm" th:src="@{/img/ico/money.png}"/>
+										<p class="currency d-inline-block"										
 										    th:with="
 										        formatted=${#numbers.formatDecimal(product.dataFinancial.maintenanceCost, 1, 'COMMA', 2, 'POINT')},
 										        spaced=${#strings.replace(formatted, ',', ' ')},
 										        final=${#strings.replace(spaced, '.', ',')}"
-										    th:text="${final}">	
+										    th:text="|${final} PLN|">
 										</p>
 										<p class="langPL" th:text="|rocznie|"></p>
 										<p class="langEN" th:text="|per one year|"></p>
@@ -151,21 +153,23 @@
 								<td></td>
 								<td></td>
 								<td class="bg-light">
-									<h6 class="currency" 
+									<img class="ico-money-sm" th:src="@{/img/ico/money.png}"/>
+									<h6 class="currency d-inline-block" 
 									    th:with="
 									        formatted=${#numbers.formatDecimal(room.dataFinancial.purCostOfProductPlan, 1, 'COMMA', 2, 'POINT')},
 									        spaced=${#strings.replace(formatted, ',', ' ')},
 									        final=${#strings.replace(spaced, '.', ',')}"
-									    th:text="${final}">										
+									    th:text="|${final} PLN|">									
 									</h6>
 								</td>
 								<td class="bg-light">
-									<h6 class="currency" 
+									<img class="ico-money-sm" th:src="@{/img/ico/money.png}"/>
+									<h6 class="currency d-inline-block" 
 									    th:with="
 									        formatted=${#numbers.formatDecimal(room.dataFinancial.maintCostOfProductPlan, 1, 'COMMA', 2, 'POINT')},
 									        spaced=${#strings.replace(formatted, ',', ' ')},
 									        final=${#strings.replace(spaced, '.', ',')}"
-									    th:text="${final}">																			
+									    th:text="|${final} PLN|">																			
 									</h6>
 									<p class="langPL" th:text="|w okresie ${room.department.hospital.simulation.time} lat|"></p>
 									<p class="langEN" th:text="|over ${room.department.hospital.simulation.time} years|"></p>

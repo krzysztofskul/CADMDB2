@@ -42,7 +42,7 @@
 					</div>
 				</div>
 				<div class="card-body">
-					<table class="table">
+					<table class="table table-hover">
 						<thead class="bg-light">
 							<tr class="text-center border-bottom">
 								<td colspan="6">
@@ -73,37 +73,40 @@
 						</thead>
 						
 						<tbody>
-							<th:block>
-								<tr th:each="room : ${department.roomList}">
+							<th:block th:each="room : ${department.roomList}">
+								<tr th:onclick="|window.location.href='@{/rooms/{id}/equipment(id=${room.id})}'|" style="cursor:pointer;">
 									<td style="width:80px">
-										<img th:src="@{/img/ico/room000.png}" alt="HOSPITAL ICON" width="75" height="75" class="border">
+										<img th:src="@{/img/ico/room000.png}" alt="DEPARTMENT ICON" width="75" height="75" class="border">
 									</td>
 									<td>
 										<p class="langPL" th:text="${room.nameStandardized.nameStandardizedPl}"></p>
 										<p class="langEN" th:text="${room.nameStandardized.nameStandardizedEn}"></p>
 									</td>
 									<td>
-										<p class="langPL currency" 
+										<img class="ico-money-sm" th:src="@{/img/ico/money.png}"/>
+										<p class="currency d-inline-block"
 										    th:with="
 										        formatted=${#numbers.formatDecimal(room.dataFinancial.purCostOfProductPlan, 1, 'COMMA', 2, 'POINT')},
 										        spaced=${#strings.replace(formatted, ',', ' ')},
 										        final=${#strings.replace(spaced, '.', ',')}"
-										    th:text="${final} + ' ' + ${currency}">									
+										    th:text="|${final} PLN|">							
 										</p>
 									</td>
 									<td>
-										<p class="langPL currency" 
+										<img class="ico-money-sm" th:src="@{/img/ico/money.png}"/>
+										<p class="currency d-inline-block"
 										    th:with="
 										        formatted=${#numbers.formatDecimal(room.dataFinancial.maintCostOfProductPlan, 1, 'COMMA', 2, 'POINT')},
 										        spaced=${#strings.replace(formatted, ',', ' ')},
 										        final=${#strings.replace(spaced, '.', ',')}"
-										    th:text="${final} + ' ' + ${currency}">									
+										    th:text="|${final} PLN|">								
 										</p>
 										<p class="langPL" th:text="|w okresie ${department.hospital.simulation.time} lat|"></p>
 										<p class="langEN" th:text="|over ${department.hospital.simulation.time} years|"></p>
 									</td>
 									<td>
-										<p class="langPL" th:text="${#numbers.formatDecimal(room.dataArchRoom.area, 0, 2)+ ' m2'}"></p>
+										<img class="ico-sm" th:src="@{/img/ico/square.png}"/>
+										<span th:text="${#numbers.formatDecimal(room.dataArchRoom.area, 0, 1)}"></span><span> m<sup>2</sup></span>
 									</td>
 									<td colspan="2">
 										<a th:href="@{/rooms/{roomId}/delete (roomId = ${room.id}) }" class="btn btn-sm btn-outline-danger float-right">
@@ -122,25 +125,28 @@
 							<tr>
 								<td colspan="2"></td>
 								<td class="bg-light">
-									<h6 class="currency" 						
+									<img class="ico-money-sm" th:src="@{/img/ico/money.png}"/>
+									<h6 class="currency d-inline-block" 						
 									    th:with="
 									        formatted=${#numbers.formatDecimal(department.dataFinancial.purCostOfProductPlan, 1, 'COMMA', 2, 'POINT')},
 									        spaced=${#strings.replace(formatted, ',', ' ')},
 									        final=${#strings.replace(spaced, '.', ',')}"
-									    th:text="${final} + ' ' + ${currency}">								
+									    th:text="|${final} PLN|">								
 									</h6>
 								</td>
 								<td class="bg-light">
-									<h6 class="currency" 
+									<img class="ico-money-sm" th:src="@{/img/ico/money.png}"/>
+									<h6 class="currency d-inline-block" 
 									    th:with="
 									        formatted=${#numbers.formatDecimal(department.dataFinancial.maintCostOfProductPlan, 1, 'COMMA', 2, 'POINT')},
 									        spaced=${#strings.replace(formatted, ',', ' ')},
 									        final=${#strings.replace(spaced, '.', ',')}"
-									    th:text="${final}">
+									    th:text="|${final} PLN|">
 									</h6>
 								</td>
 								<td class="bg-light">
-									<h6 th:text="${#numbers.formatDecimal(department.dataArchDepartment.areaTotal, 0, 2)+ ' m2'}"></h6>									
+									<img class="ico-sm" th:src="@{/img/ico/square.png}"/>
+									<h6 class="d-inline-block" th:text="${#numbers.formatDecimal(department.dataArchDepartment.areaTotal, 0, 1)}"></h6><span> m<sup>2</sup></span>							
 								</td>
 								<td></td>
 							</tr>
