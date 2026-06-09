@@ -4,7 +4,10 @@
 	<div class="col-8">
 		<ul class="nav">
 			<li class="nav-item">
-				<a class="nav-link active" href="/home">
+				<a class="nav-link" 
+					th:classappend="${#request.requestURI == ('/home')} ? 'menu-active' : ''"
+					href="/home"
+				>
 					<p class="langPL">STR. DOMOWA</p>
 					<p class="langEN">HOME PAGE</p>
 				</a>
@@ -30,13 +33,19 @@
 				</div>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link active" href="/hospitals">
+				<a class="nav-link" 
+					th:classappend="${#request.requestURI.contains('/hospitals') OR #request.requestURI.contains('/departments') OR #request.requestURI.contains('/rooms') OR #request.requestURI.contains('/equipment')} ? 'menu-active' : ''"
+					href="/hospitals"
+				>
 					<p class="langPL">SZPITALE</p>
 					<p class="langEN">HOSPITALS</p>
 				</a>  
 			</li>
 			<li class="nav-item">
-				<a class="nav-link active" href="/manufacturers">
+				<a class="nav-link" 
+					th:classappend="${#request.requestURI.contains('/manufacturers')} ? 'menu-active' : ''"
+					href="/manufacturers"
+				>
 					<p class="langPL">PRODUCENCI WYPOSAŻENIA</p>
 					<p class="langEN">EQUIPMENT MANUFACTURERS</p>
 				</a>  
@@ -44,12 +53,15 @@
 
 
 			<li class="nav-item dropdown">
-		        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+		        <a class="nav-link dropdown-toggle" 
+		        	th:classappend="${#request.requestURI.contains('/products')} ? 'menu-active' : ''"
+		        	href="#" role="button" data-toggle="dropdown" aria-expanded="false"
+	        	>
 					<p class="langPL">WYPOSAŻENIE</p>
 					<p class="langEN">EQUIPMENT</p>
 				</a>
 		        <div class="dropdown-menu">
-					<a class="nav-link" href="/category/medical">
+					<a class="nav-link" href="/products/category/medical">
 						<p class="langPL">SPRZĘT MEDYCZNY</p>
 						<p class="langEN">MEDICAL DEVICES</p>
 					</a>

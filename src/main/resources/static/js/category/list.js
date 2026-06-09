@@ -90,7 +90,7 @@
 						//card
 						const productCard = document.createElement("a");
 						productCard.className = "card card-product-js";
-						productCard.href = "/products/"+product.id+"?backToPage=/category/medical";
+						productCard.href = "/products/"+product.id+"?backToPage=/products/category/medical";
 						productCard.style = "height:275px;";
 						//header
 						const productCardHeader = document.createElement("div");

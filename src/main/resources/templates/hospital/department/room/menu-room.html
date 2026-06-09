@@ -7,13 +7,19 @@
 				<img th:src="@{/img/ico/room000.png}" alt="HOSPITAL ICON" height="50" class="border">
 			</li>
 			<li class="nav-item">
-				<a class="nav-link active" th:href="@{/rooms/{roomId} (roomId=${room.id}) }" href="#">
-					<p class="langPL">INFORMACJE</p>
-					<p class="langEN">INFORMATION</p>
+				<a class="nav-link" 
+					th:classappend="${#request.requestURI == '/rooms/' + room.id} ? 'menu-active' : ''"
+					th:href="@{/rooms/{roomId} (roomId=${room.id}) }" href="#"
+				>
+					<p class="langPL">INFORMACJE OGÓLNE</p>
+					<p class="langEN">GENERAL INFORMATION</p>
 				</a>
 			</li>
-			<li class="nav-item disabled">
-				<a class="nav-link active" th:href="@{|/rooms/architectural-data/${room.id}|}" href="#">
+			<li class="nav-item">
+				<a class="nav-link" 
+					th:classappend="${#request.requestURI.contains('/architectural-data')} ? 'menu-active' : ''"
+					th:href="@{|/rooms/architectural-data/${room.id}|}" href="#"
+				>
 					<p class="langPL">DANE ARCHITEKTONICZNE</p>
 					<p class="langEN">ARCHITECTURAL DATA</p>
 				</a>
@@ -31,13 +37,19 @@
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" th:href="@{/rooms/{roomId}/equipment (roomId=${room.id}) }" href="#">
+				<a class="nav-link" 
+					th:classappend="${#request.requestURI.contains('/equipment')} ? 'menu-active' : ''"
+					th:href="@{/rooms/{roomId}/equipment (roomId=${room.id}) }" href="#"
+				>
 					<p class="langPL">WYKAZ WYPOSAŻENIA</p>
 					<p class="langEN">EQUIPMENT LIST</p>
 				</a>
 			</li>
 			<li th:if="${#request.requestURI.contains('/equipment')}" class="nav-item ml-auto">
-				<a class="nav-link text-right text-success" th:href="@{|/rooms/${room.id}/equipment?edit=true|}" href="#">
+				<a class="nav-link text-right text-success" 
+					th:classappend="${#request.requestURI.contains('/equipment') and param.edit != null} ? 'menu-active' : ''"
+					th:href="@{|/rooms/${room.id}/equipment?edit=true|}" href="#"
+				>
 					<p class="langPL">DODAJ WYPOSAŻENIE</p>
 					<p class="langEN">ADD EQUIPMENT</p>
 				</a>

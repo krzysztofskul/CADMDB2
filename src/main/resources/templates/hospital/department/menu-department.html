@@ -7,13 +7,19 @@
 				<img th:src="@{/img/ico/department000.png}" alt="HOSPITAL ICON" height="50" class="border">
 			</li>
 			<li class="nav-item">
-				<a class="nav-link active" th:href="@{/departments/{departmentId} (departmentId=${department.id}) }" href="#">
-					<p class="langPL">INFORMACJE</p>
-					<p class="langEN">INFORMATION</p>
+				<a class="nav-link" 
+					th:classappend="${#request.requestURI == '/departments/' + department.id} ? 'menu-active' : ''"
+					th:href="@{/departments/{departmentId} (departmentId=${department.id}) }" href="#"
+				>
+					<p class="langPL">INFORMACJE OGÓLNE</p>
+					<p class="langEN">GENERAL INFORMATION</p>
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" th:href="@{|/departments/architectural-data/${department.id}|}" href="#">
+				<a 
+					th:classappend="${#request.requestURI.contains('/architectural-data')} ? 'menu-active' : ''"
+					class="nav-link" th:href="@{|/departments/architectural-data/${department.id}|}" href="#"
+				>
 					<p class="langPL">DANE ARCHITEKTONICZNE</p>
 					<p class="langEN">ARCHITECTURAL DATA</p>
 				</a>
@@ -31,13 +37,19 @@
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" th:href="@{/departments/{departmentId}/rooms (departmentId=${department.id}) }" href="#">
+				<a class="nav-link" 
+					th:classappend="${#request.requestURI.contains('/rooms')} ? 'menu-active' : ''"
+					th:href="@{/departments/{departmentId}/rooms (departmentId=${department.id}) }" href="#"
+				>
 					<p class="langPL">WYKAZ POMIESZCZEŃ</p>
 					<p class="langEN">ROOMS LIST</p>
 				</a>
 			</li>
 			<li th:if="${#request.requestURI.contains('/rooms')}" class="nav-item ml-auto">
-				<a class="nav-link text-right text-success" th:href="@{/departments/{id}/rooms?edit=true (id=${department.id})}" href="#">
+				<a class="nav-link text-right text-success" 
+					th:classappend="${#request.requestURI.contains('/rooms') and param.edit != null} ? 'menu-active' : ''"
+					th:href="@{/departments/{id}/rooms?edit=true (id=${department.id})}" href="#"
+				>
 					<p class="langPL">DODAJ POMIESZCZENIE</p>
 					<p class="langEN">ADD ROOM</p>
 				</a>

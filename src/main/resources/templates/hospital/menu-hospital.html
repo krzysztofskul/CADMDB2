@@ -7,13 +7,19 @@
 				<img th:src="@{/img/ico/hospital000.png}" alt="HOSPITAL ICON" height="50" class="border">
 			</li>
 			<li class="nav-item">
-				<a class="nav-link active" th:href="@{/hospitals/{hospitalId} (hospitalId=${hospital.id}) }" href="#">
-					<p class="langPL">INFORMACJE</p>
-					<p class="langEN">INFORMATION</p>
+				<a class="nav-link" 
+					th:classappend="${#request.requestURI == '/hospitals/' + hospital.id} ? 'menu-active' : ''"
+					th:href="@{/hospitals/{hospitalId} (hospitalId=${hospital.id}) }" href="#"
+				>
+					<p class="langPL">INFORMACJE OGÓLNE</p>
+					<p class="langEN">GENERAL INFORMATION</p>
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" th:href="@{|/hospitals/architectural-data/${hospital.id}|}" href="#">
+				<a class="nav-link" 
+					th:classappend="${#request.requestURI.contains('/architectural-data')} ? 'menu-active' : ''"
+					th:href="@{|/hospitals/architectural-data/${hospital.id}|}" href="#"
+				>
 					<p class="langPL">DANE ARCHITEKTONICZNE</p>
 					<p class="langEN">ARCHITECTURAL DATA</p>
 				</a>
@@ -31,13 +37,19 @@
 				</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" th:href="@{/hospitals/{hospitalId}/departments (hospitalId=${hospital.id}) }" href="#">
+				<a 
+					th:classappend="${#request.requestURI.contains('/departments')} ? 'menu-active' : ''"
+					class="nav-link" th:href="@{/hospitals/{hospitalId}/departments (hospitalId=${hospital.id}) }" href="#"
+				>
 					<p class="langPL">WYKAZ ODDZIAŁÓW</p>
 					<p class="langEN">DEPARTMENTS LIST</p>
 				</a>
 			</li>
 			<li th:if="${#request.requestURI.contains('/departments')}" class="nav-item ml-auto text-right">
-				<a class="nav-link text-success" th:href="@{/hospitals/{id}/departments?edit=true (id=${hospital.id})}" href="#">
+				<a 
+					th:classappend="${#request.requestURI.contains('/departments') and param.edit != null} ? 'menu-active' : ''"
+					class="nav-link text-success" th:href="@{/hospitals/{id}/departments?edit=true (id=${hospital.id})}" href="#"
+				>
 					<p class="langPL">DODAJ ODDZIAŁ</p>
 					<p class="langEN">ADD DEPARTMENT</p>
 				</a>

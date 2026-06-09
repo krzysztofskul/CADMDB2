@@ -86,6 +86,13 @@ body {
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+.menu-active {
+    color: #0056b3 !important;
+    font-weight: 700;
+    border-bottom: 3px solid currentColor;
+    background-color: #f1f7ff;
+}
+
 .text-value {
 	font-size: 2em;
 }

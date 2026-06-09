@@ -24,7 +24,7 @@ public class CategoryController {
 		this.categoryService = categoryService;
 	}
 	
-	@GetMapping("/category/medical")
+	@GetMapping("/products/category/medical")
 	public String getCategoryMedical(
 				@RequestParam(name = "code", required = false) String code,
 				Model model
