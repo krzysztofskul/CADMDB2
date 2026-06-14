@@ -48,11 +48,33 @@
 			<li th:if="${#request.requestURI.contains('/departments')}" class="nav-item ml-auto text-right">
 				<a 
 					th:classappend="${#request.requestURI.contains('/departments') and param.edit != null} ? 'menu-active' : ''"
-					class="nav-link text-success" th:href="@{/hospitals/{id}/departments?edit=true (id=${hospital.id})}" href="#"
+					class="nav-link text-success dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false" 
+					th:href="@{/hospitals/{id}/departments?edit=true (id=${hospital.id})}" href="#"
 				>
-					<p class="langPL">DODAJ ODDZIAŁ</p>
-					<p class="langEN">ADD DEPARTMENT</p>
+					<p class="langPL">DODAJ NOWY</p>
+					<p class="langEN">ADD NEW</p>
 				</a>
+				
+				
+				<!-- **** new line ****-->
+		        <div class="dropdown-menu">
+					<a class="nav-link text-success" href="/#" th:href="@{/hospitals/{id}/departments?edit=true (id=${hospital.id})}">
+						<p class="langPL">DZIAŁ/ODDZIAŁ (PUSTY)</p>
+						<p class="langEN">DEPARTMENT (BLANK)</p>
+					</a>
+					<a class="nav-link disabled" href="/#">
+						<p class="langPL">DZIAŁ/ODDZIAŁ SPECJALISTYCZNY Z DOMYŚLNYMI POMIESZCZENIAMI</p>
+						<p class="langEN">SPECIALIST DEPARTMENT WITH DEFAULT ROOMS</p>
+					</a>
+					<a class="nav-link disabled" href="/#" >
+						<p class="langPL">DZIAŁ/ODDZIAŁ SPECJALISTYCZNY Z DOMYŚLNYMI POMIESZCZENIAMI I WYPOSAŻENIEM</p>
+						<p class="langEN">SPECIALIST HOSPITAL WITH DEFAULT ROOMS AND EQUIPMENT</p>
+					</a>
+					<div class="dropdown-divider"></div>
+				</div>
+				<!-- **** new line end ****-->
+				
+				
 			</li>
 		</ul>
 	</div>

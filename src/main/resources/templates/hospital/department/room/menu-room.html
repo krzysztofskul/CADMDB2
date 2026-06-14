@@ -46,13 +46,26 @@
 				</a>
 			</li>
 			<li th:if="${#request.requestURI.contains('/equipment')}" class="nav-item ml-auto">
-				<a class="nav-link text-right text-success" 
+				<a class="nav-link text-right text-success dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false" 
 					th:classappend="${#request.requestURI.contains('/equipment') and param.edit != null} ? 'menu-active' : ''"
 					th:href="@{|/rooms/${room.id}/equipment?edit=true|}" href="#"
 				>
-					<p class="langPL">DODAJ WYPOSAŻENIE</p>
-					<p class="langEN">ADD EQUIPMENT</p>
+					<p class="langPL">DODAJ NOWE</p>
+					<p class="langEN">ADD NEW</p>
 				</a>
+				
+		        <div class="dropdown-menu">
+					<a class="nav-link text-success" href="/#" th:href="@{|/rooms/${room.id}/equipment?edit=true|}">
+						<p class="langPL">WYPOSAŻENIE</p>
+						<p class="langEN">EQUIPMENT</p>
+					</a>
+					<a class="nav-link disabled" href="/#" >
+						<p class="langPL">WYPOSAŻENIE DOMYŚLNE CAŁEGO POMIESZCZENIA</p>
+						<p class="langEN">DEFAULT EQUIPMENT FOT THE ENTIRE ROOM</p>
+					</a>
+					<div class="dropdown-divider"></div>
+				</div>
+				
 			</li>
 		</ul>
 	</div>

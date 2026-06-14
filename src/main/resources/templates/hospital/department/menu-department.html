@@ -46,13 +46,29 @@
 				</a>
 			</li>
 			<li th:if="${#request.requestURI.contains('/rooms')}" class="nav-item ml-auto">
-				<a class="nav-link text-right text-success" 
+				<a class="nav-link text-right text-success dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false" 
 					th:classappend="${#request.requestURI.contains('/rooms') and param.edit != null} ? 'menu-active' : ''"
 					th:href="@{/departments/{id}/rooms?edit=true (id=${department.id})}" href="#"
 				>
-					<p class="langPL">DODAJ POMIESZCZENIE</p>
-					<p class="langEN">ADD ROOM</p>
+					<p class="langPL">DODAJ NOWE</p>
+					<p class="langEN">ADD NOWE</p>
 				</a>
+				
+								<!-- **** new line ****-->
+		        <div class="dropdown-menu">
+					<a class="nav-link text-success" href="/#" th:href="@{/departments/{id}/rooms?edit=true (id=${department.id})}">
+						<p class="langPL">POMIESZCZENIE (PUSTE)</p>
+						<p class="langEN">ROOM (BLANK)</p>
+					</a>
+					<a class="nav-link disabled" href="/#" >
+						<p class="langPL">POMIESZCZENIE Z DOMYŚLNYM WYPOSAŻENIEM</p>
+						<p class="langEN">ROOM WITH DEFAULT EQUIPMENT</p>
+					</a>
+					<div class="dropdown-divider"></div>
+				</div>
+				<!-- **** new line end ****-->
+				
+				
 			</li>
 		</ul>
 	</div>
