@@ -109,7 +109,7 @@ public class NameStandardized {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
 	/**
 	 * Getter
 	 * @return the nameStandardizedPl

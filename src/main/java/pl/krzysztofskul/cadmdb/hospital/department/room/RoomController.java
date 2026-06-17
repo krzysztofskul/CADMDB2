@@ -25,6 +25,7 @@ public class RoomController {
 
 	private HealthcareFacilityService hfService;
 	private RoomService roomService;
+	private RoomServiceEquipment roomServiceEquipment;
 	private ProductService productService;
 	private ModelAndView mav = new ModelAndView();
 	
@@ -35,10 +36,12 @@ public class RoomController {
 	public RoomController(
 			RoomService roomService
 			, ProductService productService
+			, RoomServiceEquipment roomServiceEquipment
 			, HealthcareFacilityService hfCalcService
 			) {
 		super();
 		this.roomService = roomService;
+		this.roomServiceEquipment = roomServiceEquipment;
 		this.productService = productService;
 		this.hfService = hfCalcService;
 	}
@@ -120,6 +123,24 @@ public class RoomController {
 		mav.addObject("edit", false);
 		mav.setViewName("redirect:/rooms/"+room.getId()+"/equipment");
 		return mav;
+	}
+	
+	@GetMapping("/{id}/equip-by-default")
+	public ModelAndView getEquipByDefault(
+			@PathVariable Long id
+			) {
+
+		// get room to equip
+		Room room = roomService.loadById(id);		
+		// equip room and return
+		room = roomServiceEquipment.equip(room);
+		// save equipped room
+		room = roomService.saveAndReturn(room);
+		
+		mav.addObject("edit", false);
+		mav.setViewName("redirect:/rooms/"+room.getId()+"/equipment");
+		return mav;
+			
 	}
 	
 	@GetMapping("/{id}/equipment/{productId}/remove")

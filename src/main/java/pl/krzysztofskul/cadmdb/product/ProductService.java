@@ -6,6 +6,8 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import pl.krzysztofskul.cadmdb.product.category.Category;
+
 @Service
 public class ProductService {
 
@@ -43,6 +45,17 @@ public class ProductService {
 	public Product loadRandom() {
 		List<Product> productList = this.loadAll();
 		Product product = productList.get(new Random().nextInt(productList.size()));
+		return product;
+	}
+
+	public Product loadRandom(List<Product> productList) {
+		Product product = productList.get(new Random().nextInt(productList.size()));
+		return product;
+	}
+	
+	public Product loadRandomByCategory(Category category) {
+		List<Product> productList = productRepo.findAllByCategory(category);
+		Product product = this.loadRandom(productList);
 		return product;
 	}
 	

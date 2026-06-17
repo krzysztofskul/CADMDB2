@@ -47,7 +47,12 @@ public class NameStandardizedTestGenerator implements InitDataGenerator<NameStan
 		nameStandardizedMap.put("Centralna Sterylizatornia", "Central Sterile Services Department");
 		
 		nameStandardizedMap.put("Oddział Diagnostyki Obrazowej", "Diagnostic Imaging Department");
-		nameStandardizedMap.put("Apteka Szpitalna", "Hospital Pharmacy");
+		nameStandardizedMap.put("Oddział Diagnostyki Obrazowej - pracownia RTG", "Diagnostic Imaging Department - X-RAY");
+		nameStandardizedMap.put("Oddział Diagnostyki Obrazowej - pracownia CT", "Diagnostic Imaging Department - CT");
+		nameStandardizedMap.put("Oddział Diagnostyki Obrazowej - pracownia MR", "Diagnostic Imaging Department - MRI");
+		nameStandardizedMap.put("Oddział Diagnostyki Obrazowej - pracownia Medycyny Nukelarnej", "Diagnostic Imaging Department - MI");
+		nameStandardizedMap.put("Oddział Diagnostyki Obrazowej - pracownia PET", "Diagnostic Imaging Department - PET");
+		nameStandardizedMap.put("Oddział Diagnostyki Obrazowej - pracownia SPECT", "Diagnostic Imaging Department - SPECT");
 		
 	    nameStandardizedMap.put("Oddział Kardiologii", "Cardiology Department");
 	    nameStandardizedMap.put("Oddział Neurologii", "Neurology Department");
@@ -76,7 +81,9 @@ public class NameStandardizedTestGenerator implements InitDataGenerator<NameStan
 	    nameStandardizedMap.put("Oddział Transplantologii", "Transplantology Department");
 	    nameStandardizedMap.put("Oddział Chorób Zakaźnych", "Infectious Diseases Department");
 	    nameStandardizedMap.put("Oddział Reumatologii", "Rheumatology Department");
+
 	    
+		nameStandardizedMap.put("Apteka Szpitalna", "Hospital Pharmacy");
 	    nameStandardizedMap.put("Dział Administracji", "Administration Department");
 	    nameStandardizedMap.put("Archiwum Medyczne", "Medical Records Archive");
 		

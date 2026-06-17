@@ -20,7 +20,7 @@ public class NameStandardized {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+	private String code;
 	/*
 	 * Hospital-specific standardized name.
 	 * <p>If a user needs a standardized room name that does not already exist
@@ -67,6 +67,19 @@ public class NameStandardized {
 
 	/**
 	 * Constructor
+	 * @param code
+	 * @param nameStandardizedPl
+	 * @param nameStandardizedEn
+	 */
+	public NameStandardized(String code, String nameStandardizedPl, String nameStandardizedEn) {
+		super();
+		this.code = code;
+		this.nameStandardizedPl = nameStandardizedPl;
+		this.nameStandardizedEn = nameStandardizedEn;
+	}
+
+	/**
+	 * Constructor
 	 * @param hospital
 	 * @param nameStandardizedPl
 	 * @param nameStandardizedEn
@@ -76,6 +89,22 @@ public class NameStandardized {
 		this.hospital = hospital;
 		this.nameStandardizedPl = nameStandardizedPl;
 		this.nameStandardizedEn = nameStandardizedEn;
+	}
+	
+	/**
+	 * Getter
+	 * @return the code
+	 */
+	public String getCode() {
+		return code;
+	}
+
+	/**
+	 * Setter
+	 * @param code the code to set
+	 */
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	/**
