@@ -20,6 +20,8 @@ public class Manufacturer extends Company {
 	@JsonBackReference
 	private List<Product> productList = new ArrayList<Product>();
 
+	private boolean isDefault = false;
+	
 	/**
 	 * Constructor
 	 */
@@ -37,6 +39,22 @@ public class Manufacturer extends Company {
 	public Manufacturer(String name, Address address, String contactDetails) {
 		super(name, address, contactDetails);
 		// TODO Auto-generated constructor stub
+	}
+	
+	/**
+	 * Getter
+	 * @return the isDefault
+	 */
+	public boolean isDefault() {
+		return isDefault;
+	}
+
+	/**
+	 * Setter
+	 * @param isDefault the isDefault to set
+	 */
+	public void setDefault(boolean isDefault) {
+		this.isDefault = isDefault;
 	}
 
 	/**

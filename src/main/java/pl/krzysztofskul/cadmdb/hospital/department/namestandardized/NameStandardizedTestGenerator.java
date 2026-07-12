@@ -24,12 +24,22 @@ public class NameStandardizedTestGenerator implements InitDataGenerator<NameStan
 	@Override
 	public List<NameStandardized> initListAndReturn() {
 		List<NameStandardized> nameStandardizedList = new ArrayList<NameStandardized>();
+		// old version to delete
+		/* 
 		for (Map.Entry<String, String> entry : nameStandardizedMap.entrySet()) {
 			NameStandardized nameStandardized = this.initDataAndReturn();
 			nameStandardized.setNameStandardizedPl(entry.getKey());
 			nameStandardized.setNameStandardizedEn(entry.getValue());
 			nameStandardizedList.add(nameStandardized);
 		}
+		*/
+		
+		nameStandardizedList.add(new NameStandardized("X-BO", "Blok Operacyjny", "Operation Theter"));
+		nameStandardizedList.add(new NameStandardized("L-KARD", "Oddział Kardiologiczny", "Cardiology Ward"));
+		nameStandardizedList.add(new NameStandardized("D-ZZY", "Oddział Diagnostyki Obrazowej", "Diagnostic Imaging Department"));
+		nameStandardizedList.add(new NameStandardized("A-ADM", "Dział Administracji", "Administration Department"));
+		nameStandardizedList.add(new NameStandardized("H-CS", "Centralna Sterylizatornia", "Central Sterile Services Department"));
+		
 		return nameStandardizedList;
 	}
 
@@ -41,6 +51,8 @@ public class NameStandardizedTestGenerator implements InitDataGenerator<NameStan
 	 * Constructor
 	 */
 	public NameStandardizedTestGenerator() {
+		//old version to delete
+		/*
 		nameStandardizedMap.put("Blok Operacyjny", "Operation Theater");
 		nameStandardizedMap.put("Oddział Intensywnej Terapii", "Intesive Care Unit");
 		nameStandardizedMap.put("Szpitalny Oddział Ratunkowy", "Emergency Department");
@@ -86,7 +98,7 @@ public class NameStandardizedTestGenerator implements InitDataGenerator<NameStan
 		nameStandardizedMap.put("Apteka Szpitalna", "Hospital Pharmacy");
 	    nameStandardizedMap.put("Dział Administracji", "Administration Department");
 	    nameStandardizedMap.put("Archiwum Medyczne", "Medical Records Archive");
-		
+		*/
 	}
 	
 	

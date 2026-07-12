@@ -14,6 +14,8 @@ import pl.krzysztofskul.cadmdb.address.Address;
 import pl.krzysztofskul.cadmdb.address.AddressTestGenerator;
 import pl.krzysztofskul.cadmdb.healthcarefacility.dataarch.DataArchHospital;
 import pl.krzysztofskul.cadmdb.hospital.department.Department;
+import pl.krzysztofskul.cadmdb.hospital.department.DepartmentDemoGenerator;
+import pl.krzysztofskul.cadmdb.hospital.department.DepartmentService;
 import pl.krzysztofskul.cadmdb.hospital.department.DepartmentTestGenerator;
 import pl.krzysztofskul.cadmdb.hospital.department.room.Room;
 import pl.krzysztofskul.cadmdb.init.InitDataGenerator;
@@ -30,7 +32,11 @@ public class HospitalDemoGenerator implements InitDataGenerator<Hospital> {
 	@Autowired
 	private HospitalService hospitalService;
 	@Autowired
+	private DepartmentService departmentService;
+	@Autowired
 	private DepartmentTestGenerator departmentTestGenerator;
+	@Autowired
+	private DepartmentDemoGenerator departmentDemoGenerator;
 	@Autowired
 	private AddressTestGenerator addressTestGenerator;
 	@Autowired
@@ -79,6 +85,17 @@ public class HospitalDemoGenerator implements InitDataGenerator<Hospital> {
 		for (int i = 0; i < 3 ; i++) {
 			hospitalList.add(this.initDataAndReturn());			
 		}
+		return hospitalList;
+	}
+
+	public List<Hospital> initDemoListAndReturn() {
+		List<Hospital> hospitalList = this.initListAndReturn();
+//		for (Hospital hospital : hospitalList) {
+//			List<Department> departmentList = departmentDemoGenerator.initListAndReturn();
+//			for (Department department : departmentList) {
+//				hospital.addDepartment(department);
+//			}
+//		}
 		return hospitalList;
 	}
 

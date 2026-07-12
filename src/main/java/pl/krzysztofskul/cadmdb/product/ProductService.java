@@ -55,7 +55,10 @@ public class ProductService {
 	
 	public Product loadRandomByCategory(Category category) {
 		List<Product> productList = productRepo.findAllByCategory(category);
-		Product product = this.loadRandom(productList);
+		Product product = null;
+		if (productList.size() > 0) {
+			product = this.loadRandom(productList);	
+		}
 		return product;
 	}
 	

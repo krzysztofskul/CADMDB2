@@ -11,4 +11,6 @@ public interface NameStandardizedRepo extends JpaRepository<NameStandardized, Lo
 	List<NameStandardized> findAllByHospitalId(Long hospitalId);
 
 	List<NameStandardized> findAllByHospitalIdOrHospitalIsNullOrderByNameStandardizedPlAsc(Long hospitalId);
+
+	NameStandardized findByCode(String code);
 }

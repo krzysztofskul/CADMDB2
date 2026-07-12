@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import pl.krzysztofskul.cadmdb.healthcarefacility.dataarch.dataarchroom.DataArchRoom;
 import pl.krzysztofskul.cadmdb.healthcarefacility.datafinancial.DataFinancial;
 import pl.krzysztofskul.cadmdb.healthcarefacility.simulation.Simulation;
 import pl.krzysztofskul.cadmdb.healthcarefacility.simulation.SimulationService;
@@ -18,6 +19,9 @@ import pl.krzysztofskul.cadmdb.hospital.department.DepartmentService;
 import pl.krzysztofskul.cadmdb.hospital.department.room.Room;
 import pl.krzysztofskul.cadmdb.hospital.department.room.RoomService;
 import pl.krzysztofskul.cadmdb.product.Product;
+import pl.krzysztofskul.cadmdb.product.ProductService;
+import pl.krzysztofskul.cadmdb.product.category.Category;
+import pl.krzysztofskul.cadmdb.product.category.CategoryService;
 
 @Service
 public class HealthcareFacilityService {
@@ -26,6 +30,8 @@ public class HealthcareFacilityService {
 	private DepartmentService departmentService;
 	private HospitalService hospitalService;
 	private SimulationService simulationService;
+	private CategoryService categoryService;
+	private ProductService productService;
 
 	/**
 	 * Constructor
@@ -37,13 +43,17 @@ public class HealthcareFacilityService {
 				RoomService roomService, 
 				DepartmentService departmentService,
 				HospitalService hospitalService,
-				SimulationService simulationService
+				SimulationService simulationService,
+				CategoryService categoryService,
+				ProductService productService
 			) {
 		super();
 		this.roomService = roomService;
 		this.departmentService = departmentService;
 		this.hospitalService = hospitalService;
 		this.simulationService = simulationService;
+		this.categoryService = categoryService;
+		this.productService = productService;
 	}
 
 	public Department addRoomToDepartment(Room room, Department department) {
@@ -56,7 +66,11 @@ public class HealthcareFacilityService {
 		departmentService.save(department);
 		return department;
 	}
-
+	
+	public Hospital addDeprtmentToHospital (Department department, Hospital hospital) {
+		return hospitalService.addDepartment(hospital, department);
+	}
+	
 	public Department calculateDepartmentArea(Department department, Room room, boolean trueForAddfalseForSubtract) {
 		long x = 1;
 		if (trueForAddfalseForSubtract == false) {
@@ -116,6 +130,80 @@ public class HealthcareFacilityService {
 		room = calcCostInDepartmentWhenAddProductToRoom(product, room);
 		//calc pur cost in hospital
 		room = calcCostInHospitalWhenAddProductToRoom(product, room);
+		return room;
+	}
+	
+	/**
+	 * Equips the specified room with the default equipment assigned
+	 * to its standardized room category.
+	 *
+	 * @param room the room to equip
+	 * @return the equipped room
+	 */
+	public Room equipRoomByDefaultProducts(Room room) {
+		//equip operating theater
+		if (room.getNameStandardized().getCode().equals("X-SO")) {
+			Category category;
+			
+			//add patient table
+			category = categoryService.loadByCategoryCode("AB10");
+			//room.addProduct(productService.loadRandomByCategory(category));
+			room = this.addProductToRoom(productService.loadRandomByCategory(category), room);			
+			
+			//add operating light
+			category = categoryService.loadByCategoryCode("AC20");
+			//room.addProduct(productService.loadRandomByCategory(category));
+			room = this.addProductToRoom(productService.loadRandomByCategory(category), room);	
+			
+			//add anesthesia machine
+			category = categoryService.loadByCategoryCode("AH10");
+			//room.addProduct(productService.loadRandomByCategory(category));
+			room = this.addProductToRoom(productService.loadRandomByCategory(category), room);	
+
+		}
+		//equip doctors' preparation room
+		if (room.getNameStandardized().getCode().equals("X-PL")) {
+			Category category;
+			//add surgical scrub sink
+			category = categoryService.loadByCategoryCode("JJ00");
+			//room.addProduct(productService.loadRandomByCategory(category));	
+			room = this.addProductToRoom(productService.loadRandomByCategory(category), room);	
+		}
+		//equip patents' preparation room
+		if (room.getNameStandardized().getCode().equals("X-PP")) {
+			Category category;
+			//add clinical cabinets system
+			category = categoryService.loadByCategoryCode("BY00");
+			//room.addProduct(productService.loadRandomByCategory(category));
+			room = this.addProductToRoom(productService.loadRandomByCategory(category), room);	
+		}
+		//equip patients' bed room
+		if (room.getNameStandardized().getCode().equals("L-SCH")) {
+			Category category;
+			//add patient beds
+			for (int i = 0; i < 3; i++) {
+				category = categoryService.loadByCategoryCode("AA50");
+				//room.addProduct(productService.loadRandomByCategory(category));	
+				room = this.addProductToRoom(productService.loadRandomByCategory(category), room);	
+			}
+		}
+		//equip isolation patient room
+		if (room.getNameStandardized().getCode().equals("L-I")) {
+			Category category;
+			//add patient bed
+			category = categoryService.loadByCategoryCode("AA50");
+			//room.addProduct(productService.loadRandomByCategory(category));
+			room = this.addProductToRoom(productService.loadRandomByCategory(category), room);	
+		}
+		//equip dirty linen room
+		if (room.getNameStandardized().getCode().equals("H-BRUD")) {
+			Category category;
+			//add washer/disnifector for bedpans and urinals
+			category = categoryService.loadByCategoryCode("JA03");
+			//room.addProduct(productService.loadRandomByCategory(category));
+			room = this.addProductToRoom(productService.loadRandomByCategory(category), room);	
+		}
+		//return equipped room
 		return room;
 	}
 
@@ -246,6 +334,48 @@ public class HealthcareFacilityService {
 		//save and return room with calculated maintenance costs
 		room = roomService.saveAndReturn(room);
 		return room;
+	}
+	
+	public Department addDefaultRooms(Department department) {
+		if (department.getNameStandardized().getCode().equals("X-BO")) {		
+			this.addRoomToDepartment(getRoomFromDefault("X-SO"), department);
+			this.addRoomToDepartment(getRoomFromDefault("X-PP"), department);
+			this.addRoomToDepartment(getRoomFromDefault("X-PL"), department);
+		}
+		if (department.getNameStandardized().getCode().equals("L-KARD")) {
+			this.addRoomToDepartment(getRoomFromDefault("L-SCH"), department);
+			this.addRoomToDepartment(getRoomFromDefault("L-SCH"), department);
+			this.addRoomToDepartment(getRoomFromDefault("L-SCH"), department);
+			this.addRoomToDepartment(getRoomFromDefault("L-I"), department);
+			this.addRoomToDepartment(getRoomFromDefault("H-SHS"), department);
+			this.addRoomToDepartment(getRoomFromDefault("H-BRUD"), department);
+			this.addRoomToDepartment(getRoomFromDefault("A-POKL"), department);
+			this.addRoomToDepartment(getRoomFromDefault("A-SOC"), department);
+			this.addRoomToDepartment(getRoomFromDefault("A-POKP"), department);
+			this.addRoomToDepartment(getRoomFromDefault("A-SEKR"), department);
+		}
+		if (department.getNameStandardized().getCode().equals("A-ADM")) {
+			this.addRoomToDepartment(getRoomFromDefault("A-SEKR"), department);
+			this.addRoomToDepartment(getRoomFromDefault("A-SOC"), department);
+			this.addRoomToDepartment(getRoomFromDefault("A-POKD"), department);
+			this.addRoomToDepartment(getRoomFromDefault("A-POKO"), department);
+			this.addRoomToDepartment(getRoomFromDefault("A-POKK"), department);
+			this.addRoomToDepartment(getRoomFromDefault("A-POKPN"), department);
+		}
+		return department;
+	}
+	
+	private Room getRoomFromDefault(String code) {
+		Room roomDefault = roomService.loadDefaultByNameStandardizedCode(code);
+		Room newRoom = new Room();
+		
+		newRoom.setDefault(false);
+		newRoom.setNameStandardized(roomDefault.getNameStandardized());
+		DataArchRoom newDataArchRoom = new DataArchRoom();
+		newDataArchRoom.setArea(roomDefault.getDataArchRoom().getArea());
+		newRoom.setDataArchRoom(newDataArchRoom);
+		
+		return newRoom;
 	}
 	
 }

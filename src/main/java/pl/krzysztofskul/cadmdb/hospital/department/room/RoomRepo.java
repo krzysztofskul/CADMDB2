@@ -10,4 +10,10 @@ public interface RoomRepo extends JpaRepository<Room, Long> {
 
 	List<Room> findAllByProductList_Id(Long productId);
 
+	Room findByNameStandardizedCode(String code);
+
+	Room findByIsDefaultTrueAndNameStandardizedCode(String code);
+
+	//Room findByCode(String code);
+
 }

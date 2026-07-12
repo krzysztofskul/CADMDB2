@@ -30,32 +30,6 @@ public class RoomServiceEquipment {
 	}
 	
 	
-	public Room equip(Room room) {
-		
-		/**
-		 * TODO: 
-		 * equip room depends its category
-		 */
-		
-		if (room.getNameStandardized().getNameStandardizedPl().equals("Sala Operacyjna")) {
-			Category category;
-			category = categoryService.loadByCategoryCode("AB10");
-			room.addProduct(productService.loadRandomByCategory(category));
-			
-			category = categoryService.loadByCategoryCode("AC20");
-			room.addProduct(productService.loadRandomByCategory(category));
-			
-			category = categoryService.loadByCategoryCode("AH10");
-			room.addProduct(productService.loadRandomByCategory(category));
-			
-		}
-		
-		/**
-		 * TODO 2026-06-17 13-58 
-		 * add another room to equip
-		 */
-		
-		return room;
-	}
+
 	
 }

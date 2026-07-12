@@ -57,10 +57,10 @@ public class Product {
 	private int powerConnectionValue;
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
-	private MountingTypeEnum mountingTypeEnum;
+	private MountingTypeEnum mountingTypeEnum = MountingTypeEnum.NOTSPECIFIED;
 	@Enumerated(EnumType.STRING)
-	@Column(nullable = true)
-	private FunctionEnum functionEnum;
+	@Column(nullable = false)
+	private FunctionEnum functionEnum = FunctionEnum.NOTSPECIFIED;
 	
 	@ManyToMany(mappedBy = "productList")
 	@JsonIgnore
@@ -84,6 +84,28 @@ public class Product {
 		this.roomList = roomList;
 	}
 	
+	/**
+	 * Constructor
+	 * @param category
+	 */
+	public Product(Category category) {
+		super();
+		this.category = category;
+	}
+	
+	
+
+	/**
+	 * Constructor
+	 * @param modelName
+	 * @param category
+	 */
+	public Product(String modelName, Category category) {
+		super();
+		this.modelName = modelName;
+		this.category = category;
+	}
+
 	/**
 	 * Getter
 	 * @return the id

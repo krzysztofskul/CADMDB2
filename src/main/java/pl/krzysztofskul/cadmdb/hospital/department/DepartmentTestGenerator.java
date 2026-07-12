@@ -38,7 +38,7 @@ public class DepartmentTestGenerator implements InitDataGenerator<Department>{
 		for (NameStandardized nameStandardized : depCategoryList) {
 			Department department = this.initDataAndReturn();
 			department.setNameStandardized(nameStandardized);
-			department.setFunctionEnum(FunctionEnum.OTHERS);
+			department.setFunctionEnum(FunctionEnum.OTHER);
 			DataArchDepartment dataArchDepartment = new DataArchDepartment();
 			department.setDataArchDepartment(dataArchDepartment);
 			if (nameStandardized.getNameStandardizedPl().equals("Blok Operacyjny")) {
@@ -48,6 +48,50 @@ public class DepartmentTestGenerator implements InitDataGenerator<Department>{
 			}
 			departmentList.add(department);
 		}
+		return departmentList;
+	}
+	
+	public List<Department> initDemoListAndReturn() {
+		// init demo department list
+		List<Department> departmentList = new ArrayList<Department>();
+		Department newDepartment = new Department();
+		
+		//create new department
+		newDepartment = this.initDataAndReturn();
+		newDepartment.setNameStandardized(nameStandardizedService.loadByCode("X-BO"));
+		newDepartment.setFunctionEnum(FunctionEnum.MEDICAL);
+		DataArchDepartment dataArchDepartment = new DataArchDepartment();
+		newDepartment.setDataArchDepartment(dataArchDepartment);				
+		//add new dpartment to the list
+		departmentList.add(newDepartment);
+
+		//create new department
+		newDepartment = this.initDataAndReturn();
+		newDepartment.setNameStandardized(nameStandardizedService.loadByCode("L-KARD"));
+		newDepartment.setFunctionEnum(FunctionEnum.MEDICAL);
+		dataArchDepartment = new DataArchDepartment();
+		newDepartment.setDataArchDepartment(dataArchDepartment);				
+		//add new department to the list
+		departmentList.add(newDepartment);
+
+		//create new department
+		newDepartment = this.initDataAndReturn();
+		newDepartment.setNameStandardized(nameStandardizedService.loadByCode("D-ZZY"));
+		newDepartment.setFunctionEnum(FunctionEnum.MEDICAL);
+		dataArchDepartment = new DataArchDepartment();
+		newDepartment.setDataArchDepartment(dataArchDepartment);				
+		//add new department to the list
+		departmentList.add(newDepartment);
+
+		//create new department
+		newDepartment = this.initDataAndReturn();
+		newDepartment.setNameStandardized(nameStandardizedService.loadByCode("A-ADM"));
+		newDepartment.setFunctionEnum(FunctionEnum.OFFICE);
+		dataArchDepartment = new DataArchDepartment();
+		newDepartment.setDataArchDepartment(dataArchDepartment);				
+		//add new department to the list
+		departmentList.add(newDepartment);
+		
 		return departmentList;
 	}
 

@@ -133,7 +133,7 @@ public class RoomController {
 		// get room to equip
 		Room room = roomService.loadById(id);		
 		// equip room and return
-		room = roomServiceEquipment.equip(room);
+		room = hfService.equipRoomByDefaultProducts(room);
 		// save equipped room
 		room = roomService.saveAndReturn(room);
 		

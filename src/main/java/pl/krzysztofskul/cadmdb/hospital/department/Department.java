@@ -60,7 +60,7 @@ public class Department extends HealthcareFacility {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	/**
 	 * @param hospital
 	 */

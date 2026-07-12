@@ -17,7 +17,8 @@ public enum FunctionEnum {
 //	PATIENT_AREA,
 //	PUBLIC_AREA,
 	OFFICE ("BIUROWA", "OFFICE"),
-	OTHERS ("INNA", "OTHERS")
+	OTHER ("INNA", "OTHER"),
+	NOTSPECIFIED ("-", "-")
 	;
 	
 	private final String namePL;

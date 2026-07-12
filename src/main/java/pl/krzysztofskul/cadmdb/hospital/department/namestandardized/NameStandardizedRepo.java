@@ -1,6 +1,7 @@
 package pl.krzysztofskul.cadmdb.hospital.department.namestandardized;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -11,5 +12,7 @@ public interface NameStandardizedRepo extends JpaRepository<NameStandardized, Lo
 	List<NameStandardized> findAllByHospitalId(Long hospitalId);
 
 	List<NameStandardized> findAllByHospitalIdOrHospitalIsNullOrderByNameStandardizedPlAsc(Long hospitalId);
+
+	Optional<NameStandardized> findByCode(String code);
 	
 }

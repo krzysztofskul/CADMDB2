@@ -53,5 +53,9 @@ public class ManufacturerService {
 	public void deleteById(Long id) {
 		manufacturerRepo.deleteById(id);
 	}
+
+	public Manufacturer loadOneDefault() {
+		return manufacturerRepo.findByIsDefaultTrue();
+	}
 	
 }

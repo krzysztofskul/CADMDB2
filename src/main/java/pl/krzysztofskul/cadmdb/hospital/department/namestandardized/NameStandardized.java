@@ -31,6 +31,7 @@ public class NameStandardized {
 	@JoinColumn(name = "hospital_id")
 	private Hospital hospital = null;
 	
+	private String code;
 	private String nameStandardizedPl;
 	private String nameStandardizedEn;
 
@@ -67,6 +68,19 @@ public class NameStandardized {
 
 	/**
 	 * Constructor
+	 * @param code
+	 * @param nameStandardizedPl
+	 * @param nameStandardizedEn
+	 */
+	public NameStandardized(String code, String nameStandardizedPl, String nameStandardizedEn) {
+		super();
+		this.code = code;
+		this.nameStandardizedPl = nameStandardizedPl;
+		this.nameStandardizedEn = nameStandardizedEn;
+	}
+	
+	/**
+	 * Constructor
 	 * @param hospital
 	 * @param nameStandardizedPl
 	 * @param nameStandardizedEn
@@ -76,8 +90,23 @@ public class NameStandardized {
 		this.hospital = hospital;
 		this.nameStandardizedPl = nameStandardizedPl;
 		this.nameStandardizedEn = nameStandardizedEn;
+	}	/**
+	 
+	 * Constructor
+	 * @param hospital
+	 * @param code
+	 * @param nameStandardizedPl
+	 * @param nameStandardizedEn
+	 */
+	public NameStandardized(Hospital hospital, String code, String nameStandardizedPl, String nameStandardizedEn) {
+		super();
+		this.hospital = hospital;
+		this.code = code;
+		this.nameStandardizedPl = nameStandardizedPl;
+		this.nameStandardizedEn = nameStandardizedEn;
 	}
-
+	
+	
 	/**
 	 * Getter
 	 * @return the hospital
@@ -92,6 +121,22 @@ public class NameStandardized {
 	 */
 	public void setHospital(Hospital hospital) {
 		this.hospital = hospital;
+	}
+	
+	/**
+	 * Getter
+	 * @return the code
+	 */
+	public String getCode() {
+		return code;
+	}
+
+	/**
+	 * Setter
+	 * @param code the code to set
+	 */
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	/**

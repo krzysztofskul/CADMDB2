@@ -6,20 +6,36 @@ import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import pl.krzysztofskul.cadmdb.healthcarefacility.HealthcareFacilityService;
+import pl.krzysztofskul.cadmdb.healthcarefacility.dataarch.dataarchroom.DataArchRoom;
 import pl.krzysztofskul.cadmdb.hospital.department.room.Room;
+import pl.krzysztofskul.cadmdb.hospital.department.room.RoomDefaultGenerator;
+import pl.krzysztofskul.cadmdb.hospital.department.room.RoomService;
+import pl.krzysztofskul.cadmdb.hospital.department.room.RoomServiceEquipment;
 
 @Service
 public class DepartmentService {
 
 	private DepartmentRepo departmentRepo;
+	private RoomService roomService;
+	private RoomServiceEquipment roomServiceEquipment;
+	private RoomDefaultGenerator roomDefaultGenerator;
 
 	/**
 	 * @param departmentRepo
 	 */
 	@Autowired
-	public DepartmentService(DepartmentRepo departmentRepo) {
+	public DepartmentService(
+			DepartmentRepo departmentRepo
+			, RoomService roomService
+			, RoomServiceEquipment roomServiceEquipment
+			, RoomDefaultGenerator roomDefaultGenerator
+			) {
 		super();
 		this.departmentRepo = departmentRepo;
+		this.roomService = roomService;
+		this.roomServiceEquipment = roomServiceEquipment;
+		this.roomDefaultGenerator = roomDefaultGenerator;
 	}
 	
 	public DepartmentService() {
@@ -59,5 +75,9 @@ public class DepartmentService {
 	public void deleteById(Long id) {
 		departmentRepo.deleteById(id);
 	}
+
+
+
+
 
 }

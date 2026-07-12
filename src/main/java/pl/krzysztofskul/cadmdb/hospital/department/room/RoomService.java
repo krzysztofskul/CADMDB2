@@ -27,6 +27,11 @@ public class RoomService {
 	public Room loadById(Long id) {
 		return roomRepo.findById(id).get();
 	}
+	
+	public Room loadByNameStandardizedCode(String code) {
+		return roomRepo.findByNameStandardizedCode(code);
+
+	}
 
 	public Room loadByIdWithEquipment(Long id) {
 		Room room = this.loadById(id);
@@ -47,6 +52,11 @@ public class RoomService {
 		return room;
 	}
 	
+	public Room loadDefaultByNameStandardizedCode(String nameStandardizedCode) {
+		Room room = roomRepo.findByIsDefaultTrueAndNameStandardizedCode(nameStandardizedCode);
+		return room;
+	}
+	
 	public List<Room> loadAll() {
 		return roomRepo.findAll();
 	}
@@ -59,5 +69,7 @@ public class RoomService {
 	public void deleteById(Long id) {	
 		roomRepo.deleteById(id);
 	}
+
+
 	
 }

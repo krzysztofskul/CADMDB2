@@ -31,6 +31,10 @@ public class NameStandardizedService {
 	public NameStandardized loadById(Long id) {
 		return nameStandardizedRepo.findById(id).get();
 	}
+
+	public NameStandardized loadByCode(String code) {
+		return nameStandardizedRepo.findByCode(code);
+	}
 	
 	public List<NameStandardized> loadAll() {
 		return nameStandardizedRepo.findAll();

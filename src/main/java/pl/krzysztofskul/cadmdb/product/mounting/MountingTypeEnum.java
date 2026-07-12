@@ -11,7 +11,9 @@ public enum MountingTypeEnum {
 		WALL("ŚCIENNY", "WALL"), 
 		BENCHTOP("NABLATOWY", "BENCHTOP"), 
 		PORTABLE("PRZENOŚNY", "PORTABLE"), 
-		STANDALONE("WOLNOSTOJĄCY", "STANDALONE");
+		STANDALONE("WOLNOSTOJĄCY", "STANDALONE"),
+		NOTSPECIFIED("-", "-")
+		;
 		
 		private final String namePL;
 		private final String nameEN;

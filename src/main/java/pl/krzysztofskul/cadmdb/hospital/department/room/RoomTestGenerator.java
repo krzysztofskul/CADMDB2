@@ -32,7 +32,7 @@ public class RoomTestGenerator implements InitDataGenerator<Room>{
 		for (NameStandardized nameStandardized : nameStandardizedService.loadRandomList(Random.randomInt(5, 7))) {
 			room.setRoomNo(String.valueOf(new Random().nextInt(200)));
 			room.setNameStandardized(nameStandardized);
-			room.setFunctionEnum(FunctionEnum.OTHERS);
+			room.setFunctionEnum(FunctionEnum.OTHER);
 			if (nameStandardized.getNameStandardizedPl().equals("Sala Operacyjna")) {
 				room.setName("Sala operacyjna im. Prof. "+LoremIpsum.getInstance().getName());
 			} else {
@@ -54,5 +54,5 @@ public class RoomTestGenerator implements InitDataGenerator<Room>{
 
 		return roomList;
 	}
-
+	
 }

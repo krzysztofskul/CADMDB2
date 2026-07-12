@@ -24,7 +24,7 @@ https://cadmedica-426c866a6bb5.herokuapp.com/login
 **TODO:**  
 
 * VER.#0.5-ALPHA:   
-    * feat: implement auto creation of departments **in progress..**  
+    * feat: implement departments creation with default rooms and equipment by user **to do**  
     * feat: implement investor management   
     * feat(contact): implement contact details management  
     * feat(address): implement api https://restcountries.com/   

@@ -29,12 +29,37 @@ public class NameStandardizedTestGenerator implements InitDataGenerator<NameStan
 	@Override
 	public List<NameStandardized> initListAndReturn() {
 		List<NameStandardized> nameStandardizedList = new ArrayList<NameStandardized>();
+		/*
 		for (Map.Entry<String, String> entry : nameStandardizedMap.entrySet()) {
 			NameStandardized nameStandardized = this.initDataAndReturn();
 			nameStandardized.setNameStandardizedPl(entry.getKey());
 			nameStandardized.setNameStandardizedEn(entry.getValue());
 			nameStandardizedList.add(nameStandardized);
 		}
+		*/
+		
+		nameStandardizedList.add(new NameStandardized("X-SO", "Sala Operacyjna", "Operating Room"));
+		nameStandardizedList.add(new NameStandardized("X-PP", "Pomieszczenie Przygotowania Pacjenta", "Patient Preparation Room"));
+		nameStandardizedList.add(new NameStandardized("X-PL", "Pomieszczenie Przygotowania Lekarzy", "Doctor Preparation Room"));
+
+		nameStandardizedList.add(new NameStandardized("X-ZAB", "Gabinet zabiegowy", ""));
+		nameStandardizedList.add(new NameStandardized("L-PIEL", "Punkt pielęgniarski", ""));
+		nameStandardizedList.add(new NameStandardized("L-SCH", "Sala chorych", ""));
+		nameStandardizedList.add(new NameStandardized("L-I", "Izolatka", ""));
+		nameStandardizedList.add(new NameStandardized("H-SHS", "Śluza higieniczno-sanitarna", ""));
+		nameStandardizedList.add(new NameStandardized("H-SP", "Śluza pacjenta", ""));
+		nameStandardizedList.add(new NameStandardized("X-SNP", "Stanowisko nadzoru pielęgniarskiego", ""));
+		nameStandardizedList.add(new NameStandardized("H-BRUD", "Brudownik", ""));
+		nameStandardizedList.add(new NameStandardized("A-SOC", "Pomieszcznie socjalne", ""));
+		nameStandardizedList.add(new NameStandardized("A-POKK", "Pokój kierownika", ""));
+		nameStandardizedList.add(new NameStandardized("A-POKO", "Pokój ordynatora", ""));
+		nameStandardizedList.add(new NameStandardized("A-POKD", "Pokój dyrektora", ""));
+		nameStandardizedList.add(new NameStandardized("A-POKPN", "Pokój naczelnej pielęgniarki", ""));
+		nameStandardizedList.add(new NameStandardized("A-POKP", "Pokój pielęgniarski", ""));
+		nameStandardizedList.add(new NameStandardized("A-POKL", "Pokój lekarski", ""));
+		nameStandardizedList.add(new NameStandardized("A-SEKR", "Sekretariat", ""));
+		
+		
 		return nameStandardizedList;
 	}
 
@@ -46,6 +71,7 @@ public class NameStandardizedTestGenerator implements InitDataGenerator<NameStan
 	 * Constructor
 	 */
 	public NameStandardizedTestGenerator() {
+		/*
 		nameStandardizedMap.put("Sala Operacyjna", "Operating Room");
 		nameStandardizedMap.put("Pomieszczenie Przygotowania Pacjenta", "Patient Preparation Room");
 		nameStandardizedMap.put("Pomieszczenie Przygotowania Lekarzy", "Doctor Preparation Room");
@@ -89,6 +115,7 @@ public class NameStandardizedTestGenerator implements InitDataGenerator<NameStan
 		nameStandardizedMap.put("Sala Porodowa", "Delivery Room");
 		nameStandardizedMap.put("Sala Połogowa", "Post‑partum Room");
 		nameStandardizedMap.put("Sala Neonatologiczna", "Neonatal Room");
+		*/
 	
 	}
 }

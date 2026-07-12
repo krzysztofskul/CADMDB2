@@ -28,6 +28,8 @@ public class Room extends HealthcareFacility {
 
 	private String roomNo;
 	
+	private boolean isDefault = false;
+	
 	@ManyToOne
 	private Department department;
 	
@@ -63,14 +65,37 @@ public class Room extends HealthcareFacility {
 	}
 	
 	/**
+	 * Constructor
+	 * @param isDefault
+	 * @param dataArchRoom
+	 * @param nameStandardized
+	 * @param functionEnum
+	 */
+	public Room(boolean isDefault, DataArchRoom dataArchRoom, NameStandardized nameStandardized,
+			FunctionEnum functionEnum) {
+		super();
+		this.isDefault = isDefault;
+		this.dataArchRoom = dataArchRoom;
+		this.nameStandardized = nameStandardized;
+		this.functionEnum = functionEnum;
+	}
+
+	/**
+	 * Constructor
+	 * @param isDefault
+	 */
+	public Room(boolean isDefault) {
+		super();
+		this.isDefault = isDefault;
+	}
+
+	/**
 	 * @param department
 	 */
 	public Room(Department department) {
 		super();
 		this.department = department;
 	}
-
-
 
 	/**
 	 * @param name
@@ -106,6 +131,22 @@ public class Room extends HealthcareFacility {
 		super();
 		this.department = department;
 		this.nameStandardized = nameStandardized;
+	}
+	
+	/**
+	 * Getter
+	 * @return the isDefault
+	 */
+	public boolean isDefault() {
+		return isDefault;
+	}
+
+	/**
+	 * Setter
+	 * @param isDefault the isDefault to set
+	 */
+	public void setDefault(boolean isDefault) {
+		this.isDefault = isDefault;
 	}
 
 	/**

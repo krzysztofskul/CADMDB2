@@ -64,11 +64,23 @@ public class CategoryGenerator implements InitDataGenerator<Category> {
 		categoryA.addChildCategory(categoryAC);
 		categoryA.addChildCategory(categoryAH);
 		categoryA.addChildCategory(categoryAE);
+
+		//Cat. B
+		Category categoryB = new Category("B", "Mebel medyczny", "Medical furniture", "Meble medyczne", "Medical furnitures");
+		Category categoryBA = new Category("BA", "Biurko medyczne", "Clinical workstation", "Biurka medyczne", "Clinical workstations");
+		Category categoryBB = new Category("BB", "Fotel biurowy medyczny", "Clinical office chair", "Fotele biurowe medyczne", "Clinical office chairs");
+		Category categoryBY = new Category("BY", "Zestaw mebli medycznych", "Clinical cabinet system", "Zestaw mebli medycznych", "Clinical cabinet system");
+		categoryBY.addChildCategory(new Category("BY00", "Zestaw mebli medycznych", "Clinical cabinet system", "Zestaw mebli medycznych", "Clinical cabinet system"));
+		
+		categoryB.addChildCategory(categoryBA);
+		categoryB.addChildCategory(categoryBB);
+		categoryB.addChildCategory(categoryBY);
 		
 		//Cat. J
 		Category categoryJ = new Category("J", "Sprzęt do dezynfekcji", "Disinfection device", "Sprzęt do dezynfekcji", "Disinfection devices");
 		
 		Category categoryJA = new Category("JA", "Myjnia/dezynfektor", "Washer/disinfector", "Myjnie/dezynfektory", "Washers/disinfectors");
+		categoryJA.addChildCategory(new Category("JA03", "Myjnia/dezynfektor do kaczek i basenów", "Washer/disinfector for bedpans and urinals", "Myjnie/dezynfektory do kaczek i basenów", "Washers/disinfectors for bedpans and urinals"));
 		categoryJA.addChildCategory(new Category("JA1010", "Myjnia/dezynfektor do narzędzi", "Washer/disinfector for medical instruments", "Myjnie/dezynfektory do narzędzi", "Washers/disinfectors for medical instruments"));
 		categoryJA.addChildCategory(new Category("JA1030", "Myjnia/dezynfektor do łóżek i wózków", "Washer/disinfector for beds and trolleys", "Myjnie/dezynfektory do łóżek i wózków", "Washers/disinfectors for beds and trolleys"));
 		//categoryList.add(categoryJA);
@@ -77,12 +89,20 @@ public class CategoryGenerator implements InitDataGenerator<Category> {
 		categoryJB.addChildCategory(new Category("JB10", "Sterylizator parowy", "Steam sterilizer", "Sterylizatory parowe", "Steam sterilizers"));
 		categoryJB.addChildCategory(new Category("JB20", "Sterylizator plazmowy", "Plasma sterilizer", "Sterylizatory plazmowe", "Plasma sterilizers"));
 		//categoryList.add(categoryJB);
+
+		Category categoryJJ = new Category("JJ", "Umywalka chirurgiczna", "Surgical scrub sink", "Umywalki chirurgiczne", "Surgical scrub sinks");
+		categoryJJ.addChildCategory(new Category("JJ00", "Umywalka chirurgiczna", "Surgical scrub sink", "Umywalki chirurgiczne", "Surgical scrub sinks"));
+		categoryJJ.addChildCategory(new Category("JJ10", "Umywalka chirurgiczna 1-stanowiskowa", "Surgical scrub sink single", "Umywalki chirurgiczne 1-stanowiskowe", "Surgical scrub sinks single"));
+		categoryJJ.addChildCategory(new Category("JJ20", "Umywalka chirurgiczna 2-stanowiskowa", "Surgical scrub sink double", "Umywalki chirurgiczne 2-stanowiskowe", "Surgical scrub sinks double"));
+		categoryJJ.addChildCategory(new Category("JJ30", "Umywalka chirurgiczna 3-stanowiskowa", "Surgical scrub sink triple", "Umywalki chirurgiczne 3-stanowiskowe", "Surgical scrub sinks triple"));
 		
 		categoryJ.addChildCategory(categoryJA);
 		categoryJ.addChildCategory(categoryJB);
+		categoryJ.addChildCategory(categoryJJ);
 		
 		//update list
 		categoryList.add(categoryA);
+		categoryList.add(categoryB);
 		categoryList.add(categoryJ);
 		
 		return categoryList;

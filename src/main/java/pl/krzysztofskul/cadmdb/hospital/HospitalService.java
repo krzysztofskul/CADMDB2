@@ -53,6 +53,7 @@ public class HospitalService {
 		hospitalRepo.deleteById(hospitalId);
 	}
 	
+	//TODO: move this method do HealthcareFacilityService
 	public Hospital addDepartment(Hospital hospital, Department department) {
 		hospital.addDepartment(department);
 		hospital.getDataArchHospital().setAreaTotal(
